@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema Médico Inteligente</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+            max-width: 900px;
+            width: 100%;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 16px;
+            opacity: 0.95;
+        }
+
+        .content {
+            padding: 40px 30px;
+        }
+
+        .options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .option {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .option:hover {
+            background: white;
+            border-color: #667eea;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.2);
+        }
+
+        .option-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+
+        .option-title {
+            color: #1a365d;
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .option-desc {
+            color: #666;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        .features {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+        }
+
+        .features h2 {
+            color: #1a365d;
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+
+        .feature-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .feature-item {
+            padding: 12px;
+            background: white;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #333;
+            font-size: 14px;
+        }
+
+        .feature-item::before {
+            content: '';
+            color: #667eea;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .footer {
+            background: #f8f9fa;
+            padding: 20px 30px;
+            border-top: 1px solid #e0e0e0;
+            color: #666;
+            font-size: 12px;
+            text-align: center;
+        }
+
+        @media (max-width: 600px) {
+            .header {
+                padding: 25px 20px;
+            }
+
+            .header h1 {
+                font-size: 24px;
+            }
+
+            .content {
+                padding: 20px;
+            }
+
+            .options {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1> Sistema Médico Inteligente</h1>
+            <p>Gestión clínica avanzada con análisis impulsado por IA</p>
+        </div>
+
+        <div class="content">
+            <div class="options">
+                <a href="/medico-inteligente" class="option">
+                    <div class="option-icon"></div>
+                    <div class="option-title">Panel Médico Inteligente</div>
+                    <div class="option-desc">Gestión avanzada de pacientes con análisis de IA en tiempo real</div>
+                </a>
+
+                <a href="/pacientes" class="option">
+                    <div class="option-icon"></div>
+                    <div class="option-title">Gestión de Pacientes</div>
+                    <div class="option-desc">Registro y gestión de información de pacientes</div>
+                </a>
+
+                <a href="/#chat" class="option">
+                    <div class="option-icon"></div>
+                    <div class="option-title">Asistente IA - Claudia</div>
+                    <div class="option-desc">Chat interactivo con inteligencia artificial</div>
+                </a>
+            </div>
+
+            <div class="features">
+                <h2> Características Principales</h2>
+                <div class="feature-list">
+                    <div class="feature-item">Registro de pacientes completo</div>
+                    <div class="feature-item">Seguimiento de diagnósticos</div>
+                    <div class="feature-item">Gestión de tratamientos</div>
+                    <div class="feature-item">Control de estudios médicos</div>
+                    <div class="feature-item">Análisis clínico avanzado</div>
+                    <div class="feature-item">Alertas inteligentes</div>
+                    <div class="feature-item">Timeline clínico</div>
+                    <div class="feature-item">Recomendaciones personalizadas</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>Sistema Médico Inteligente v2.0 | Confidencial y Seguro | © 2024</p>
+        </div>
+    </div>
+</body>
+</html>

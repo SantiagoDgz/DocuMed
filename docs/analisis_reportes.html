@@ -1,0 +1,984 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Análisis y Reportes - Sistema Médico</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .header {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            color: #667eea;
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            color: #666;
+            font-size: 16px;
+        }
+
+        .controls {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            margin-bottom: 25px;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .controls label {
+            font-weight: 600;
+            color: #333;
+        }
+
+        .controls select {
+            padding: 10px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: border-color 0.3s ease;
+        }
+
+        .controls select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .btn-secondary {
+            background: #f5f5f5;
+            color: #333;
+        }
+
+        .btn-secondary:hover {
+            background: #e0e0e0;
+        }
+
+        .btn-danger {
+            background: #e74c3c;
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background: #c0392b;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin-bottom: 25px;
+        }
+
+        @media (max-width: 1024px) {
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .chart-card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            border-left: 5px solid #667eea;
+        }
+
+        .chart-card h2 {
+            color: #333;
+            font-size: 20px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .chart-container {
+            position: relative;
+            height: 400px;
+            margin-bottom: 20px;
+        }
+
+        .chart-container canvas {
+            max-height: 400px;
+        }
+
+        .table-section {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            margin-bottom: 25px;
+            overflow-x: auto;
+        }
+
+        .table-section h2 {
+            color: #333;
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+
+        th {
+            background: #f5f5f5;
+            padding: 12px;
+            text-align: left;
+            font-weight: 600;
+            color: #333;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        tr:hover {
+            background: #f9f9f9;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            text-align: center;
+            border-top: 3px solid #667eea;
+        }
+
+        .stat-card.danger {
+            border-top-color: #e74c3c;
+        }
+
+        .stat-card.success {
+            border-top-color: #27ae60;
+        }
+
+        .stat-card.warning {
+            border-top-color: #f39c12;
+        }
+
+        .stat-value {
+            font-size: 32px;
+            font-weight: 700;
+            color: #667eea;
+            margin: 10px 0;
+        }
+
+        .stat-card.danger .stat-value {
+            color: #e74c3c;
+        }
+
+        .stat-card.success .stat-value {
+            color: #27ae60;
+        }
+
+        .stat-card.warning .stat-value {
+            color: #f39c12;
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .alert {
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        .alert.show {
+            display: block;
+        }
+
+        .alert-info {
+            background: #d1ecf1;
+            color: #0c5460;
+            border-left: 4px solid #3498db;
+        }
+
+        .alert-error {
+            background: #f8d7da;
+            color: #721c24;
+            border-left: 4px solid #e74c3c;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #666;
+        }
+
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .no-data {
+            background: #f5f5f5;
+            padding: 40px;
+            border-radius: 8px;
+            text-align: center;
+            color: #999;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .badge-primary {
+            background: #e3f2fd;
+            color: #1976d2;
+        }
+
+        .badge-danger {
+            background: #ffebee;
+            color: #c62828;
+        }
+
+        .badge-success {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .btn-group .btn {
+            flex: 1;
+        }
+
+        #reportContent {
+            background: white;
+            padding: 40px;
+            border-radius: 8px;
+            display: none;
+        }
+
+        .report-header {
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 20px;
+        }
+
+        .report-header h1 {
+            color: #667eea;
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .report-section {
+            margin-bottom: 30px;
+            page-break-inside: avoid;
+        }
+
+        .report-section h2 {
+            color: #333;
+            font-size: 18px;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        @media print {
+            body {
+                background: white;
+            }
+            .controls, .btn-group {
+                display: none;
+            }
+            #reportContent {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Análisis y Reportes Clínicos</h1>
+            <p>Visualiza gráficos, históricos y genera reportes de tus pacientes</p>
+        </div>
+
+        <div class="controls">
+            <label>Seleccionar Paciente:</label>
+            <select id="patientSelect">
+                <option value="">Cargando pacientes...</option>
+            </select>
+            <button class="btn btn-primary" onclick="loadPatientData()"> Cargar Datos</button>
+            <button class="btn btn-secondary" onclick="generatePDF()"> Descargar PDF</button>
+            <button class="btn btn-danger" onclick="clearData()"> Limpiar</button>
+        </div>
+
+        <div id="alertContainer"></div>
+
+        <!-- Estadísticas Rápidas -->
+        <div id="statsSection" style="display: none;">
+            <div class="stats-grid" id="statsGrid"></div>
+        </div>
+
+        <!-- Gráficos -->
+        <div id="chartsSection" style="display: none;">
+            <div class="grid-2">
+                <div class="chart-card">
+                    <h2>Evolución de Presión Arterial</h2>
+                    <div class="chart-container">
+                        <canvas id="presionChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="chart-card">
+                    <h2>Evolución de Temperatura</h2>
+                    <div class="chart-container">
+                        <canvas id="temperaturaChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="chart-card">
+                    <h2>Frecuencia Cardíaca</h2>
+                    <div class="chart-container">
+                        <canvas id="fcChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="chart-card">
+                    <h2>Frecuencia Respiratoria</h2>
+                    <div class="chart-container">
+                        <canvas id="frChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="chart-card">
+                    <h2>Nivel de Oxígeno (SpO2)</h2>
+                    <div class="chart-container">
+                        <canvas id="spo2Chart"></canvas>
+                    </div>
+                </div>
+
+                <div class="chart-card">
+                    <h2>Glucosa en Sangre</h2>
+                    <div class="chart-container">
+                        <canvas id="glucosaChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Histórico de Signos Vitales -->
+        <div id="signosVitalesSection" style="display: none;">
+            <div class="table-section">
+                <h2>Histórico de Signos Vitales</h2>
+                <table id="signosVitalesTable">
+                    <thead>
+                        <tr>
+                            <th>Fecha/Hora</th>
+                            <th>Presión Arterial</th>
+                            <th>FC (bpm)</th>
+                            <th>Temperatura (°C)</th>
+                            <th>FR (resp/min)</th>
+                            <th>SpO2 (%)</th>
+                            <th>Glucosa (mg/dL)</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Histórico de Diagnósticos -->
+        <div id="diagnosticosSection" style="display: none;">
+            <div class="table-section">
+                <h2>Histórico de Diagnósticos</h2>
+                <table id="diagnosticosTable">
+                    <thead>
+                        <tr>
+                            <th>Fecha</th>
+                            <th>Diagnóstico</th>
+                            <th>Código CIE</th>
+                            <th>Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Histórico de Tratamientos -->
+        <div id="tratamientosSection" style="display: none;">
+            <div class="table-section">
+                <h2>Histórico de Tratamientos</h2>
+                <table id="tratamientosTable">
+                    <thead>
+                        <tr>
+                            <th>Medicamento</th>
+                            <th>Dosis</th>
+                            <th>Frecuencia</th>
+                            <th>Vía</th>
+                            <th>Duración</th>
+                            <th>Fecha Inicio</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Histórico de Estudios -->
+        <div id="estudiosSection" style="display: none;">
+            <div class="table-section">
+                <h2>Histórico de Estudios</h2>
+                <table id="estudiosTable">
+                    <thead>
+                        <tr>
+                            <th>Fecha</th>
+                            <th>Tipo de Estudio</th>
+                            <th>Descripción</th>
+                            <th>Resultado</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Sección Oculta para Reportes PDF -->
+        <div id="reportContent">
+            <div class="report-header">
+                <h1>Reporte Clínico Completo</h1>
+                <p id="reportPatientName"></p>
+                <p id="reportDate"></p>
+            </div>
+
+            <div class="report-section">
+                <h2>Información del Paciente</h2>
+                <div id="reportPatientInfo"></div>
+            </div>
+
+            <div class="report-section">
+                <h2>Últimos Signos Vitales</h2>
+                <div id="reportSignosVitales"></div>
+            </div>
+
+            <div class="report-section">
+                <h2>Diagnósticos</h2>
+                <div id="reportDiagnosticos"></div>
+            </div>
+
+            <div class="report-section">
+                <h2>Tratamientos Actuales</h2>
+                <div id="reportTratamientos"></div>
+            </div>
+
+            <div class="report-section">
+                <h2>Últimos Estudios</h2>
+                <div id="reportEstudios"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentPatientId = null;
+        let currentPatientData = null;
+        const chartInstances = {};
+
+        // Cargar lista de pacientes
+        async function loadPatients() {
+            try {
+                const response = await fetch('/api/pacientes');
+                const data = await response.json();
+                
+                if (data.exito) {
+                    const select = document.getElementById('patientSelect');
+                    select.innerHTML = '<option value="">Seleccionar paciente...</option>';
+                    
+                    data.pacientes.forEach(paciente => {
+                        const option = document.createElement('option');
+                        option.value = paciente.id;
+                        option.textContent = `${paciente.nombre} ${paciente.apellido} (ID: ${paciente.id})`;
+                        select.appendChild(option);
+                    });
+                }
+            } catch (error) {
+                showAlert('Error al cargar pacientes', 'error');
+                console.error(error);
+            }
+        }
+
+        // Cargar datos del paciente
+        async function loadPatientData() {
+            const patientId = document.getElementById('patientSelect').value;
+            
+            if (!patientId) {
+                showAlert('Por favor selecciona un paciente', 'error');
+                return;
+            }
+
+            try {
+                const response = await fetch(`/api/pacientes/${patientId}`);
+                const data = await response.json();
+                
+                if (data.exito) {
+                    currentPatientId = patientId;
+                    currentPatientData = data.paciente;
+                    displayData(data.paciente);
+                } else {
+                    showAlert('Error al cargar datos del paciente', 'error');
+                }
+            } catch (error) {
+                showAlert('Error al cargar datos', 'error');
+                console.error(error);
+            }
+        }
+
+        function displayData(paciente) {
+            // Mostrar secciones
+            document.getElementById('statsSection').style.display = 'block';
+            document.getElementById('chartsSection').style.display = 'block';
+            document.getElementById('signosVitalesSection').style.display = 'block';
+            document.getElementById('diagnosticosSection').style.display = 'block';
+            document.getElementById('tratamientosSection').style.display = 'block';
+            document.getElementById('estudiosSection').style.display = 'block';
+
+            // Mostrar estadísticas
+            displayStats(paciente);
+
+            // Mostrar gráficos
+            displayCharts(paciente);
+
+            // Mostrar históricos
+            displayHistoricos(paciente);
+        }
+
+        function displayStats(paciente) {
+            const statsGrid = document.getElementById('statsGrid');
+            let stats = '';
+
+            // Último registro de signos vitales (simulado)
+            const presion = paciente.presion_arterial || 'N/A';
+            const temp = '37°C';
+            const fc = '72 bpm';
+            const diag = paciente.diagnósticos?.length || 0;
+
+            stats = `
+                <div class="stat-card">
+                    <div class="stat-label">Presión Arterial</div>
+                    <div class="stat-value">${presion}</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Temperatura</div>
+                    <div class="stat-value">${temp}</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Frecuencia Cardíaca</div>
+                    <div class="stat-value">${fc}</div>
+                </div>
+                <div class="stat-card warning">
+                    <div class="stat-label">Diagnósticos Activos</div>
+                    <div class="stat-value">${diag}</div>
+                </div>
+            `;
+
+            statsGrid.innerHTML = stats;
+        }
+
+        function displayCharts(paciente) {
+            // Datos simulados para gráficos
+            const labels = ['Día 1', 'Día 2', 'Día 3', 'Día 4', 'Día 5', 'Día 6', 'Día 7'];
+            
+            const presionData = [120, 122, 121, 119, 120, 121, 120];
+            const tempData = [37.0, 37.1, 36.9, 37.0, 37.1, 37.0, 36.9];
+            const fcData = [72, 74, 71, 72, 73, 72, 71];
+            const frData = [16, 16, 17, 16, 16, 17, 16];
+            const spo2Data = [98, 97, 98, 99, 98, 97, 98];
+            const glucosaData = [105, 110, 100, 95, 105, 110, 100];
+
+            // Destruir gráficos anteriores
+            Object.values(chartInstances).forEach(chart => chart.destroy());
+
+            // Presión Arterial
+            chartInstances.presion = new Chart(document.getElementById('presionChart'), {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Sistólica',
+                        data: presionData,
+                        borderColor: '#e74c3c',
+                        backgroundColor: 'rgba(231, 76, 60, 0.1)',
+                        tension: 0.4,
+                        fill: true
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: true } }
+                }
+            });
+
+            // Temperatura
+            chartInstances.temperatura = new Chart(document.getElementById('temperaturaChart'), {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Temperatura (°C)',
+                        data: tempData,
+                        borderColor: '#f39c12',
+                        backgroundColor: 'rgba(243, 156, 18, 0.1)',
+                        tension: 0.4,
+                        fill: true
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: true } }
+                }
+            });
+
+            // Frecuencia Cardíaca
+            chartInstances.fc = new Chart(document.getElementById('fcChart'), {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'FC (bpm)',
+                        data: fcData,
+                        borderColor: '#e74c3c',
+                        backgroundColor: 'rgba(231, 76, 60, 0.1)',
+                        tension: 0.4,
+                        fill: true
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: true } }
+                }
+            });
+
+            // Frecuencia Respiratoria
+            chartInstances.fr = new Chart(document.getElementById('frChart'), {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'FR (resp/min)',
+                        data: frData,
+                        borderColor: '#3498db',
+                        backgroundColor: 'rgba(52, 152, 219, 0.1)',
+                        tension: 0.4,
+                        fill: true
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: true } }
+                }
+            });
+
+            // SpO2
+            chartInstances.spo2 = new Chart(document.getElementById('spo2Chart'), {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'SpO2 (%)',
+                        data: spo2Data,
+                        borderColor: '#27ae60',
+                        backgroundColor: 'rgba(39, 174, 96, 0.1)',
+                        tension: 0.4,
+                        fill: true
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: true } }
+                }
+            });
+
+            // Glucosa
+            chartInstances.glucosa = new Chart(document.getElementById('glucosaChart'), {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Glucosa (mg/dL)',
+                        data: glucosaData,
+                        borderColor: '#9b59b6',
+                        backgroundColor: 'rgba(155, 89, 182, 0.1)',
+                        tension: 0.4,
+                        fill: true
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: true } }
+                }
+            });
+        }
+
+        function displayHistoricos(paciente) {
+            // Histórico de Signos Vitales (simulado)
+            let svHtml = '';
+            for (let i = 1; i <= 7; i++) {
+                svHtml += `
+                    <tr>
+                        <td>2026-01-${20 + i} 10:30</td>
+                        <td>120/80 mmHg</td>
+                        <td>72</td>
+                        <td>37°C</td>
+                        <td>16</td>
+                        <td>98%</td>
+                        <td>105 mg/dL</td>
+                    </tr>
+                `;
+            }
+            document.querySelector('#signosVitalesTable tbody').innerHTML = svHtml;
+
+            // Histórico de Diagnósticos
+            let diagHtml = '';
+            if (paciente.diagnósticos && paciente.diagnósticos.length > 0) {
+                paciente.diagnósticos.forEach((diag, idx) => {
+                    diagHtml += `
+                        <tr>
+                            <td>${diag.fecha || '2026-01-20'}</td>
+                            <td>${typeof diag === 'string' ? diag : diag.diagnostico}</td>
+                            <td>${diag.codigo_cie || 'N/A'}</td>
+                            <td><span class="badge badge-primary">Activo</span></td>
+                        </tr>
+                    `;
+                });
+            } else {
+                diagHtml = '<tr><td colspan="4" class="no-data">No hay diagnósticos registrados</td></tr>';
+            }
+            document.querySelector('#diagnosticosTable tbody').innerHTML = diagHtml;
+
+            // Histórico de Tratamientos
+            let tratHtml = '';
+            if (paciente.tratamientos && paciente.tratamientos.length > 0) {
+                paciente.tratamientos.forEach((trat) => {
+                    tratHtml += `
+                        <tr>
+                            <td>${typeof trat === 'string' ? trat : trat.medicamento}</td>
+                            <td>${trat.dosis || 'N/A'}</td>
+                            <td>${trat.frecuencia || 'N/A'}</td>
+                            <td>${trat.via_administracion || 'N/A'}</td>
+                            <td>${trat.duracion || 'N/A'}</td>
+                            <td>${trat.fecha_inicio || '2026-01-20'}</td>
+                        </tr>
+                    `;
+                });
+            } else {
+                tratHtml = '<tr><td colspan="6" class="no-data">No hay tratamientos registrados</td></tr>';
+            }
+            document.querySelector('#tratamientosTable tbody').innerHTML = tratHtml;
+
+            // Histórico de Estudios
+            let estHtml = '';
+            if (paciente.estudios && paciente.estudios.length > 0) {
+                paciente.estudios.forEach((est) => {
+                    estHtml += `
+                        <tr>
+                            <td>${est.fecha || '2026-01-20'}</td>
+                            <td>${est.tipo || 'N/A'}</td>
+                            <td>${est.descripcion || 'N/A'}</td>
+                            <td>${est.resultado || 'Pendiente'}</td>
+                        </tr>
+                    `;
+                });
+            } else {
+                estHtml = '<tr><td colspan="4" class="no-data">No hay estudios registrados</td></tr>';
+            }
+            document.querySelector('#estudiosTable tbody').innerHTML = estHtml;
+        }
+
+        async function generatePDF() {
+            if (!currentPatientData) {
+                showAlert('Por favor carga los datos de un paciente primero', 'error');
+                return;
+            }
+
+            // Llenar datos en el reporte
+            document.getElementById('reportPatientName').textContent = 
+                `${currentPatientData.nombre} ${currentPatientData.apellido}`;
+            document.getElementById('reportDate').textContent = 
+                `Generado: ${new Date().toLocaleDateString('es-ES')}`;
+
+            let patientInfo = `
+                <p><strong>ID Paciente:</strong> ${currentPatientData.id}</p>
+                <p><strong>Cédula:</strong> ${currentPatientData.cedula}</p>
+                <p><strong>Edad:</strong> ${currentPatientData.edad} años</p>
+                <p><strong>Género:</strong> ${currentPatientData.genero}</p>
+                <p><strong>Teléfono:</strong> ${currentPatientData.telefono}</p>
+                <p><strong>Email:</strong> ${currentPatientData.email}</p>
+            `;
+            document.getElementById('reportPatientInfo').innerHTML = patientInfo;
+
+            let signosVitales = `
+                <p><strong>Presión Arterial:</strong> ${currentPatientData.presion_arterial || 'N/A'}</p>
+                <p><strong>Peso:</strong> ${currentPatientData.peso} kg</p>
+                <p><strong>Altura:</strong> ${currentPatientData.altura} cm</p>
+            `;
+            document.getElementById('reportSignosVitales').innerHTML = signosVitales;
+
+            let diagnosticos = '';
+            if (currentPatientData.diagnósticos?.length > 0) {
+                diagnosticos = currentPatientData.diagnósticos.map((d, i) => 
+                    `<p>${i + 1}. ${typeof d === 'string' ? d : d.diagnostico}</p>`
+                ).join('');
+            } else {
+                diagnosticos = '<p>No hay diagnósticos registrados</p>';
+            }
+            document.getElementById('reportDiagnosticos').innerHTML = diagnosticos;
+
+            let tratamientos = '';
+            if (currentPatientData.tratamientos?.length > 0) {
+                tratamientos = currentPatientData.tratamientos.map((t, i) => 
+                    `<p>${i + 1}. ${typeof t === 'string' ? t : t.medicamento} - ${t.dosis || ''}</p>`
+                ).join('');
+            } else {
+                tratamientos = '<p>No hay tratamientos registrados</p>';
+            }
+            document.getElementById('reportTratamientos').innerHTML = tratamientos;
+
+            let estudios = '';
+            if (currentPatientData.estudios?.length > 0) {
+                estudios = currentPatientData.estudios.map((e, i) => 
+                    `<p>${i + 1}. ${e.descripcion || 'N/A'} - ${e.resultado || 'Pendiente'}</p>`
+                ).join('');
+            } else {
+                estudios = '<p>No hay estudios registrados</p>';
+            }
+            document.getElementById('reportEstudios').innerHTML = estudios;
+
+            // Generar PDF
+            const element = document.getElementById('reportContent');
+            const opt = {
+                margin: 10,
+                filename: `Reporte_${currentPatientData.nombre}_${currentPatientData.apellido}.pdf`,
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2 },
+                jsPDF: { orientation: 'portrait', unit: 'mm', format: 'a4' }
+            };
+
+            html2pdf().set(opt).from(element).save();
+            showAlert('PDF generado correctamente', 'success');
+        }
+
+        function clearData() {
+            document.getElementById('patientSelect').value = '';
+            document.getElementById('statsSection').style.display = 'none';
+            document.getElementById('chartsSection').style.display = 'none';
+            document.getElementById('signosVitalesSection').style.display = 'none';
+            document.getElementById('diagnosticosSection').style.display = 'none';
+            document.getElementById('tratamientosSection').style.display = 'none';
+            document.getElementById('estudiosSection').style.display = 'none';
+            currentPatientId = null;
+            currentPatientData = null;
+            showAlert('Datos borrados', 'info');
+        }
+
+        function showAlert(message, type) {
+            const container = document.getElementById('alertContainer');
+            const alert = document.createElement('div');
+            alert.className = `alert alert-${type} show`;
+            alert.textContent = message;
+            container.innerHTML = '';
+            container.appendChild(alert);
+
+            setTimeout(() => alert.remove(), 5000);
+        }
+
+        // Cargar pacientes al iniciar
+        loadPatients();
+    </script>
+</body>
+</html>
