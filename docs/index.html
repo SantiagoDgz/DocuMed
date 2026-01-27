@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DocuMed - Sistema de Gestión Médica Inteligente</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        header {
+            background: rgba(0, 0, 0, 0.1);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+        
+        header h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        nav {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1rem;
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 1rem;
+            font-weight: 500;
+            transition: opacity 0.3s;
+        }
+        
+        nav a:hover {
+            opacity: 0.7;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        
+        .hero {
+            background: white;
+            border-radius: 10px;
+            padding: 3rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        
+        .hero h2 {
+            color: #667eea;
+            margin-bottom: 1rem;
+            font-size: 2rem;
+        }
+        
+        .hero p {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            font-weight: 600;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 7px 20px rgba(102, 126, 234, 0.6);
+        }
+        
+        .btn-secondary {
+            background: white;
+            color: #667eea;
+            border: 2px solid #667eea;
+        }
+        
+        .btn-secondary:hover {
+            background: #667eea;
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+        
+        .feature-card h3 {
+            color: #667eea;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+        
+        .feature-card ul {
+            list-style: none;
+            color: #666;
+        }
+        
+        .feature-card li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        
+        .feature-card li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-weight: bold;
+        }
+        
+        .tech-stack {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin: 2rem 0;
+        }
+        
+        .tech-stack h3 {
+            color: #667eea;
+            margin-bottom: 1rem;
+        }
+        
+        .tech-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .tech-badge {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        
+        .credentials {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 2rem;
+            border-radius: 10px;
+            color: white;
+            margin: 2rem 0;
+            backdrop-filter: blur(10px);
+        }
+        
+        .credentials h3 {
+            margin-bottom: 1rem;
+        }
+        
+        .credentials p {
+            margin: 0.5rem 0;
+            font-size: 1.1rem;
+        }
+        
+        .credentials code {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 0.2rem 0.5rem;
+            border-radius: 3px;
+            font-family: monospace;
+        }
+        
+        footer {
+            background: rgba(0, 0, 0, 0.2);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+            backdrop-filter: blur(10px);
+        }
+        
+        footer p {
+            margin: 0.5rem 0;
+        }
+        
+        .footer-links {
+            margin-top: 1rem;
+        }
+        
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            margin: 0 1rem;
+            transition: opacity 0.3s;
+        }
+        
+        .footer-links a:hover {
+            opacity: 0.7;
+        }
+        
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+            
+            .hero {
+                padding: 2rem;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>DocuMed</h1>
+        <p>Sistema de Gestión Médica Inteligente</p>
+    </header>
+    
+    <nav>
+        <a href="#inicio">Inicio</a>
+        <a href="#caracteristicas">Características</a>
+        <a href="#tecnologia">Tecnología</a>
+        <a href="#instalacion">Instalación</a>
+        <a href="https://github.com/SantiagoDgz/DocuMed" target="_blank">GitHub</a>
+    </nav>
+    
+    <div class="container">
+        <section class="hero" id="inicio">
+            <h2>Bienvenido a DocuMed</h2>
+            <p>
+                Sistema integral de gestión médica potenciado por inteligencia artificial.
+                Gestiona pacientes, citas, laboratorios, recetas y más, todo en un mismo lugar
+                con encriptación de datos y sincronización en la nube.
+            </p>
+            <div class="cta-buttons">
+                <a href="https://github.com/SantiagoDgz/DocuMed" class="btn btn-primary" target="_blank">Ver en GitHub</a>
+                <a href="#instalacion" class="btn btn-secondary">Guía de Instalación</a>
+            </div>
+        </section>
+        
+        <section id="caracteristicas">
+            <h2 style="color: white; margin-bottom: 2rem; text-align: center;">Características Principales</h2>
+            <div class="features">
+                <div class="feature-card">
+                    <h3>Gestión de Pacientes</h3>
+                    <ul>
+                        <li>Registro completo de pacientes</li>
+                        <li>Búsqueda avanzada</li>
+                        <li>Historial médico detallado</li>
+                        <li>Edición y eliminación segura</li>
+                    </ul>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>Panel Médico IA</h3>
+                    <ul>
+                        <li>Chat con IA médica en tiempo real</li>
+                        <li>Análisis de síntomas</li>
+                        <li>Diagnósticos inteligentes</li>
+                        <li>Recomendaciones personalizadas</li>
+                    </ul>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>Gestión de Citas</h3>
+                    <ul>
+                        <li>Programación de citas</li>
+                        <li>Calendario integrado</li>
+                        <li>Recordatorios automáticos</li>
+                        <li>Historial de citas</li>
+                    </ul>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>Laboratorios</h3>
+                    <ul>
+                        <li>Órdenes de laboratorio</li>
+                        <li>Carga de resultados</li>
+                        <li>Visualización de pruebas</li>
+                        <li>Seguimiento histórico</li>
+                    </ul>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>Recetas Digitales</h3>
+                    <ul>
+                        <li>Emisión de prescripciones</li>
+                        <li>Listado de medicamentos</li>
+                        <li>Dosificación automática</li>
+                        <li>Archivo histórico</li>
+                    </ul>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>Seguridad</h3>
+                    <ul>
+                        <li>Encriptación AES-128</li>
+                        <li>Autenticación segura</li>
+                        <li>Backups automáticos</li>
+                        <li>Sincronización en nube</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <section class="tech-stack" id="tecnologia">
+            <h3>Tecnologías Utilizadas</h3>
+            <div class="tech-list">
+                <span class="tech-badge">Python 3</span>
+                <span class="tech-badge">Flask</span>
+                <span class="tech-badge">HTML5/CSS3</span>
+                <span class="tech-badge">JavaScript</span>
+                <span class="tech-badge">Groq API</span>
+                <span class="tech-badge">Llama 3.3</span>
+                <span class="tech-badge">SQLite</span>
+                <span class="tech-badge">AES-128</span>
+            </div>
+        </section>
+        
+        <section class="credentials">
+            <h3>Credenciales de Demostración</h3>
+            <p><strong>Usuario:</strong> <code>admin</code></p>
+            <p><strong>Contraseña:</strong> <code>admin123</code></p>
+            <p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.8;">
+                Nota: Cambia estas credenciales en producción por seguridad.
+            </p>
+        </section>
+        
+        <section id="instalacion">
+            <div style="background: white; padding: 2rem; border-radius: 10px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);">
+                <h3 style="color: #667eea; margin-bottom: 1rem;">Instalación Rápida</h3>
+                
+                <h4 style="color: #333; margin-top: 1.5rem; margin-bottom: 0.5rem;">Requisitos</h4>
+                <ul style="list-style-position: inside; color: #666; margin-bottom: 1rem;">
+                    <li>Python 3.8 o superior</li>
+                    <li>pip (gestor de paquetes)</li>
+                    <li>Conexión a internet</li>
+                </ul>
+                
+                <h4 style="color: #333; margin-top: 1.5rem; margin-bottom: 0.5rem;">Pasos</h4>
+                <ol style="list-style-position: inside; color: #666; line-height: 2;">
+                    <li>Clona el repositorio: <code style="background: #f4f4f4; padding: 0.2rem 0.5rem; border-radius: 3px;">git clone https://github.com/SantiagoDgz/DocuMed.git</code></li>
+                    <li>Instala dependencias: <code style="background: #f4f4f4; padding: 0.2rem 0.5rem; border-radius: 3px;">pip install -r requirements.txt</code></li>
+                    <li>Ejecuta: <code style="background: #f4f4f4; padding: 0.2rem 0.5rem; border-radius: 3px;">python launcher.py</code></li>
+                    <li>Accede en: <code style="background: #f4f4f4; padding: 0.2rem 0.5rem; border-radius: 3px;">http://localhost:5000</code></li>
+                </ol>
+            </div>
+        </section>
+    </div>
+    
+    <footer>
+        <p>&copy; 2026 DocuMed - Sistema de Gestión Médica Inteligente</p>
+        <p>Desarrollado por <strong>SantiagoDgz</strong></p>
+        <div class="footer-links">
+            <a href="https://github.com/SantiagoDgz/DocuMed" target="_blank">GitHub</a>
+            <a href="https://github.com/SantiagoDgz" target="_blank">Perfil</a>
+        </div>
+    </footer>
+</body>
+</html>
