@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recetas Digitales - Sistema Médico</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            color: #667eea;
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            color: #666;
+            font-size: 16px;
+        }
+
+        .controls {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            margin-bottom: 25px;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .recipe-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .recipe-card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            border-left: 5px solid #667eea;
+        }
+
+        .recipe-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 15px;
+        }
+
+        .recipe-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #333;
+        }
+
+        .recipe-status {
+            background: #e8f5e9;
+            color: #2e7d32;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .recipe-details {
+            font-size: 13px;
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        .recipe-details p {
+            margin-bottom: 8px;
+        }
+
+        .recipe-details strong {
+            color: #333;
+        }
+
+        .recipe-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .btn-small {
+            flex: 1;
+            padding: 8px 12px;
+            background: #f5f5f5;
+            border: none;
+            border-radius: 6px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-small:hover {
+            background: #e0e0e0;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal.show {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+            width: 100%;
+            max-width: 500px;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal-header {
+            font-size: 24px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="date"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 14px;
+            font-family: inherit;
+            transition: border-color 0.3s ease;
+        }
+
+        input[type="text"]:focus,
+        input[type="number"]:focus,
+        input[type="date"]:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .btn-close {
+            float: right;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #999;
+        }
+
+        .alert {
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        .alert.show {
+            display: block;
+        }
+
+        .alert-success {
+            background: #d4edda;
+            color: #155724;
+            border-left: 4px solid #27ae60;
+        }
+
+        .alert-error {
+            background: #f8d7da;
+            color: #721c24;
+            border-left: 4px solid #e74c3c;
+        }
+
+        .no-data {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            text-align: center;
+            color: #999;
+        }
+
+        .qr-code {
+            text-align: center;
+            margin: 15px 0;
+            padding: 15px;
+            background: #f5f5f5;
+            border-radius: 8px;
+        }
+
+        .qr-code img {
+            max-width: 200px;
+            margin: 10px 0;
+        }
+
+        .recipe-number {
+            color: #999;
+            font-size: 12px;
+        }
+
+        @media print {
+            body {
+                background: white;
+            }
+            .controls, .recipe-actions {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>💊 Recetas Digitales</h1>
+            <p>Gestiona y emite recetas médicas digitales</p>
+        </div>
+
+        <div class="controls">
+            <button class="btn btn-primary" onclick="openNewRecipeModal()">➕ Nueva Receta</button>
+            <button class="btn btn-primary" onclick="filterRecipes('todas')">📋 Todas</button>
+            <button class="btn btn-primary" onclick="filterRecipes('vigentes')">✅ Vigentes</button>
+            <button class="btn btn-primary" onclick="filterRecipes('vencidas')">❌ Vencidas</button>
+        </div>
+
+        <div id="alertContainer"></div>
+
+        <div class="recipe-grid" id="recipeGrid">
+            <div class="no-data">
+                <p>📭 No hay recetas registradas</p>
+                <p style="font-size: 12px; margin-top: 10px;">Haz clic en "Nueva Receta" para crear una</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para Nueva Receta -->
+    <div class="modal" id="recipeModal">
+        <div class="modal-content">
+            <button class="btn-close" onclick="closeRecipeModal()">&times;</button>
+            <div class="modal-header">💊 Nueva Receta Médica</div>
+            
+            <form id="recipeForm" onsubmit="saveRecipe(event)">
+                <div class="form-group">
+                    <label>Paciente</label>
+                    <select id="recipePatient" required>
+                        <option value="">Seleccionar paciente...</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Medicamento</label>
+                    <input type="text" id="recipeMedicine" placeholder="Nombre del medicamento" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Dosis</label>
+                    <input type="text" id="recipeDosis" placeholder="Ej: 500mg" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Frecuencia</label>
+                    <select id="recipeFreq" required>
+                        <option value="1/día">Una vez al día</option>
+                        <option value="2/día">Dos veces al día</option>
+                        <option value="3/día">Tres veces al día</option>
+                        <option value="4/día">Cuatro veces al día</option>
+                        <option value="c/6h">Cada 6 horas</option>
+                        <option value="c/8h">Cada 8 horas</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Duración</label>
+                    <input type="text" id="recipeDuration" placeholder="Ej: 7 días" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Indicaciones</label>
+                    <textarea id="recipeIndications" placeholder="Instrucciones especiales..."></textarea>
+                </div>
+
+                <button type="submit" class="btn-submit">✔️ Emitir Receta</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        let recipes = [];
+
+        // Cargar pacientes al iniciar
+        async function loadPatients() {
+            try {
+                const response = await fetch('/api/pacientes');
+                const data = await response.json();
+                
+                if (data.exito) {
+                    const select = document.getElementById('recipePatient');
+                    data.pacientes.forEach(p => {
+                        const option = document.createElement('option');
+                        option.value = p.id;
+                        option.textContent = `${p.nombre} ${p.apellido} (ID: ${p.id})`;
+                        select.appendChild(option);
+                    });
+                }
+            } catch (error) {
+                console.error('Error al cargar pacientes:', error);
+            }
+        }
+
+        function openNewRecipeModal() {
+            document.getElementById('recipeModal').classList.add('show');
+        }
+
+        function closeRecipeModal() {
+            document.getElementById('recipeModal').classList.remove('show');
+            document.getElementById('recipeForm').reset();
+        }
+
+        async function saveRecipe(event) {
+            event.preventDefault();
+
+            const recipe = {
+                id: 'REC-' + Date.now(),
+                patient: document.getElementById('recipePatient').value,
+                medicine: document.getElementById('recipeMedicine').value,
+                dosis: document.getElementById('recipeDosis').value,
+                frequency: document.getElementById('recipeFreq').value,
+                duration: document.getElementById('recipeDuration').value,
+                indications: document.getElementById('recipeIndications').value,
+                emittedDate: new Date().toLocaleDateString('es-ES'),
+                expiryDate: new Date(Date.now() + 30*24*60*60*1000).toLocaleDateString('es-ES'),
+                status: 'Vigente'
+            };
+
+            recipes.push(recipe);
+            displayRecipes(recipes);
+            closeRecipeModal();
+            showAlert('✅ Receta emitida correctamente', 'success');
+        }
+
+        function displayRecipes(recipesToShow) {
+            const grid = document.getElementById('recipeGrid');
+            
+            if (recipesToShow.length === 0) {
+                grid.innerHTML = '<div class="no-data"><p>📭 No hay recetas</p></div>';
+                return;
+            }
+
+            grid.innerHTML = recipesToShow.map(r => `
+                <div class="recipe-card">
+                    <div class="recipe-header">
+                        <div>
+                            <div class="recipe-title">${r.medicine}</div>
+                            <div class="recipe-number">${r.id}</div>
+                        </div>
+                        <span class="recipe-status">${r.status}</span>
+                    </div>
+                    <div class="recipe-details">
+                        <p><strong>Paciente:</strong> ${r.patient}</p>
+                        <p><strong>Dosis:</strong> ${r.dosis}</p>
+                        <p><strong>Frecuencia:</strong> ${r.frequency}</p>
+                        <p><strong>Duración:</strong> ${r.duration}</p>
+                        <p><strong>Válida hasta:</strong> ${r.expiryDate}</p>
+                        ${r.indications ? `<p><strong>Indicaciones:</strong> ${r.indications}</p>` : ''}
+                    </div>
+                    <div class="recipe-actions">
+                        <button class="btn-small" onclick="printRecipe('${r.id}')">🖨️ Imprimir</button>
+                        <button class="btn-small" onclick="downloadRecipePDF('${r.id}')">📥 Descargar</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function filterRecipes(status) {
+            if (status === 'todas') {
+                displayRecipes(recipes);
+            } else if (status === 'vigentes') {
+                displayRecipes(recipes.filter(r => r.status === 'Vigente'));
+            } else if (status === 'vencidas') {
+                displayRecipes(recipes.filter(r => r.status === 'Vencida'));
+            }
+        }
+
+        function printRecipe(id) {
+            window.print();
+        }
+
+        function downloadRecipePDF(id) {
+            showAlert('✅ Receta descargada (simulado)', 'success');
+        }
+
+        function showAlert(message, type) {
+            const container = document.getElementById('alertContainer');
+            const alert = document.createElement('div');
+            alert.className = `alert alert-${type} show`;
+            alert.textContent = message;
+            container.innerHTML = '';
+            container.appendChild(alert);
+            setTimeout(() => alert.remove(), 5000);
+        }
+
+        // Inicializar
+        loadPatients();
+    </script>
+</body>
+</html>

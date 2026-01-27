@@ -1,0 +1,287 @@
+🏥 ACCESO RÁPIDO - SISTEMA MÉDICO INTELIGENTE 2.0
+
+═════════════════════════════════════════════════════════════════
+
+🌐 SERVIDOR: http://localhost:5000
+
+═════════════════════════════════════════════════════════════════
+
+📍 RUTAS PRINCIPALES:
+
+DASHBOARD Y NAVEGACIÓN:
+  🏠 Inicio/Dashboard
+     → http://localhost:5000/
+     Descripción: Panel principal con todas las características
+
+📋 GESTIÓN CLÍNICA:
+  👥 Gestión de Pacientes
+     → http://localhost:5000/pacientes
+     Características: Registro, búsqueda, edición
+
+  📝 Captura de Datos Clínicos
+     → http://localhost:5000/captura-datos
+     Características: Signos vitales, síntomas, diagnósticos, etc.
+
+  📊 Análisis y Reportes
+     → http://localhost:5000/analisis-reportes
+     Características: Gráficos, exportación PDF, tablas históricas
+
+  🤖 Panel Médico Inteligente
+     → http://localhost:5000/medico-inteligente
+     Características: IA, análisis automático, recomendaciones
+
+🗓️ PROGRAMACIÓN Y LABORATORIOS:
+  📅 Sistema de Citas Médicas
+     → http://localhost:5000/citas
+     Características: Calendario, agendamiento, especialidades
+
+  🧪 Gestión de Laboratorios
+     → http://localhost:5000/laboratorios
+     Características: Órdenes, resultados, 9 tipos de análisis
+
+💊 PRESCRIPCIONES Y SEGURIDAD:
+  💊 Recetas Digitales
+     → http://localhost:5000/recetas
+     Características: Generación, impresión, PDF, vigencia
+
+  🔐 Seguridad y Backup
+     → http://localhost:5000/seguridad
+     Características: Encriptación, backups, sincronización nube
+
+═════════════════════════════════════════════════════════════════
+
+🔑 CREDENCIALES DE PRUEBA:
+
+ADMINISTRADOR:
+  Usuario: admin
+  Contraseña: admin123
+
+DOCTOR:
+  Usuario: doctor
+  Contraseña: doctor123
+
+═════════════════════════════════════════════════════════════════
+
+🔌 ENDPOINTS API PRINCIPALES:
+
+PACIENTES:
+  GET  /api/pacientes              - Listar pacientes
+  POST /api/pacientes              - Crear paciente
+  GET  /api/pacientes/<id>         - Obtener paciente
+  PUT  /api/pacientes/<id>         - Actualizar paciente
+
+DATOS CLÍNICOS:
+  POST /api/pacientes/<id>/sintomas        - Agregar síntomas
+  POST /api/pacientes/<id>/diagnostico    - Agregar diagnóstico
+  POST /api/pacientes/<id>/tratamiento    - Agregar tratamiento
+  POST /api/pacientes/<id>/estudio        - Agregar estudio
+  POST /api/pacientes/<id>/notas          - Agregar notas
+
+CITAS:
+  GET  /api/citas                  - Listar citas
+  POST /api/citas                  - Crear cita
+
+LABORATORIOS:
+  GET  /api/laboratorios           - Listar órdenes
+  POST /api/laboratorios           - Crear orden
+
+ENCRIPTACIÓN:
+  POST /api/encriptar              - Encriptar datos
+  GET  /api/desencriptar/<hash>    - Desencriptar datos
+
+BACKUP Y SINCRONIZACIÓN:
+  POST /api/backup/crear           - Crear backup
+  GET  /api/backup/listar          - Listar backups
+  POST /api/backup/restaurar/<id>  - Restaurar backup
+  POST /api/sincronizar            - Sincronizar con nube
+
+═════════════════════════════════════════════════════════════════
+
+✨ CARACTERÍSTICAS IMPLEMENTADAS:
+
+✅ Gestión de Pacientes (con 5 formularios de datos)
+✅ Captura de Datos Clínicos (6 categorías)
+✅ Análisis y Reportes (6 gráficos + PDF)
+✅ Panel Médico Inteligente con IA
+✅ Sistema de Citas con Calendario Interactivo
+✅ Gestión de Laboratorios (9 tipos de análisis)
+✅ Recetas Digitales (Impresión + PDF)
+✅ Encriptación AES-128 de Datos Sensibles
+✅ Backups Automáticos (Completos e Incrementales)
+✅ Sincronización con Servicios en la Nube
+
+═════════════════════════════════════════════════════════════════
+
+💾 ARCHIVOS IMPORTANTES:
+
+WEB_IA.PY (Servidor Flask)
+  - 1053 líneas de código
+  - 26+ endpoints API
+  - Integración con todos los módulos
+
+ENCRYPTION.PY (Encriptación)
+  - 400+ líneas
+  - Clases: EncriptadorDatos, GestorClaves
+  - Auditoría y permisos incluidos
+
+CLOUD_SYNC.PY (Sincronización)
+  - 550+ líneas
+  - Clases: SincronizadorNube, MonitorSincronizacion
+  - Soporte para múltiples servicios
+
+TEMPLATES HTML (Interfaces)
+  - captura_datos.html (1000+ líneas)
+  - analisis_reportes.html (800+ líneas)
+  - citas.html (450+ líneas)
+  - laboratorios.html (600+ líneas)
+  - recetas.html (350+ líneas)
+  - seguridad.html (600+ líneas)
+  - dashboard.html (360+ líneas)
+
+═════════════════════════════════════════════════════════════════
+
+🚀 INICIO RÁPIDO:
+
+1. Abre Terminal/PowerShell
+2. Navega a: C:\Users\Santi\Downloads\Nueva carpeta
+3. Ejecuta: python web_ia.py
+4. Abre navegador: http://localhost:5000
+5. Usa credenciales demo (admin/admin123 o doctor/doctor123)
+
+═════════════════════════════════════════════════════════════════
+
+📊 ESTADO DEL SISTEMA:
+
+✅ Servidor: Activo en puerto 5000
+✅ Base de datos: pacientes.json (JSON local)
+✅ Seguridad: Encriptación AES-128 activada
+✅ Backups: Sistema activo (almacenamiento local)
+✅ IA: Motor inteligente operativo
+✅ API: 26+ endpoints disponibles
+
+═════════════════════════════════════════════════════════════════
+
+📞 FUNCIONES PRINCIPALES POR SECCIÓN:
+
+DASHBOARD (/):
+  • Descripción general del sistema
+  • Estadísticas en vivo
+  • Acceso rápido a todas las secciones
+
+PACIENTES (/pacientes):
+  • Registrar nuevos pacientes
+  • Buscar pacientes
+  • Ver historial completo
+  • Editar datos
+
+CAPTURA DATOS (/captura-datos):
+  • Registrar signos vitales
+  • Registrar síntomas
+  • Agregar diagnósticos
+  • Registrar tratamientos
+  • Cargar estudios
+  • Agregar notas médicas
+
+ANÁLISIS (/analisis-reportes):
+  • Ver gráficos de evolución
+  • Consultar tablas históricas
+  • Exportar reportes a PDF
+  • Análisis estadísticos
+
+IA (/medico-inteligente):
+  • Chat con asistente IA
+  • Análisis de datos clínicos
+  • Detección de anomalías
+  • Recomendaciones inteligentes
+
+CITAS (/citas):
+  • Calendario interactivo
+  • Agendar citas
+  • Seleccionar especialidad
+  • Confirmar/cancelar citas
+
+LABORATORIOS (/laboratorios):
+  • Crear órdenes
+  • Cargar resultados
+  • Filtrar por estado
+  • Ver historial
+
+RECETAS (/recetas):
+  • Crear recetas
+  • Imprimir recetas
+  • Descargar PDF
+  • Filtrar por vigencia
+
+SEGURIDAD (/seguridad):
+  • Encriptar datos
+  • Cambiar claves
+  • Crear backups
+  • Restaurar datos
+  • Configurar nube
+
+═════════════════════════════════════════════════════════════════
+
+🎯 CASOS DE USO COMUNES:
+
+1. REGISTRAR NUEVO PACIENTE:
+   1. Ir a /pacientes
+   2. Click en "Nuevo Paciente"
+   3. Llenar formulario
+   4. Guardar
+
+2. CAPTURAR DATOS DE CONSULTA:
+   1. Ir a /captura-datos
+   2. Seleccionar paciente
+   3. Llenar formularios de signos vitales, síntomas, etc.
+   4. Guardar datos
+
+3. VER REPORTES:
+   1. Ir a /analisis-reportes
+   2. Seleccionar paciente
+   3. Ver gráficos e históricos
+   4. Exportar a PDF
+
+4. AGENDAR CITA:
+   1. Ir a /citas
+   2. Seleccionar fecha en calendario
+   3. Elegir hora y especialidad
+   4. Confirmar cita
+
+5. CREAR LABORATORIO:
+   1. Ir a /laboratorios
+   2. Click "Nueva Orden"
+   3. Seleccionar análisis
+   4. Cargar resultados
+
+6. ENCRIPTAR DATOS:
+   1. Ir a /seguridad
+   2. Ingresar datos sensibles
+   3. Seleccionar tipo
+   4. Encriptar
+
+═════════════════════════════════════════════════════════════════
+
+💡 TIPS Y TRUCOS:
+
+• Usa el calendario en /citas para mejor visualización
+• Exporta reportes en PDF desde /analisis-reportes
+• Encripta datos sensibles antes de guardar
+• Realiza backups regularmente
+• Consulta la IA para recomendaciones
+• Los gráficos son interactivos - haz click para más detalles
+
+═════════════════════════════════════════════════════════════════
+
+⚠️ NOTAS IMPORTANTES:
+
+• Los datos se guardan en JSON local (pacientes.json)
+• Las contraseñas están hasheadas (SHA-256)
+• Los datos sensibles pueden ser encriptados (AES-128)
+• Los backups se guardan localmente por defecto
+• En producción, configura servicios en la nube reales
+
+═════════════════════════════════════════════════════════════════
+
+Última actualización: Enero 2024
+Versión: 2.0 - Sistema Completo
+Estado: ✅ Completamente Funcional

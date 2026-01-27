@@ -1,0 +1,390 @@
+📖 GUÍA DE INSTALACIÓN Y TROUBLESHOOTING
+Sistema Médico Inteligente 2.0
+
+═══════════════════════════════════════════════════════════════════════════════
+
+✅ REQUISITOS PREVIOS
+
+Antes de ejecutar el sistema, asegúrate de tener:
+
+1. Python 3.8+ instalado
+   Verificar: python --version
+
+2. Pip (gestor de paquetes)
+   Verificar: pip --version
+
+3. Navegador web moderno (Chrome, Firefox, Edge)
+
+═══════════════════════════════════════════════════════════════════════════════
+
+📦 INSTALACIÓN DE DEPENDENCIAS
+
+1. Abre Terminal/PowerShell como Administrador
+
+2. Navega al directorio:
+   cd "C:\Users\Santi\Downloads\Nueva carpeta"
+
+3. Instala las dependencias:
+   pip install flask
+
+   Notas:
+   - Flask es el único requisito externo
+   - Los otros módulos (json, hashlib, secrets, etc.) vienen con Python
+
+═══════════════════════════════════════════════════════════════════════════════
+
+🚀 INICIO DEL SERVIDOR
+
+1. Abre PowerShell/Terminal
+
+2. Navega al directorio:
+   cd "C:\Users\Santi\Downloads\Nueva carpeta"
+
+3. Ejecuta el servidor:
+   python web_ia.py
+
+4. Espera a que aparezca:
+   ┌─────────────────────────────────────────┐
+   │  [IA] Asistente Web - Servidor Iniciado │
+   │  Abre tu navegador en: localhost:5000   │
+   └─────────────────────────────────────────┘
+
+5. Abre tu navegador:
+   http://localhost:5000
+
+═══════════════════════════════════════════════════════════════════════════════
+
+🔐 PRIMER ACCESO
+
+1. En la página de login/dashboard, usa:
+   Usuario: admin
+   Contraseña: admin123
+
+2. O para acceso de doctor:
+   Usuario: doctor
+   Contraseña: doctor123
+
+3. Después puedes cambiar las contraseñas en /seguridad
+
+═══════════════════════════════════════════════════════════════════════════════
+
+⚙️ CONFIGURACIÓN INICIAL
+
+1. ENCRIPTACIÓN:
+   ✓ Se activa automáticamente
+   ✓ Se genera clave maestra automáticamente (clave_maestra.key)
+
+2. BASE DE DATOS:
+   ✓ Se crea automáticamente en JSON (pacientes.json)
+   ✓ Se sincroniza en tiempo real
+
+3. BACKUPS:
+   ✓ Se guardan en carpeta: datos_backup/
+   ✓ Se crea automáticamente si no existe
+
+═══════════════════════════════════════════════════════════════════════════════
+
+🐛 TROUBLESHOOTING COMÚN
+
+PROBLEMA 1: "No se puede conectar a localhost:5000"
+SOLUCIÓN:
+  1. Verifica que Python está ejecutándose
+  2. Revisa la terminal para mensajes de error
+  3. Asegúrate que el puerto 5000 no esté en uso:
+     netstat -ano | findstr :5000
+  4. Si está en uso, detén el proceso:
+     taskkill /PID <PID> /F
+
+PROBLEMA 2: "ModuleNotFoundError: No module named 'flask'"
+SOLUCIÓN:
+  1. Instala Flask:
+     pip install flask
+  2. Verifica la instalación:
+     python -c "import flask; print(flask.__version__)"
+
+PROBLEMA 3: "UnicodeEncodeError" en la terminal
+SOLUCIÓN:
+  1. Esto ocurre si hay caracteres especiales
+  2. El sistema maneja automáticamente esta codificación
+  3. Si persiste, ejecuta:
+     chcp 65001  (en PowerShell)
+
+PROBLEMA 4: "El servidor dice que está corriendo pero la página no carga"
+SOLUCIÓN:
+  1. Abre http://127.0.0.1:5000 en lugar de localhost:5000
+  2. Prueba con otro navegador
+  3. Borra caché del navegador (Ctrl+F5)
+  4. Comprueba la conexión de red
+
+PROBLEMA 5: "Los datos no se guardan"
+SOLUCIÓN:
+  1. Verifica que tienes permisos de escritura en la carpeta
+  2. Comprueba que pacientes.json existe o se puede crear
+  3. Revisa los permisos de la carpeta:
+     Right-click → Propiedades → Seguridad
+
+PROBLEMA 6: "Error de encriptación al guardar datos sensibles"
+SOLUCIÓN:
+  1. Verifica que clave_maestra.key existe
+  2. Si no existe, déjalo que se regenere borrando el archivo
+  3. Asegúrate de tener permisos de lectura/escritura
+
+═══════════════════════════════════════════════════════════════════════════════
+
+📋 ESTRUCTURA DE CARPETAS ESPERADA
+
+C:\Users\Santi\Downloads\Nueva carpeta\
+├── web_ia.py                           ← Servidor principal
+├── pacientes_db.py                     ← Gestor de BD
+├── medical_ai.py                       ← Motor IA
+├── encryption.py                       ← Módulo de encriptación
+├── cloud_sync.py                       ← Módulo de sincronización
+├── pacientes.json                      ← BD de pacientes (se crea automáticamente)
+├── clave_maestra.key                   ← Clave de encriptación (se crea automáticamente)
+├── datos_encriptados.json              ← Registro de datos cifrados (se crea automáticamente)
+├── claves_usuarios.json                ← Claves de usuarios (se crea automáticamente)
+├── config_nube.json                    ← Config de nube (se crea automáticamente)
+├── templates/
+│   ├── dashboard.html                  ← Página principal
+│   ├── pacientes.html
+│   ├── captura_datos.html
+│   ├── analisis_reportes.html
+│   ├── citas.html
+│   ├── laboratorios.html
+│   ├── recetas.html
+│   ├── seguridad.html
+│   ├── medico_inteligente.html
+│   └── ...
+├── datos_backup/                       ← Carpeta de backups (se crea automáticamente)
+└── __pycache__/                        ← Caché de Python (se crea automáticamente)
+
+═══════════════════════════════════════════════════════════════════════════════
+
+🔄 ARCHIVOS QUE SE CREAN AUTOMÁTICAMENTE AL INICIAR:
+
+✓ pacientes.json              - Base de datos de pacientes
+✓ clave_maestra.key           - Clave de encriptación maestra
+✓ datos_encriptados.json      - Registro de datos cifrados
+✓ claves_usuarios.json        - Gestión de claves por usuario
+✓ config_nube.json            - Configuración de servicios en la nube
+✓ historial.json              - Historial de sincronizaciones
+✓ datos_backup/ (carpeta)     - Almacenamiento de backups
+
+NO necesitas crear estos archivos manualmente, el sistema los crea automáticamente.
+
+═══════════════════════════════════════════════════════════════════════════════
+
+🧹 LIMPIAR/REINICIAR EL SISTEMA
+
+Para volver a empezar desde cero:
+
+1. Detén el servidor (Ctrl+C en la terminal)
+
+2. Borra los archivos de datos:
+   - pacientes.json
+   - clave_maestra.key
+   - datos_encriptados.json
+   - claves_usuarios.json
+   - config_nube.json
+   - Carpeta datos_backup/
+
+3. Inicia el servidor nuevamente:
+   python web_ia.py
+
+El sistema recreará todos los archivos automáticamente.
+
+⚠️ ADVERTENCIA: Esto elimina TODOS los datos. Haz backup primero si necesitas guardar datos.
+
+═══════════════════════════════════════════════════════════════════════════════
+
+📊 VERIFICAR QUE TODO FUNCIONA CORRECTAMENTE
+
+Después de iniciar el servidor, verifica:
+
+1. Ir a http://localhost:5000
+   ✓ Debe cargar el dashboard
+
+2. Ir a http://localhost:5000/pacientes
+   ✓ Debe cargar la página de pacientes
+
+3. Ir a http://localhost:5000/citas
+   ✓ Debe cargar el calendario de citas
+
+4. Ir a http://localhost:5000/seguridad
+   ✓ Debe cargar la página de seguridad
+
+5. Crear un paciente nuevo:
+   ✓ Verifica que se guarda en pacientes.json
+
+6. Capturar datos clínicos:
+   ✓ Verifica que los datos se guardan y se pueden consultar
+
+7. Ver gráficos y reportes:
+   ✓ Verifica que se cargan los datos históricos
+
+═══════════════════════════════════════════════════════════════════════════════
+
+🔐 NOTAS DE SEGURIDAD
+
+IMPORTANTE ANTES DE USAR EN PRODUCCIÓN:
+
+1. CAMBIA LAS CONTRASEÑAS DEMO:
+   ✗ NO uses admin/admin123 en producción
+   ✗ NO uses doctor/doctor123 en producción
+
+2. CONFIGURA HTTPS/SSL:
+   ✗ El sistema actualmente usa HTTP
+   ✓ En producción, implementa certificados SSL
+
+3. CONFIGURA SERVICIOS EN LA NUBE:
+   ✓ Configura credenciales reales en /seguridad
+   ✓ No usar solo almacenamiento local
+
+4. REALIZA BACKUPS REGULARMENTE:
+   ✓ Usa la opción de backup en /seguridad
+   ✓ Guarda copias en múltiples ubicaciones
+
+5. AUDITORÍA Y LOGGING:
+   ✓ Los accesos a datos encriptados se registran automáticamente
+   ✓ Revisa el historial regularmente
+
+═══════════════════════════════════════════════════════════════════════════════
+
+💬 SOPORTE PARA ERRORES
+
+Si encuentras un error:
+
+1. Lee el mensaje de error completo en la terminal
+2. Busca la línea exacta donde ocurre el error
+3. Comprueba:
+   - ¿El archivo existe?
+   - ¿Tienes permisos de lectura/escritura?
+   - ¿Las dependencias están instaladas?
+   - ¿El puerto 5000 está disponible?
+
+4. Errores comunes:
+   
+   "404 Not Found":
+   - La ruta no existe
+   - Verifica la URL
+   
+   "500 Internal Server Error":
+   - Error en el código backend
+   - Revisa la terminal para detalles
+   
+   "Connection refused":
+   - El servidor no está corriendo
+   - Inicia con: python web_ia.py
+   
+   "Permission denied":
+   - No tienes permisos en la carpeta
+   - Ejecuta como Administrador
+
+═══════════════════════════════════════════════════════════════════════════════
+
+📞 COMANDOS ÚTILES
+
+# Iniciar servidor en modo debug (útil para desarrollo)
+python web_ia.py
+
+# Ver procesos Python en ejecución
+Get-Process python
+
+# Detener todos los procesos Python
+Get-Process python | Stop-Process
+
+# Ver si puerto 5000 está en uso
+netstat -ano | findstr :5000
+
+# Ver versión de Python
+python --version
+
+# Ver versión de Flask
+python -c "import flask; print(flask.__version__)"
+
+═══════════════════════════════════════════════════════════════════════════════
+
+🎓 CONCEPTOS CLAVE
+
+ENCRIPTACIÓN:
+- Los datos sensibles se cifran automáticamente
+- Se usan claves maestras para desencriptar
+- La auditoría registra quién accede a qué datos
+
+BACKUPS:
+- Automáticos (configurables)
+- Completos: copia todos los datos
+- Incrementales: solo cambios desde último backup
+
+SINCRONIZACIÓN:
+- Soporta Dropbox, Google Drive, AWS S3
+- Requiere configuración de credenciales
+- Almacenamiento local como opción por defecto
+
+BASE DE DATOS:
+- Actualmente usa JSON (pacientes.json)
+- Se puede migrar a SQL en el futuro
+- Todos los cambios se guardan automáticamente
+
+═══════════════════════════════════════════════════════════════════════════════
+
+✨ TIPS PARA USAR EL SISTEMA EFICIENTEMENTE
+
+1. GRÁFICOS:
+   - Haz click en los gráficos para ver detalles
+   - Usa zoom para mejor visualización
+   - Exporta a PDF para presentaciones
+
+2. BÚSQUEDA:
+   - Usa búsqueda avanzada para encontrar pacientes rápidamente
+   - Puedes buscar por nombre, apellido, cédula o ID
+
+3. CALENDARIO:
+   - El calendario de citas es interactivo
+   - Haz click en un día para agendar cita
+
+4. ENCRIPTACIÓN:
+   - Solo encripta datos sensibles que realmente necesites proteger
+   - Documenta qué está encriptado
+
+5. LABORATORIOS:
+   - Crea órdenes antes de cargar resultados
+   - Usa los tipos de análisis predefinidos
+
+═══════════════════════════════════════════════════════════════════════════════
+
+✅ CHECKLIST DE VERIFICACIÓN
+
+Después de instalar y configurar, verifica:
+
+□ Python 3.8+ instalado
+□ Flask instalado (pip install flask)
+□ Servidor inicia sin errores (python web_ia.py)
+□ Dashboard carga en http://localhost:5000
+□ Puedes crear un paciente nuevo
+□ Puedes capturar datos clínicos
+□ Los gráficos cargan correctamente
+□ Los backups se crean
+□ La encriptación funciona
+□ Las citas se pueden agendar
+□ Los laboratorios se pueden crear
+□ Las recetas se pueden generar
+□ Se puede exportar a PDF
+
+═══════════════════════════════════════════════════════════════════════════════
+
+📚 ARCHIVOS DE AYUDA INCLUIDOS
+
+- ACCESO_RAPIDO.txt              → URLs y referencias rápidas
+- SISTEMA_MEDICO_COMPLETO.md     → Documentación completa
+- IMPLEMENTACION_EXITOSA.txt     → Resumen de implementación
+- Esta archivo                   → Guía de instalación
+
+═══════════════════════════════════════════════════════════════════════════════
+
+¡Éxito! El Sistema Médico Inteligente está listo para usar. 🏥
+
+Si tienes dudas, revisa la documentación o reinicia el servidor.
+
+Última actualización: Enero 2024
+Versión: 2.0

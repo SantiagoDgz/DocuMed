@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Captura de Datos Clínicos - Sistema Médico</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            color: #667eea;
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            color: #666;
+            font-size: 16px;
+        }
+
+        .forms-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        @media (max-width: 1024px) {
+            .forms-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .form-card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            border-left: 5px solid #667eea;
+        }
+
+        .form-card.danger {
+            border-left-color: #e74c3c;
+        }
+
+        .form-card.success {
+            border-left-color: #27ae60;
+        }
+
+        .form-card.warning {
+            border-left-color: #f39c12;
+        }
+
+        .form-card.info {
+            border-left-color: #3498db;
+        }
+
+        .form-card h2 {
+            color: #333;
+            font-size: 20px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .form-card h2::before {
+            content: '';
+            display: inline-block;
+            width: 4px;
+            height: 20px;
+            background: #667eea;
+            border-radius: 2px;
+        }
+
+        .form-card.danger h2::before {
+            background: #e74c3c;
+        }
+
+        .form-card.success h2::before {
+            background: #27ae60;
+        }
+
+        .form-card.warning h2::before {
+            background: #f39c12;
+        }
+
+        .form-card.info h2::before {
+            background: #3498db;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group:last-child {
+            margin-bottom: 0;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="number"],
+        input[type="date"],
+        input[type="time"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 14px;
+            font-family: inherit;
+            transition: border-color 0.3s ease;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="number"]:focus,
+        input[type="date"]:focus,
+        input[type="time"]:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        @media (max-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .btn {
+            padding: 14px 28px;
+            border: none;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            width: 100%;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .btn-secondary {
+            background: #f5f5f5;
+            color: #333;
+            width: 100%;
+        }
+
+        .btn-secondary:hover {
+            background: #e0e0e0;
+        }
+
+        .alert {
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        .alert.show {
+            display: block;
+        }
+
+        .alert-success {
+            background: #d4edda;
+            color: #155724;
+            border-left: 4px solid #27ae60;
+        }
+
+        .alert-error {
+            background: #f8d7da;
+            color: #721c24;
+            border-left: 4px solid #e74c3c;
+        }
+
+        .alert-info {
+            background: #d1ecf1;
+            color: #0c5460;
+            border-left: 4px solid #3498db;
+        }
+
+        .section-divider {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+
+        .section-divider h3 {
+            color: #667eea;
+            font-size: 18px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .data-summary {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        .data-summary h4 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .summary-item:last-child {
+            border-bottom: none;
+        }
+
+        .summary-label {
+            color: #666;
+            font-weight: 500;
+        }
+
+        .summary-value {
+            color: #333;
+            font-weight: 600;
+        }
+
+        .patient-selector {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+
+        .patient-selector h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+            font-size: 20px;
+        }
+
+        .patient-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .patient-card {
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .patient-card:hover {
+            border-color: #667eea;
+            background: #f8f9ff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
+        }
+
+        .patient-card.active {
+            border-color: #667eea;
+            background: linear-gradient(135deg, #667eea15, #764ba215);
+            font-weight: 600;
+        }
+
+        .patient-card-name {
+            color: #333;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .patient-card-id {
+            color: #999;
+            font-size: 12px;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .btn-group .btn {
+            flex: 1;
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .loading.show {
+            display: block;
+        }
+
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 15px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .icon {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            text-align: center;
+            line-height: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📋 Captura de Datos Clínicos</h1>
+            <p>Sistema integral para registro de información médica del paciente</p>
+        </div>
+
+        <div id="alertContainer"></div>
+
+        <!-- Selector de Paciente -->
+        <div class="patient-selector">
+            <h2>👥 Seleccionar Paciente</h2>
+            <div class="patient-list" id="patientList">
+                <div class="loading show">
+                    <div class="spinner"></div>
+                    Cargando pacientes...
+                </div>
+            </div>
+        </div>
+
+        <!-- Formularios de Captura -->
+        <div id="formsSection" style="display: none;">
+            <div class="forms-container">
+                <!-- Signos Vitales -->
+                <div class="form-card danger">
+                    <h2>❤️ Signos Vitales</h2>
+                    <form id="signosVitalesForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Presión Arterial Sistólica (mmHg)</label>
+                                <input type="number" id="psistolica" placeholder="120" min="0" max="300">
+                            </div>
+                            <div class="form-group">
+                                <label>Presión Arterial Diastólica (mmHg)</label>
+                                <input type="number" id="pdiastolica" placeholder="80" min="0" max="300">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Frecuencia Cardíaca (bpm)</label>
+                                <input type="number" id="fc" placeholder="70" min="20" max="200">
+                            </div>
+                            <div class="form-group">
+                                <label>Temperatura (°C)</label>
+                                <input type="number" id="temperatura" placeholder="37" min="30" max="45" step="0.1">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Frecuencia Respiratoria (resp/min)</label>
+                                <input type="number" id="fr" placeholder="16" min="6" max="60">
+                            </div>
+                            <div class="form-group">
+                                <label>Oxígeno (SpO2 %)</label>
+                                <input type="number" id="spo2" placeholder="95" min="50" max="100">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Glucosa (mg/dL)</label>
+                            <input type="number" id="glucosa" placeholder="100" min="20" max="500">
+                        </div>
+                        <button type="submit" class="btn btn-primary">✔️ Guardar Signos Vitales</button>
+                    </form>
+                </div>
+
+                <!-- Síntomas -->
+                <div class="form-card warning">
+                    <h2>🤒 Síntomas Reportados</h2>
+                    <form id="sintomasForm">
+                        <div class="form-group">
+                            <label>Síntomas Principales</label>
+                            <textarea id="sintomas" placeholder="Ej: Dolor de cabeza, fiebre, fatiga..."></textarea>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Duración de Síntomas</label>
+                                <input type="text" id="duracionSintomas" placeholder="Ej: 3 días, 1 semana...">
+                            </div>
+                            <div class="form-group">
+                                <label>Severidad (1-10)</label>
+                                <input type="number" id="severidad" placeholder="5" min="1" max="10">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Factores Desencadenantes</label>
+                            <textarea id="factoresDesencadenantes" placeholder="¿Qué causa o empeora los síntomas?"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">✔️ Guardar Síntomas</button>
+                    </form>
+                </div>
+
+                <!-- Diagnóstico -->
+                <div class="form-card info">
+                    <h2>🔍 Diagnóstico</h2>
+                    <form id="diagnosticoForm">
+                        <div class="form-group">
+                            <label>Diagnóstico Principal</label>
+                            <input type="text" id="diagnosticoPrincipal" placeholder="Ej: Hipertensión, Diabetes...">
+                        </div>
+                        <div class="form-group">
+                            <label>CIE-10 (Código)</label>
+                            <input type="text" id="codigoIE" placeholder="Ej: I10, E11...">
+                        </div>
+                        <div class="form-group">
+                            <label>Diagnósticos Secundarios</label>
+                            <textarea id="diagnosticoSecundario" placeholder="Lista de otros diagnósticos..."></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Observaciones Clínicas</label>
+                            <textarea id="observacionesDiag" placeholder="Detalles del examen físico..."></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">✔️ Guardar Diagnóstico</button>
+                    </form>
+                </div>
+
+                <!-- Tratamiento -->
+                <div class="form-card success">
+                    <h2>💊 Plan de Tratamiento</h2>
+                    <form id="tratamientoForm">
+                        <div class="form-group">
+                            <label>Medicamento</label>
+                            <input type="text" id="medicamento" placeholder="Nombre del medicamento">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Dosis</label>
+                                <input type="text" id="dosis" placeholder="Ej: 500mg">
+                            </div>
+                            <div class="form-group">
+                                <label>Frecuencia</label>
+                                <select id="frecuencia">
+                                    <option value="">Seleccionar...</option>
+                                    <option value="Una vez al día">Una vez al día</option>
+                                    <option value="Dos veces al día">Dos veces al día</option>
+                                    <option value="Tres veces al día">Tres veces al día</option>
+                                    <option value="Cada 6 horas">Cada 6 horas</option>
+                                    <option value="Cada 8 horas">Cada 8 horas</option>
+                                    <option value="Cada 12 horas">Cada 12 horas</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Duración del Tratamiento</label>
+                                <input type="text" id="duracionTrato" placeholder="Ej: 7 días, 2 semanas...">
+                            </div>
+                            <div class="form-group">
+                                <label>Vía de Administración</label>
+                                <select id="viaAdmin">
+                                    <option value="">Seleccionar...</option>
+                                    <option value="Oral">Oral</option>
+                                    <option value="Inyectable">Inyectable</option>
+                                    <option value="Tópica">Tópica</option>
+                                    <option value="Inhalada">Inhalada</option>
+                                    <option value="Intravenosa">Intravenosa</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Contraindicaciones/Advertencias</label>
+                            <textarea id="advertencias" placeholder="Efectos secundarios, interacciones..."></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">✔️ Guardar Tratamiento</button>
+                    </form>
+                </div>
+
+                <!-- Estudios/Exámenes -->
+                <div class="form-card">
+                    <h2>🔬 Estudios y Exámenes</h2>
+                    <form id="estudiosForm">
+                        <div class="form-group">
+                            <label>Tipo de Estudio</label>
+                            <select id="tipoEstudio">
+                                <option value="">Seleccionar...</option>
+                                <option value="Laboratorio">Análisis de Laboratorio</option>
+                                <option value="Imagen">Imagen (RX, CT, MRI)</option>
+                                <option value="ECG">Electrocardiograma</option>
+                                <option value="Ecografia">Ecografía</option>
+                                <option value="Endoscopia">Endoscopia</option>
+                                <option value="Biopsia">Biopsia</option>
+                                <option value="Otro">Otro</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Descripción del Estudio</label>
+                            <input type="text" id="descEstudio" placeholder="Ej: Hemograma completo, RX de tórax...">
+                        </div>
+                        <div class="form-group">
+                            <label>Resultado/Hallazgos</label>
+                            <textarea id="resultadoEstudio" placeholder="Resultado del examen..."></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Fecha del Estudio</label>
+                            <input type="date" id="fechaEstudio">
+                        </div>
+                        <button type="submit" class="btn btn-primary">✔️ Guardar Estudio</button>
+                    </form>
+                </div>
+
+                <!-- Observaciones Generales -->
+                <div class="form-card">
+                    <h2>📝 Notas y Observaciones</h2>
+                    <form id="notasForm">
+                        <div class="form-group">
+                            <label>Notas Médicas Generales</label>
+                            <textarea id="notas" placeholder="Observaciones del médico, plan de seguimiento, etc..."></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Recomendaciones al Paciente</label>
+                            <textarea id="recomendaciones" placeholder="Indicaciones de reposo, dieta, ejercicio, etc..."></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">✔️ Guardar Notas</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Resumen de Datos -->
+            <div class="section-divider">
+                <h3>📊 Resumen de Datos Capturados</h3>
+                <div class="data-summary" id="dataSummary">
+                    <p style="text-align: center; color: #999;">Completa los formularios para ver el resumen</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let selectedPatientId = null;
+        const capturedData = {};
+
+        // Cargar pacientes
+        async function loadPatients() {
+            try {
+                const response = await fetch('/api/pacientes');
+                const data = await response.json();
+                
+                if (data.exito) {
+                    displayPatients(data.pacientes);
+                }
+            } catch (error) {
+                showAlert('Error al cargar pacientes', 'error');
+                console.error(error);
+            }
+        }
+
+        function displayPatients(patients) {
+            const patientList = document.getElementById('patientList');
+            patientList.innerHTML = '';
+
+            if (patients.length === 0) {
+                patientList.innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: #999;">No hay pacientes registrados</p>';
+                return;
+            }
+
+            patients.forEach(patient => {
+                const card = document.createElement('div');
+                card.className = 'patient-card';
+                card.innerHTML = `
+                    <div class="patient-card-name">${patient.nombre} ${patient.apellido}</div>
+                    <div class="patient-card-id">ID: ${patient.id}</div>
+                `;
+                card.onclick = () => selectPatient(patient.id, patient.nombre, patient.apellido, card);
+                patientList.appendChild(card);
+            });
+        }
+
+        function selectPatient(id, nombre, apellido, element) {
+            selectedPatientId = id;
+            document.querySelectorAll('.patient-card').forEach(card => card.classList.remove('active'));
+            element.classList.add('active');
+            document.getElementById('formsSection').style.display = 'block';
+            capturedData.paciente = `${nombre} ${apellido}`;
+            updateSummary();
+        }
+
+        // Manejadores de formularios
+        document.getElementById('signosVitalesForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            if (!selectedPatientId) {
+                showAlert('Por favor selecciona un paciente', 'error');
+                return;
+            }
+
+            const signosVitales = {
+                presion_arterial: `${document.getElementById('psistolica').value}/${document.getElementById('pdiastolica').value}`,
+                fc: parseInt(document.getElementById('fc').value),
+                temperatura: parseFloat(document.getElementById('temperatura').value),
+                fr: parseInt(document.getElementById('fr').value),
+                spo2: parseInt(document.getElementById('spo2').value),
+                glucosa: parseInt(document.getElementById('glucosa').value) || null
+            };
+
+            try {
+                const response = await fetch(`/api/pacientes/${selectedPatientId}`, {
+                    method: 'PUT',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify(signosVitales)
+                });
+
+                const data = await response.json();
+                if (data.exito) {
+                    showAlert('Signos vitales guardados exitosamente', 'success');
+                    capturedData.signosVitales = signosVitales;
+                    updateSummary();
+                    document.getElementById('signosVitalesForm').reset();
+                }
+            } catch (error) {
+                showAlert('Error al guardar signos vitales', 'error');
+            }
+        });
+
+        document.getElementById('sintomasForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            if (!selectedPatientId) {
+                showAlert('Por favor selecciona un paciente', 'error');
+                return;
+            }
+
+            const sintomas = document.getElementById('sintomas').value;
+            try {
+                const response = await fetch(`/api/pacientes/${selectedPatientId}/sintomas`, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({
+                        sintomas: sintomas,
+                        duracion: document.getElementById('duracionSintomas').value,
+                        severidad: parseInt(document.getElementById('severidad').value),
+                        factores: document.getElementById('factoresDesencadenantes').value
+                    })
+                });
+
+                const data = await response.json();
+                if (data.exito || response.ok) {
+                    showAlert('Síntomas guardados exitosamente', 'success');
+                    capturedData.sintomas = sintomas;
+                    updateSummary();
+                    document.getElementById('sintomasForm').reset();
+                }
+            } catch (error) {
+                showAlert('Error al guardar síntomas', 'error');
+            }
+        });
+
+        document.getElementById('diagnosticoForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            if (!selectedPatientId) {
+                showAlert('Por favor selecciona un paciente', 'error');
+                return;
+            }
+
+            const diagnostico = document.getElementById('diagnosticoPrincipal').value;
+            try {
+                const response = await fetch(`/api/pacientes/${selectedPatientId}/diagnostico`, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({
+                        diagnostico: diagnostico,
+                        codigo: document.getElementById('codigoIE').value,
+                        secundarios: document.getElementById('diagnosticoSecundario').value,
+                        observaciones: document.getElementById('observacionesDiag').value
+                    })
+                });
+
+                const data = await response.json();
+                if (data.exito || response.ok) {
+                    showAlert('Diagnóstico guardado exitosamente', 'success');
+                    capturedData.diagnostico = diagnostico;
+                    updateSummary();
+                    document.getElementById('diagnosticoForm').reset();
+                }
+            } catch (error) {
+                showAlert('Error al guardar diagnóstico', 'error');
+            }
+        });
+
+        document.getElementById('tratamientoForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            if (!selectedPatientId) {
+                showAlert('Por favor selecciona un paciente', 'error');
+                return;
+            }
+
+            const tratamiento = document.getElementById('medicamento').value;
+            try {
+                const response = await fetch(`/api/pacientes/${selectedPatientId}/tratamiento`, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({
+                        medicamento: tratamiento,
+                        dosis: document.getElementById('dosis').value,
+                        frecuencia: document.getElementById('frecuencia').value,
+                        duracion: document.getElementById('duracionTrato').value,
+                        via: document.getElementById('viaAdmin').value,
+                        advertencias: document.getElementById('advertencias').value
+                    })
+                });
+
+                const data = await response.json();
+                if (data.exito || response.ok) {
+                    showAlert('Tratamiento guardado exitosamente', 'success');
+                    capturedData.tratamiento = tratamiento;
+                    updateSummary();
+                    document.getElementById('tratamientoForm').reset();
+                }
+            } catch (error) {
+                showAlert('Error al guardar tratamiento', 'error');
+            }
+        });
+
+        document.getElementById('estudiosForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            if (!selectedPatientId) {
+                showAlert('Por favor selecciona un paciente', 'error');
+                return;
+            }
+
+            const estudio = document.getElementById('descEstudio').value;
+            try {
+                const response = await fetch(`/api/pacientes/${selectedPatientId}/estudio`, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({
+                        tipo: document.getElementById('tipoEstudio').value,
+                        descripcion: estudio,
+                        resultado: document.getElementById('resultadoEstudio').value,
+                        fecha: document.getElementById('fechaEstudio').value
+                    })
+                });
+
+                const data = await response.json();
+                if (data.exito || response.ok) {
+                    showAlert('Estudio guardado exitosamente', 'success');
+                    capturedData.estudio = estudio;
+                    updateSummary();
+                    document.getElementById('estudiosForm').reset();
+                }
+            } catch (error) {
+                showAlert('Error al guardar estudio', 'error');
+            }
+        });
+
+        document.getElementById('notasForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            if (!selectedPatientId) {
+                showAlert('Por favor selecciona un paciente', 'error');
+                return;
+            }
+
+            const notas = document.getElementById('notas').value;
+            try {
+                const response = await fetch(`/api/pacientes/${selectedPatientId}/notas`, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({
+                        notas: notas,
+                        recomendaciones: document.getElementById('recomendaciones').value
+                    })
+                });
+
+                const data = await response.json();
+                if (data.exito || response.ok) {
+                    showAlert('Notas guardadas exitosamente', 'success');
+                    capturedData.notas = notas;
+                    updateSummary();
+                    document.getElementById('notasForm').reset();
+                }
+            } catch (error) {
+                showAlert('Error al guardar notas', 'error');
+            }
+        });
+
+        function updateSummary() {
+            const summary = document.getElementById('dataSummary');
+            let html = '<h4>Información Capturada</h4>';
+
+            if (capturedData.paciente) {
+                html += `<div class="summary-item"><span class="summary-label">👥 Paciente:</span><span class="summary-value">${capturedData.paciente}</span></div>`;
+            }
+
+            if (capturedData.signosVitales) {
+                const sv = capturedData.signosVitales;
+                html += `<div class="summary-item"><span class="summary-label">❤️ Presión:</span><span class="summary-value">${sv.presion_arterial} mmHg</span></div>`;
+            }
+
+            if (capturedData.sintomas) {
+                html += `<div class="summary-item"><span class="summary-label">🤒 Síntomas:</span><span class="summary-value">${capturedData.sintomas.substring(0, 30)}...</span></div>`;
+            }
+
+            if (capturedData.diagnostico) {
+                html += `<div class="summary-item"><span class="summary-label">🔍 Diagnóstico:</span><span class="summary-value">${capturedData.diagnostico}</span></div>`;
+            }
+
+            if (capturedData.tratamiento) {
+                html += `<div class="summary-item"><span class="summary-label">💊 Tratamiento:</span><span class="summary-value">${capturedData.tratamiento}</span></div>`;
+            }
+
+            if (capturedData.estudio) {
+                html += `<div class="summary-item"><span class="summary-label">🔬 Estudio:</span><span class="summary-value">${capturedData.estudio}</span></div>`;
+            }
+
+            if (capturedData.notas) {
+                html += `<div class="summary-item"><span class="summary-label">📝 Notas:</span><span class="summary-value">${capturedData.notas.substring(0, 30)}...</span></div>`;
+            }
+
+            if (html === '<h4>Información Capturada</h4>') {
+                summary.innerHTML = '<p style="text-align: center; color: #999;">Completa los formularios para ver el resumen</p>';
+            } else {
+                summary.innerHTML = html;
+            }
+        }
+
+        function showAlert(message, type) {
+            const container = document.getElementById('alertContainer');
+            const alert = document.createElement('div');
+            alert.className = `alert alert-${type} show`;
+            alert.textContent = message;
+            container.innerHTML = '';
+            container.appendChild(alert);
+
+            setTimeout(() => alert.remove(), 5000);
+        }
+
+        // Cargar pacientes al iniciar
+        loadPatients();
+    </script>
+</body>
+</html>

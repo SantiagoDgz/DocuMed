@@ -1,0 +1,2 @@
+﻿    
+    def buscar_en_internet(self, consulta):

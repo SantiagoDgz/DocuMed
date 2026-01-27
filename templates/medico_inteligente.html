@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DocuMed - registros médicos</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #1a365d 0%, #2d5a8c 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .header {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            margin-bottom: 25px;
+        }
+
+        .header h1 {
+            color: #1a365d;
+            margin-bottom: 5px;
+            font-size: 28px;
+        }
+
+        .header p {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            background: white;
+            padding: 15px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .tab-btn {
+            padding: 12px 20px;
+            background: #f5f5f5;
+            border: 2px solid transparent;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            color: #666;
+        }
+
+        .tab-btn.active {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border-color: #667eea;
+        }
+
+        .tab-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .content-section {
+            display: none;
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .content-section.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .card {
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+        }
+
+        .card h3 {
+            color: #1a365d;
+            margin-bottom: 12px;
+            font-size: 16px;
+        }
+
+        .card-content {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .alert {
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            border-left: 4px solid;
+        }
+
+        .alert.critico {
+            background: #fee;
+            border-left-color: #c33;
+            color: #c33;
+        }
+
+        .alert.alto {
+            background: #ffd;
+            border-left-color: #d90;
+            color: #d90;
+        }
+
+        .alert.medio {
+            background: #eef;
+            border-left-color: #66c;
+            color: #66c;
+        }
+
+        .score-riesgo {
+            font-size: 32px;
+            font-weight: bold;
+            color: #667eea;
+            text-align: center;
+            padding: 20px;
+            background: linear-gradient(135deg, rgba(102,126,234,0.1), rgba(118,75,162,0.1));
+            border-radius: 10px;
+            margin: 15px 0;
+        }
+
+        .timeline {
+            border-left: 3px solid #667eea;
+            padding-left: 20px;
+            margin: 20px 0;
+        }
+
+        .timeline-item {
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+            position: relative;
+        }
+
+        .timeline-item:last-child {
+            border-bottom: none;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -27px;
+            top: 0;
+            width: 15px;
+            height: 15px;
+            background: white;
+            border: 3px solid #667eea;
+            border-radius: 50%;
+        }
+
+        .timeline-date {
+            color: #999;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .timeline-title {
+            color: #1a365d;
+            font-weight: 600;
+            margin: 5px 0;
+        }
+
+        .timeline-description {
+            color: #666;
+            font-size: 14px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-size: 14px;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102,126,234,0.4);
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 14px;
+            margin-bottom: 10px;
+            font-family: inherit;
+        }
+
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102,126,234,0.1);
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 8px;
+            font-size: 13px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 20px;
+            color: #999;
+        }
+
+        .spinner {
+            border: 3px solid rgba(102,126,234,0.1);
+            border-top: 3px solid #667eea;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            margin: 10px auto;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-right: 8px;
+            margin-bottom: 8px;
+        }
+
+        .badge-critico {
+            background: #fdd;
+            color: #c33;
+        }
+
+        .badge-alto {
+            background: #ffd;
+            color: #d90;
+        }
+
+        .badge-medio {
+            background: #ddf;
+            color: #66c;
+        }
+
+        .badge-bajo {
+            background: #dfd;
+            color: #3c3;
+        }
+
+        .list-items {
+            list-style: none;
+        }
+
+        .list-items li {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+            color: #333;
+            font-size: 14px;
+        }
+
+        .list-items li:last-child {
+            border-bottom: none;
+        }
+
+        .mensaje-chat {
+            margin-bottom: 15px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .mensaje-usuario {
+            justify-content: flex-end;
+        }
+
+        .mensaje-ia {
+            justify-content: flex-start;
+        }
+
+        .burbuja-mensaje {
+            max-width: 70%;
+            padding: 12px 15px;
+            border-radius: 12px;
+            line-height: 1.5;
+            font-size: 14px;
+            word-wrap: break-word;
+        }
+
+        .mensaje-usuario .burbuja-mensaje {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+        }
+
+        .mensaje-ia .burbuja-mensaje {
+            background: #e0e0e0;
+            color: #333;
+        }
+
+        .hora-mensaje {
+            font-size: 11px;
+            color: #999;
+            text-align: center;
+            margin-top: 5px;
+        }
+
+        @media (max-width: 768px) {
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+            
+            .tabs {
+                flex-direction: column;
+            }
+            
+            .header {
+                padding: 15px;
+            }
+            
+            .header h1 {
+                font-size: 22px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🏥 Sistema Médico Inteligente</h1>
+            <p>Panel de análisis clínico con IA - Información segura y confidencial</p>
+        </div>
+
+        <div class="tabs">
+            <button class="tab-btn active" onclick="cambiarTab('pacientes')">👥 Pacientes</button>
+            <button class="tab-btn" onclick="cambiarTab('analisis-ia')">🤖 Análisis IA</button>
+            <button class="tab-btn" onclick="cambiarTab('chat-ia')">💬 Chat IA Groq</button>
+            <button class="tab-btn" onclick="cambiarTab('clinico')">📋 Panel Clínico</button>
+            <button class="tab-btn" onclick="cambiarTab('alertas')">⚠️ Alertas</button>
+            <button class="tab-btn" onclick="cambiarTab('timeline')">📅 Timeline</button>
+        </div>
+
+        <!-- SECCIÓN: PACIENTES -->
+        <div id="pacientes" class="content-section active">
+            <h2>Selecciona un Paciente</h2>
+            <div style="margin: 20px 0;">
+                <input type="text" id="searchPaciente" placeholder="Buscar paciente..." style="max-width: 300px;">
+                <button onclick="buscarPaciente()">🔍 Buscar</button>
+            </div>
+            <div id="listaPacientes"></div>
+        </div>
+
+        <!-- SECCIÓN: ANÁLISIS IA -->
+        <div id="analisis-ia" class="content-section">
+            <h2>Análisis Inteligente</h2>
+            <div id="contenidoAnalisis"></div>
+        </div>
+
+        <!-- SECCIÓN: CHAT IA GROQ -->
+        <div id="chat-ia" class="content-section">
+            <h2>💬 Asistente Médico IA (Powered by Groq)</h2>
+            <div style="display: flex; flex-direction: column; height: 600px; background: #f9f9f9; border-radius: 12px; overflow: hidden;">
+                <div id="chatHistoria" style="flex: 1; overflow-y: auto; padding: 20px; background: white; border-bottom: 2px solid #e0e0e0;">
+                    <div style="text-align: center; color: #999; padding: 40px 20px;">
+                        <div style="font-size: 48px; margin-bottom: 10px;">🤖</div>
+                        <p>Hola, soy tu asistente médico con IA real. Pregúntame sobre:</p>
+                        <p style="margin-top: 10px; font-size: 14px; color: #666;">
+                            • Diagnósticos y síntomas<br>
+                            • Tratamientos y medicamentos<br>
+                            • Análisis de pacientes<br>
+                            • Recomendaciones médicas
+                        </p>
+                    </div>
+                </div>
+                <div style="padding: 15px; background: #f5f5f5; border-top: 2px solid #e0e0e0;">
+                    <div style="display: flex; gap: 10px; margin-bottom: 10px;">
+                        <input type="text" id="inputChat" placeholder="Escribe tu pregunta médica..." 
+                               style="flex: 1; padding: 12px 15px; border: 2px solid #e0e0e0; border-radius: 8px; font-size: 14px;"
+                               onkeypress="if(event.key==='Enter') enviarMensajeChat()">
+                        <button onclick="enviarMensajeChat()" style="padding: 12px 30px; font-size: 16px;">📤 Enviar</button>
+                    </div>
+                    <div id="estadoChat" style="text-align: center; font-size: 12px; color: #999;"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECCIÓN: PANEL CLÍNICO -->
+        <div id="clinico" class="content-section">
+            <h2>Panel Clínico</h2>
+            <div class="grid-2">
+                <div id="infoPaciente"></div>
+                <div id="infoMedica"></div>
+            </div>
+            
+            <h3 style="margin-top: 30px; color: #1a365d;">Diagnósticos</h3>
+            <div style="margin-bottom: 20px;">
+                <div class="form-group">
+                    <label>Nuevo Diagnóstico</label>
+                    <input type="text" id="nuevoDiagnostico" placeholder="Ej: Diabetes Mellitus Tipo 2">
+                    <button onclick="agregarDiagnostico()">+ Agregar</button>
+                </div>
+                <div id="listaDiagnosticos"></div>
+            </div>
+
+            <h3 style="margin-top: 30px; color: #1a365d;">Tratamientos</h3>
+            <div style="margin-bottom: 20px;">
+                <div class="grid-2">
+                    <div class="form-group">
+                        <label>Medicamento</label>
+                        <input type="text" id="medicamento" placeholder="Ej: Metformina">
+                    </div>
+                    <div class="form-group">
+                        <label>Dosis</label>
+                        <input type="text" id="dosis" placeholder="Ej: 500mg">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Duración</label>
+                    <input type="text" id="duracion" placeholder="Ej: 3 meses">
+                </div>
+                <button onclick="agregarTratamiento()">+ Agregar Tratamiento</button>
+                <div id="listaTratamientos"></div>
+            </div>
+
+            <h3 style="margin-top: 30px; color: #1a365d;">Estudios/Exámenes</h3>
+            <div>
+                <div class="grid-2">
+                    <div class="form-group">
+                        <label>Tipo de Estudio</label>
+                        <input type="text" id="tipoEstudio" placeholder="Ej: Laboratorio de sangre">
+                    </div>
+                    <div class="form-group">
+                        <label>Resultado</label>
+                        <input type="text" id="resultadoEstudio" placeholder="Ej: Glucosa 150 mg/dL">
+                    </div>
+                </div>
+                <button onclick="agregarEstudio()">+ Agregar Estudio</button>
+                <div id="listaEstudios"></div>
+            </div>
+        </div>
+
+        <!-- SECCIÓN: ALERTAS -->
+        <div id="alertas" class="content-section">
+            <h2>Sistema de Alertas Clínicas</h2>
+            <div id="contenidoAlertas"></div>
+        </div>
+
+        <!-- SECCIÓN: TIMELINE -->
+        <div id="timeline" class="content-section">
+            <h2>Timeline Clínico</h2>
+            <div id="contenidoTimeline"></div>
+        </div>
+    </div>
+
+    <script>
+        let pacienteActual = null;
+        let conversacionChat = [];
+
+        async function enviarMensajeChat() {
+            const input = document.getElementById('inputChat');
+            const mensaje = input.value.trim();
+            
+            if (!mensaje) return;
+            
+            // Agregar mensaje del usuario
+            conversacionChat.push({
+                rol: 'usuario',
+                contenido: mensaje,
+                hora: new Date().toLocaleTimeString('es-ES', {hour: '2-digit', minute:'2-digit'})
+            });
+            
+            actualizarVistaChat();
+            input.value = '';
+            
+            // Mostrar estado
+            document.getElementById('estadoChat').innerHTML = '⏳ Analizando con IA Groq...';
+            
+            try {
+                const response = await fetch('/api/chat-groq', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        mensaje: mensaje,
+                        paciente_id: pacienteActual,
+                        conversacion: conversacionChat
+                    })
+                });
+                
+                const datos = await response.json();
+                
+                if (datos.exito) {
+                    conversacionChat.push({
+                        rol: 'asistente',
+                        contenido: datos.respuesta,
+                        hora: new Date().toLocaleTimeString('es-ES', {hour: '2-digit', minute:'2-digit'})
+                    });
+                    
+                    document.getElementById('estadoChat').innerHTML = '✓ Conexión activa';
+                } else {
+                    conversacionChat.push({
+                        rol: 'asistente',
+                        contenido: '⚠️ Error: ' + (datos.error || 'No se pudo procesar la respuesta'),
+                        hora: new Date().toLocaleTimeString('es-ES', {hour: '2-digit', minute:'2-digit'})
+                    });
+                    document.getElementById('estadoChat').innerHTML = '❌ Error en la conexión';
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                conversacionChat.push({
+                    rol: 'asistente',
+                    contenido: '❌ Error de conexión. Intenta nuevamente.',
+                    hora: new Date().toLocaleTimeString('es-ES', {hour: '2-digit', minute:'2-digit'})
+                });
+                document.getElementById('estadoChat').innerHTML = '❌ Error de conexión';
+            }
+            
+            actualizarVistaChat();
+        }
+
+        function actualizarVistaChat() {
+            const historialDiv = document.getElementById('chatHistoria');
+            let html = '';
+            
+            conversacionChat.forEach((msg, idx) => {
+                const claseMsg = msg.rol === 'usuario' ? 'mensaje-usuario' : 'mensaje-ia';
+                const icono = msg.rol === 'usuario' ? '👤' : '🤖';
+                
+                html += `
+                    <div class="mensaje-chat ${claseMsg}">
+                        <div style="display: flex; flex-direction: column; align-items: ${msg.rol === 'usuario' ? 'flex-end' : 'flex-start'};">
+                            <div class="burbuja-mensaje">
+                                <span style="font-weight: 600; margin-right: 5px;">${icono}</span>
+                                ${msg.contenido}
+                            </div>
+                            <div class="hora-mensaje">${msg.hora}</div>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            historialDiv.innerHTML = html;
+            historialDiv.scrollTop = historialDiv.scrollHeight;
+        }
+
+
+        async function cargarPacientes() {
+            try {
+                const response = await fetch('/api/pacientes');
+                const datos = await response.json();
+                
+                let html = '<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 15px;">';
+                
+                datos.pacientes.forEach(p => {
+                    html += `
+                        <div style="background: #f5f5f5; padding: 15px; border-radius: 8px; cursor: pointer; border: 2px solid transparent;" 
+                             onclick="seleccionarPaciente('${p.id}')">
+                            <div style="font-weight: 600; color: #1a365d; margin-bottom: 8px;">
+                                ${p.nombre} ${p.apellido}
+                            </div>
+                            <div style="font-size: 13px; color: #666;">
+                                <div>Edad: ${p.edad} años</div>
+                                <div>Cédula: ${p.cedula}</div>
+                            </div>
+                        </div>
+                    `;
+                });
+                
+                html += '</div>';
+                document.getElementById('listaPacientes').innerHTML = html;
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        }
+
+        function seleccionarPaciente(idPaciente) {
+            pacienteActual = idPaciente;
+            cargarInfoPaciente();
+            cargarAnalisisIA();
+            cargarAlertas();
+            cambiarTab('clinico');
+        }
+
+        async function cargarInfoPaciente() {
+            try {
+                const response = await fetch(`/api/pacientes/${pacienteActual}`);
+                const datos = await response.json();
+                
+                if (datos.exito) {
+                    const p = datos.paciente;
+                    
+                    // Info personal
+                    document.getElementById('infoPaciente').innerHTML = `
+                        <div class="card">
+                            <h3>👤 Información Personal</h3>
+                            <div class="card-content">
+                                <div><strong>Nombre:</strong> ${p.nombre} ${p.apellido}</div>
+                                <div><strong>Cédula:</strong> ${p.cedula}</div>
+                                <div><strong>Edad:</strong> ${p.edad} años</div>
+                                <div><strong>Género:</strong> ${p.genero}</div>
+                                <div><strong>Teléfono:</strong> ${p.telefono}</div>
+                                <div><strong>Email:</strong> ${p.email}</div>
+                            </div>
+                        </div>
+                    `;
+                    
+                    // Info médica
+                    document.getElementById('infoMedica').innerHTML = `
+                        <div class="card">
+                            <h3>⚕️ Información Médica</h3>
+                            <div class="card-content">
+                                <div><strong>Peso:</strong> ${p.peso || 'N/A'} kg</div>
+                                <div><strong>Altura:</strong> ${p.altura || 'N/A'} cm</div>
+                                <div><strong>Presión:</strong> ${p.presion_arterial || 'N/A'}</div>
+                                <div><strong>Alergias:</strong> ${p.alergias || 'Ninguna'}</div>
+                            </div>
+                        </div>
+                    `;
+
+                    // Cargar listas
+                    cargarDiagnosticos();
+                    cargarTratamientos();
+                    cargarEstudios();
+                    cargarTimeline();
+                }
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        }
+
+        async function cargarAnalisisIA() {
+            if (!pacienteActual) return;
+            
+            try {
+                document.getElementById('contenidoAnalisis').innerHTML = '<div class="loading"><div class="spinner"></div>Analizando paciente...</div>';
+                
+                const response = await fetch(`/api/analisis-paciente/${pacienteActual}`);
+                const datos = await response.json();
+                
+                if (datos.exito) {
+                    const análisis = datos.analisis;
+                    
+                    let html = `
+                        <div class="card">
+                            <h3>📊 Resumen Clínico</h3>
+                            <div class="card-content" style="font-size: 13px; line-height: 1.8;">
+                                ${análisis.resumen_clinico}
+                            </div>
+                        </div>
+
+                        <div class="score-riesgo">
+                            Score de Riesgo: ${análisis.score_riesgo}/100
+                        </div>
+
+                        <h3 style="color: #1a365d; margin: 20px 0;">🔍 Patrones Detectados</h3>
+                    `;
+
+                    if (análisis.patrones.length > 0) {
+                        análisis.patrones.forEach(patrón => {
+                            html += `
+                                <div class="card" style="margin-bottom: 10px;">
+                                    <strong>${patrón.descripción}</strong>
+                                    <div style="color: #666; font-size: 13px; margin-top: 5px;">
+                                        → ${patrón.implicación}
+                                    </div>
+                                </div>
+                            `;
+                        });
+                    } else {
+                        html += '<div class="card">✓ No se detectaron patrones preocupantes</div>';
+                    }
+
+                    document.getElementById('contenidoAnalisis').innerHTML = html;
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                document.getElementById('contenidoAnalisis').innerHTML = '<div style="color: #c33;">Error al cargar análisis</div>';
+            }
+        }
+
+        async function cargarAlertas() {
+            if (!pacienteActual) return;
+            
+            try {
+                const response = await fetch(`/api/alertas-paciente/${pacienteActual}`);
+                const datos = await response.json();
+                
+                if (datos.exito) {
+                    let html = `<div style="margin-bottom: 20px;">
+                        <strong style="color: #1a365d;">Score de Riesgo: ${datos.score_riesgo}/100</strong>
+                    </div>`;
+                    
+                    if (datos.alertas.length > 0) {
+                        datos.alertas.forEach(alerta => {
+                            html += `
+                                <div class="alert ${alerta.nivel}">
+                                    <strong>${alerta.mensaje}</strong>
+                                    <div style="margin-top: 8px; font-size: 13px;">
+                                        Acción: ${alerta.acción}
+                                    </div>
+                                </div>
+                            `;
+                        });
+                    } else {
+                        html += '<div style="padding: 15px; background: #dfd; border-left: 4px solid #3c3; color: #3c3; border-radius: 8px;">✓ No hay alertas críticas</div>';
+                    }
+                    
+                    document.getElementById('contenidoAlertas').innerHTML = html;
+                }
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        }
+
+        async function cargarDiagnosticos() {
+            if (!pacienteActual) return;
+            
+            try {
+                const response = await fetch(`/api/pacientes/${pacienteActual}/diagnosticos`);
+                const datos = await response.json();
+                
+                let html = '';
+                if (datos.diagnosticos.length > 0) {
+                    html = '<ul class="list-items">';
+                    datos.diagnosticos.forEach(d => {
+                        html += `<li>• ${d.diagnostico} <span style="color: #999; font-size: 12px;">(${d.fecha})</span></li>`;
+                    });
+                    html += '</ul>';
+                } else {
+                    html = '<div style="color: #999; font-style: italic;">Sin diagnósticos registrados</div>';
+                }
+                
+                document.getElementById('listaDiagnosticos').innerHTML = html;
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        }
+
+        async function cargarTratamientos() {
+            if (!pacienteActual) return;
+            
+            try {
+                const response = await fetch(`/api/pacientes/${pacienteActual}/tratamientos`);
+                const datos = await response.json();
+                
+                let html = '';
+                if (datos.tratamientos.length > 0) {
+                    html = '<ul class="list-items">';
+                    datos.tratamientos.forEach(t => {
+                        html += `<li><strong>${t.medicamento}</strong> - ${t.dosis} (${t.duracion})</li>`;
+                    });
+                    html += '</ul>';
+                } else {
+                    html = '<div style="color: #999; font-style: italic;">Sin tratamientos registrados</div>';
+                }
+                
+                document.getElementById('listaTratamientos').innerHTML = html;
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        }
+
+        async function cargarEstudios() {
+            if (!pacienteActual) return;
+            
+            try {
+                const response = await fetch(`/api/pacientes/${pacienteActual}/estudios`);
+                const datos = await response.json();
+                
+                let html = '';
+                if (datos.estudios.length > 0) {
+                    html = '<ul class="list-items">';
+                    datos.estudios.forEach(e => {
+                        html += `<li><strong>${e.tipo}</strong> - ${e.resultado} <span style="color: #999; font-size: 12px;">(${e.fecha})</span></li>`;
+                    });
+                    html += '</ul>';
+                } else {
+                    html = '<div style="color: #999; font-style: italic;">Sin estudios registrados</div>';
+                }
+                
+                document.getElementById('listaEstudios').innerHTML = html;
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        }
+
+        async function cargarTimeline() {
+            if (!pacienteActual) return;
+            
+            try {
+                const response = await fetch(`/api/pacientes/${pacienteActual}/timeline`);
+                const datos = await response.json();
+                
+                let html = '<div class="timeline">';
+                
+                if (datos.timeline.length > 0) {
+                    datos.timeline.forEach(evento => {
+                        html += `
+                            <div class="timeline-item">
+                                <div class="timeline-date">${evento.fecha}</div>
+                                <div class="timeline-title">${evento.tipo.toUpperCase()}</div>
+                                <div class="timeline-description">${evento.descripcion}</div>
+                            </div>
+                        `;
+                    });
+                } else {
+                    html += '<div style="color: #999; font-style: italic;">Sin eventos registrados</div>';
+                }
+                
+                html += '</div>';
+                document.getElementById('contenidoTimeline').innerHTML = html;
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        }
+
+        async function agregarDiagnostico() {
+            const diag = document.getElementById('nuevoDiagnostico').value.trim();
+            if (!diag || !pacienteActual) return;
+            
+            try {
+                const response = await fetch(`/api/pacientes/${pacienteActual}/diagnosticos`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ diagnostico: diag })
+                });
+                
+                const datos = await response.json();
+                if (datos.exito) {
+                    document.getElementById('nuevoDiagnostico').value = '';
+                    cargarDiagnosticos();
+                    cargarAnalisisIA();
+                    alert('✓ Diagnóstico agregado');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        }
+
+        async function agregarTratamiento() {
+            const med = document.getElementById('medicamento').value.trim();
+            const dos = document.getElementById('dosis').value.trim();
+            const dur = document.getElementById('duracion').value.trim();
+            
+            if (!med || !dos || !dur || !pacienteActual) return;
+            
+            try {
+                const response = await fetch(`/api/pacientes/${pacienteActual}/tratamientos`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        tratamiento: med,
+                        medicamento: med,
+                        dosis: dos,
+                        duracion: dur
+                    })
+                });
+                
+                const datos = await response.json();
+                if (datos.exito) {
+                    document.getElementById('medicamento').value = '';
+                    document.getElementById('dosis').value = '';
+                    document.getElementById('duracion').value = '';
+                    cargarTratamientos();
+                    alert('✓ Tratamiento agregado');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        }
+
+        async function agregarEstudio() {
+            const tipo = document.getElementById('tipoEstudio').value.trim();
+            const resultado = document.getElementById('resultadoEstudio').value.trim();
+            
+            if (!tipo || !resultado || !pacienteActual) return;
+            
+            try {
+                const response = await fetch(`/api/pacientes/${pacienteActual}/estudios`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        tipo_estudio: tipo,
+                        resultado: resultado
+                    })
+                });
+                
+                const datos = await response.json();
+                if (datos.exito) {
+                    document.getElementById('tipoEstudio').value = '';
+                    document.getElementById('resultadoEstudio').value = '';
+                    cargarEstudios();
+                    alert('✓ Estudio agregado');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        }
+
+        function cambiarTab(tabName) {
+            document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
+            document.getElementById(tabName).classList.add('active');
+            
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            event.target.classList.add('active');
+        }
+
+        function buscarPaciente() {
+            const termino = document.getElementById('searchPaciente').value;
+            if (!termino) cargarPacientes();
+        }
+
+        // Cargar pacientes al iniciar
+        window.onload = () => {
+            cargarPacientes();
+        };
+    </script>
+</body>
+</html>

@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Anngpt </title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif;
+            background: linear-gradient(135deg, #0099ff, #ffb3d9);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: #f8f9ff;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 153, 255, 0.15), 0 0 1px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 900px;
+            height: 90vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            border: none;
+            backdrop-filter: blur(10px);
+        }
+
+        .header {
+            background: linear-gradient(135deg, #0099ff 0%, #00ccff 50%, #ffb3d9 100%);
+            color: white;
+            padding: 24px 20px;
+            text-align: center;
+            border-bottom: none;
+            box-shadow: 0 4px 20px rgba(0, 153, 255, 0.15);
+        }
+
+        .header h1 {
+            font-size: 28px;
+            margin-bottom: 8px;
+            font-weight: 700;
+            color: white;
+            letter-spacing: 1px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .header p {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 400;
+            opacity: 1;
+        }
+
+        .chat-container {
+            flex: 1;
+            overflow-y: auto;
+            padding: 24px;
+            background: linear-gradient(180deg, #f8f9ff 0%, #f0f8ff 100%);
+        }
+
+        .message {
+            margin-bottom: 20px;
+            display: flex;
+            animation: fadeIn 0.4s ease-out;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .message.user {
+            justify-content: flex-start;
+            background: transparent;
+            padding: 12px 0;
+        }
+
+        .message.ia {
+            justify-content: flex-start;
+            background: white;
+            padding: 16px 20px;
+            margin-left: -24px;
+            margin-right: -24px;
+            padding-left: 24px;
+            padding-right: 24px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0, 153, 255, 0.08);
+        }
+
+        .avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            flex-shrink: 0;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+        }
+
+        .message.user .avatar {
+            background: linear-gradient(135deg, #0099ff, #00ccff);
+            box-shadow: 0 4px 12px rgba(0, 153, 255, 0.3);
+        }
+
+        .message.ia .avatar {
+            background: linear-gradient(135deg, #ff99cc, #ffb3d9);
+            box-shadow: 0 4px 12px rgba(255, 153, 204, 0.3);
+        }
+
+        .message-content {
+            flex: 1;
+            padding: 0;
+            color: #2c3e50;
+            word-wrap: break-word;
+            line-height: 1.8;
+            font-size: 15px;
+            font-weight: 400;
+        }
+
+        .message-content strong {
+            color: #0099ff;
+            font-weight: 700;
+        }
+
+        .message-content code {
+            background: #f0f4ff;
+            color: #0099ff;
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+        }
+
+        .timestamp {
+            font-size: 11px;
+            margin-top: 5px;
+            opacity: 0.7;
+        }
+
+        .input-container {
+            padding: 20px 24px;
+            background: white;
+            border-top: 1px solid #e8f0ff;
+            display: flex;
+            gap: 12px;
+            box-shadow: 0 -4px 12px rgba(0, 153, 255, 0.05);
+        }
+
+        #userInput {
+            flex: 1;
+            padding: 14px 18px;
+            border: 2px solid #e8f0ff;
+            border-radius: 12px;
+            font-size: 15px;
+            outline: none;
+            transition: all 0.3s ease;
+            background: white;
+            color: #2c3e50;
+            font-family: inherit;
+        }
+
+        #userInput::placeholder {
+            color: #bdc3c7;
+        }
+
+        #userInput:focus {
+            border-color: #0099ff;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(0, 153, 255, 0.1);
+        }
+
+        button {
+            padding: 14px 28px;
+            background: linear-gradient(135deg, #0099ff, #00ccff);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 153, 255, 0.3);
+        }
+
+        button:hover {
+            background: linear-gradient(135deg, #00ccff, #00e8ff);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 153, 255, 0.4);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        .btn-record {
+            padding: 14px 18px;
+            background: linear-gradient(135deg, #ff99cc, #ffb3d9);
+            font-size: 20px;
+            min-width: 50px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 153, 204, 0.3);
+        }
+
+        .btn-record:hover {
+            background: linear-gradient(135deg, #ff80b8, #ff99cc);
+            transform: scale(1.15);
+            box-shadow: 0 8px 25px rgba(255, 153, 204, 0.4);
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+                box-shadow: 0 0 20px rgba(239, 68, 68, 0.5);
+            }
+        }
+
+        .btn-secondary {
+            background: white;
+            border: 2px solid #0099ff;
+            color: #0099ff;
+            box-shadow: 0 2px 8px rgba(0, 153, 255, 0.1);
+        }
+
+        .btn-secondary:hover {
+            background: #f0f8ff;
+            border-color: #00ccff;
+            color: #00ccff;
+            box-shadow: 0 4px 12px rgba(0, 153, 255, 0.2);
+        }
+
+        .typing-indicator {
+            display: flex;
+            gap: 4px;
+            padding: 12px;
+        }
+
+        .controls {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            padding: 16px;
+            background: white;
+            border-top: 1px solid #e8f0ff;
+            box-shadow: 0 -2px 8px rgba(0, 153, 255, 0.05);
+        }
+
+        .typing-indicator span {
+            height: 10px;
+            width: 10px;
+            background: linear-gradient(135deg, #0099ff, #00ccff);
+            border-radius: 50%;
+            display: inline-block;
+            margin: 0 3px;
+            animation: bounce 1.4s infinite ease-in-out;
+            box-shadow: 0 2px 6px rgba(0, 153, 255, 0.3);
+        }
+
+        .typing-indicator span:nth-child(1) {
+            animation-delay: -0.32s;
+        }
+
+        .typing-indicator span:nth-child(2) {
+            animation-delay: -0.16s;
+        }
+
+        @keyframes bounce {
+            0%, 80%, 100% {
+                transform: scale(0);
+            }
+            40% {
+                transform: scale(1);
+            }
+        }
+
+        /* Scrollbar personalizada */
+        .chat-container::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        .chat-container::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .chat-container::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, #0099ff, #ff99cc);
+            border-radius: 5px;
+            border: 2px solid white;
+        }
+
+        .chat-container::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(180deg, #00ccff, #ffb3d9);
+        }
+
+        /* Estilos para imágenes generadas */
+        .image-container {
+            margin-top: 12px;
+            border-radius: 8px;
+            overflow: hidden;
+            max-width: 100%;
+        }
+
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .loading-animation {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(16, 163, 127, 0.3);
+            border-radius: 50%;
+            border-top-color: #10a37f;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Anngpt- Powered by Llama 3</h1>
+            <p>Asistente con IA Real · Groq API · Conversaciones Inteligentes · Totalmente Gratis</p>
+        </div>
+
+        <div class="controls">
+            <button class="btn-secondary" onclick="limpiarChat()">🗑️ Limpiar</button>
+            <button class="btn-secondary" onclick="verHistorial()">📜 Historial</button>
+            <button class="btn-secondary" id="speechToggle" onclick="toggleSpeech()" title="Desactivar voz">🔊 Voz</button>
+            <button class="btn-secondary" onclick="abrirGeneradorImagenes()">🎨 Generar Imagen</button>
+            <button class="btn-secondary" onclick="iniciarJuego()">🎮 Juego</button>
+        </div>
+
+        <div class="chat-container" id="chatContainer">
+            <div class="message ia">
+                <div class="avatar">💗</div>
+                <div class="message-content">
+                    <strong>¡Hola! Anngpt - Potenciada por Llama 3 🚀</strong><br><br>
+                    
+                    Ahora tengo <strong>inteligencia artificial REAL</strong> gracias a Groq API (totalmente gratis):<br><br>
+                    
+                    🧠 <strong>IA Real con Llama 3</strong> - Conversaciones naturales y contextuales<br>
+                    💭 <strong>Memoria de Conversación</strong> - Recuerdo lo que hablamos<br>
+                    🌍 <strong>Multi-idioma</strong> - Español, Inglés, Francés<br>
+                    🔢 <strong>Matemáticas Avanzadas</strong> - Cálculos, Pitágoras, álgebra<br>
+                    ✍️ <strong>Creatividad Real</strong> - Poemas, historias, código<br>
+                    🎨 <strong>Genera Imágenes</strong> - ¡Crea imágenes con IA! (Stable Diffusion)<br>
+                    📚 <strong>Conocimiento Amplio</strong> - Cualquier tema<br>
+                    🎯 <strong>Ayuda Práctica</strong> - Consejos y explicaciones<br><br>
+                    
+                    <strong>Habla conmigo de forma natural:</strong><br>
+                    • "¿Cómo estás?"<br>
+                    • "Explícame la física cuántica"<br>
+                    • "Genera una imagen de un unicornio mágico"<br>
+                    • "Escribe un poema sobre la luna"<br>
+                    • "Ayúdame con mi tarea de matemáticas"<br><br>
+                    
+                    <em>Soy tu asistente inteligente real. ¡Conversemos! 🌟</em>
+                </div>
+            </div>
+            <div class="typing-indicator" id="typingIndicator">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+
+        <div class="input-container">
+            <button id="recordBtn" class="btn-record" onclick="toggleRecording()">🎤</button>
+            <input 
+                type="text" 
+                id="userInput" 
+                placeholder="Mensaje a Anngpt..." 
+                onkeypress="handleKeyPress(event)"
+            >
+            <button onclick="enviarMensaje()">Enviar</button>
+        </div>
+    </div>
+
+    <script>
+        let chatContainer = document.getElementById('chatContainer');
+        const userInput = document.getElementById('userInput');
+        let typingIndicator = document.getElementById('typingIndicator');
+        
+        // Variables para grabación de audio
+        let mediaRecorder;
+        let audioChunks = [];
+        let isRecording = false;
+        let recognition;
+        let speechEnabled = true; // Activar voz por defecto
+        
+        // Variables para el juego
+        let juegoActivo = false;
+        let numeroSecreto = 0;
+        let intentos = 0;
+        let mejorPuntuacion = localStorage.getItem('mejorPuntuacion') || 999;
+
+        // Inicializar síntesis de voz (Text-to-Speech)
+        const synth = window.speechSynthesis;
+        let currentVoice = null;
+
+        // Cargar voces disponibles
+        function loadVoices() {
+            const voices = synth.getVoices();
+            
+            // Priorizar voces femeninas en español con mejor calidad
+            // Orden de preferencia: Microsoft Helena > Google español (ES) > otras
+            const preferredVoices = [
+                'Microsoft Helena Online (Natural) - Spanish (Spain)',
+                'Microsoft Helena - Spanish (Spain)',
+                'Microsoft Sabina - Spanish (Mexico)',
+                'Google español',
+                'Google español de Estados Unidos',
+                'es-ES',
+                'es-MX',
+                'es-US'
+            ];
+            
+            // Intentar encontrar la mejor voz
+            for (let preferred of preferredVoices) {
+                const voice = voices.find(v => 
+                    v.name.includes(preferred) || 
+                    v.name.toLowerCase().includes('helena') ||
+                    v.name.toLowerCase().includes('sabina') ||
+                    (v.lang.startsWith('es') && v.name.toLowerCase().includes('female'))
+                );
+                if (voice) {
+                    currentVoice = voice;
+                    console.log('Voz seleccionada:', voice.name);
+                    return;
+                }
+            }
+            
+            // Fallback: buscar cualquier voz en español femenina
+            currentVoice = voices.find(v => 
+                v.lang.startsWith('es') && 
+                (v.name.toLowerCase().includes('female') || 
+                 v.name.toLowerCase().includes('mujer') ||
+                 !v.name.toLowerCase().includes('male'))
+            ) || voices.find(v => v.lang.startsWith('es')) || voices[0];
+            
+            console.log('Voz final seleccionada:', currentVoice?.name);
+        }
+
+        // Cargar voces cuando estén disponibles
+        if (synth.onvoiceschanged !== undefined) {
+            synth.onvoiceschanged = loadVoices;
+        }
+        
+        // Cargar voces y mostrar disponibles
+        setTimeout(() => {
+            loadVoices();
+            const voices = synth.getVoices();
+            console.log('=== VOCES DISPONIBLES ===');
+            voices.filter(v => v.lang.startsWith('es')).forEach((v, i) => {
+                console.log(`${i + 1}. ${v.name} (${v.lang})`);
+            });
+            console.log('========================');
+        }, 100);
+
+        // Función para que Anngpt hable
+        function hablar(texto) {
+            if (!speechEnabled || !synth) return;
+
+            // Cancelar cualquier voz anterior
+            synth.cancel();
+
+            // Limpiar formato markdown y HTML del texto
+            let textoLimpio = texto
+                .replace(/<br>/g, '. ')
+                .replace(/<[^>]*>/g, '')
+                .replace(/\*\*/g, '')
+                .replace(/\*/g, '')
+                .replace(/#{1,6}\s/g, '')
+                .replace(/\[([^\]]+)\]\([^\)]+\)/g, '$1')
+                .replace(/`([^`]+)`/g, '$1')
+                .replace(/�/g, '');
+
+            const utterance = new SpeechSynthesisUtterance(textoLimpio);
+            utterance.voice = currentVoice;
+            utterance.rate = 0.95; // Velocidad ligeramente más lenta (más gentil)
+            utterance.pitch = 1.2; // Tono más alto (más femenino)
+            utterance.volume = 0.9; // Volumen suave pero audible
+            utterance.lang = 'es-ES';
+
+            // Evento cuando termina de hablar
+            utterance.onend = () => {
+                console.log('Anngpt terminó de hablar');
+            };
+
+            utterance.onerror = (event) => {
+                console.error('Error en síntesis de voz:', event);
+            };
+
+            synth.speak(utterance);
+        }
+
+        // Función para alternar voz
+        function toggleSpeech() {
+            speechEnabled = !speechEnabled;
+            const btn = document.getElementById('speechToggle');
+            if (btn) {
+                btn.textContent = speechEnabled ? '🔊' : '🔇';
+                btn.title = speechEnabled ? 'Desactivar voz' : 'Activar voz';
+            }
+            
+            if (!speechEnabled) {
+                synth.cancel();
+            }
+        }
+
+        // Inicializar reconocimiento de voz (Web Speech API)
+        if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+            recognition = new SpeechRecognition();
+            recognition.lang = 'es-ES';
+            recognition.continuous = false;
+            recognition.interimResults = false;
+
+            recognition.onresult = (event) => {
+                const transcript = event.results[0][0].transcript;
+                userInput.value = transcript;
+                // Auto-enviar después de grabar
+                setTimeout(() => {
+                    enviarMensaje();
+                }, 500);
+            };
+
+            recognition.onerror = (event) => {
+                console.error('Error de reconocimiento:', event.error);
+                alert('Error al reconocer voz: ' + event.error);
+                stopRecording();
+            };
+
+            recognition.onend = () => {
+                stopRecording();
+            };
+        }
+
+        function toggleRecording() {
+            if (isRecording) {
+                stopRecording();
+            } else {
+                startRecording();
+            }
+        }
+
+        function startRecording() {
+            if (!recognition) {
+                alert('Tu navegador no soporta reconocimiento de voz. Usa Chrome o Edge.');
+                return;
+            }
+
+            isRecording = true;
+            const recordBtn = document.getElementById('recordBtn');
+            recordBtn.textContent = '⏹️';
+            recordBtn.style.background = '#ef4444';
+            recordBtn.style.animation = 'pulse 1s infinite';
+            
+            userInput.placeholder = '🎤 Grabando... Habla ahora';
+            
+            try {
+                recognition.start();
+            } catch (error) {
+                console.error('Error al iniciar grabación:', error);
+                stopRecording();
+            }
+        }
+
+        function stopRecording() {
+            isRecording = false;
+            const recordBtn = document.getElementById('recordBtn');
+            recordBtn.textContent = '🎤';
+            recordBtn.style.background = '#10a37f';
+            recordBtn.style.animation = 'none';
+            
+            userInput.placeholder = 'Mensaje a Anngpt AI...';
+            
+            if (recognition) {
+                try {
+                    recognition.stop();
+                } catch (error) {
+                    console.error('Error al detener:', error);
+                }
+            }
+        }
+
+        function agregarMensaje(texto, tipo) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${tipo}`;
+            
+            const now = new Date();
+            const time = now.toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' });
+            
+            // Convertir saltos de línea a <br> para mejor visualización
+            const textoFormateado = texto.replace(/\n/g, '<br>');
+            
+            // Crear avatar emoji
+            const avatar = tipo === 'user' ? '👤' : '🤖';
+            
+            messageDiv.innerHTML = `
+                <div class="avatar">${avatar}</div>
+                <div class="message-content">
+                    ${textoFormateado}
+                </div>
+            `;
+            
+            // Obtener referencia actualizada del typing indicator
+            typingIndicator = document.getElementById('typingIndicator');
+            chatContainer.insertBefore(messageDiv, typingIndicator);
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+            
+            // Si es mensaje de la IA, hacer que hable
+            if (tipo === 'ia') {
+                hablar(texto);
+            }
+        }
+
+        function agregarMensajeConImagen(texto, tipo, imagenBase64) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${tipo}`;
+            
+            const now = new Date();
+            const time = now.toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' });
+            
+            // Convertir saltos de línea a <br> para mejor visualización
+            const textoFormateado = texto.replace(/\n/g, '<br>');
+            
+            // Crear avatar emoji
+            const avatar = tipo === 'user' ? '👤' : '🤖';
+            
+            // Crear contenido con imagen
+            let contenidoHTML = `
+                <div class="avatar">${avatar}</div>
+                <div class="message-content">
+                    ${textoFormateado}
+            `;
+            
+            if (imagenBase64) {
+                contenidoHTML += `
+                    <div class="image-container">
+                        <img src="data:image/png;base64,${imagenBase64}" alt="Imagen generada" style="max-width: 400px;">
+                    </div>
+                `;
+            }
+            
+            contenidoHTML += `</div>`;
+            
+            messageDiv.innerHTML = contenidoHTML;
+            
+            // Obtener referencia actualizada del typing indicator
+            typingIndicator = document.getElementById('typingIndicator');
+            chatContainer.insertBefore(messageDiv, typingIndicator);
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+            
+            // Si es mensaje de la IA, hacer que hable
+            if (tipo === 'ia') {
+                hablar(texto);
+            }
+        }
+
+        function mostrarTyping() {
+            typingIndicator = document.getElementById('typingIndicator');
+            if (typingIndicator) {
+                typingIndicator.style.display = 'block';
+                chatContainer.scrollTop = chatContainer.scrollHeight;
+            }
+        }
+
+        function ocultarTyping() {
+            typingIndicator = document.getElementById('typingIndicator');
+            if (typingIndicator) {
+                typingIndicator.style.display = 'none';
+            }
+        }
+
+        async function enviarMensaje() {
+            const mensaje = userInput.value.trim();
+            
+            if (!mensaje) return;
+            
+            // PRIORIDAD 1: Si el juego está activo y es un número
+            if (juegoActivo && !isNaN(mensaje)) {
+                jugarTurno(parseInt(mensaje));
+                return;
+            }
+            
+            // PRIORIDAD 2: Chat normal con Anngpt
+            // Agregar mensaje del usuario
+            agregarMensaje(mensaje, 'user');
+            userInput.value = '';
+            
+            // Mostrar indicador de escritura
+            mostrarTyping();
+            
+            try {
+                console.log('Enviando mensaje:', mensaje);
+                
+                const response = await fetch('/chat', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ mensaje: mensaje })
+                });
+                
+                console.log('Respuesta recibida, status:', response.status);
+                
+                if (!response.ok) {
+                    throw new Error(`Error HTTP: ${response.status}`);
+                }
+                
+                const data = await response.json();
+                console.log('Datos:', data);
+                
+                // Verificar si es una respuesta con imagen
+                if (data.es_imagen && data.imagen_base64) {
+                    // Simular delay de escritura
+                    setTimeout(() => {
+                        ocultarTyping();
+                        agregarMensajeConImagen(data.respuesta, 'ia', data.imagen_base64);
+                    }, 500);
+                } else if (data.respuesta) {
+                    // Respuesta normal de texto
+                    setTimeout(() => {
+                        ocultarTyping();
+                        agregarMensaje(data.respuesta, 'ia');
+                    }, 500);
+                } else if (data.error) {
+                    ocultarTyping();
+                    agregarMensaje('Error: ' + data.error, 'ia');
+                } else {
+                    ocultarTyping();
+                    agregarMensaje('Error: No se recibió respuesta válida', 'ia');
+                }
+                
+            } catch (error) {
+                console.error('Error completo:', error);
+                ocultarTyping();
+                agregarMensaje('Lo siento, hubo un error: ' + error.message, 'ia');
+            }
+        }
+
+        function handleKeyPress(event) {
+            if (event.key === 'Enter') {
+                enviarMensaje();
+            }
+        }
+
+        async function limpiarChat() {
+            if (confirm('¿Estás seguro de que quieres limpiar el chat?')) {
+                try {
+                    await fetch('/limpiar', { method: 'POST' });
+                    chatContainer.innerHTML = `
+                        <div class="message ia">
+                            <div class="message-content">
+                                Chat limpiado. ¿En qué puedo ayudarte?
+                            </div>
+                        </div>
+                        <div class="typing-indicator" id="typingIndicator">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    `;
+                } catch (error) {
+                    console.error('Error:', error);
+                }
+            }
+        }
+
+        async function verHistorial() {
+            try {
+                const response = await fetch('/historial');
+                const data = await response.json();
+                
+                let historialTexto = 'HISTORIAL DE CONVERSACIÓN:\n\n';
+                data.historial.forEach(item => {
+                    const emisor = item.tipo === 'usuario' ? 'TÚ' : 'IA';
+                    historialTexto += `${emisor}: ${item.mensaje}\n\n`;
+                });
+                
+                alert(historialTexto);
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Error al obtener el historial');
+            }
+        }
+
+        // ===== FUNCIONES DEL JUEGO =====
+        
+        function iniciarJuego() {
+            juegoActivo = true;
+            numeroSecreto = Math.floor(Math.random() * 100) + 1;
+            intentos = 0;
+            
+            const mensaje = `🎮 **¡JUEGO INICIADO!**\n\n¡Hola! Acabo de pensar un número entre 1 y 100.\n\n🎯 Tu misión: ¡Adivina cuál es!\n\n📊 Mejor puntuación: ${mejorPuntuacion} intentos\n\n💡 Escribe un número para empezar... ¡Buena suerte! 🍀`;
+            
+            agregarMensaje(mensaje, 'ia');
+        }
+
+        function jugarTurno(numero) {
+            if (numero < 1 || numero > 100) {
+                agregarMensaje(numero.toString(), 'user');
+                agregarMensaje('⚠️ Por favor, escribe un número entre 1 y 100.', 'ia');
+                userInput.value = '';
+                return;
+            }
+
+            intentos++;
+            agregarMensaje(numero.toString(), 'user');
+
+            let respuesta = '';
+
+            if (numero === numeroSecreto) {
+                // ¡GANÓ!
+                const esRecord = intentos < mejorPuntuacion;
+                
+                if (esRecord) {
+                    mejorPuntuacion = intentos;
+                    localStorage.setItem('mejorPuntuacion', intentos);
+                }
+
+                respuesta = `🎉 **¡FELICIDADES! ¡LO ADIVINASTE!** 🎉\n\n`;
+                respuesta += `✨ El número era: **${numeroSecreto}**\n`;
+                respuesta += `📊 Intentos: **${intentos}**\n\n`;
+                
+                if (esRecord) {
+                    respuesta += `🏆 **¡NUEVO RÉCORD!** 🏆\n\n`;
+                }
+                
+                if (intentos <= 3) {
+                    respuesta += `¡Increíble! Eres un genio. 🧠✨`;
+                } else if (intentos <= 7) {
+                    respuesta += `¡Muy bien! Tienes buen olfato. 👃`;
+                } else if (intentos <= 12) {
+                    respuesta += `¡Buen trabajo! Lo lograste. 👏`;
+                } else {
+                    respuesta += `¡Lo conseguiste! La persistencia vale la pena. 💪`;
+                }
+                
+                respuesta += `\n\n¿Quieres jugar otra vez? Presiona el botón 🎮 Juego`;
+                
+                juegoActivo = false;
+                
+            } else if (numero < numeroSecreto) {
+                // MUY BAJO
+                const diferencia = numeroSecreto - numero;
+                
+                if (diferencia <= 5) {
+                    respuesta = `🔥 ¡Muy cerca! Pero es un poquito **MÁS ALTO** 📈`;
+                } else if (diferencia <= 15) {
+                    respuesta = `⬆️ Es **MÁS ALTO**... ¡Sube un poco más!`;
+                } else {
+                    respuesta = `📈 Es **MUCHO MÁS ALTO**... ¡Sube bastante!`;
+                }
+                
+                respuesta += `\n\n🎯 Intento ${intentos}`;
+                
+            } else {
+                // MUY ALTO
+                const diferencia = numero - numeroSecreto;
+                
+                if (diferencia <= 5) {
+                    respuesta = `🔥 ¡Muy cerca! Pero es un poquito **MÁS BAJO** 📉`;
+                } else if (diferencia <= 15) {
+                    respuesta = `⬇️ Es **MÁS BAJO**... ¡Baja un poco!`;
+                } else {
+                    respuesta = `📉 Es **MUCHO MÁS BAJO**... ¡Baja bastante!`;
+                }
+                
+                respuesta += `\n\n🎯 Intento ${intentos}`;
+            }
+
+            agregarMensaje(respuesta, 'ia');
+            userInput.value = '';
+        }
+
+        // Enfocar el input al cargar
+        window.onload = () => {
+            userInput.focus();
+        };
+
+        // ===== GENERADOR DE IMÁGENES =====
+        
+        function abrirGeneradorImagenes() {
+            const descripcion = prompt('📝 Describe la imagen que quieres generar:\n\n(Sé específico: colores, estilo, objetos, etc.)\n\nEjemplo: "Un gato naranja jugando con una pelota azul en el parque, estilo cartoon"');
+            
+            if (descripcion && descripcion.trim()) {
+                agregarMensaje('Genera una imagen: ' + descripcion, 'user');
+                mostrarTyping();
+                
+                generarImagenDirecta(descripcion.trim());
+            }
+        }
+
+        async function generarImagenDirecta(descripcion) {
+            try {
+                const response = await fetch('/generar-imagen', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ descripcion: descripcion })
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`Error HTTP: ${response.status}`);
+                }
+                
+                const data = await response.json();
+                console.log('Respuesta imagen:', data);
+                
+                setTimeout(() => {
+                    ocultarTyping();
+                    
+                    if (data.success && data.imagen_base64) {
+                        agregarMensajeConImagen(data.mensaje, 'ia', data.imagen_base64);
+                    } else {
+                        agregarMensaje(data.mensaje || 'Error al generar la imagen', 'ia');
+                    }
+                }, 500);
+                
+            } catch (error) {
+                console.error('Error:', error);
+                ocultarTyping();
+                agregarMensaje('❌ Error al generar imagen: ' + error.message, 'ia');
+            }
+        }
+    </script>
+</body>
+</html>

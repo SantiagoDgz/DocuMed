@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Citas - Sistema Médico</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .header {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            color: #667eea;
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+
+        @media (max-width: 1024px) {
+            .content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .calendar-section {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .calendar-header h2 {
+            color: #333;
+            font-size: 20px;
+        }
+
+        .calendar-nav {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn-nav {
+            padding: 8px 12px;
+            background: #f5f5f5;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-nav:hover {
+            background: #667eea;
+            color: white;
+        }
+
+        .calendar {
+            width: 100%;
+        }
+
+        .weekdays {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 5px;
+            margin-bottom: 10px;
+        }
+
+        .weekday {
+            text-align: center;
+            font-weight: 600;
+            color: #667eea;
+            padding: 10px 0;
+            font-size: 12px;
+        }
+
+        .days {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 5px;
+        }
+
+        .day {
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        .day:hover {
+            border-color: #667eea;
+            background: #f5f5f5;
+        }
+
+        .day.other-month {
+            color: #ccc;
+            background: #f9f9f9;
+        }
+
+        .day.today {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+            font-weight: 700;
+        }
+
+        .day.selected {
+            background: #764ba2;
+            color: white;
+            border-color: #764ba2;
+        }
+
+        .appointment-form {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .form-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="time"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 14px;
+            font-family: inherit;
+            transition: border-color 0.3s ease;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="time"]:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .appointments-list {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            grid-column: 1 / -1;
+        }
+
+        .appointments-list h2 {
+            color: #333;
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+
+        .appointment-item {
+            padding: 15px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #f9f9f9;
+        }
+
+        .appointment-info {
+            flex: 1;
+        }
+
+        .appointment-patient {
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .appointment-details {
+            font-size: 13px;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .appointment-status {
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+
+        .appointment-status.pending {
+            background: #fff3e0;
+            color: #e65100;
+        }
+
+        .appointment-status.completed {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .appointment-status.cancelled {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .appointment-actions {
+            display: flex;
+            gap: 10px;
+            margin-left: 15px;
+        }
+
+        .btn-action {
+            padding: 6px 12px;
+            background: #f5f5f5;
+            border: none;
+            border-radius: 6px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-action:hover {
+            background: #667eea;
+            color: white;
+        }
+
+        .selected-date {
+            background: #f5f5f5;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            text-align: center;
+            color: #667eea;
+            font-weight: 600;
+        }
+
+        .time-slots {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .time-slot {
+            padding: 10px;
+            border: 2px solid #e0e0e0;
+            border-radius: 6px;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .time-slot:hover {
+            border-color: #667eea;
+            background: #f5f5f5;
+        }
+
+        .time-slot.selected {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+
+        .no-appointments {
+            text-align: center;
+            padding: 40px;
+            color: #999;
+        }
+
+        .alert {
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        .alert.show {
+            display: block;
+        }
+
+        .alert-success {
+            background: #d4edda;
+            color: #155724;
+            border-left: 4px solid #27ae60;
+        }
+
+        .alert-error {
+            background: #f8d7da;
+            color: #721c24;
+            border-left: 4px solid #e74c3c;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📅 Sistema de Citas Médicas</h1>
+            <p>Agenda y gestiona citas de forma automática</p>
+        </div>
+
+        <div id="alertContainer"></div>
+
+        <div class="content">
+            <!-- Calendario -->
+            <div class="calendar-section">
+                <div class="calendar-header">
+                    <h2 id="monthYear"></h2>
+                    <div class="calendar-nav">
+                        <button class="btn-nav" onclick="previousMonth()">←</button>
+                        <button class="btn-nav" onclick="nextMonth()">→</button>
+                    </div>
+                </div>
+
+                <div class="calendar">
+                    <div class="weekdays">
+                        <div class="weekday">Dom</div>
+                        <div class="weekday">Lun</div>
+                        <div class="weekday">Mar</div>
+                        <div class="weekday">Mié</div>
+                        <div class="weekday">Jue</div>
+                        <div class="weekday">Vie</div>
+                        <div class="weekday">Sab</div>
+                    </div>
+                    <div class="days" id="calendarDays"></div>
+                </div>
+            </div>
+
+            <!-- Formulario de Cita -->
+            <div class="appointment-form">
+                <div class="form-title">📋 Nueva Cita</div>
+
+                <div class="selected-date" id="selectedDate">
+                    Selecciona una fecha
+                </div>
+
+                <div class="form-group">
+                    <label>Paciente</label>
+                    <select id="appointmentPatient" required>
+                        <option value="">Seleccionar paciente...</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Hora de Cita</label>
+                    <select id="appointmentTime" required>
+                        <option value="">Seleccionar hora...</option>
+                        <option value="09:00">09:00 AM</option>
+                        <option value="10:00">10:00 AM</option>
+                        <option value="11:00">11:00 AM</option>
+                        <option value="12:00">12:00 PM</option>
+                        <option value="14:00">2:00 PM</option>
+                        <option value="15:00">3:00 PM</option>
+                        <option value="16:00">4:00 PM</option>
+                        <option value="17:00">5:00 PM</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Especialidad</label>
+                    <select id="appointmentSpecialty" required>
+                        <option value="General">Medicina General</option>
+                        <option value="Cardiología">Cardiología</option>
+                        <option value="Dermatología">Dermatología</option>
+                        <option value="Pediatría">Pediatría</option>
+                        <option value="Neurología">Neurología</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Notas/Motivo</label>
+                    <textarea id="appointmentReason" placeholder="¿Cuál es el motivo de la consulta?"></textarea>
+                </div>
+
+                <button class="btn-submit" onclick="scheduleAppointment()">✔️ Agendar Cita</button>
+            </div>
+        </div>
+
+        <!-- Lista de Citas -->
+        <div class="appointments-list">
+            <h2>📅 Citas Próximas</h2>
+            <div id="appointmentsList"></div>
+        </div>
+    </div>
+
+    <script>
+        let currentDate = new Date();
+        let selectedDate = null;
+        let appointments = [];
+
+        function loadCalendar() {
+            const year = currentDate.getFullYear();
+            const month = currentDate.getMonth();
+            
+            document.getElementById('monthYear').textContent = 
+                currentDate.toLocaleDateString('es-ES', { month: 'long', year: 'numeric' });
+
+            const firstDay = new Date(year, month, 1).getDay();
+            const daysInMonth = new Date(year, month + 1, 0).getDate();
+            const daysInPrevMonth = new Date(year, month, 0).getDate();
+
+            let html = '';
+
+            // Días del mes anterior
+            for (let i = firstDay - 1; i >= 0; i--) {
+                html += `<div class="day other-month">${daysInPrevMonth - i}</div>`;
+            }
+
+            // Días del mes actual
+            const today = new Date();
+            for (let day = 1; day <= daysInMonth; day++) {
+                const date = new Date(year, month, day);
+                const isToday = date.toDateString() === today.toDateString();
+                const isSelected = selectedDate && date.toDateString() === selectedDate.toDateString();
+                
+                let className = 'day';
+                if (isToday) className += ' today';
+                if (isSelected) className += ' selected';
+
+                html += `<div class="${className}" onclick="selectDate(new Date(${year}, ${month}, ${day}))">${day}</div>`;
+            }
+
+            // Días del mes siguiente
+            const remainingDays = 42 - (firstDay + daysInMonth);
+            for (let day = 1; day <= remainingDays; day++) {
+                html += `<div class="day other-month">${day}</div>`;
+            }
+
+            document.getElementById('calendarDays').innerHTML = html;
+        }
+
+        function selectDate(date) {
+            selectedDate = date;
+            document.getElementById('selectedDate').textContent = 
+                'Cita para: ' + date.toLocaleDateString('es-ES', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+            loadCalendar();
+        }
+
+        function previousMonth() {
+            currentDate.setMonth(currentDate.getMonth() - 1);
+            loadCalendar();
+        }
+
+        function nextMonth() {
+            currentDate.setMonth(currentDate.getMonth() + 1);
+            loadCalendar();
+        }
+
+        async function loadPatients() {
+            try {
+                const response = await fetch('/api/pacientes');
+                const data = await response.json();
+                
+                if (data.exito) {
+                    const select = document.getElementById('appointmentPatient');
+                    data.pacientes.forEach(p => {
+                        const option = document.createElement('option');
+                        option.value = p.id;
+                        option.textContent = `${p.nombre} ${p.apellido}`;
+                        select.appendChild(option);
+                    });
+                }
+            } catch (error) {
+                console.error('Error al cargar pacientes:', error);
+            }
+        }
+
+        async function scheduleAppointment() {
+            if (!selectedDate) {
+                showAlert('Por favor selecciona una fecha', 'error');
+                return;
+            }
+
+            const patientId = document.getElementById('appointmentPatient').value;
+            if (!patientId) {
+                showAlert('Por favor selecciona un paciente', 'error');
+                return;
+            }
+
+            const time = document.getElementById('appointmentTime').value;
+            if (!time) {
+                showAlert('Por favor selecciona una hora', 'error');
+                return;
+            }
+
+            const appointment = {
+                id: 'CIT-' + Date.now(),
+                patientId: patientId,
+                date: selectedDate.toLocaleDateString('es-ES'),
+                time: time,
+                specialty: document.getElementById('appointmentSpecialty').value,
+                reason: document.getElementById('appointmentReason').value,
+                status: 'Programada',
+                createdAt: new Date().toLocaleString('es-ES')
+            };
+
+            appointments.push(appointment);
+            displayAppointments();
+            showAlert('✅ Cita agendada correctamente', 'success');
+            document.getElementById('appointmentPatient').value = '';
+            document.getElementById('appointmentTime').value = '';
+            document.getElementById('appointmentReason').value = '';
+        }
+
+        function displayAppointments() {
+            const list = document.getElementById('appointmentsList');
+            
+            if (appointments.length === 0) {
+                list.innerHTML = '<div class="no-appointments">📭 No hay citas agendadas</div>';
+                return;
+            }
+
+            list.innerHTML = appointments.map(a => `
+                <div class="appointment-item">
+                    <div class="appointment-info">
+                        <div class="appointment-patient">📅 ${a.date} - ${a.time}</div>
+                        <div class="appointment-details">
+                            <p><strong>ID:</strong> ${a.id}</p>
+                            <p><strong>Especialidad:</strong> ${a.specialty}</p>
+                            ${a.reason ? `<p><strong>Motivo:</strong> ${a.reason}</p>` : ''}
+                        </div>
+                    </div>
+                    <span class="appointment-status">${a.status}</span>
+                    <div class="appointment-actions">
+                        <button class="btn-action" onclick="confirmAppointment('${a.id}')">✔️ Confirmar</button>
+                        <button class="btn-action" onclick="cancelAppointment('${a.id}')">❌ Cancelar</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function confirmAppointment(id) {
+            const appointment = appointments.find(a => a.id === id);
+            if (appointment) {
+                appointment.status = 'Confirmada';
+                displayAppointments();
+                showAlert('✅ Cita confirmada', 'success');
+            }
+        }
+
+        function cancelAppointment(id) {
+            appointments = appointments.filter(a => a.id !== id);
+            displayAppointments();
+            showAlert('❌ Cita cancelada', 'success');
+        }
+
+        function showAlert(message, type) {
+            const container = document.getElementById('alertContainer');
+            const alert = document.createElement('div');
+            alert.className = `alert alert-${type} show`;
+            alert.textContent = message;
+            container.innerHTML = '';
+            container.appendChild(alert);
+            setTimeout(() => alert.remove(), 5000);
+        }
+
+        // Inicializar
+        loadCalendar();
+        loadPatients();
+        displayAppointments();
+    </script>
+</body>
+</html>

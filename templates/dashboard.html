@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema Médico Inteligente - Inicio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 50px;
+            padding: 40px 0;
+        }
+
+        .header h1 {
+            font-size: 48px;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        .header p {
+            font-size: 18px;
+            opacity: 0.9;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+
+        .feature-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+
+        .feature-title {
+            font-size: 22px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .feature-description {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.6;
+            flex: 1;
+            margin-bottom: 20px;
+        }
+
+        .feature-link {
+            color: #667eea;
+            font-weight: 600;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .feature-link:hover {
+            color: #764ba2;
+        }
+
+        .stats-section {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+            margin-bottom: 40px;
+        }
+
+        .stats-title {
+            font-size: 28px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+        }
+
+        .stat-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .quick-access {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+        }
+
+        .quick-access h2 {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .quick-buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .quick-btn {
+            padding: 15px 25px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            justify-content: center;
+            color: white;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+        }
+
+        .quick-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .quick-btn-secondary {
+            background: #f5f5f5;
+            color: #333;
+        }
+
+        .quick-btn-secondary:hover {
+            background: #e0e0e0;
+        }
+
+        .features-section {
+            margin-bottom: 50px;
+        }
+
+        .section-title {
+            font-size: 32px;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 30px;
+            text-align: center;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 32px;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🏥 Sistema Médico Inteligente</h1>
+            <p>Plataforma integral para gestión de pacientes y datos clínicos</p>
+        </div>
+
+        <!-- Sección de Características Principales -->
+        <div class="features-section">
+            <h2 class="section-title">✨ Funcionalidades Principales</h2>
+            <div class="features-grid">
+                <!-- Registro de Pacientes -->
+                <a href="/pacientes" class="feature-card">
+                    <div class="feature-icon">👥</div>
+                    <div class="feature-title">Registro de Pacientes</div>
+                    <div class="feature-description">
+                        Gestiona un registro completo de pacientes con datos demográficos, contacto e historia médica general.
+                    </div>
+                    <div class="feature-link">Ir al Registro →</div>
+                </a>
+
+                <!-- Captura de Datos -->
+                <a href="/captura-datos" class="feature-card">
+                    <div class="feature-icon">📋</div>
+                    <div class="feature-title">Captura de Datos Clínicos</div>
+                    <div class="feature-description">
+                        Registra signos vitales, síntomas, diagnósticos, tratamientos, estudios y observaciones médicas.
+                    </div>
+                    <div class="feature-link">Capturar Datos →</div>
+                </a>
+
+                <!-- Análisis y Reportes -->
+                <a href="/analisis-reportes" class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <div class="feature-title">Análisis y Reportes</div>
+                    <div class="feature-description">
+                        Visualiza gráficos de evolución, históricos completos y genera reportes en PDF de tus pacientes.
+                    </div>
+                    <div class="feature-link">Ver Análisis →</div>
+                </a>
+
+                <!-- Panel Clínico -->
+                <a href="/medico-inteligente" class="feature-card">
+                    <div class="feature-icon">🤖</div>
+                    <div class="feature-title">Panel Médico Inteligente</div>
+                    <div class="feature-description">
+                        Sistema de IA que analiza datos clínicos, detecta alertas y proporciona recomendaciones médicas.
+                    </div>
+                    <div class="feature-link">Acceder al Panel →</div>
+                </a>
+
+                <!-- Chat con IA -->
+                <a href="/medico-inteligente" class="feature-card">
+                    <div class="feature-icon">💬</div>
+                    <div class="feature-title">Asistente IA Médico</div>
+                    <div class="feature-description">
+                        Conversa con un asistente de IA especializado en información médica, deportiva y general.
+                    </div>
+                    <div class="feature-link">Abrir Chat →</div>
+                </a>
+
+                <!-- Búsqueda -->
+                <a href="/pacientes" class="feature-card">
+                    <div class="feature-icon">🔍</div>
+                    <div class="feature-title">Búsqueda Avanzada</div>
+                    <div class="feature-description">
+                        Busca pacientes por nombre, apellido, cédula o ID con filtros avanzados y resultados inmediatos.
+                    </div>
+                    <div class="feature-link">Buscar →</div>
+                </a>
+
+                <!-- Citas Médicas -->
+                <a href="/citas" class="feature-card">
+                    <div class="feature-icon">📅</div>
+                    <div class="feature-title">Citas Médicas</div>
+                    <div class="feature-description">
+                        Sistema de agendamiento de citas con calendario interactivo, confirmación automática y recordatorios.
+                    </div>
+                    <div class="feature-link">Agendar Cita →</div>
+                </a>
+
+                <!-- Laboratorios -->
+                <a href="/laboratorios" class="feature-card">
+                    <div class="feature-icon">🧪</div>
+                    <div class="feature-title">Gestión de Laboratorios</div>
+                    <div class="feature-description">
+                        Crea órdenes de laboratorio, registra resultados y realiza seguimiento de estudios de los pacientes.
+                    </div>
+                    <div class="feature-link">Ir a Laboratorios →</div>
+                </a>
+
+                <!-- Recetas Digitales -->
+                <a href="/recetas" class="feature-card">
+                    <div class="feature-icon">💊</div>
+                    <div class="feature-title">Recetas Digitales</div>
+                    <div class="feature-description">
+                        Genera, gestiona e imprime recetas digitales con información completa de medicamentos y dosis.
+                    </div>
+                    <div class="feature-link">Ver Recetas →</div>
+                </a>
+
+                <!-- Seguridad y Backup -->
+                <a href="/seguridad" class="feature-card">
+                    <div class="feature-icon">🔐</div>
+                    <div class="feature-title">Seguridad y Backup</div>
+                    <div class="feature-description">
+                        Sistema de encriptación de datos sensibles, backups automáticos y sincronización en la nube.
+                    </div>
+                    <div class="feature-link">Configurar Seguridad →</div>
+                </a>
+            </div>
+        </div>
+
+        <!-- Estadísticas -->
+        <div class="stats-section">
+            <div class="stats-title">📈 Estadísticas del Sistema</div>
+            <div class="stats-grid" id="statsContainer">
+                <div class="stat-box">
+                    <div class="stat-number" id="totalPacientes">0</div>
+                    <div class="stat-label">Pacientes Registrados</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number" id="totalDatos">0</div>
+                    <div class="stat-label">Registros de Datos</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number" id="totalDiag">0</div>
+                    <div class="stat-label">Diagnósticos</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number" id="totalTrat">0</div>
+                    <div class="stat-label">Tratamientos</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Acceso Rápido -->
+        <div class="quick-access">
+            <h2>⚡ Acceso Rápido</h2>
+            <div class="quick-buttons">
+                <a href="/pacientes" class="quick-btn">➕ Nuevo Paciente</a>
+                <a href="/captura-datos" class="quick-btn">📝 Capturar Datos</a>
+                <a href="/analisis-reportes" class="quick-btn">📊 Ver Reportes</a>
+                <a href="/medico-inteligente" class="quick-btn">🤖 Abrir Panel IA</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Cargar estadísticas
+        async function loadStats() {
+            try {
+                const response = await fetch('/api/pacientes');
+                const data = await response.json();
+                
+                if (data.exito) {
+                    const pacientes = data.pacientes;
+                    
+                    let totalDatos = 0;
+                    let totalDiag = 0;
+                    let totalTrat = 0;
+                    
+                    pacientes.forEach(p => {
+                        totalDatos += (p.notas?.length || 0) + (p.estudios?.length || 0);
+                        totalDiag += p.diagnósticos?.length || 0;
+                        totalTrat += p.tratamientos?.length || 0;
+                    });
+                    
+                    document.getElementById('totalPacientes').textContent = pacientes.length;
+                    document.getElementById('totalDatos').textContent = totalDatos;
+                    document.getElementById('totalDiag').textContent = totalDiag;
+                    document.getElementById('totalTrat').textContent = totalTrat;
+                }
+            } catch (error) {
+                console.error('Error al cargar estadísticas:', error);
+            }
+        }
+
+        // Cargar estadísticas al iniciar
+        loadStats();
+    </script>
+</body>
+</html>

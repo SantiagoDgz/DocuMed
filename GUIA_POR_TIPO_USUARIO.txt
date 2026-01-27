@@ -1,0 +1,518 @@
+🎯 GUÍA RÁPIDA POR TIPO DE USUARIO
+Sistema Médico Inteligente 2.0
+
+═══════════════════════════════════════════════════════════════════════════════
+
+👨‍⚕️ PARA MÉDICOS Y PERSONAL SANITARIO
+═══════════════════════════════════════════════════════════════════════════════
+
+¡Bienvenido! Este es tu espacio de trabajo para gestionar pacientes y datos
+clínicos de forma segura y eficiente.
+
+INICIO RÁPIDO:
+
+1. ACCEDE AL SISTEMA
+   → Abre: http://localhost:5000
+   → Usuario: doctor
+   → Contraseña: doctor123
+
+2. FLUJO TÍPICO DE TRABAJO:
+
+   ┌─ PACIENTE LLEGA ─────────────────────┐
+   │                                      │
+   │ 1. Ir a /pacientes                   │
+   │    • Buscar paciente existente       │
+   │    • O crear nuevo paciente          │
+   │                                      │
+   │ 2. Ir a /captura-datos               │
+   │    • Registrar signos vitales        │
+   │    • Anotar síntomas                 │
+   │    • Agregar diagnóstico             │
+   │    • Prescribir tratamiento          │
+   │    • Ordenar estudios si necesario   │
+   │                                      │
+   │ 3. Ir a /recetas                     │
+   │    • Crear receta digital            │
+   │    • Imprimir o descargar            │
+   │                                      │
+   │ 4. Ir a /citas                       │
+   │    • Agendar próxima cita            │
+   │    • Seleccionar fecha y hora        │
+   │                                      │
+   │ 5. Ir a /laboratorios                │
+   │    • Crear orden de laboratorio      │
+   │    • Especificar tipo de análisis    │
+   │                                      │
+   │ 6. Ir a /analisis-reportes           │
+   │    • Ver evolución del paciente      │
+   │    • Exportar reporte a PDF          │
+   └──────────────────────────────────────┘
+
+3. FUNCIONES MÁS USADAS:
+
+   📋 CAPTURAR DATOS:
+      1. Seleccionar paciente
+      2. Llenar Signos Vitales (6 campos)
+      3. Agregar Síntomas
+      4. Poner Diagnóstico
+      5. Registrar Tratamiento
+      6. Guardar
+
+   📊 VER EVOLUCIÓN:
+      1. Ir a /analisis-reportes
+      2. Seleccionar paciente
+      3. Ver 6 gráficos de evolución
+      4. Exportar a PDF si necesita llevar
+
+   💊 GENERAR RECETA:
+      1. Ir a /recetas
+      2. Click en "Nueva Receta"
+      3. Llenar información
+      4. Imprimir o descargar PDF
+
+   📅 AGENDAR CITA:
+      1. Ir a /citas
+      2. Seleccionar fecha en calendario
+      3. Elegir hora y especialidad
+      4. Confirmar
+
+4. TRUCOS Y TIPS:
+
+   ✓ Los datos se guardan automáticamente
+   ✓ Puedes imprimir reportes directamente
+   ✓ El chat de IA (panel inteligente) te ayuda con diagnósticos
+   ✓ Exporta gráficos a PDF para presentar al paciente
+   ✓ Las citas se confirman automáticamente
+
+5. SI NECESITAS AYUDA:
+
+   • Pregunta a la IA: /medico-inteligente
+   • Revisa la guía: GUIA_USUARIO_MEDICO.md
+   • Contacta al administrador
+
+═══════════════════════════════════════════════════════════════════════════════
+
+
+👤 PARA ADMINISTRADORES
+═══════════════════════════════════════════════════════════════════════════════
+
+Tu rol es gestionar la seguridad, backups y configuración del sistema.
+
+INICIO RÁPIDO:
+
+1. ACCEDE COMO ADMINISTRADOR
+   → Abre: http://localhost:5000
+   → Usuario: admin
+   → Contraseña: admin123
+
+2. TAREAS PRINCIPALES:
+
+   🔐 SEGURIDAD (Muy Importante)
+      1. Ir a /seguridad
+      2. Panel de Encriptación:
+         - Verificar que está activo
+         - Cambiar clave maestra si necesario
+         - Configurar permisos de usuario
+      
+      3. Gestión de Backups:
+         - Crear backup antes de cambios importantes
+         - Revisar historial de backups
+         - Limpiar backups antiguos
+
+   💾 BACKUPS AUTOMÁTICOS
+      1. Ir a /seguridad
+      2. Sección "Backup y Sincronización":
+         - Click "Crear Backup Ahora"
+         - Activar backup automático diario
+         - Configurar servicios en la nube
+      
+      3. Restauración:
+         - Si algo falla, restaurar último backup
+         - Mantener copias en múltiples ubicaciones
+
+   🌐 SINCRONIZACIÓN EN LA NUBE
+      1. Ir a /seguridad
+      2. Sección "Configuración de Nube":
+         - Dropbox: Agregar token
+         - Google Drive: Agregar API Key
+         - AWS S3: Agregar credenciales
+      
+      3. Programar sincronización automática
+
+   👥 GESTIÓN DE USUARIOS
+      1. Ir a /seguridad
+      2. Sección "Gestión de Claves":
+         - Crear nuevos usuarios
+         - Cambiar contraseñas
+         - Asignar permisos
+      
+      3. Usuarios actuales:
+         - admin (Acceso total)
+         - doctor (Acceso médico)
+
+   📊 MONITOREO:
+      1. Revisar estadísticas regularmente
+      2. Monitorear acceso a datos encriptados
+      3. Revisar historial de cambios
+      4. Verificar integridad de datos
+
+3. TAREAS CRÍTICAS (HACER REGULARMENTE):
+
+   DIARIO:
+      ✓ Revisar que el sistema está funcionando
+      ✓ Verificar que no hay errores
+
+   SEMANALMENTE:
+      ✓ Crear backup manual
+      ✓ Revisar logs de auditoría
+      ✓ Verificar sincronización en la nube
+
+   MENSUALMENTE:
+      ✓ Limpiar backups antiguos
+      ✓ Actualizar contraseñas
+      ✓ Revisar estadísticas de uso
+      ✓ Auditar acceso a datos sensibles
+
+4. CONFIGURACIÓN INICIAL (IMPORTANTE):
+
+   ANTES DE USAR EN PRODUCCIÓN:
+      □ Cambiar contraseñas de demo
+      □ Configurar HTTPS/SSL
+      □ Activar backup automático
+      □ Configurar al menos un servicio en la nube
+      □ Establecer política de encriptación
+      □ Entrenar a personal
+
+   SEGURIDAD:
+      □ Nunca compartir credenciales admin
+      □ Usar contraseña fuerte
+      □ Revisar acceso regularmente
+      □ Documentar cambios
+      □ Mantener servidor actualizado
+
+5. EN CASO DE EMERGENCIA:
+
+   EL SERVIDOR NO INICIA:
+      1. Verifica que Python está instalado
+      2. Verifica que Flask está instalado
+      3. Revisa la terminal para mensajes de error
+      4. Lee GUIA_INSTALACION.txt
+
+   PERDIDA DE DATOS:
+      1. Detén el servidor inmediatamente
+      2. Restaura último backup: /seguridad → Restaurar
+      3. Verifica integridad
+      4. Avisa a los usuarios
+
+   ACCESO NO AUTORIZADO:
+      1. Cambia credenciales admin inmediatamente
+      2. Revisa historial de auditoría
+      3. Restaura backup si es necesario
+      4. Implementa 2FA si es posible
+
+═══════════════════════════════════════════════════════════════════════════════
+
+
+👨‍💼 PARA GERENTES/DIRECTORES
+═══════════════════════════════════════════════════════════════════════════════
+
+Tu rol es supervisar el funcionamiento y tomar decisiones sobre el sistema.
+
+INICIO RÁPIDO:
+
+1. ACCEDE AL SISTEMA
+   → http://localhost:5000
+   → Puedes usar cualquier credencial configurada
+
+2. DATOS QUE PUEDES VER:
+
+   📊 ESTADÍSTICAS (en Dashboard principal)
+      • Total de pacientes registrados
+      • Total de registros de datos
+      • Total de diagnósticos
+      • Total de tratamientos
+
+   📈 ANÁLISIS DE REPORTES
+      • Ver gráficos de evolución
+      • Estadísticas por paciente
+      • Exportar reportes
+
+   👥 GESTIÓN DE PACIENTES
+      • Buscar pacientes
+      • Ver historial
+      • Revisar datos capturados
+
+3. REPORTES ÚTILES:
+
+   PARA PRESENTACIONES:
+      1. Ir a /analisis-reportes
+      2. Seleccionar paciente
+      3. Exportar gráficos a PDF
+      4. Usar en presentaciones
+
+   PARA DECISIONES:
+      1. Ver estadísticas en dashboard
+      2. Analizar tendencias
+      3. Tomar decisiones basadas en datos
+
+4. PREGUNTAS QUE PUEDES RESPONDER:
+
+   ¿Cuántos pacientes tenemos?
+   → Dashboard principal → Estadísticas
+
+   ¿Cómo está evolucionando un paciente?
+   → /analisis-reportes → Gráficos
+
+   ¿Quién necesita atención especial?
+   → /medico-inteligente → Panel IA (alertas)
+
+   ¿Qué tan eficiente es el sistema?
+   → Dashboard → Métricas
+
+5. PUNTOS CLAVE PARA SUPERVISIÓN:
+
+   ✓ El sistema está disponible 24/7
+   ✓ Los datos están encriptados y seguros
+   ✓ Hay backups automáticos
+   ✓ Hay auditoría de acceso
+   ✓ Se pueden generar reportes profesionales
+
+═══════════════════════════════════════════════════════════════════════════════
+
+
+🔧 PARA TÉCNICOS/DESARROLLADORES
+═══════════════════════════════════════════════════════════════════════════════
+
+Bienvenido al lado técnico del sistema. Aquí está todo lo que necesitas.
+
+INICIO RÁPIDO:
+
+1. ARQUITECTURA DEL SISTEMA
+
+   CAPAS:
+      
+      Backend (Python):
+         web_ia.py             → Flask server, enrutamiento
+         pacientes_db.py       → CRUD, persistencia
+         medical_ai.py         → Lógica de IA
+         encryption.py         → Seguridad
+         cloud_sync.py         → Backups y nube
+
+      Frontend (HTML/JS/CSS):
+         templates/            → 13 archivos HTML
+         Vanilla JavaScript    → Sin frameworks pesados
+         Chart.js              → Gráficos
+         html2pdf.js           → Exportación PDF
+
+      Database:
+         pacientes.json        → Almacenamiento de datos
+         (Puede migrar a SQL)  → En el futuro
+
+2. INSTALACIÓN PARA DESARROLLO:
+
+   git clone <repo> (si aplica)
+   cd "Nueva carpeta"
+   pip install flask
+   python web_ia.py
+
+   El servidor inicia en http://localhost:5000
+
+3. ESTRUCTURA DE CARPETAS:
+
+   ├── web_ia.py              Servidor Flask
+   ├── pacientes_db.py        ORM/DB manager
+   ├── medical_ai.py          Lógica IA
+   ├── encryption.py          🔐 Cifrado
+   ├── cloud_sync.py          ☁️ Backups
+   ├── templates/             HTML/CSS/JS
+   ├── pacientes.json         BD (JSON)
+   └── datos_backup/          Backups
+
+4. ENDPOINTS API (26+):
+
+   Ver documentación completa en:
+   SISTEMA_MEDICO_COMPLETO.md o ACCESO_RAPIDO.txt
+
+5. MODELOS DE DATOS:
+
+   PACIENTE:
+   {
+     "id": "12345",
+     "nombre": "Juan",
+     "apellido": "Pérez",
+     "cedula": "12345678",
+     "sintomas": [...],
+     "diagnosticos": [...],
+     "tratamientos": [...],
+     "estudios": [...],
+     "notas": [...]
+   }
+
+   CITA:
+   {
+     "id": "CIT-123456",
+     "patientId": "12345",
+     "date": "15/01/2024",
+     "time": "14:00",
+     "specialty": "Cardiología",
+     "status": "Programada"
+   }
+
+   LABORATORIO:
+   {
+     "id": "ORD-123456",
+     "patientId": "12345",
+     "analysisType": "Hemograma",
+     "laboratory": "LabCentral",
+     "status": "Pendiente",
+     "results": [...]
+   }
+
+6. EXTENSIONES POSIBLES:
+
+   MIGRACIÓN A SQL:
+      - Reemplazar json con SQLAlchemy
+      - Usar PostgreSQL o MySQL
+      - Implementar migrations
+
+   FEATURES NUEVAS:
+      - Telemedicina por video
+      - App móvil
+      - Machine Learning avanzado
+      - Integración laboratorios reales
+
+   SEGURIDAD:
+      - Implementar OAuth 2.0
+      - Agregar 2FA
+      - Rate limiting
+      - WAF
+
+7. DEBUGGING:
+
+   Logs: Revisa terminal donde corre web_ia.py
+   Errores: Todos aparecen en http://localhost:5000
+   Base datos: Revisa pacientes.json
+   Encriptación: Revisa encryption.py
+
+8. MEJORES PRÁCTICAS:
+
+   ✓ Usa virtualenv: python -m venv venv
+   ✓ Instala dependencias: pip install -r requirements.txt
+   ✓ Usa git para versionado
+   ✓ Documenta cambios
+   ✓ Escribe tests
+   ✓ Revisa código antes de commit
+
+═══════════════════════════════════════════════════════════════════════════════
+
+
+🏥 PARA ADMINISTRADORES DE CLÍNICA
+═══════════════════════════════════════════════════════════════════════════════
+
+Tu rol es asegurar que el sistema funcione correctamente para toda la clínica.
+
+INICIO RÁPIDO:
+
+1. REQUISITOS DEL SITIO:
+
+   Computadora servidor:
+      • Windows 10+ o Linux
+      • Mínimo 4GB RAM
+      • 10GB disco disponible
+      • Conexión a internet (para backups)
+
+   Equipamiento:
+      • Computadora para médicos (cualquiera)
+      • Impresora (para recetas)
+      • Respaldo de energía
+
+2. INSTALACIÓN INICIAL:
+
+   1. Instalar Python 3.8+
+   2. Instalar Flask: pip install flask
+   3. Copiar archivos del sistema
+   4. Ejecutar: python web_ia.py
+   5. Acceder: http://localhost:5000
+
+3. CAPACITACIÓN:
+
+   PARA MÉDICOS:
+      Entrenamiento: 30 minutos
+      Temas: Pacientes, datos, reportes, recetas
+      Archivo: GUIA_USUARIO_MEDICO.md
+
+   PARA ADMINISTRATIVOS:
+      Entrenamiento: 20 minutos
+      Temas: Búsqueda, citas, laboratorios
+      Archivo: ACCESO_RAPIDO.txt
+
+   PARA ADMINISTRADOR TI:
+      Entrenamiento: 1 hora
+      Temas: Seguridad, backups, configuración
+      Archivo: GUIA_INSTALACION.txt
+
+4. POLÍTICAS RECOMENDADAS:
+
+   SEGURIDAD:
+      ✓ Contraseña mínima 8 caracteres
+      ✓ Cambio de contraseña cada 90 días
+      ✓ Acceso restringido por usuario
+      ✓ Encripción de datos sensibles
+
+   BACKUPS:
+      ✓ Diario automático
+      ✓ Copia mensual en nube
+      ✓ Copia trimestral física
+      ✓ Prueba de restauración mensual
+
+   AUDITORÍA:
+      ✓ Revisar logs semanalmente
+      ✓ Auditoria de acceso mensual
+      ✓ Reporte trimestral
+
+5. MONITOREO:
+
+   DIARIO:
+      ✓ Sistema disponible
+      ✓ Sin errores visibles
+
+   SEMANAL:
+      ✓ Backup completo
+      ✓ Sin problemas reportados
+
+   MENSUAL:
+      ✓ Revisión de seguridad
+      ✓ Análisis de uso
+      ✓ Estadísticas
+
+6. SOPORTE Y MANTENIMIENTO:
+
+   MANTENIMIENTO PREVENTIVO:
+      • Actualizar Python regularmente
+      • Actualizar dependencias
+      • Revisar logs
+      • Optimizar base de datos
+
+   MANTENIMIENTO CORRECTIVO:
+      • Resolver problemas reportados
+      • Restaurar de backups si necesario
+      • Investigar errores
+
+═══════════════════════════════════════════════════════════════════════════════
+
+🎯 RESUMEN POR TIPO DE USUARIO
+
+┌──────────────────┬────────────────┬───────────────────────────────┐
+│ TIPO DE USUARIO  │ ACCESO COMO    │ TAREAS PRINCIPALES            │
+├──────────────────┼────────────────┼───────────────────────────────┤
+│ Médico           │ doctor         │ Pacientes, datos, recetas     │
+│ Administrador    │ admin          │ Seguridad, backups, config    │
+│ Gerente          │ doctor/admin   │ Reportes, estadísticas        │
+│ Técnico          │ admin + shell  │ Desarrollo, mantenimiento     │
+│ Administrativo   │ doctor         │ Citas, laboratorios           │
+└──────────────────┴────────────────┴───────────────────────────────┘
+
+═══════════════════════════════════════════════════════════════════════════════
+
+Última actualización: Enero 2024
+Versión: 2.0 - Sistema Completo
