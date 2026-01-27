@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Anngpt </title>
+    <title> annIA </title>
     <style>
         * {
             margin: 0;
@@ -348,7 +348,7 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>Anngpt- Powered by Llama 3</h1>
+            <h1>annIA- Powered by Llama 3</h1>
             <p>Asistente con IA Real · Groq API · Conversaciones Inteligentes · Totalmente Gratis</p>
         </div>
 
@@ -364,7 +364,7 @@
             <div class="message ia">
                 <div class="avatar"></div>
                 <div class="message-content">
-                    <strong>¡Hola! Anngpt - Potenciada por Llama 3 </strong><br><br>
+                    <strong>¡Hola! annIA - Potenciada por Llama 3 </strong><br><br>
                     
                     Ahora tengo <strong>inteligencia artificial REAL</strong> gracias a Groq API (totalmente gratis):<br><br>
                     
@@ -399,7 +399,7 @@
             <input 
                 type="text" 
                 id="userInput" 
-                placeholder="Mensaje a Anngpt..." 
+                placeholder="Mensaje a annIA..." 
                 onkeypress="handleKeyPress(event)"
             >
             <button onclick="enviarMensaje()">Enviar</button>
@@ -487,7 +487,7 @@
             console.log('========================');
         }, 100);
 
-        // Función para que Anngpt hable
+        // Función para que annIA hable
         function hablar(texto) {
             if (!speechEnabled || !synth) return;
 
@@ -514,7 +514,7 @@
 
             // Evento cuando termina de hablar
             utterance.onend = () => {
-                console.log('Anngpt terminó de hablar');
+                console.log('annIA terminó de hablar');
             };
 
             utterance.onerror = (event) => {
@@ -603,7 +603,7 @@
             recordBtn.style.background = '#10a37f';
             recordBtn.style.animation = 'none';
             
-            userInput.placeholder = 'Mensaje a Anngpt AI...';
+            userInput.placeholder = 'Mensaje a annIA AI...';
             
             if (recognition) {
                 try {
@@ -714,7 +714,7 @@
                 return;
             }
             
-            // PRIORIDAD 2: Chat normal con Anngpt
+            // PRIORIDAD 2: Chat normal con annIA
             // Agregar mensaje del usuario
             agregarMensaje(mensaje, 'user');
             userInput.value = '';

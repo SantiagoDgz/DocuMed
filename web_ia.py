@@ -29,7 +29,7 @@ usuarios_bd = {
 
 class SimpleIA:
     def __init__(self):
-        self.nombre = "Claudia"
+        self.nombre = "annIA"
         self.conversacion_historia = []
         
         # Base de conocimientos

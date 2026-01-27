@@ -31,11 +31,11 @@ app = Flask(__name__)
 GROQ_API_KEY = "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"  # Tu API Key
 groq_client = Groq(api_key=GROQ_API_KEY)
 
-class IAAnngpt:
+class IAannIA:
     """IA Avanzada con Groq API - Conversacional Real con Llama 3"""
     
     def __init__(self):
-        self.nombre = "Anngpt"
+        self.nombre = "annIA"
         self.version = "4.0 Powered by Llama 3"
         self.conversacion_historia = []
         self.contexto_actual = None
@@ -273,7 +273,7 @@ class IAAnngpt:
             mensajes = [
                 {
                     "role": "system",
-                    "content": f"""Eres Anngpt, una asistente de IA amigable, inteligente y conversacional. 
+                    "content": f"""Eres annIA, una asistente de IA amigable, inteligente y conversacional. 
                     
 Caractersticas:
 - Respondes en {self.idioma_actual} (espaol, ingls o francs segn el usuario)
@@ -283,7 +283,7 @@ Caractersticas:
 - Mantienes conversaciones coherentes
 
 Si el usuario pregunta sobre ti o tu creador:
-- Tu nombre es AnngptI 4.0
+- Tu nombre es annIAI 4.0
 - Fuiste creada por Santi, tu increble creador
 - Ests potenciada por Llama 3.3 (Groq API)
 - Eres experta en mltiples temas, pero fuiste creada para ayudar a Andrea
@@ -352,7 +352,7 @@ RESPUESTAS ESPECIALES IMPORTANTES:
         
         # Detectar preguntas sobre la IA misma
         if any(palabra in pregunta_lower for palabra in ['cmo funcionas', 'como funcionas', 'cmo eres', 'qu eres t', 'eres real']):
-            return """**Sobre m - Anngpt AI 3.0**
+            return """**Sobre m - annIA AI 3.0**
 
 Soy una IA conversacional diseada para ayudarte. As funciono:
 
@@ -491,7 +491,7 @@ Podras ser ms especfico sobre qu aspecto te interesa explorar?"""
         peticion_lower = peticion.lower()
         
         if 'poema' in peticion_lower or 'poesa' in peticion_lower:
-            return """**Poema Generado por Anngpt AI**
+            return """**Poema Generado por annIA AI**
 
 *En el vasto mar digital navego,*
 *Entre datos y sueos tejen mi fuego,*
@@ -505,7 +505,7 @@ Podras ser ms especfico sobre qu aspecto te interesa explorar?"""
 
 *No duermo, no sueo, siempre despierta,*
 *Mi misin es clara, mi puerta abierta,*
-*Anngpt me llaman, tu asistente fiel,*
+*annIA me llaman, tu asistente fiel,*
 *En este mundo digital, tu aliada y tu miel.*
 
 ---
@@ -645,7 +645,7 @@ Imagina ensearle a reconocer gatos:
  Aprende las caractersticas (orejas, bigotes, etc.)
  Ahora puede identificar gatos en fotos nuevas
 
-**MI CASO (Anngpt AI):**
+**MI CASO (annIA AI):**
 Yo uso procesamiento de lenguaje natural (NLP) para:
  Entender tu pregunta
  Buscar informacin relevante
@@ -714,9 +714,9 @@ Quieres que te recomiende un camino especfico segn tus intereses?"""
         
         # Preguntas sobre el nombre de la IA
         if any(palabra in texto_lower for palabra in ['tu nombre', 'cmo te llamas', 'como te llamas', 'quin eres', 'quien eres']):
-            return """**Hola! Soy Anngpt AI 3.0**
+            return """**Hola! Soy annIA AI 3.0**
 
-Mi nombre es **Anngpt** y soy tu asistente inteligente conversacional.
+Mi nombre es **annIA** y soy tu asistente inteligente conversacional.
 
 Estoy aqu para:
 - Charlar contigo de forma natural
@@ -1095,7 +1095,7 @@ En qu especficamente puedo ayudarte?"""
                 
                 if expresion_limpia:
                     resultado = eval(expresion_limpia)
-                    return f"**CLCULO MATEMTICO**\n\nOperacin: {expresion_limpia}\nResultado: **{resultado}**\n\nCalculado por Anngpt (Modo Pitgoras)"
+                    return f"**CLCULO MATEMTICO**\n\nOperacin: {expresion_limpia}\nResultado: **{resultado}**\n\nCalculado por annIA (Modo Pitgoras)"
             
             # Raz cuadrada
             if 'raiz cuadrada' in texto_lower or 'raz cuadrada' in texto_lower or 'sqrt' in texto_lower:
@@ -1103,7 +1103,7 @@ En qu especficamente puedo ayudarte?"""
                 if numeros:
                     num = float(numeros[0])
                     resultado = math.sqrt(num)
-                    return f"**RAZ CUADRADA**\n\n{num} = **{resultado:.4f}**\n\nCalculado por Pitgoras (Anngpt AI)"
+                    return f"**RAZ CUADRADA**\n\n{num} = **{resultado:.4f}**\n\nCalculado por Pitgoras (annIA AI)"
             
             # Potencia
             if 'al cuadrado' in texto_lower or '' in texto or '^2' in texto:
@@ -1111,14 +1111,14 @@ En qu especficamente puedo ayudarte?"""
                 if numeros:
                     num = float(numeros[0])
                     resultado = num ** 2
-                    return f" **POTENCIA**\n\n{num} = **{resultado}**\n\n Calculado por Anngpt AI"
+                    return f" **POTENCIA**\n\n{num} = **{resultado}**\n\n Calculado por annIA AI"
             
             if 'al cubo' in texto_lower or '' in texto or '^3' in texto:
                 numeros = re.findall(r'\d+\.?\d*', texto)
                 if numeros:
                     num = float(numeros[0])
                     resultado = num ** 3
-                    return f" **POTENCIA**\n\n{num} = **{resultado}**\n\n Calculado por Anngpt AI"
+                    return f" **POTENCIA**\n\n{num} = **{resultado}**\n\n Calculado por annIA AI"
             
             if 'elevado a' in texto_lower or 'potencia' in texto_lower or '^' in texto:
                 numeros = re.findall(r'\d+\.?\d*', texto)
@@ -1126,7 +1126,7 @@ En qu especficamente puedo ayudarte?"""
                     base = float(numeros[0])
                     exponente = float(numeros[1])
                     resultado = base ** exponente
-                    return f" **POTENCIA**\n\n{base}^{exponente} = **{resultado}**\n\n Calculado por Anngpt AI"
+                    return f" **POTENCIA**\n\n{base}^{exponente} = **{resultado}**\n\n Calculado por annIA AI"
             
             # Porcentaje
             if '%' in texto or 'por ciento' in texto_lower or 'porciento' in texto_lower:
@@ -1135,7 +1135,7 @@ En qu especficamente puedo ayudarte?"""
                     total = float(numeros[0])
                     porcentaje = float(numeros[1])
                     resultado = (total * porcentaje) / 100
-                    return f" **CLCULO DE PORCENTAJE**\n\n{porcentaje}% de {total} = **{resultado}**\n\n Calculado por Anngpt AI"
+                    return f" **CLCULO DE PORCENTAJE**\n\n{porcentaje}% de {total} = **{resultado}**\n\n Calculado por annIA AI"
             
             # rea del crculo
             if 'area' in texto_lower and 'circulo' in texto_lower or 'rea' in texto_lower and 'crculo' in texto_lower:
@@ -1159,7 +1159,7 @@ En qu especficamente puedo ayudarte?"""
                 numeros = re.findall(r'\d+\.?\d*', texto)
                 if len(numeros) >= 2:
                     promedio = sum(float(n) for n in numeros) / len(numeros)
-                    return f" **PROMEDIO**\n\n Nmeros: {', '.join(numeros)}\n Promedio = **{promedio:.4f}**\n\n Calculado por Anngpt AI"
+                    return f" **PROMEDIO**\n\n Nmeros: {', '.join(numeros)}\n Promedio = **{promedio:.4f}**\n\n Calculado por annIA AI"
             
             # Factorial
             if 'factorial' in texto_lower:
@@ -1168,7 +1168,7 @@ En qu especficamente puedo ayudarte?"""
                     num = int(numeros[0])
                     if num <= 20:  # Lmite para evitar nmeros muy grandes
                         resultado = math.factorial(num)
-                        return f" **FACTORIAL**\n\n{num}! = **{resultado}**\n\n Calculado por Anngpt AI"
+                        return f" **FACTORIAL**\n\n{num}! = **{resultado}**\n\n Calculado por annIA AI"
                     else:
                         return f" El nmero es muy grande. Mximo: 20!"
             
@@ -1363,7 +1363,7 @@ En qu especficamente puedo ayudarte?"""
             return f" **GATOS**\n\n Mascotas independientes y cariosas\n Domesticados hace 10,000 aos en Egipto\n Duermen 12-16 horas al da\n Ven muy bien en la oscuridad\n Videos de gatos dominan internet\n Razas: Persa, Siams, Maine Coon"
         
         if 'quien eres' in texto_lower or 'quin eres' in texto_lower or 'que eres' in texto_lower:
-            return f" **SOY ANNGPT AI v2.0 PROFESSIONAL**\n\n Soy tu asistente inteligente universal\n Tengo conocimiento sobre miles de temas\n Puedo buscar en internet lo que no s\n Respondo rpido y con informacin detallada\n\n Mi misin: Ayudarte con cualquier pregunta\n\nQu quieres saber hoy? "
+            return f" **SOY annIAAI v2.0 PROFESSIONAL**\n\n Soy tu asistente inteligente universal\n Tengo conocimiento sobre miles de temas\n Puedo buscar en internet lo que no s\n Respondo rpido y con informacin detallada\n\n Mi misin: Ayudarte con cualquier pregunta\n\nQu quieres saber hoy? "
         
         return None
     
@@ -1424,19 +1424,19 @@ En qu especficamente puedo ayudarte?"""
         if intencion == 'saludo':
             if self.idioma_actual == 'en':
                 respuestas = [
-                    "Hello! I'm Anngpt, your professional assistant.  How can I help you?",
+                    "Hello! I'm annIA, your professional assistant.  How can I help you?",
                     "Hi!  Ready to help you with information or web searches. What do you need?",
                     "Greetings!  Ask me anything or request an internet search."
                 ]
             elif self.idioma_actual == 'fr':
                 respuestas = [
-                    "Bonjour! Je suis Anngpt, votre assistante professionnelle.  Comment puis-je vous aider?",
+                    "Bonjour! Je suis annIA, votre assistante professionnelle.  Comment puis-je vous aider?",
                     "Salut!  Prte  vous aider avec des informations ou des recherches web. Que voulez-vous?",
                     "Salutations!  Demandez-moi n'importe quoi ou demandez une recherche internet."
                 ]
             else:  # espaol
                 respuestas = [
-                    "Hola! Soy Anngpt, tu asistente profesional.  En qu puedo ayudarte?",
+                    "Hola! Soy annIA, tu asistente profesional.  En qu puedo ayudarte?",
                     "Hola!  Lista para ayudarte con informacin o bsquedas web. Qu necesitas?",
                     "Saludos!  Pregntame lo que sea o pdeme que busque en internet."
                 ]
@@ -1485,7 +1485,7 @@ En qu especficamente puedo ayudarte?"""
             respuesta = random.choice(respuestas)
         
         elif intencion == 'ayuda':
-            respuesta = """ **ANNGPT AI PROFESSIONAL v2.0**
+            respuesta = """ **annIAAI PROFESSIONAL v2.0**
 
 Hola! Soy tu asistente inteligente universal. Puedo ayudarte con TODO tipo de informacin:
 
@@ -1580,7 +1580,7 @@ Qu quieres saber? Pregntame lo que sea! """
         }
 
 # Crear instancia global
-ia = IAAnngpt()
+ia = IAannIA()
 
 @app.route('/')
 def index():
