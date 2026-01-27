@@ -56,9 +56,9 @@ class SimpleIA:
                 f"Hoy es {datetime.now().strftime('%d de %B de %Y')}",
             ],
             'ayuda': [
-                "¡Tengo muchas capacidades! Puedo darte información deportiva internacional actualizada (⚽🏀🎾🏎️🏈🥊), hacer cálculos, y conversar contigo.",
+                "¡Tengo muchas capacidades! Puedo darte información deportiva internacional actualizada (), hacer cálculos, y conversar contigo.",
                 "Estoy aquí para ayudarte con: Deportes internacionales (fútbol, NBA, tenis, F1, NFL, UFC, boxeo), matemáticas, hora/fecha, y conversación general. Si no sé algo, puedo buscarlo en internet.",
-                "📊 Deportes: La Liga, Premier, Serie A, Bundesliga, NBA, ATP/WTA, F1, NFL, UFC, Olimpiadas y más. 🔍 También puedo buscar info actualizada en internet.",
+                " Deportes: La Liga, Premier, Serie A, Bundesliga, NBA, ATP/WTA, F1, NFL, UFC, Olimpiadas y más.  También puedo buscar info actualizada en internet.",
             ],
             'estado': [
                 "¡Me siento genial! Gracias por preguntar.",
@@ -314,109 +314,109 @@ class SimpleIA:
         
         if categoria == 'futbol':
             if 'mundial' in texto:
-                respuesta = "⚽ Mundial de Clubes FIFA 2025 en preparación. Real Madrid, Manchester City, Bayern Munich, equipos brasileños clasificados."
+                respuesta = " Mundial de Clubes FIFA 2025 en preparación. Real Madrid, Manchester City, Bayern Munich, equipos brasileños clasificados."
             elif 'champions' in texto:
                 info = self.datos_deportivos['futbol']['champions_league']
-                respuesta = f"⚽ {info['info']}\n\n📊 Destacados:\n"
+                respuesta = f" {info['info']}\n\n Destacados:\n"
                 respuesta += "\n".join([f"• {d}" for d in info['destacados']])
             elif 'barcelona' in texto or 'barça' in texto or 'barca' in texto:
-                respuesta = "⚽ FC Barcelona - 2° en La Liga con 30 pts. Lewandowski lidera el ataque. Jóvenes promesas brillando."
+                respuesta = " FC Barcelona - 2° en La Liga con 30 pts. Lewandowski lidera el ataque. Jóvenes promesas brillando."
             elif 'real madrid' in texto:
-                respuesta = "⚽ Real Madrid - Líder de La Liga 2024-25 con 32 pts. Bellingham y Vinícius Jr. en gran forma. Favoritos Champions."
+                respuesta = " Real Madrid - Líder de La Liga 2024-25 con 32 pts. Bellingham y Vinícius Jr. en gran forma. Favoritos Champions."
             elif 'premier' in texto:
                 info = self.datos_deportivos['futbol']['premier_league']
-                respuesta = f"⚽ {info['info']}\n\n📊 Top 5:\n"
+                respuesta = f" {info['info']}\n\n Top 5:\n"
                 respuesta += "\n".join([f"• {c}" for c in info['clasificacion']])
             elif 'serie a' in texto or 'italia' in texto:
                 info = self.datos_deportivos['futbol']['serie_a']
-                respuesta = f"⚽ {info['info']}\n\n📊 Clasificación:\n"
+                respuesta = f" {info['info']}\n\n Clasificación:\n"
                 respuesta += "\n".join([f"• {c}" for c in info['clasificacion']])
             elif 'bundesliga' in texto or 'alemania' in texto:
                 info = self.datos_deportivos['futbol']['bundesliga']
-                respuesta = f"⚽ {info['info']}\n\n📊 Top 4:\n"
+                respuesta = f" {info['info']}\n\n Top 4:\n"
                 respuesta += "\n".join([f"• {c}" for c in info['clasificacion']])
             elif 'libertadores' in texto:
-                respuesta = "⚽ Copa Libertadores - El torneo más prestigioso de clubes de Sudamérica. Equipos de Brasil, Argentina, Colombia compitiendo."
+                respuesta = " Copa Libertadores - El torneo más prestigioso de clubes de Sudamérica. Equipos de Brasil, Argentina, Colombia compitiendo."
             else:
                 info = self.datos_deportivos['futbol']['liga_española']
-                respuesta = f"⚽ {info['info']}\n\n📊 Top 5:\n"
+                respuesta = f" {info['info']}\n\n Top 5:\n"
                 respuesta += "\n".join([f"• {c}" for c in info['clasificacion']])
         
         elif categoria == 'baloncesto':
             info_nba = self.datos_deportivos['baloncesto']['nba']
             if 'lakers' in texto:
-                respuesta = "🏀 Los Angeles Lakers 13-5 en 2024-25. LeBron James (39 años) aún dominante. Anthony Davis clave en defensa."
+                respuesta = " Los Angeles Lakers 13-5 en 2024-25. LeBron James (39 años) aún dominante. Anthony Davis clave en defensa."
             elif 'celtics' in texto:
-                respuesta = "🏀 Boston Celtics 15-3, líderes del Este. Tatum y Brown forman dúo letal. Favoritos al título."
+                respuesta = " Boston Celtics 15-3, líderes del Este. Tatum y Brown forman dúo letal. Favoritos al título."
             elif 'euroliga' in texto or 'euroleague' in texto:
                 info_euro = self.datos_deportivos['baloncesto']['euroleague']
-                respuesta = f"🏀 {info_euro['info']}\n\n📊 Equipos destacados:\n"
+                respuesta = f" {info_euro['info']}\n\n Equipos destacados:\n"
                 respuesta += "\n".join([f"• {e}" for e in info_euro['equipos']])
             else:
-                respuesta = f"🏀 {info_nba['info']}\n\n📊 Conferencia Este - Top 4:\n"
+                respuesta = f" {info_nba['info']}\n\n Conferencia Este - Top 4:\n"
                 respuesta += "\n".join([f"• {c}" for c in info_nba['conferencia_este'][:4]])
-                respuesta += "\n\n📊 Conferencia Oeste - Top 4:\n"
+                respuesta += "\n\n Conferencia Oeste - Top 4:\n"
                 respuesta += "\n".join([f"• {c}" for c in info_nba['conferencia_oeste'][:4]])
         
         elif categoria == 'tenis':
             if 'wta' in texto or 'femen' in texto:
                 info_wta = self.datos_deportivos['tenis']['wta']
-                respuesta = f"🎾 {info_wta['info']}\n\n📊 Top 5 WTA:\n"
+                respuesta = f" {info_wta['info']}\n\n Top 5 WTA:\n"
                 respuesta += "\n".join([f"• {t}" for t in info_wta['top5']])
             else:
                 info_atp = self.datos_deportivos['tenis']['atp']
-                respuesta = f"🎾 {info_atp['info']}\n\n📊 Top 10 ATP:\n"
+                respuesta = f" {info_atp['info']}\n\n Top 10 ATP:\n"
                 respuesta += "\n".join([f"• {t}" for t in info_atp['top10'][:7]])
-                respuesta += "\n\n🏆 Alcaraz domina, Djokovic con 24 Grand Slams históricos"
+                respuesta += "\n\n Alcaraz domina, Djokovic con 24 Grand Slams históricos"
         
         elif categoria == 'formula1':
             info = self.datos_deportivos['formula1']
-            respuesta = f"🏎️ {info['info']}\n\n🏆 Resultados 2024:\n"
+            respuesta = f" {info['info']}\n\n Resultados 2024:\n"
             respuesta += "\n".join([f"• {r}" for r in info['campeonato']])
-            respuesta += f"\n\n🔜 {info['proxima_temporada']}"
+            respuesta += f"\n\n {info['proxima_temporada']}"
         
         elif categoria == 'nfl':
             info = self.datos_deportivos['futbol_americano']['nfl']
-            respuesta = f"🏈 {info['info']}\n\n📊 Equipos destacados:\n"
+            respuesta = f" {info['info']}\n\n Equipos destacados:\n"
             respuesta += "\n".join([f"• {e}" for e in info['destacados']])
         
         elif categoria == 'mma_boxing':
             if 'ufc' in texto or 'mma' in texto:
                 info = self.datos_deportivos['mma_boxing']['ufc']
-                respuesta = "🥊 UFC - Campeones actuales:\n"
+                respuesta = " UFC - Campeones actuales:\n"
                 respuesta += "\n".join([f"• {c}" for c in info['campeones']])
             else:
-                respuesta = f"🥊 Boxeo: {self.datos_deportivos['mma_boxing']['boxeo']['destacados']}"
+                respuesta = f" Boxeo: {self.datos_deportivos['mma_boxing']['boxeo']['destacados']}"
         
         elif categoria == 'otros_deportes':
             if 'rugby' in texto:
-                respuesta = f"🏉 Rugby: {self.datos_deportivos['rugby']['mundial']}. {self.datos_deportivos['rugby']['six_nations']}"
+                respuesta = f" Rugby: {self.datos_deportivos['rugby']['mundial']}. {self.datos_deportivos['rugby']['six_nations']}"
             elif 'cricket' in texto:
-                respuesta = f"� {self.datos_deportivos['cricket']['info']}. {self.datos_deportivos['cricket']['mundial']}"
+                respuesta = f" {self.datos_deportivos['cricket']['info']}. {self.datos_deportivos['cricket']['mundial']}"
             elif 'olimp' in texto:
-                respuesta = f"🏅 {self.datos_deportivos['olimpiadas']['info']}\n🔜 {self.datos_deportivos['olimpiadas']['proximos']}"
+                respuesta = f" {self.datos_deportivos['olimpiadas']['info']}\n {self.datos_deportivos['olimpiadas']['proximos']}"
         
         elif categoria == 'deportes_general':
-            respuesta = """🏆 RESUMEN DEPORTIVO INTERNACIONAL - Noviembre 2025
+            respuesta = """ RESUMEN DEPORTIVO INTERNACIONAL - Noviembre 2025
 
-⚽ FÚTBOL:
+ FÚTBOL:
 • La Liga: Real Madrid líder
 • Premier League: Arsenal vs Man City
 • Champions League: Fase de grupos
 • Serie A: Inter dominando
 • Bundesliga: Bayern imparable
 
-🏀 BALONCESTO:
+ BALONCESTO:
 • NBA: Celtics 15-3 (Este), Nuggets defendiendo
 • Euroliga: Real Madrid, Barcelona compitiendo
 
-🎾 TENIS:
+ TENIS:
 • ATP: Alcaraz #1, Djokovic #2
 • WTA: Świątek dominante
 
-🏎️ F1: Verstappen campeón 2024 (4to título)
-🏈 NFL: Chiefs, 49ers, Ravens destacados
-🥊 Combate: UFC y boxeo con grandes eventos
+ F1: Verstappen campeón 2024 (4to título)
+ NFL: Chiefs, 49ers, Ravens destacados
+ Combate: UFC y boxeo con grandes eventos
 
 Pregunta sobre algún deporte específico para más detalles."""
         
@@ -429,7 +429,7 @@ Pregunta sobre algún deporte específico para más detalles."""
     def buscar_info_web(self, consulta):
         """Busca información deportiva en internet cuando no está en la base de datos"""
         # Función simplificada - búsqueda web desactivada para estabilidad
-        return "🔍 Para información más específica o actualizada en tiempo real, te recomiendo consultar ESPN, Marca, AS o sitios deportivos especializados."
+        return " Para información más específica o actualizada en tiempo real, te recomiendo consultar ESPN, Marca, AS o sitios deportivos especializados."
     
     def limpiar_historial(self):
         """Limpia el historial de conversación"""

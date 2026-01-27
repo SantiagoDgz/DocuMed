@@ -10,7 +10,7 @@ subprocess.run(['taskkill', '/F', '/IM', 'python.exe'], stderr=subprocess.DEVNUL
 time.sleep(2)
 
 # Iniciar servidor en background
-print("🚀 Iniciando servidor...")
+print(" Iniciando servidor...")
 proc = subprocess.Popen(
     [sys.executable, 'web_ia_simple.py'],
     cwd=r'c:\Users\Santi\Downloads\Nueva carpeta',
@@ -23,15 +23,15 @@ proc = subprocess.Popen(
 time.sleep(5)
 
 # Probar conexión
-print("\n🧪 Probando conexión...")
+print("\n Probando conexión...")
 try:
     r = requests.post('http://127.0.0.1:5000/chat', json={'mensaje': 'test'}, timeout=5)
-    print(f"✅ Status: {r.status_code}")
-    print(f"✅ Respuesta: {r.json()}")
-    print("\n✨ ¡SERVIDOR FUNCIONANDO!")
+    print(f" Status: {r.status_code}")
+    print(f" Respuesta: {r.json()}")
+    print("\n ¡SERVIDOR FUNCIONANDO!")
 except Exception as e:
-    print(f"❌ Error: {e}")
-    print("\n📋 Output del servidor:")
+    print(f" Error: {e}")
+    print("\n Output del servidor:")
     stdout, stderr = proc.communicate(timeout=2)
     print(stdout.decode('utf-8', errors='ignore'))
     if stderr:
@@ -42,6 +42,6 @@ print("\nPresiona Ctrl+C para detener el servidor")
 try:
     proc.wait()
 except KeyboardInterrupt:
-    print("\n⏹️  Deteniendo...")
+    print("\n⏹  Deteniendo...")
     proc.terminate()
     proc.wait()

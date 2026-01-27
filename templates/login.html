@@ -162,7 +162,7 @@
 <body>
     <div class="login-container">
         <div class="login-header">
-            <h1>🏥 DocuMed</h1>
+            <h1> DocuMed</h1>
             <p>Sistema Médico Inteligente</p>
         </div>
 
@@ -188,7 +188,7 @@
         </form>
 
         <div class="demo-credentials">
-            <strong>👤 Credenciales de Demostración:</strong>
+            <strong> Credenciales de Demostración:</strong>
             <p><strong>Usuario:</strong> admin</p>
             <p><strong>Contraseña:</strong> admin123</p>
             <p style="margin-top: 10px; border-top: 1px solid #ddd; padding-top: 10px;">
@@ -197,7 +197,7 @@
         </div>
 
         <div class="footer">
-            <p>🔒 Tus datos están protegidos con cifrado de grado médico</p>
+            <p> Tus datos están protegidos con cifrado de grado médico</p>
         </div>
     </div>
 
@@ -221,12 +221,12 @@
                 const data = await response.json();
 
                 if (data.exito) {
-                    showAlert('✅ Bienvenido ' + data.nombre + '!', 'success');
+                    showAlert(' Bienvenido ' + data.nombre + '!', 'success');
                     setTimeout(() => {
                         window.location.href = '/dashboard-usuario';
                     }, 1000);
                 } else {
-                    showAlert('❌ Usuario o contraseña incorrectos', 'error');
+                    showAlert(' Usuario o contraseña incorrectos', 'error');
                 }
             } catch (error) {
                 showAlert('Error de conexión', 'error');

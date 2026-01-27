@@ -307,7 +307,7 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>🔐 Seguridad y Backup</h1>
+            <h1>Seguridad y Backup</h1>
             <p>Gestiona la encriptación de datos y copias de seguridad en la nube</p>
         </div>
 
@@ -316,10 +316,10 @@
         <!-- Sección de Encriptación -->
         <div class="content">
             <div class="card">
-                <div class="card-title">🔒 Encriptación de Datos</div>
+                <div class="card-title">Encriptación de Datos</div>
 
                 <div class="encryption-status active">
-                    <div class="status-icon">✅</div>
+                    <div class="status-icon">OK</div>
                     <div>
                         <strong>Sistema de encriptación activo</strong>
                         <p style="font-size: 12px; margin-top: 5px;">Los datos sensibles están protegidos con cifrado AES-128</p>
@@ -343,11 +343,11 @@
                     </select>
                 </div>
 
-                <button class="btn btn-primary" onclick="encryptData()">🔒 Encriptar</button>
+                <button class="btn btn-primary" onclick="encryptData()">Encriptar</button>
             </div>
 
             <div class="card">
-                <div class="card-title">🔑 Gestión de Claves</div>
+                <div class="card-title">Gestión de Claves</div>
 
                 <div class="form-group">
                     <label>Nueva Contraseña de Encriptación</label>
@@ -359,7 +359,7 @@
                     <input type="text" id="confirmPassword" placeholder="Confirma la contraseña">
                 </div>
 
-                <button class="btn btn-primary" onclick="changeEncryptionKey()">🔑 Cambiar Clave</button>
+                <button class="btn btn-primary" onclick="changeEncryptionKey()">Cambiar Clave</button>
 
                 <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid #e0e0e0;">
                     <p style="font-size: 14px; color: #666; margin-bottom: 10px;">
@@ -382,7 +382,7 @@
 
         <!-- Sección de Backup -->
         <div class="section">
-            <div class="card-title">💾 Backup y Sincronización</div>
+            <div class="card-title">Backup y Sincronización</div>
 
             <div class="stats-grid">
                 <div class="stat-card">
@@ -405,7 +405,7 @@
 
             <div class="content">
                 <div class="card">
-                    <div class="card-title">📦 Crear Backup</div>
+                    <div class="card-title">Crear Backup</div>
 
                     <div class="form-group">
                         <label>Tipo de Backup</label>
@@ -425,7 +425,7 @@
                         </select>
                     </div>
 
-                    <button class="btn btn-primary" onclick="createBackup()">💾 Crear Backup Ahora</button>
+                    <button class="btn btn-primary" onclick="createBackup()">Crear Backup Ahora</button>
 
                     <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid #e0e0e0;">
                         <label style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
@@ -433,13 +433,13 @@
                             <span>Backup automático cada día a las 02:00</span>
                         </label>
                         <p style="font-size: 12px; color: #999; margin-left: 30px;">
-                            ✓ Mantiene tus datos seguros
+                             Mantiene tus datos seguros
                         </p>
                     </div>
                 </div>
 
                 <div class="card">
-                    <div class="card-title">⚙️ Configuración de Nube</div>
+                    <div class="card-title">Configuración de Nube</div>
 
                     <div class="form-group">
                         <label>Token de Dropbox</label>
@@ -456,42 +456,42 @@
                         <input type="text" id="awsKey" placeholder="Ingresa tu Access Key">
                     </div>
 
-                    <button class="btn btn-primary" onclick="saveCloudConfig()">💾 Guardar Configuración</button>
+                    <button class="btn btn-primary" onclick="saveCloudConfig()">Guardar Configuración</button>
                 </div>
             </div>
         </div>
 
         <!-- Historial de Backups -->
         <div class="section">
-            <div class="card-title">📜 Historial de Backups</div>
+            <div class="card-title">Historial de Backups</div>
 
             <div id="backupsList"></div>
         </div>
 
         <!-- Opciones Avanzadas -->
         <div class="section">
-            <div class="card-title">🛠️ Opciones Avanzadas</div>
+            <div class="card-title"> Opciones Avanzadas</div>
 
             <div class="content">
                 <div class="card">
-                    <div class="card-title">🧹 Mantenimiento</div>
+                    <div class="card-title"> Mantenimiento</div>
 
                     <div class="form-group">
                         <label>Eliminar Backups Antiguos</label>
                         <input type="number" id="daysToKeep" placeholder="Días a mantener" value="30">
                     </div>
 
-                    <button class="btn btn-danger" onclick="cleanOldBackups()">🗑️ Eliminar Backups Antiguos</button>
+                    <button class="btn btn-danger" onclick="cleanOldBackups()"> Eliminar Backups Antiguos</button>
 
                     <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid #e0e0e0;">
                         <p style="font-size: 13px; color: #666;">
-                            ⚠️ Elimina backups más antiguos que el número de días especificado.
+                             Elimina backups más antiguos que el número de días especificado.
                         </p>
                     </div>
                 </div>
 
                 <div class="card">
-                    <div class="card-title">♻️ Restaurar Datos</div>
+                    <div class="card-title">Restaurar Datos</div>
 
                     <div class="form-group">
                         <label>Seleccionar Backup</label>
@@ -500,11 +500,11 @@
                         </select>
                     </div>
 
-                    <button class="btn btn-success" onclick="restoreBackup()">♻️ Restaurar Backup</button>
+                    <button class="btn btn-success" onclick="restoreBackup()">Restaurar Backup</button>
 
                     <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid #e0e0e0;">
                         <p style="font-size: 13px; color: #666;">
-                            ✓ Restaura los datos desde un backup anterior.
+                             Restaura los datos desde un backup anterior.
                         </p>
                     </div>
                 </div>
@@ -533,10 +533,10 @@
 
                 const result = await response.json();
                 if (result.exito) {
-                    showAlert('✅ Datos encriptados: ' + result.hash, 'success');
+                    showAlert('Datos encriptados: ' + result.hash, 'success');
                     document.getElementById('encryptData').value = '';
                 } else {
-                    showAlert('❌ Error: ' + result.error, 'error');
+                    showAlert('Error: ' + result.error, 'error');
                 }
             } catch (error) {
                 showAlert('Error: ' + error.message, 'error');
@@ -558,7 +558,7 @@
                 return;
             }
 
-            showAlert('✅ Clave de encriptación actualizada', 'success');
+            showAlert('Clave de encriptación actualizada', 'success');
             document.getElementById('newPassword').value = '';
             document.getElementById('confirmPassword').value = '';
         }
@@ -573,10 +573,10 @@
 
                 const result = await response.json();
                 if (result.exito) {
-                    showAlert('✅ Backup creado: ' + result.backup, 'success');
+                    showAlert('Backup creado: ' + result.backup, 'success');
                     loadBackupHistory();
                 } else {
-                    showAlert('❌ Error: ' + result.error, 'error');
+                    showAlert('Error: ' + result.error, 'error');
                 }
             } catch (error) {
                 showAlert('Error: ' + error.message, 'error');
@@ -585,7 +585,7 @@
 
         // Guardar configuración de nube
         function saveCloudConfig() {
-            showAlert('✅ Configuración guardada correctamente', 'success');
+            showAlert('Configuración guardada correctamente', 'success');
             document.getElementById('dropboxToken').value = '';
             document.getElementById('googleKey').value = '';
             document.getElementById('awsKey').value = '';
@@ -605,7 +605,7 @@
 
                     const backupsList = document.getElementById('backupsList');
                     if (result.backups.length === 0) {
-                        backupsList.innerHTML = '<div class="no-backups">📭 No hay backups aún</div>';
+                        backupsList.innerHTML = '<div class="no-backups">No hay backups aún</div>';
                         return;
                     }
 
@@ -614,13 +614,13 @@
                             <div class="backup-info">
                                 <div class="backup-name">${b.nombre}</div>
                                 <div class="backup-details">
-                                    📅 ${new Date(b.timestamp).toLocaleString('es-ES')}<br>
-                                    📦 ${(b.tamaño_total / 1024 / 1024).toFixed(2)} MB | Tipo: ${b.tipo}
+                                    ${new Date(b.timestamp).toLocaleString('es-ES')}<br>
+                                    ${(b.tamaño_total / 1024 / 1024).toFixed(2)} MB | Tipo: ${b.tipo}
                                 </div>
                             </div>
                             <div class="backup-actions">
-                                <button class="btn btn-secondary btn-small" onclick="restoreBackupNow('${b.nombre}')">♻️ Restaurar</button>
-                                <button class="btn btn-secondary btn-small" onclick="downloadBackup('${b.nombre}')">⬇️ Descargar</button>
+                                <button class="btn btn-secondary btn-small" onclick="restoreBackupNow('${b.nombre}')">Restaurar</button>
+                                <button class="btn btn-secondary btn-small" onclick="downloadBackup('${b.nombre}')">Descargar</button>
                             </div>
                         </div>
                     `).join('');
@@ -662,10 +662,10 @@
 
                 const result = await response.json();
                 if (result.exito) {
-                    showAlert('✅ Backup restaurado: ' + result.archivos.length + ' archivos', 'success');
+                    showAlert('Backup restaurado: ' + result.archivos.length + ' archivos', 'success');
                     loadBackupHistory();
                 } else {
-                    showAlert('❌ Error: ' + result.error, 'error');
+                    showAlert('Error: ' + result.error, 'error');
                 }
             } catch (error) {
                 showAlert('Error: ' + error.message, 'error');
@@ -674,7 +674,7 @@
 
         // Descargar backup
         function downloadBackup(nombre) {
-            showAlert('💾 Descarga iniciada: ' + nombre, 'info');
+            showAlert('Descarga iniciada: ' + nombre, 'info');
         }
 
         // Limpiar backups antiguos
@@ -689,7 +689,7 @@
                 return;
             }
 
-            showAlert(`✅ Backups más antiguos que ${days} días eliminados`, 'success');
+            showAlert(`Backups más antiguos que ${days} días eliminados`, 'success');
         }
 
         // Mostrar alertas

@@ -374,17 +374,17 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>🏥 Sistema Médico Inteligente</h1>
+            <h1>Sistema Médico Inteligente</h1>
             <p>Panel de análisis clínico con IA - Información segura y confidencial</p>
         </div>
 
         <div class="tabs">
-            <button class="tab-btn active" onclick="cambiarTab('pacientes')">👥 Pacientes</button>
-            <button class="tab-btn" onclick="cambiarTab('analisis-ia')">🤖 Análisis IA</button>
-            <button class="tab-btn" onclick="cambiarTab('chat-ia')">💬 Chat IA Groq</button>
-            <button class="tab-btn" onclick="cambiarTab('clinico')">📋 Panel Clínico</button>
-            <button class="tab-btn" onclick="cambiarTab('alertas')">⚠️ Alertas</button>
-            <button class="tab-btn" onclick="cambiarTab('timeline')">📅 Timeline</button>
+            <button class="tab-btn active" onclick="cambiarTab('pacientes')">Pacientes</button>
+            <button class="tab-btn" onclick="cambiarTab('analisis-ia')">Análisis IA</button>
+            <button class="tab-btn" onclick="cambiarTab('chat-ia')">Chat IA Groq</button>
+            <button class="tab-btn" onclick="cambiarTab('clinico')">Panel Clínico</button>
+            <button class="tab-btn" onclick="cambiarTab('alertas')">Alertas</button>
+            <button class="tab-btn" onclick="cambiarTab('timeline')">Timeline</button>
         </div>
 
         <!-- SECCIÓN: PACIENTES -->
@@ -392,7 +392,7 @@
             <h2>Selecciona un Paciente</h2>
             <div style="margin: 20px 0;">
                 <input type="text" id="searchPaciente" placeholder="Buscar paciente..." style="max-width: 300px;">
-                <button onclick="buscarPaciente()">🔍 Buscar</button>
+                <button onclick="buscarPaciente()">Buscar</button>
             </div>
             <div id="listaPacientes"></div>
         </div>
@@ -405,11 +405,11 @@
 
         <!-- SECCIÓN: CHAT IA GROQ -->
         <div id="chat-ia" class="content-section">
-            <h2>💬 Asistente Médico IA (Powered by Groq)</h2>
+            <h2>Asistente Médico IA (Powered by Groq)</h2>
             <div style="display: flex; flex-direction: column; height: 600px; background: #f9f9f9; border-radius: 12px; overflow: hidden;">
                 <div id="chatHistoria" style="flex: 1; overflow-y: auto; padding: 20px; background: white; border-bottom: 2px solid #e0e0e0;">
                     <div style="text-align: center; color: #999; padding: 40px 20px;">
-                        <div style="font-size: 48px; margin-bottom: 10px;">🤖</div>
+                        <div style="font-size: 48px; margin-bottom: 10px;"></div>
                         <p>Hola, soy tu asistente médico con IA real. Pregúntame sobre:</p>
                         <p style="margin-top: 10px; font-size: 14px; color: #666;">
                             • Diagnósticos y síntomas<br>
@@ -424,7 +424,7 @@
                         <input type="text" id="inputChat" placeholder="Escribe tu pregunta médica..." 
                                style="flex: 1; padding: 12px 15px; border: 2px solid #e0e0e0; border-radius: 8px; font-size: 14px;"
                                onkeypress="if(event.key==='Enter') enviarMensajeChat()">
-                        <button onclick="enviarMensajeChat()" style="padding: 12px 30px; font-size: 16px;">📤 Enviar</button>
+                        <button onclick="enviarMensajeChat()" style="padding: 12px 30px; font-size: 16px;"> Enviar</button>
                     </div>
                     <div id="estadoChat" style="text-align: center; font-size: 12px; color: #999;"></div>
                 </div>
@@ -542,23 +542,23 @@
                         hora: new Date().toLocaleTimeString('es-ES', {hour: '2-digit', minute:'2-digit'})
                     });
                     
-                    document.getElementById('estadoChat').innerHTML = '✓ Conexión activa';
+                    document.getElementById('estadoChat').innerHTML = 'Conexión activa';
                 } else {
                     conversacionChat.push({
                         rol: 'asistente',
-                        contenido: '⚠️ Error: ' + (datos.error || 'No se pudo procesar la respuesta'),
+                        contenido: 'Error: ' + (datos.error || 'No se pudo procesar la respuesta'),
                         hora: new Date().toLocaleTimeString('es-ES', {hour: '2-digit', minute:'2-digit'})
                     });
-                    document.getElementById('estadoChat').innerHTML = '❌ Error en la conexión';
+                    document.getElementById('estadoChat').innerHTML = 'Error en la conexión';
                 }
             } catch (error) {
                 console.error('Error:', error);
                 conversacionChat.push({
                     rol: 'asistente',
-                    contenido: '❌ Error de conexión. Intenta nuevamente.',
+                    contenido: 'Error de conexión. Intenta nuevamente.',
                     hora: new Date().toLocaleTimeString('es-ES', {hour: '2-digit', minute:'2-digit'})
                 });
-                document.getElementById('estadoChat').innerHTML = '❌ Error de conexión';
+                document.getElementById('estadoChat').innerHTML = ' Error de conexión';
             }
             
             actualizarVistaChat();
@@ -570,7 +570,7 @@
             
             conversacionChat.forEach((msg, idx) => {
                 const claseMsg = msg.rol === 'usuario' ? 'mensaje-usuario' : 'mensaje-ia';
-                const icono = msg.rol === 'usuario' ? '👤' : '🤖';
+                const icono = msg.rol === 'usuario' ? '' : '';
                 
                 html += `
                     <div class="mensaje-chat ${claseMsg}">
@@ -638,7 +638,7 @@
                     // Info personal
                     document.getElementById('infoPaciente').innerHTML = `
                         <div class="card">
-                            <h3>👤 Información Personal</h3>
+                            <h3> Información Personal</h3>
                             <div class="card-content">
                                 <div><strong>Nombre:</strong> ${p.nombre} ${p.apellido}</div>
                                 <div><strong>Cédula:</strong> ${p.cedula}</div>
@@ -653,7 +653,7 @@
                     // Info médica
                     document.getElementById('infoMedica').innerHTML = `
                         <div class="card">
-                            <h3>⚕️ Información Médica</h3>
+                            <h3> Información Médica</h3>
                             <div class="card-content">
                                 <div><strong>Peso:</strong> ${p.peso || 'N/A'} kg</div>
                                 <div><strong>Altura:</strong> ${p.altura || 'N/A'} cm</div>
@@ -688,7 +688,7 @@
                     
                     let html = `
                         <div class="card">
-                            <h3>📊 Resumen Clínico</h3>
+                            <h3> Resumen Clínico</h3>
                             <div class="card-content" style="font-size: 13px; line-height: 1.8;">
                                 ${análisis.resumen_clinico}
                             </div>
@@ -698,7 +698,7 @@
                             Score de Riesgo: ${análisis.score_riesgo}/100
                         </div>
 
-                        <h3 style="color: #1a365d; margin: 20px 0;">🔍 Patrones Detectados</h3>
+                        <h3 style="color: #1a365d; margin: 20px 0;"> Patrones Detectados</h3>
                     `;
 
                     if (análisis.patrones.length > 0) {
@@ -713,7 +713,7 @@
                             `;
                         });
                     } else {
-                        html += '<div class="card">✓ No se detectaron patrones preocupantes</div>';
+                        html += '<div class="card"> No se detectaron patrones preocupantes</div>';
                     }
 
                     document.getElementById('contenidoAnalisis').innerHTML = html;
@@ -748,7 +748,7 @@
                             `;
                         });
                     } else {
-                        html += '<div style="padding: 15px; background: #dfd; border-left: 4px solid #3c3; color: #3c3; border-radius: 8px;">✓ No hay alertas críticas</div>';
+                        html += '<div style="padding: 15px; background: #dfd; border-left: 4px solid #3c3; color: #3c3; border-radius: 8px;"> No hay alertas críticas</div>';
                     }
                     
                     document.getElementById('contenidoAlertas').innerHTML = html;
@@ -876,7 +876,7 @@
                     document.getElementById('nuevoDiagnostico').value = '';
                     cargarDiagnosticos();
                     cargarAnalisisIA();
-                    alert('✓ Diagnóstico agregado');
+                    alert(' Diagnóstico agregado');
                 }
             } catch (error) {
                 console.error('Error:', error);
@@ -908,7 +908,7 @@
                     document.getElementById('dosis').value = '';
                     document.getElementById('duracion').value = '';
                     cargarTratamientos();
-                    alert('✓ Tratamiento agregado');
+                    alert(' Tratamiento agregado');
                 }
             } catch (error) {
                 console.error('Error:', error);
@@ -936,7 +936,7 @@
                     document.getElementById('tipoEstudio').value = '';
                     document.getElementById('resultadoEstudio').value = '';
                     cargarEstudios();
-                    alert('✓ Estudio agregado');
+                    alert(' Estudio agregado');
                 }
             } catch (error) {
                 console.error('Error:', error);

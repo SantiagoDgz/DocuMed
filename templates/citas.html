@@ -377,7 +377,7 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>📅 Sistema de Citas Médicas</h1>
+            <h1> Sistema de Citas Médicas</h1>
             <p>Agenda y gestiona citas de forma automática</p>
         </div>
 
@@ -410,7 +410,7 @@
 
             <!-- Formulario de Cita -->
             <div class="appointment-form">
-                <div class="form-title">📋 Nueva Cita</div>
+                <div class="form-title"> Nueva Cita</div>
 
                 <div class="selected-date" id="selectedDate">
                     Selecciona una fecha
@@ -454,13 +454,13 @@
                     <textarea id="appointmentReason" placeholder="¿Cuál es el motivo de la consulta?"></textarea>
                 </div>
 
-                <button class="btn-submit" onclick="scheduleAppointment()">✔️ Agendar Cita</button>
+                <button class="btn-submit" onclick="scheduleAppointment()"> Agendar Cita</button>
             </div>
         </div>
 
         <!-- Lista de Citas -->
         <div class="appointments-list">
-            <h2>📅 Citas Próximas</h2>
+            <h2> Citas Próximas</h2>
             <div id="appointmentsList"></div>
         </div>
     </div>
@@ -578,7 +578,7 @@
 
             appointments.push(appointment);
             displayAppointments();
-            showAlert('✅ Cita agendada correctamente', 'success');
+            showAlert(' Cita agendada correctamente', 'success');
             document.getElementById('appointmentPatient').value = '';
             document.getElementById('appointmentTime').value = '';
             document.getElementById('appointmentReason').value = '';
@@ -588,14 +588,14 @@
             const list = document.getElementById('appointmentsList');
             
             if (appointments.length === 0) {
-                list.innerHTML = '<div class="no-appointments">📭 No hay citas agendadas</div>';
+                list.innerHTML = '<div class="no-appointments"> No hay citas agendadas</div>';
                 return;
             }
 
             list.innerHTML = appointments.map(a => `
                 <div class="appointment-item">
                     <div class="appointment-info">
-                        <div class="appointment-patient">📅 ${a.date} - ${a.time}</div>
+                        <div class="appointment-patient"> ${a.date} - ${a.time}</div>
                         <div class="appointment-details">
                             <p><strong>ID:</strong> ${a.id}</p>
                             <p><strong>Especialidad:</strong> ${a.specialty}</p>
@@ -604,8 +604,8 @@
                     </div>
                     <span class="appointment-status">${a.status}</span>
                     <div class="appointment-actions">
-                        <button class="btn-action" onclick="confirmAppointment('${a.id}')">✔️ Confirmar</button>
-                        <button class="btn-action" onclick="cancelAppointment('${a.id}')">❌ Cancelar</button>
+                        <button class="btn-action" onclick="confirmAppointment('${a.id}')"> Confirmar</button>
+                        <button class="btn-action" onclick="cancelAppointment('${a.id}')"> Cancelar</button>
                     </div>
                 </div>
             `).join('');
@@ -616,14 +616,14 @@
             if (appointment) {
                 appointment.status = 'Confirmada';
                 displayAppointments();
-                showAlert('✅ Cita confirmada', 'success');
+                showAlert(' Cita confirmada', 'success');
             }
         }
 
         function cancelAppointment(id) {
             appointments = appointments.filter(a => a.id !== id);
             displayAppointments();
-            showAlert('❌ Cita cancelada', 'success');
+            showAlert(' Cita cancelada', 'success');
         }
 
         function showAlert(message, type) {

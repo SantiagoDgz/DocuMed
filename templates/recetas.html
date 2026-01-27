@@ -311,22 +311,22 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>💊 Recetas Digitales</h1>
+            <h1>Recetas Digitales</h1>
             <p>Gestiona y emite recetas médicas digitales</p>
         </div>
 
         <div class="controls">
-            <button class="btn btn-primary" onclick="openNewRecipeModal()">➕ Nueva Receta</button>
-            <button class="btn btn-primary" onclick="filterRecipes('todas')">📋 Todas</button>
-            <button class="btn btn-primary" onclick="filterRecipes('vigentes')">✅ Vigentes</button>
-            <button class="btn btn-primary" onclick="filterRecipes('vencidas')">❌ Vencidas</button>
+            <button class="btn btn-primary" onclick="openNewRecipeModal()">Nueva Receta</button>
+            <button class="btn btn-primary" onclick="filterRecipes('todas')">Todas</button>
+            <button class="btn btn-primary" onclick="filterRecipes('vigentes')">Vigentes</button>
+            <button class="btn btn-primary" onclick="filterRecipes('vencidas')">Vencidas</button>
         </div>
 
         <div id="alertContainer"></div>
 
         <div class="recipe-grid" id="recipeGrid">
             <div class="no-data">
-                <p>📭 No hay recetas registradas</p>
+                <p>No hay recetas registradas</p>
                 <p style="font-size: 12px; margin-top: 10px;">Haz clic en "Nueva Receta" para crear una</p>
             </div>
         </div>
@@ -336,7 +336,7 @@
     <div class="modal" id="recipeModal">
         <div class="modal-content">
             <button class="btn-close" onclick="closeRecipeModal()">&times;</button>
-            <div class="modal-header">💊 Nueva Receta Médica</div>
+            <div class="modal-header">Nueva Receta Médica</div>
             
             <form id="recipeForm" onsubmit="saveRecipe(event)">
                 <div class="form-group">
@@ -378,7 +378,7 @@
                     <textarea id="recipeIndications" placeholder="Instrucciones especiales..."></textarea>
                 </div>
 
-                <button type="submit" class="btn-submit">✔️ Emitir Receta</button>
+                <button type="submit" class="btn-submit"> Emitir Receta</button>
             </form>
         </div>
     </div>
@@ -434,14 +434,14 @@
             recipes.push(recipe);
             displayRecipes(recipes);
             closeRecipeModal();
-            showAlert('✅ Receta emitida correctamente', 'success');
+            showAlert('Receta emitida correctamente', 'success');
         }
 
         function displayRecipes(recipesToShow) {
             const grid = document.getElementById('recipeGrid');
             
             if (recipesToShow.length === 0) {
-                grid.innerHTML = '<div class="no-data"><p>📭 No hay recetas</p></div>';
+                grid.innerHTML = '<div class="no-data"><p>No hay recetas</p></div>';
                 return;
             }
 
@@ -463,8 +463,8 @@
                         ${r.indications ? `<p><strong>Indicaciones:</strong> ${r.indications}</p>` : ''}
                     </div>
                     <div class="recipe-actions">
-                        <button class="btn-small" onclick="printRecipe('${r.id}')">🖨️ Imprimir</button>
-                        <button class="btn-small" onclick="downloadRecipePDF('${r.id}')">📥 Descargar</button>
+                        <button class="btn-small" onclick="printRecipe('${r.id}')"> Imprimir</button>
+                        <button class="btn-small" onclick="downloadRecipePDF('${r.id}')"> Descargar</button>
                     </div>
                 </div>
             `).join('');
@@ -485,7 +485,7 @@
         }
 
         function downloadRecipePDF(id) {
-            showAlert('✅ Receta descargada (simulado)', 'success');
+            showAlert('Receta descargada (simulado)', 'success');
         }
 
         function showAlert(message, type) {

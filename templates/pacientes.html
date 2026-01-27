@@ -436,14 +436,14 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>👨‍⚕️ Sistema de Gestión de Pacientes</h1>
+            <h1>Sistema de Gestión de Pacientes</h1>
             <p>Administra y registra información completa de tus pacientes</p>
         </div>
 
         <div class="tabs">
-            <button class="tab-btn active" onclick="cambiarTab('registrar')">➕ Registrar Paciente</button>
-            <button class="tab-btn" onclick="cambiarTab('listar')">📋 Ver Pacientes</button>
-            <button class="tab-btn" onclick="cambiarTab('buscar')">🔍 Buscar Paciente</button>
+            <button class="tab-btn active" onclick="cambiarTab('registrar')">Registrar Paciente</button>
+            <button class="tab-btn" onclick="cambiarTab('listar')">Ver Pacientes</button>
+            <button class="tab-btn" onclick="cambiarTab('buscar')">Buscar Paciente</button>
         </div>
 
         <!-- TAB: REGISTRAR PACIENTE -->
@@ -452,7 +452,7 @@
             <div id="alertRegistro"></div>
 
             <form onsubmit="registrarPaciente(event)">
-                <h3 style="margin-top: 20px; margin-bottom: 15px; color: #667eea;">📋 Información Personal</h3>
+                <h3 style="margin-top: 20px; margin-bottom: 15px; color: #667eea;">Información Personal</h3>
                 
                 <div class="form-row">
                     <div class="form-group">
@@ -506,7 +506,7 @@
                     </div>
                 </div>
 
-                <h3 style="margin-top: 30px; margin-bottom: 15px; color: #667eea;">⚕️ Información Médica</h3>
+                <h3 style="margin-top: 30px; margin-bottom: 15px; color: #667eea;">Información Médica</h3>
 
                 <div class="form-row">
                     <div class="form-group">
@@ -555,7 +555,7 @@
                 </div>
 
                 <div class="form-row">
-                    <button type="submit" class="btn-success">💾 Guardar Paciente</button>
+                    <button type="submit" class="btn-success">Guardar Paciente</button>
                     <button type="reset" class="btn-secondary">Limpiar Formulario</button>
                 </div>
             </form>
@@ -564,7 +564,7 @@
         <!-- TAB: LISTAR PACIENTES -->
         <div id="listar" class="tab-content">
             <h2>Lista de Pacientes</h2>
-            <button onclick="cargarPacientes()" class="btn-success" style="margin-bottom: 20px;">🔄 Recargar Lista</button>
+            <button onclick="cargarPacientes()" class="btn-success" style="margin-bottom: 20px;">Recargar Lista</button>
             <div id="pacientesContainer"></div>
         </div>
 
@@ -573,7 +573,7 @@
             <h2>Buscar Paciente</h2>
             <div class="search-container">
                 <input type="text" id="searchTermino" placeholder="Buscar por nombre, apellido o cédula...">
-                <button onclick="buscarPaciente()">🔍 Buscar</button>
+                <button onclick="buscarPaciente()">Buscar</button>
             </div>
             <div id="resultadosBusqueda"></div>
         </div>
@@ -656,7 +656,7 @@
                 const resultado = await response.json();
 
                 if (resultado.exito) {
-                    mostrarAlerta(`✅ ${resultado.mensaje} ID: ${resultado.paciente.id}`, 'success');
+                    mostrarAlerta(`${resultado.mensaje} ID: ${resultado.paciente.id}`, 'success');
                     event.target.reset();
                     
                     // Cargar lista actualizada
@@ -664,10 +664,10 @@
                         cargarPacientes();
                     }, 1000);
                 } else {
-                    mostrarAlerta(`❌ ${resultado.error}`, 'error');
+                    mostrarAlerta(`${resultado.error}`, 'error');
                 }
             } catch (error) {
-                mostrarAlerta(`❌ Error: ${error.message}`, 'error');
+                mostrarAlerta(`Error: ${error.message}`, 'error');
                 console.error('Error:', error);
             }
         }
@@ -682,7 +682,7 @@
                 if (datos.pacientes.length === 0) {
                     container.innerHTML = `
                         <div class="empty-state">
-                            <div class="empty-state-icon">📭</div>
+                            <div class="empty-state-icon">-</div>
                             <h3>No hay pacientes registrados</h3>
                             <p>Comienza a registrar tu primer paciente</p>
                         </div>
@@ -718,9 +718,9 @@
                                 </div>
                             </div>
                             <div class="paciente-actions">
-                                <button onclick="verDetalles('${paciente.id}')" class="btn-secondary">👁️ Ver</button>
-                                <button onclick="editarPaciente('${paciente.id}')" class="btn-secondary">✏️ Editar</button>
-                                <button onclick="eliminarPaciente('${paciente.id}')" class="btn-danger">🗑️ Eliminar</button>
+                                <button onclick="verDetalles('${paciente.id}')" class="btn-secondary">Ver</button>
+                                <button onclick="editarPaciente('${paciente.id}')" class="btn-secondary">Editar</button>
+                                <button onclick="eliminarPaciente('${paciente.id}')" class="btn-danger">Eliminar</button>
                             </div>
                         </div>
                     `;
@@ -733,7 +733,7 @@
                 console.error('Error:', error);
                 document.getElementById('pacientesContainer').innerHTML = `
                     <div class="empty-state">
-                        <div class="empty-state-icon">❌</div>
+                        <div class="empty-state-icon">-</div>
                         <h3>Error al cargar pacientes</h3>
                         <p>${error.message}</p>
                     </div>
@@ -751,7 +751,7 @@
                     const paciente = datos.paciente;
                     let html = `
                         <div style="background: #f9f9f9; padding: 20px; border-radius: 10px; margin-bottom: 20px;">
-                            <h3 style="color: #667eea; margin-bottom: 15px;">👤 Información Personal</h3>
+                            <h3 style="color: #667eea; margin-bottom: 15px;">Información Personal</h3>
                             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
                                 <div><strong>Nombre:</strong> ${paciente.nombre} ${paciente.apellido}</div>
                                 <div><strong>Cédula:</strong> ${paciente.cedula}</div>
@@ -764,7 +764,7 @@
                         </div>
 
                         <div style="background: #f9f9f9; padding: 20px; border-radius: 10px; margin-bottom: 20px;">
-                            <h3 style="color: #667eea; margin-bottom: 15px;">⚕️ Información Médica</h3>
+                            <h3 style="color: #667eea; margin-bottom: 15px;">Información Médica</h3>
                             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
                                 <div><strong>Peso:</strong> ${paciente.peso || 'N/A'} kg</div>
                                 <div><strong>Altura:</strong> ${paciente.altura || 'N/A'} cm</div>
@@ -781,14 +781,14 @@
                     if (paciente.notas && paciente.notas.length > 0) {
                         html += `
                             <div style="background: #f9f9f9; padding: 20px; border-radius: 10px; margin-bottom: 20px;">
-                                <h3 style="color: #667eea; margin-bottom: 15px;">📝 Notas de Consulta</h3>
+                                <h3 style="color: #667eea; margin-bottom: 15px;">Notas de Consulta</h3>
                                 <div>
                         `;
                         
                         paciente.notas.forEach(nota => {
                             html += `
                                 <div class="nota-item">
-                                    <div class="nota-fecha">📅 ${nota.fecha}</div>
+                                    <div class="nota-fecha">${nota.fecha}</div>
                                     <div class="nota-texto">${nota.contenido}</div>
                                 </div>
                             `;
@@ -803,9 +803,9 @@
                     // Agregar nota nueva
                     html += `
                         <div style="background: #f9f9f9; padding: 20px; border-radius: 10px;">
-                            <h3 style="color: #667eea; margin-bottom: 15px;">➕ Agregar Nota de Consulta</h3>
+                            <h3 style="color: #667eea; margin-bottom: 15px;">Agregar Nota de Consulta</h3>
                             <textarea id="nuevaNota" placeholder="Escribir nota de consulta..." style="width: 100%; height: 100px; padding: 12px; border: 2px solid #ddd; border-radius: 8px; font-family: inherit;"></textarea>
-                            <button onclick="agregarNotaPaciente('${idPaciente}')" class="btn-success" style="margin-top: 15px;">💾 Guardar Nota</button>
+                            <button onclick="agregarNotaPaciente('${idPaciente}')" class="btn-success" style="margin-top: 15px;">Guardar Nota</button>
                         </div>
                     `;
 
@@ -839,10 +839,10 @@
                 const resultado = await response.json();
 
                 if (resultado.exito) {
-                    alert('✅ Nota agregada exitosamente');
+                    alert('Nota agregada exitosamente');
                     verDetalles(idPaciente);
                 } else {
-                    alert('❌ Error: ' + resultado.error);
+                    alert('Error: ' + resultado.error);
                 }
             } catch (error) {
                 console.error('Error:', error);
@@ -857,7 +857,7 @@
 
         // Eliminar paciente
         async function eliminarPaciente(idPaciente) {
-            if (!confirm('⚠️ ¿Estás seguro de que deseas eliminar este paciente? Esta acción no se puede deshacer.')) {
+            if (!confirm('¿Estás seguro de que deseas eliminar este paciente? Esta acción no se puede deshacer.')) {
                 return;
             }
 
@@ -869,10 +869,10 @@
                 const resultado = await response.json();
 
                 if (resultado.exito) {
-                    alert('✅ Paciente eliminado exitosamente');
+                    alert('Paciente eliminado exitosamente');
                     cargarPacientes();
                 } else {
-                    alert('❌ Error: ' + resultado.error);
+                    alert('Error: ' + resultado.error);
                 }
             } catch (error) {
                 console.error('Error:', error);
@@ -897,7 +897,7 @@
                 if (datos.cantidad === 0) {
                     container.innerHTML = `
                         <div class="empty-state">
-                            <div class="empty-state-icon">🔍</div>
+                            <div class="empty-state-icon">?</div>
                             <h3>No se encontraron resultados</h3>
                             <p>Intenta con otro término de búsqueda</p>
                         </div>
@@ -926,7 +926,7 @@
                                 </div>
                             </div>
                             <div class="paciente-actions">
-                                <button onclick="verDetalles('${paciente.id}')" class="btn-secondary">👁️ Ver</button>
+                                <button onclick="verDetalles('${paciente.id}')" class="btn-secondary"> Ver</button>
                             </div>
                         </div>
                     `;
@@ -939,7 +939,7 @@
                 console.error('Error:', error);
                 document.getElementById('resultadosBusqueda').innerHTML = `
                     <div class="empty-state">
-                        <div class="empty-state-icon">❌</div>
+                        <div class="empty-state-icon">!</div>
                         <h3>Error en la búsqueda</h3>
                         <p>${error.message}</p>
                     </div>

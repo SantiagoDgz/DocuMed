@@ -332,7 +332,7 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>🧪 Sistema de Laboratorios</h1>
+            <h1> Sistema de Laboratorios</h1>
             <p>Gestiona órdenes de laboratorio y resultados</p>
         </div>
 
@@ -341,7 +341,7 @@
         <div class="content">
             <!-- Orden de Laboratorio -->
             <div class="card">
-                <div class="card-title">📋 Nueva Orden de Laboratorio</div>
+                <div class="card-title"> Nueva Orden de Laboratorio</div>
 
                 <div class="form-group">
                     <label>Paciente</label>
@@ -388,12 +388,12 @@
                     <textarea id="labNotes" placeholder="Observaciones especiales..."></textarea>
                 </div>
 
-                <button class="btn-submit" onclick="createLabOrder()">✔️ Crear Orden</button>
+                <button class="btn-submit" onclick="createLabOrder()"> Crear Orden</button>
             </div>
 
             <!-- Cargar Resultados -->
             <div class="card">
-                <div class="card-title">📊 Cargar Resultados</div>
+                <div class="card-title"> Cargar Resultados</div>
 
                 <div class="form-group">
                     <label>Buscar Orden</label>
@@ -437,15 +437,15 @@
                         </select>
                     </div>
 
-                    <button class="btn-submit" onclick="addResult()">➕ Agregar Resultado</button>
-                    <button class="btn-submit" onclick="completeOrder()" style="background: #27ae60;">✅ Completar Orden</button>
+                    <button class="btn-submit" onclick="addResult()"> Agregar Resultado</button>
+                    <button class="btn-submit" onclick="completeOrder()" style="background: #27ae60;"> Completar Orden</button>
                 </div>
             </div>
         </div>
 
         <!-- Lista de Órdenes -->
         <div class="test-list">
-            <div class="card-title">📋 Órdenes de Laboratorio</div>
+            <div class="card-title"> Órdenes de Laboratorio</div>
 
             <div class="test-tabs">
                 <button class="tab active" onclick="filterByStatus('todos')">Todas</button>
@@ -505,7 +505,7 @@
             labOrders.push(order);
             updateOrderSelect();
             displayOrders();
-            showAlert('✅ Orden de laboratorio creada', 'success');
+            showAlert(' Orden de laboratorio creada', 'success');
             document.getElementById('labPatient').value = '';
             document.getElementById('analysisType').value = '';
             document.getElementById('labNotes').value = '';
@@ -548,7 +548,7 @@
             };
 
             currentResults.push(result);
-            showAlert('✅ Resultado agregado', 'success');
+            showAlert(' Resultado agregado', 'success');
             document.getElementById('resultParameter').value = '';
             document.getElementById('resultValue').value = '';
             document.getElementById('resultUnit').value = '';
@@ -572,7 +572,7 @@
                 updateOrderSelect();
                 displayOrders();
                 document.getElementById('resultsSection').style.display = 'none';
-                showAlert('✅ Orden completada', 'success');
+                showAlert(' Orden completada', 'success');
             }
         }
 
@@ -597,7 +597,7 @@
             }
 
             if (filtered.length === 0) {
-                list.innerHTML = '<div class="no-tests">📭 No hay órdenes</div>';
+                list.innerHTML = '<div class="no-tests"> No hay órdenes</div>';
                 return;
             }
 
@@ -637,8 +637,8 @@
                         </div>
                     ` : ''}
                     <div class="test-actions" style="margin-top: 15px;">
-                        <button class="btn-action" onclick="editOrder('${order.id}')">✏️ Editar</button>
-                        <button class="btn-action" onclick="deleteOrder('${order.id}')">🗑️ Eliminar</button>
+                        <button class="btn-action" onclick="editOrder('${order.id}')"> Editar</button>
+                        <button class="btn-action" onclick="deleteOrder('${order.id}')"> Eliminar</button>
                     </div>
                 </div>
             `).join('');
@@ -659,7 +659,7 @@
                 labOrders = labOrders.filter(o => o.id !== orderId);
                 displayOrders();
                 updateOrderSelect();
-                showAlert('✅ Orden eliminada', 'success');
+                showAlert(' Orden eliminada', 'success');
             }
         }
 

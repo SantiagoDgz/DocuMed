@@ -353,29 +353,29 @@
         </div>
 
         <div class="controls">
-            <button class="btn-secondary" onclick="limpiarChat()">🗑️ Limpiar</button>
-            <button class="btn-secondary" onclick="verHistorial()">📜 Historial</button>
-            <button class="btn-secondary" id="speechToggle" onclick="toggleSpeech()" title="Desactivar voz">🔊 Voz</button>
-            <button class="btn-secondary" onclick="abrirGeneradorImagenes()">🎨 Generar Imagen</button>
-            <button class="btn-secondary" onclick="iniciarJuego()">🎮 Juego</button>
+            <button class="btn-secondary" onclick="limpiarChat()"> Limpiar</button>
+            <button class="btn-secondary" onclick="verHistorial()"> Historial</button>
+            <button class="btn-secondary" id="speechToggle" onclick="toggleSpeech()" title="Desactivar voz"> Voz</button>
+            <button class="btn-secondary" onclick="abrirGeneradorImagenes()"> Generar Imagen</button>
+            <button class="btn-secondary" onclick="iniciarJuego()"> Juego</button>
         </div>
 
         <div class="chat-container" id="chatContainer">
             <div class="message ia">
-                <div class="avatar">💗</div>
+                <div class="avatar"></div>
                 <div class="message-content">
-                    <strong>¡Hola! Anngpt - Potenciada por Llama 3 🚀</strong><br><br>
+                    <strong>¡Hola! Anngpt - Potenciada por Llama 3 </strong><br><br>
                     
                     Ahora tengo <strong>inteligencia artificial REAL</strong> gracias a Groq API (totalmente gratis):<br><br>
                     
-                    🧠 <strong>IA Real con Llama 3</strong> - Conversaciones naturales y contextuales<br>
-                    💭 <strong>Memoria de Conversación</strong> - Recuerdo lo que hablamos<br>
-                    🌍 <strong>Multi-idioma</strong> - Español, Inglés, Francés<br>
-                    🔢 <strong>Matemáticas Avanzadas</strong> - Cálculos, Pitágoras, álgebra<br>
-                    ✍️ <strong>Creatividad Real</strong> - Poemas, historias, código<br>
-                    🎨 <strong>Genera Imágenes</strong> - ¡Crea imágenes con IA! (Stable Diffusion)<br>
-                    📚 <strong>Conocimiento Amplio</strong> - Cualquier tema<br>
-                    🎯 <strong>Ayuda Práctica</strong> - Consejos y explicaciones<br><br>
+                     <strong>IA Real con Llama 3</strong> - Conversaciones naturales y contextuales<br>
+                     <strong>Memoria de Conversación</strong> - Recuerdo lo que hablamos<br>
+                     <strong>Multi-idioma</strong> - Español, Inglés, Francés<br>
+                     <strong>Matemáticas Avanzadas</strong> - Cálculos, Pitágoras, álgebra<br>
+                     <strong>Creatividad Real</strong> - Poemas, historias, código<br>
+                     <strong>Genera Imágenes</strong> - ¡Crea imágenes con IA! (Stable Diffusion)<br>
+                     <strong>Conocimiento Amplio</strong> - Cualquier tema<br>
+                     <strong>Ayuda Práctica</strong> - Consejos y explicaciones<br><br>
                     
                     <strong>Habla conmigo de forma natural:</strong><br>
                     • "¿Cómo estás?"<br>
@@ -384,7 +384,7 @@
                     • "Escribe un poema sobre la luna"<br>
                     • "Ayúdame con mi tarea de matemáticas"<br><br>
                     
-                    <em>Soy tu asistente inteligente real. ¡Conversemos! 🌟</em>
+                    <em>Soy tu asistente inteligente real. ¡Conversemos! </em>
                 </div>
             </div>
             <div class="typing-indicator" id="typingIndicator">
@@ -395,7 +395,7 @@
         </div>
 
         <div class="input-container">
-            <button id="recordBtn" class="btn-record" onclick="toggleRecording()">🎤</button>
+            <button id="recordBtn" class="btn-record" onclick="toggleRecording()"></button>
             <input 
                 type="text" 
                 id="userInput" 
@@ -503,7 +503,7 @@
                 .replace(/#{1,6}\s/g, '')
                 .replace(/\[([^\]]+)\]\([^\)]+\)/g, '$1')
                 .replace(/`([^`]+)`/g, '$1')
-                .replace(/�/g, '');
+                .replace(//g, '');
 
             const utterance = new SpeechSynthesisUtterance(textoLimpio);
             utterance.voice = currentVoice;
@@ -529,7 +529,7 @@
             speechEnabled = !speechEnabled;
             const btn = document.getElementById('speechToggle');
             if (btn) {
-                btn.textContent = speechEnabled ? '🔊' : '🔇';
+                btn.textContent = speechEnabled ? '' : '';
                 btn.title = speechEnabled ? 'Desactivar voz' : 'Activar voz';
             }
             
@@ -582,11 +582,11 @@
 
             isRecording = true;
             const recordBtn = document.getElementById('recordBtn');
-            recordBtn.textContent = '⏹️';
+            recordBtn.textContent = '⏹';
             recordBtn.style.background = '#ef4444';
             recordBtn.style.animation = 'pulse 1s infinite';
             
-            userInput.placeholder = '🎤 Grabando... Habla ahora';
+            userInput.placeholder = ' Grabando... Habla ahora';
             
             try {
                 recognition.start();
@@ -599,7 +599,7 @@
         function stopRecording() {
             isRecording = false;
             const recordBtn = document.getElementById('recordBtn');
-            recordBtn.textContent = '🎤';
+            recordBtn.textContent = '';
             recordBtn.style.background = '#10a37f';
             recordBtn.style.animation = 'none';
             
@@ -625,7 +625,7 @@
             const textoFormateado = texto.replace(/\n/g, '<br>');
             
             // Crear avatar emoji
-            const avatar = tipo === 'user' ? '👤' : '🤖';
+            const avatar = tipo === 'user' ? '' : '';
             
             messageDiv.innerHTML = `
                 <div class="avatar">${avatar}</div>
@@ -656,7 +656,7 @@
             const textoFormateado = texto.replace(/\n/g, '<br>');
             
             // Crear avatar emoji
-            const avatar = tipo === 'user' ? '👤' : '🤖';
+            const avatar = tipo === 'user' ? '' : '';
             
             // Crear contenido con imagen
             let contenidoHTML = `
@@ -823,7 +823,7 @@
             numeroSecreto = Math.floor(Math.random() * 100) + 1;
             intentos = 0;
             
-            const mensaje = `🎮 **¡JUEGO INICIADO!**\n\n¡Hola! Acabo de pensar un número entre 1 y 100.\n\n🎯 Tu misión: ¡Adivina cuál es!\n\n📊 Mejor puntuación: ${mejorPuntuacion} intentos\n\n💡 Escribe un número para empezar... ¡Buena suerte! 🍀`;
+            const mensaje = ` **¡JUEGO INICIADO!**\n\n¡Hola! Acabo de pensar un número entre 1 y 100.\n\n Tu misión: ¡Adivina cuál es!\n\n Mejor puntuación: ${mejorPuntuacion} intentos\n\n Escribe un número para empezar... ¡Buena suerte! `;
             
             agregarMensaje(mensaje, 'ia');
         }
@@ -831,7 +831,7 @@
         function jugarTurno(numero) {
             if (numero < 1 || numero > 100) {
                 agregarMensaje(numero.toString(), 'user');
-                agregarMensaje('⚠️ Por favor, escribe un número entre 1 y 100.', 'ia');
+                agregarMensaje(' Por favor, escribe un número entre 1 y 100.', 'ia');
                 userInput.value = '';
                 return;
             }
@@ -850,25 +850,25 @@
                     localStorage.setItem('mejorPuntuacion', intentos);
                 }
 
-                respuesta = `🎉 **¡FELICIDADES! ¡LO ADIVINASTE!** 🎉\n\n`;
-                respuesta += `✨ El número era: **${numeroSecreto}**\n`;
-                respuesta += `📊 Intentos: **${intentos}**\n\n`;
+                respuesta = ` **¡FELICIDADES! ¡LO ADIVINASTE!** \n\n`;
+                respuesta += ` El número era: **${numeroSecreto}**\n`;
+                respuesta += ` Intentos: **${intentos}**\n\n`;
                 
                 if (esRecord) {
-                    respuesta += `🏆 **¡NUEVO RÉCORD!** 🏆\n\n`;
+                    respuesta += ` **¡NUEVO RÉCORD!** \n\n`;
                 }
                 
                 if (intentos <= 3) {
-                    respuesta += `¡Increíble! Eres un genio. 🧠✨`;
+                    respuesta += `¡Increíble! Eres un genio. `;
                 } else if (intentos <= 7) {
-                    respuesta += `¡Muy bien! Tienes buen olfato. 👃`;
+                    respuesta += `¡Muy bien! Tienes buen olfato. `;
                 } else if (intentos <= 12) {
-                    respuesta += `¡Buen trabajo! Lo lograste. 👏`;
+                    respuesta += `¡Buen trabajo! Lo lograste. `;
                 } else {
-                    respuesta += `¡Lo conseguiste! La persistencia vale la pena. 💪`;
+                    respuesta += `¡Lo conseguiste! La persistencia vale la pena. `;
                 }
                 
-                respuesta += `\n\n¿Quieres jugar otra vez? Presiona el botón 🎮 Juego`;
+                respuesta += `\n\n¿Quieres jugar otra vez? Presiona el botón  Juego`;
                 
                 juegoActivo = false;
                 
@@ -877,28 +877,28 @@
                 const diferencia = numeroSecreto - numero;
                 
                 if (diferencia <= 5) {
-                    respuesta = `🔥 ¡Muy cerca! Pero es un poquito **MÁS ALTO** 📈`;
+                    respuesta = ` ¡Muy cerca! Pero es un poquito **MÁS ALTO** `;
                 } else if (diferencia <= 15) {
-                    respuesta = `⬆️ Es **MÁS ALTO**... ¡Sube un poco más!`;
+                    respuesta = ` Es **MÁS ALTO**... ¡Sube un poco más!`;
                 } else {
-                    respuesta = `📈 Es **MUCHO MÁS ALTO**... ¡Sube bastante!`;
+                    respuesta = ` Es **MUCHO MÁS ALTO**... ¡Sube bastante!`;
                 }
                 
-                respuesta += `\n\n🎯 Intento ${intentos}`;
+                respuesta += `\n\n Intento ${intentos}`;
                 
             } else {
                 // MUY ALTO
                 const diferencia = numero - numeroSecreto;
                 
                 if (diferencia <= 5) {
-                    respuesta = `🔥 ¡Muy cerca! Pero es un poquito **MÁS BAJO** 📉`;
+                    respuesta = ` ¡Muy cerca! Pero es un poquito **MÁS BAJO** `;
                 } else if (diferencia <= 15) {
-                    respuesta = `⬇️ Es **MÁS BAJO**... ¡Baja un poco!`;
+                    respuesta = ` Es **MÁS BAJO**... ¡Baja un poco!`;
                 } else {
-                    respuesta = `📉 Es **MUCHO MÁS BAJO**... ¡Baja bastante!`;
+                    respuesta = ` Es **MUCHO MÁS BAJO**... ¡Baja bastante!`;
                 }
                 
-                respuesta += `\n\n🎯 Intento ${intentos}`;
+                respuesta += `\n\n Intento ${intentos}`;
             }
 
             agregarMensaje(respuesta, 'ia');
@@ -913,7 +913,7 @@
         // ===== GENERADOR DE IMÁGENES =====
         
         function abrirGeneradorImagenes() {
-            const descripcion = prompt('📝 Describe la imagen que quieres generar:\n\n(Sé específico: colores, estilo, objetos, etc.)\n\nEjemplo: "Un gato naranja jugando con una pelota azul en el parque, estilo cartoon"');
+            const descripcion = prompt(' Describe la imagen que quieres generar:\n\n(Sé específico: colores, estilo, objetos, etc.)\n\nEjemplo: "Un gato naranja jugando con una pelota azul en el parque, estilo cartoon"');
             
             if (descripcion && descripcion.trim()) {
                 agregarMensaje('Genera una imagen: ' + descripcion, 'user');
@@ -953,7 +953,7 @@
             } catch (error) {
                 console.error('Error:', error);
                 ocultarTyping();
-                agregarMensaje('❌ Error al generar imagen: ' + error.message, 'ia');
+                agregarMensaje(' Error al generar imagen: ' + error.message, 'ia');
             }
         }
     </script>

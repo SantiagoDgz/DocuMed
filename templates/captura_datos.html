@@ -387,7 +387,7 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>📋 Captura de Datos Clínicos</h1>
+            <h1> Captura de Datos Clínicos</h1>
             <p>Sistema integral para registro de información médica del paciente</p>
         </div>
 
@@ -395,7 +395,7 @@
 
         <!-- Selector de Paciente -->
         <div class="patient-selector">
-            <h2>👥 Seleccionar Paciente</h2>
+            <h2> Seleccionar Paciente</h2>
             <div class="patient-list" id="patientList">
                 <div class="loading show">
                     <div class="spinner"></div>
@@ -409,7 +409,7 @@
             <div class="forms-container">
                 <!-- Signos Vitales -->
                 <div class="form-card danger">
-                    <h2>❤️ Signos Vitales</h2>
+                    <h2> Signos Vitales</h2>
                     <form id="signosVitalesForm">
                         <div class="form-row">
                             <div class="form-group">
@@ -445,13 +445,13 @@
                             <label>Glucosa (mg/dL)</label>
                             <input type="number" id="glucosa" placeholder="100" min="20" max="500">
                         </div>
-                        <button type="submit" class="btn btn-primary">✔️ Guardar Signos Vitales</button>
+                        <button type="submit" class="btn btn-primary"> Guardar Signos Vitales</button>
                     </form>
                 </div>
 
                 <!-- Síntomas -->
                 <div class="form-card warning">
-                    <h2>🤒 Síntomas Reportados</h2>
+                    <h2> Síntomas Reportados</h2>
                     <form id="sintomasForm">
                         <div class="form-group">
                             <label>Síntomas Principales</label>
@@ -471,13 +471,13 @@
                             <label>Factores Desencadenantes</label>
                             <textarea id="factoresDesencadenantes" placeholder="¿Qué causa o empeora los síntomas?"></textarea>
                         </div>
-                        <button type="submit" class="btn btn-primary">✔️ Guardar Síntomas</button>
+                        <button type="submit" class="btn btn-primary"> Guardar Síntomas</button>
                     </form>
                 </div>
 
                 <!-- Diagnóstico -->
                 <div class="form-card info">
-                    <h2>🔍 Diagnóstico</h2>
+                    <h2> Diagnóstico</h2>
                     <form id="diagnosticoForm">
                         <div class="form-group">
                             <label>Diagnóstico Principal</label>
@@ -495,13 +495,13 @@
                             <label>Observaciones Clínicas</label>
                             <textarea id="observacionesDiag" placeholder="Detalles del examen físico..."></textarea>
                         </div>
-                        <button type="submit" class="btn btn-primary">✔️ Guardar Diagnóstico</button>
+                        <button type="submit" class="btn btn-primary"> Guardar Diagnóstico</button>
                     </form>
                 </div>
 
                 <!-- Tratamiento -->
                 <div class="form-card success">
-                    <h2>💊 Plan de Tratamiento</h2>
+                    <h2> Plan de Tratamiento</h2>
                     <form id="tratamientoForm">
                         <div class="form-group">
                             <label>Medicamento</label>
@@ -546,13 +546,13 @@
                             <label>Contraindicaciones/Advertencias</label>
                             <textarea id="advertencias" placeholder="Efectos secundarios, interacciones..."></textarea>
                         </div>
-                        <button type="submit" class="btn btn-primary">✔️ Guardar Tratamiento</button>
+                        <button type="submit" class="btn btn-primary"> Guardar Tratamiento</button>
                     </form>
                 </div>
 
                 <!-- Estudios/Exámenes -->
                 <div class="form-card">
-                    <h2>🔬 Estudios y Exámenes</h2>
+                    <h2> Estudios y Exámenes</h2>
                     <form id="estudiosForm">
                         <div class="form-group">
                             <label>Tipo de Estudio</label>
@@ -579,13 +579,13 @@
                             <label>Fecha del Estudio</label>
                             <input type="date" id="fechaEstudio">
                         </div>
-                        <button type="submit" class="btn btn-primary">✔️ Guardar Estudio</button>
+                        <button type="submit" class="btn btn-primary"> Guardar Estudio</button>
                     </form>
                 </div>
 
                 <!-- Observaciones Generales -->
                 <div class="form-card">
-                    <h2>📝 Notas y Observaciones</h2>
+                    <h2> Notas y Observaciones</h2>
                     <form id="notasForm">
                         <div class="form-group">
                             <label>Notas Médicas Generales</label>
@@ -595,14 +595,14 @@
                             <label>Recomendaciones al Paciente</label>
                             <textarea id="recomendaciones" placeholder="Indicaciones de reposo, dieta, ejercicio, etc..."></textarea>
                         </div>
-                        <button type="submit" class="btn btn-primary">✔️ Guardar Notas</button>
+                        <button type="submit" class="btn btn-primary"> Guardar Notas</button>
                     </form>
                 </div>
             </div>
 
             <!-- Resumen de Datos -->
             <div class="section-divider">
-                <h3>📊 Resumen de Datos Capturados</h3>
+                <h3> Resumen de Datos Capturados</h3>
                 <div class="data-summary" id="dataSummary">
                     <p style="text-align: center; color: #999;">Completa los formularios para ver el resumen</p>
                 </div>
@@ -860,32 +860,32 @@
             let html = '<h4>Información Capturada</h4>';
 
             if (capturedData.paciente) {
-                html += `<div class="summary-item"><span class="summary-label">👥 Paciente:</span><span class="summary-value">${capturedData.paciente}</span></div>`;
+                html += `<div class="summary-item"><span class="summary-label"> Paciente:</span><span class="summary-value">${capturedData.paciente}</span></div>`;
             }
 
             if (capturedData.signosVitales) {
                 const sv = capturedData.signosVitales;
-                html += `<div class="summary-item"><span class="summary-label">❤️ Presión:</span><span class="summary-value">${sv.presion_arterial} mmHg</span></div>`;
+                html += `<div class="summary-item"><span class="summary-label"> Presión:</span><span class="summary-value">${sv.presion_arterial} mmHg</span></div>`;
             }
 
             if (capturedData.sintomas) {
-                html += `<div class="summary-item"><span class="summary-label">🤒 Síntomas:</span><span class="summary-value">${capturedData.sintomas.substring(0, 30)}...</span></div>`;
+                html += `<div class="summary-item"><span class="summary-label"> Síntomas:</span><span class="summary-value">${capturedData.sintomas.substring(0, 30)}...</span></div>`;
             }
 
             if (capturedData.diagnostico) {
-                html += `<div class="summary-item"><span class="summary-label">🔍 Diagnóstico:</span><span class="summary-value">${capturedData.diagnostico}</span></div>`;
+                html += `<div class="summary-item"><span class="summary-label"> Diagnóstico:</span><span class="summary-value">${capturedData.diagnostico}</span></div>`;
             }
 
             if (capturedData.tratamiento) {
-                html += `<div class="summary-item"><span class="summary-label">💊 Tratamiento:</span><span class="summary-value">${capturedData.tratamiento}</span></div>`;
+                html += `<div class="summary-item"><span class="summary-label"> Tratamiento:</span><span class="summary-value">${capturedData.tratamiento}</span></div>`;
             }
 
             if (capturedData.estudio) {
-                html += `<div class="summary-item"><span class="summary-label">🔬 Estudio:</span><span class="summary-value">${capturedData.estudio}</span></div>`;
+                html += `<div class="summary-item"><span class="summary-label"> Estudio:</span><span class="summary-value">${capturedData.estudio}</span></div>`;
             }
 
             if (capturedData.notas) {
-                html += `<div class="summary-item"><span class="summary-label">📝 Notas:</span><span class="summary-value">${capturedData.notas.substring(0, 30)}...</span></div>`;
+                html += `<div class="summary-item"><span class="summary-label"> Notas:</span><span class="summary-value">${capturedData.notas.substring(0, 30)}...</span></div>`;
             }
 
             if (html === '<h4>Información Capturada</h4>') {

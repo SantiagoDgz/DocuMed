@@ -268,7 +268,7 @@ class AnalisisAIMedico:
         
         # Alergias
         if paciente.get('alergias'):
-            resumen_partes.append(f"⚠️ Alergias: {paciente['alergias']}")
+            resumen_partes.append(f" Alergias: {paciente['alergias']}")
         
         # Última consulta
         if paciente.get('ultima_consulta'):
