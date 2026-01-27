@@ -3,420 +3,963 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DocuMed - Sistema de Gestión Médica Inteligente</title>
+    <title>DocuMed - registros médicos</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #1a365d 0%, #2d5a8c 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .header {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            margin-bottom: 25px;
+        }
+
+        .header h1 {
+            color: #1a365d;
+            margin-bottom: 5px;
+            font-size: 28px;
+        }
+
+        .header p {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            background: white;
+            padding: 15px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .tab-btn {
+            padding: 12px 20px;
+            background: #f5f5f5;
+            border: 2px solid transparent;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            color: #666;
+        }
+
+        .tab-btn.active {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border-color: #667eea;
+        }
+
+        .tab-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .content-section {
+            display: none;
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .content-section.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .card {
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+        }
+
+        .card h3 {
+            color: #1a365d;
+            margin-bottom: 12px;
+            font-size: 16px;
+        }
+
+        .card-content {
+            font-size: 14px;
             line-height: 1.6;
             color: #333;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
         }
-        
-        header {
-            background: rgba(0, 0, 0, 0.1);
-            color: white;
-            padding: 2rem;
+
+        .alert {
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            border-left: 4px solid;
+        }
+
+        .alert.critico {
+            background: #fee;
+            border-left-color: #c33;
+            color: #c33;
+        }
+
+        .alert.alto {
+            background: #ffd;
+            border-left-color: #d90;
+            color: #d90;
+        }
+
+        .alert.medio {
+            background: #eef;
+            border-left-color: #66c;
+            color: #66c;
+        }
+
+        .score-riesgo {
+            font-size: 32px;
+            font-weight: bold;
+            color: #667eea;
             text-align: center;
-            backdrop-filter: blur(10px);
-        }
-        
-        header h1 {
-            font-size: 3rem;
-            margin-bottom: 0.5rem;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-        }
-        
-        header p {
-            font-size: 1.2rem;
-            opacity: 0.9;
-        }
-        
-        nav {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 1rem;
-            text-align: center;
-            backdrop-filter: blur(10px);
-        }
-        
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin: 0 1rem;
-            font-weight: 500;
-            transition: opacity 0.3s;
-        }
-        
-        nav a:hover {
-            opacity: 0.7;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 2rem auto;
-            padding: 0 1rem;
-        }
-        
-        .hero {
-            background: white;
+            padding: 20px;
+            background: linear-gradient(135deg, rgba(102,126,234,0.1), rgba(118,75,162,0.1));
             border-radius: 10px;
-            padding: 3rem;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            margin-bottom: 2rem;
-            text-align: center;
+            margin: 15px 0;
         }
-        
-        .hero h2 {
-            color: #667eea;
-            margin-bottom: 1rem;
-            font-size: 2rem;
+
+        .timeline {
+            border-left: 3px solid #667eea;
+            padding-left: 20px;
+            margin: 20px 0;
         }
-        
-        .hero p {
-            font-size: 1.1rem;
-            color: #666;
-            margin-bottom: 2rem;
-            line-height: 1.8;
-        }
-        
-        .cta-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-        
-        .btn {
-            padding: 12px 30px;
-            border: none;
-            border-radius: 5px;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: all 0.3s;
-            text-decoration: none;
-            display: inline-block;
-            font-weight: 600;
-        }
-        
-        .btn-primary {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
-        }
-        
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 7px 20px rgba(102, 126, 234, 0.6);
-        }
-        
-        .btn-secondary {
-            background: white;
-            color: #667eea;
-            border: 2px solid #667eea;
-        }
-        
-        .btn-secondary:hover {
-            background: #667eea;
-            color: white;
-            transform: translateY(-2px);
-        }
-        
-        .features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin: 3rem 0;
-        }
-        
-        .feature-card {
-            background: white;
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-        
-        .feature-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-        }
-        
-        .feature-card h3 {
-            color: #667eea;
-            margin-bottom: 1rem;
-            font-size: 1.5rem;
-        }
-        
-        .feature-card ul {
-            list-style: none;
-            color: #666;
-        }
-        
-        .feature-card li {
-            padding: 0.5rem 0;
-            padding-left: 1.5rem;
+
+        .timeline-item {
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
             position: relative;
         }
-        
-        .feature-card li:before {
-            content: "✓";
+
+        .timeline-item:last-child {
+            border-bottom: none;
+        }
+
+        .timeline-item::before {
+            content: '';
             position: absolute;
-            left: 0;
-            color: #667eea;
-            font-weight: bold;
-        }
-        
-        .tech-stack {
+            left: -27px;
+            top: 0;
+            width: 15px;
+            height: 15px;
             background: white;
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            margin: 2rem 0;
+            border: 3px solid #667eea;
+            border-radius: 50%;
         }
-        
-        .tech-stack h3 {
-            color: #667eea;
-            margin-bottom: 1rem;
+
+        .timeline-date {
+            color: #999;
+            font-size: 12px;
+            font-weight: 600;
         }
-        
-        .tech-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
+
+        .timeline-title {
+            color: #1a365d;
+            font-weight: 600;
+            margin: 5px 0;
         }
-        
-        .tech-badge {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+
+        .timeline-description {
+            color: #666;
+            font-size: 14px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
             color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: 500;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-size: 14px;
         }
-        
-        .credentials {
-            background: rgba(255, 255, 255, 0.2);
-            padding: 2rem;
-            border-radius: 10px;
-            color: white;
-            margin: 2rem 0;
-            backdrop-filter: blur(10px);
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102,126,234,0.4);
         }
-        
-        .credentials h3 {
-            margin-bottom: 1rem;
+
+        input, textarea, select {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 14px;
+            margin-bottom: 10px;
+            font-family: inherit;
         }
-        
-        .credentials p {
-            margin: 0.5rem 0;
-            font-size: 1.1rem;
+
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102,126,234,0.1);
         }
-        
-        .credentials code {
-            background: rgba(0, 0, 0, 0.2);
-            padding: 0.2rem 0.5rem;
-            border-radius: 3px;
-            font-family: monospace;
+
+        label {
+            display: block;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 8px;
+            font-size: 13px;
         }
-        
-        footer {
-            background: rgba(0, 0, 0, 0.2);
-            color: white;
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .loading {
             text-align: center;
-            padding: 2rem;
-            margin-top: 3rem;
-            backdrop-filter: blur(10px);
+            padding: 20px;
+            color: #999;
         }
-        
-        footer p {
-            margin: 0.5rem 0;
+
+        .spinner {
+            border: 3px solid rgba(102,126,234,0.1);
+            border-top: 3px solid #667eea;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            margin: 10px auto;
         }
-        
-        .footer-links {
-            margin-top: 1rem;
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
         }
-        
-        .footer-links a {
+
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-right: 8px;
+            margin-bottom: 8px;
+        }
+
+        .badge-critico {
+            background: #fdd;
+            color: #c33;
+        }
+
+        .badge-alto {
+            background: #ffd;
+            color: #d90;
+        }
+
+        .badge-medio {
+            background: #ddf;
+            color: #66c;
+        }
+
+        .badge-bajo {
+            background: #dfd;
+            color: #3c3;
+        }
+
+        .list-items {
+            list-style: none;
+        }
+
+        .list-items li {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+            color: #333;
+            font-size: 14px;
+        }
+
+        .list-items li:last-child {
+            border-bottom: none;
+        }
+
+        .mensaje-chat {
+            margin-bottom: 15px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .mensaje-usuario {
+            justify-content: flex-end;
+        }
+
+        .mensaje-ia {
+            justify-content: flex-start;
+        }
+
+        .burbuja-mensaje {
+            max-width: 70%;
+            padding: 12px 15px;
+            border-radius: 12px;
+            line-height: 1.5;
+            font-size: 14px;
+            word-wrap: break-word;
+        }
+
+        .mensaje-usuario .burbuja-mensaje {
+            background: linear-gradient(135deg, #667eea, #764ba2);
             color: white;
-            text-decoration: none;
-            margin: 0 1rem;
-            transition: opacity 0.3s;
         }
-        
-        .footer-links a:hover {
-            opacity: 0.7;
+
+        .mensaje-ia .burbuja-mensaje {
+            background: #e0e0e0;
+            color: #333;
         }
-        
+
+        .hora-mensaje {
+            font-size: 11px;
+            color: #999;
+            text-align: center;
+            margin-top: 5px;
+        }
+
         @media (max-width: 768px) {
-            header h1 {
-                font-size: 2rem;
+            .grid-2 {
+                grid-template-columns: 1fr;
             }
             
-            .hero {
-                padding: 2rem;
-            }
-            
-            .cta-buttons {
+            .tabs {
                 flex-direction: column;
             }
             
-            .btn {
-                width: 100%;
+            .header {
+                padding: 15px;
+            }
+            
+            .header h1 {
+                font-size: 22px;
             }
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>DocuMed</h1>
-        <p>Sistema de Gestión Médica Inteligente</p>
-    </header>
-    
-    <nav>
-        <a href="#inicio">Inicio</a>
-        <a href="#caracteristicas">Características</a>
-        <a href="#tecnologia">Tecnología</a>
-        <a href="#instalacion">Instalación</a>
-        <a href="https://github.com/SantiagoDgz/DocuMed" target="_blank">GitHub</a>
-    </nav>
-    
     <div class="container">
-        <section class="hero" id="inicio">
-            <h2>Bienvenido a DocuMed</h2>
-            <p>
-                Sistema integral de gestión médica potenciado por inteligencia artificial.
-                Gestiona pacientes, citas, laboratorios, recetas y más, todo en un mismo lugar
-                con encriptación de datos y sincronización en la nube.
-            </p>
-            <div class="cta-buttons">
-                <a href="https://github.com/SantiagoDgz/DocuMed" class="btn btn-primary" target="_blank">Ver en GitHub</a>
-                <a href="#instalacion" class="btn btn-secondary">Guía de Instalación</a>
-            </div>
-        </section>
-        
-        <section id="caracteristicas">
-            <h2 style="color: white; margin-bottom: 2rem; text-align: center;">Características Principales</h2>
-            <div class="features">
-                <div class="feature-card">
-                    <h3>Gestión de Pacientes</h3>
-                    <ul>
-                        <li>Registro completo de pacientes</li>
-                        <li>Búsqueda avanzada</li>
-                        <li>Historial médico detallado</li>
-                        <li>Edición y eliminación segura</li>
-                    </ul>
-                </div>
-                
-                <div class="feature-card">
-                    <h3>Panel Médico IA</h3>
-                    <ul>
-                        <li>Chat con IA médica en tiempo real</li>
-                        <li>Análisis de síntomas</li>
-                        <li>Diagnósticos inteligentes</li>
-                        <li>Recomendaciones personalizadas</li>
-                    </ul>
-                </div>
-                
-                <div class="feature-card">
-                    <h3>Gestión de Citas</h3>
-                    <ul>
-                        <li>Programación de citas</li>
-                        <li>Calendario integrado</li>
-                        <li>Recordatorios automáticos</li>
-                        <li>Historial de citas</li>
-                    </ul>
-                </div>
-                
-                <div class="feature-card">
-                    <h3>Laboratorios</h3>
-                    <ul>
-                        <li>Órdenes de laboratorio</li>
-                        <li>Carga de resultados</li>
-                        <li>Visualización de pruebas</li>
-                        <li>Seguimiento histórico</li>
-                    </ul>
-                </div>
-                
-                <div class="feature-card">
-                    <h3>Recetas Digitales</h3>
-                    <ul>
-                        <li>Emisión de prescripciones</li>
-                        <li>Listado de medicamentos</li>
-                        <li>Dosificación automática</li>
-                        <li>Archivo histórico</li>
-                    </ul>
-                </div>
-                
-                <div class="feature-card">
-                    <h3>Seguridad</h3>
-                    <ul>
-                        <li>Encriptación AES-128</li>
-                        <li>Autenticación segura</li>
-                        <li>Backups automáticos</li>
-                        <li>Sincronización en nube</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-        
-        <section class="tech-stack" id="tecnologia">
-            <h3>Tecnologías Utilizadas</h3>
-            <div class="tech-list">
-                <span class="tech-badge">Python 3</span>
-                <span class="tech-badge">Flask</span>
-                <span class="tech-badge">HTML5/CSS3</span>
-                <span class="tech-badge">JavaScript</span>
-                <span class="tech-badge">Groq API</span>
-                <span class="tech-badge">Llama 3.3</span>
-                <span class="tech-badge">SQLite</span>
-                <span class="tech-badge">AES-128</span>
-            </div>
-        </section>
-        
-        <section class="credentials">
-            <h3>Credenciales de Demostración</h3>
-            <p><strong>Usuario:</strong> <code>admin</code></p>
-            <p><strong>Contraseña:</strong> <code>admin123</code></p>
-            <p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.8;">
-                Nota: Cambia estas credenciales en producción por seguridad.
-            </p>
-        </section>
-        
-        <section id="instalacion">
-            <div style="background: white; padding: 2rem; border-radius: 10px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);">
-                <h3 style="color: #667eea; margin-bottom: 1rem;">Instalación Rápida</h3>
-                
-                <h4 style="color: #333; margin-top: 1.5rem; margin-bottom: 0.5rem;">Requisitos</h4>
-                <ul style="list-style-position: inside; color: #666; margin-bottom: 1rem;">
-                    <li>Python 3.8 o superior</li>
-                    <li>pip (gestor de paquetes)</li>
-                    <li>Conexión a internet</li>
-                </ul>
-                
-                <h4 style="color: #333; margin-top: 1.5rem; margin-bottom: 0.5rem;">Pasos</h4>
-                <ol style="list-style-position: inside; color: #666; line-height: 2;">
-                    <li>Clona el repositorio: <code style="background: #f4f4f4; padding: 0.2rem 0.5rem; border-radius: 3px;">git clone https://github.com/SantiagoDgz/DocuMed.git</code></li>
-                    <li>Instala dependencias: <code style="background: #f4f4f4; padding: 0.2rem 0.5rem; border-radius: 3px;">pip install -r requirements.txt</code></li>
-                    <li>Ejecuta: <code style="background: #f4f4f4; padding: 0.2rem 0.5rem; border-radius: 3px;">python launcher.py</code></li>
-                    <li>Accede en: <code style="background: #f4f4f4; padding: 0.2rem 0.5rem; border-radius: 3px;">http://localhost:5000</code></li>
-                </ol>
-            </div>
-        </section>
-    </div>
-    
-    <footer>
-        <p>&copy; 2026 DocuMed - Sistema de Gestión Médica Inteligente</p>
-        <p>Desarrollado por <strong>SantiagoDgz</strong></p>
-        <div class="footer-links">
-            <a href="https://github.com/SantiagoDgz/DocuMed" target="_blank">GitHub</a>
-            <a href="https://github.com/SantiagoDgz" target="_blank">Perfil</a>
+        <div class="header">
+            <h1>Sistema Médico Inteligente</h1>
+            <p>Panel de análisis clínico con IA - Información segura y confidencial</p>
         </div>
-    </footer>
+
+        <div class="tabs">
+            <button class="tab-btn active" onclick="cambiarTab('pacientes')">Pacientes</button>
+            <button class="tab-btn" onclick="cambiarTab('analisis-ia')">Análisis IA</button>
+            <button class="tab-btn" onclick="cambiarTab('chat-ia')">Chat IA Groq</button>
+            <button class="tab-btn" onclick="cambiarTab('clinico')">Panel Clínico</button>
+            <button class="tab-btn" onclick="cambiarTab('alertas')">Alertas</button>
+            <button class="tab-btn" onclick="cambiarTab('timeline')">Timeline</button>
+        </div>
+
+        <!-- SECCIÓN: PACIENTES -->
+        <div id="pacientes" class="content-section active">
+            <h2>Selecciona un Paciente</h2>
+            <div style="margin: 20px 0;">
+                <input type="text" id="searchPaciente" placeholder="Buscar paciente..." style="max-width: 300px;">
+                <button onclick="buscarPaciente()">Buscar</button>
+            </div>
+            <div id="listaPacientes"></div>
+        </div>
+
+        <!-- SECCIÓN: ANÁLISIS IA -->
+        <div id="analisis-ia" class="content-section">
+            <h2>Análisis Inteligente</h2>
+            <div id="contenidoAnalisis"></div>
+        </div>
+
+        <!-- SECCIÓN: CHAT IA GROQ -->
+        <div id="chat-ia" class="content-section">
+            <h2>Asistente Médico IA (Powered by Groq)</h2>
+            <div style="display: flex; flex-direction: column; height: 600px; background: #f9f9f9; border-radius: 12px; overflow: hidden;">
+                <div id="chatHistoria" style="flex: 1; overflow-y: auto; padding: 20px; background: white; border-bottom: 2px solid #e0e0e0;">
+                    <div style="text-align: center; color: #999; padding: 40px 20px;">
+                        <div style="font-size: 48px; margin-bottom: 10px;"></div>
+                        <p>Hola, soy tu asistente médico con IA real. Pregúntame sobre:</p>
+                        <p style="margin-top: 10px; font-size: 14px; color: #666;">
+                            • Diagnósticos y síntomas<br>
+                            • Tratamientos y medicamentos<br>
+                            • Análisis de pacientes<br>
+                            • Recomendaciones médicas
+                        </p>
+                    </div>
+                </div>
+                <div style="padding: 15px; background: #f5f5f5; border-top: 2px solid #e0e0e0;">
+                    <div style="display: flex; gap: 10px; margin-bottom: 10px;">
+                        <input type="text" id="inputChat" placeholder="Escribe tu pregunta médica..." 
+                               style="flex: 1; padding: 12px 15px; border: 2px solid #e0e0e0; border-radius: 8px; font-size: 14px;"
+                               onkeypress="if(event.key==='Enter') enviarMensajeChat()">
+                        <button onclick="enviarMensajeChat()" style="padding: 12px 30px; font-size: 16px;"> Enviar</button>
+                    </div>
+                    <div id="estadoChat" style="text-align: center; font-size: 12px; color: #999;"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECCIÓN: PANEL CLÍNICO -->
+        <div id="clinico" class="content-section">
+            <h2>Panel Clínico</h2>
+            <div class="grid-2">
+                <div id="infoPaciente"></div>
+                <div id="infoMedica"></div>
+            </div>
+            
+            <h3 style="margin-top: 30px; color: #1a365d;">Diagnósticos</h3>
+            <div style="margin-bottom: 20px;">
+                <div class="form-group">
+                    <label>Nuevo Diagnóstico</label>
+                    <input type="text" id="nuevoDiagnostico" placeholder="Ej: Diabetes Mellitus Tipo 2">
+                    <button onclick="agregarDiagnostico()">+ Agregar</button>
+                </div>
+                <div id="listaDiagnosticos"></div>
+            </div>
+
+            <h3 style="margin-top: 30px; color: #1a365d;">Tratamientos</h3>
+            <div style="margin-bottom: 20px;">
+                <div class="grid-2">
+                    <div class="form-group">
+                        <label>Medicamento</label>
+                        <input type="text" id="medicamento" placeholder="Ej: Metformina">
+                    </div>
+                    <div class="form-group">
+                        <label>Dosis</label>
+                        <input type="text" id="dosis" placeholder="Ej: 500mg">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Duración</label>
+                    <input type="text" id="duracion" placeholder="Ej: 3 meses">
+                </div>
+                <button onclick="agregarTratamiento()">+ Agregar Tratamiento</button>
+                <div id="listaTratamientos"></div>
+            </div>
+
+            <h3 style="margin-top: 30px; color: #1a365d;">Estudios/Exámenes</h3>
+            <div>
+                <div class="grid-2">
+                    <div class="form-group">
+                        <label>Tipo de Estudio</label>
+                        <input type="text" id="tipoEstudio" placeholder="Ej: Laboratorio de sangre">
+                    </div>
+                    <div class="form-group">
+                        <label>Resultado</label>
+                        <input type="text" id="resultadoEstudio" placeholder="Ej: Glucosa 150 mg/dL">
+                    </div>
+                </div>
+                <button onclick="agregarEstudio()">+ Agregar Estudio</button>
+                <div id="listaEstudios"></div>
+            </div>
+        </div>
+
+        <!-- SECCIÓN: ALERTAS -->
+        <div id="alertas" class="content-section">
+            <h2>Sistema de Alertas Clínicas</h2>
+            <div id="contenidoAlertas"></div>
+        </div>
+
+        <!-- SECCIÓN: TIMELINE -->
+        <div id="timeline" class="content-section">
+            <h2>Timeline Clínico</h2>
+            <div id="contenidoTimeline"></div>
+        </div>
+    </div>
+
+    <script>
+        let pacienteActual = null;
+        let conversacionChat = [];
+
+        async function enviarMensajeChat() {
+            const input = document.getElementById('inputChat');
+            const mensaje = input.value.trim();
+            
+            if (!mensaje) return;
+            
+            // Agregar mensaje del usuario
+            conversacionChat.push({
+                rol: 'usuario',
+                contenido: mensaje,
+                hora: new Date().toLocaleTimeString('es-ES', {hour: '2-digit', minute:'2-digit'})
+            });
+            
+            actualizarVistaChat();
+            input.value = '';
+            
+            // Mostrar estado
+            document.getElementById('estadoChat').innerHTML = '⏳ Analizando con IA Groq...';
+            
+            try {
+                const response = await fetch('/api/chat-groq', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        mensaje: mensaje,
+                        paciente_id: pacienteActual,
+                        conversacion: conversacionChat
+                    })
+                });
+                
+                const datos = await response.json();
+                
+                if (datos.exito) {
+                    conversacionChat.push({
+                        rol: 'asistente',
+                        contenido: datos.respuesta,
+                        hora: new Date().toLocaleTimeString('es-ES', {hour: '2-digit', minute:'2-digit'})
+                    });
+                    
+                    document.getElementById('estadoChat').innerHTML = 'Conexión activa';
+                } else {
+                    conversacionChat.push({
+                        rol: 'asistente',
+                        contenido: 'Error: ' + (datos.error || 'No se pudo procesar la respuesta'),
+                        hora: new Date().toLocaleTimeString('es-ES', {hour: '2-digit', minute:'2-digit'})
+                    });
+                    document.getElementById('estadoChat').innerHTML = 'Error en la conexión';
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                conversacionChat.push({
+                    rol: 'asistente',
+                    contenido: 'Error de conexión. Intenta nuevamente.',
+                    hora: new Date().toLocaleTimeString('es-ES', {hour: '2-digit', minute:'2-digit'})
+                });
+                document.getElementById('estadoChat').innerHTML = ' Error de conexión';
+            }
+            
+            actualizarVistaChat();
+        }
+
+        function actualizarVistaChat() {
+            const historialDiv = document.getElementById('chatHistoria');
+            let html = '';
+            
+            conversacionChat.forEach((msg, idx) => {
+                const claseMsg = msg.rol === 'usuario' ? 'mensaje-usuario' : 'mensaje-ia';
+                const icono = msg.rol === 'usuario' ? '' : '';
+                
+                html += `
+                    <div class="mensaje-chat ${claseMsg}">
+                        <div style="display: flex; flex-direction: column; align-items: ${msg.rol === 'usuario' ? 'flex-end' : 'flex-start'};">
+                            <div class="burbuja-mensaje">
+                                <span style="font-weight: 600; margin-right: 5px;">${icono}</span>
+                                ${msg.contenido}
+                            </div>
+                            <div class="hora-mensaje">${msg.hora}</div>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            historialDiv.innerHTML = html;
+            historialDiv.scrollTop = historialDiv.scrollHeight;
+        }
+
+
+        async function cargarPacientes() {
+            try {
+                const response = await fetch('/api/pacientes');
+                const datos = await response.json();
+                
+                let html = '<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 15px;">';
+                
+                datos.pacientes.forEach(p => {
+                    html += `
+                        <div style="background: #f5f5f5; padding: 15px; border-radius: 8px; cursor: pointer; border: 2px solid transparent;" 
+                             onclick="seleccionarPaciente('${p.id}')">
+                            <div style="font-weight: 600; color: #1a365d; margin-bottom: 8px;">
+                                ${p.nombre} ${p.apellido}
+                            </div>
+                            <div style="font-size: 13px; color: #666;">
+                                <div>Edad: ${p.edad} años</div>
+                                <div>Cédula: ${p.cedula}</div>
+                            </div>
+                        </div>
+                    `;
+                });
+                
+                html += '</div>';
+                document.getElementById('listaPacientes').innerHTML = html;
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        }
+
+        function seleccionarPaciente(idPaciente) {
+            pacienteActual = idPaciente;
+            cargarInfoPaciente();
+            cargarAnalisisIA();
+            cargarAlertas();
+            cambiarTab('clinico');
+        }
+
+        async function cargarInfoPaciente() {
+            try {
+                const response = await fetch(`/api/pacientes/${pacienteActual}`);
+                const datos = await response.json();
+                
+                if (datos.exito) {
+                    const p = datos.paciente;
+                    
+                    // Info personal
+                    document.getElementById('infoPaciente').innerHTML = `
+                        <div class="card">
+                            <h3> Información Personal</h3>
+                            <div class="card-content">
+                                <div><strong>Nombre:</strong> ${p.nombre} ${p.apellido}</div>
+                                <div><strong>Cédula:</strong> ${p.cedula}</div>
+                                <div><strong>Edad:</strong> ${p.edad} años</div>
+                                <div><strong>Género:</strong> ${p.genero}</div>
+                                <div><strong>Teléfono:</strong> ${p.telefono}</div>
+                                <div><strong>Email:</strong> ${p.email}</div>
+                            </div>
+                        </div>
+                    `;
+                    
+                    // Info médica
+                    document.getElementById('infoMedica').innerHTML = `
+                        <div class="card">
+                            <h3> Información Médica</h3>
+                            <div class="card-content">
+                                <div><strong>Peso:</strong> ${p.peso || 'N/A'} kg</div>
+                                <div><strong>Altura:</strong> ${p.altura || 'N/A'} cm</div>
+                                <div><strong>Presión:</strong> ${p.presion_arterial || 'N/A'}</div>
+                                <div><strong>Alergias:</strong> ${p.alergias || 'Ninguna'}</div>
+                            </div>
+                        </div>
+                    `;
+
+                    // Cargar listas
+                    cargarDiagnosticos();
+                    cargarTratamientos();
+                    cargarEstudios();
+                    cargarTimeline();
+                }
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        }
+
+        async function cargarAnalisisIA() {
+            if (!pacienteActual) return;
+            
+            try {
+                document.getElementById('contenidoAnalisis').innerHTML = '<div class="loading"><div class="spinner"></div>Analizando paciente...</div>';
+                
+                const response = await fetch(`/api/analisis-paciente/${pacienteActual}`);
+                const datos = await response.json();
+                
+                if (datos.exito) {
+                    const análisis = datos.analisis;
+                    
+                    let html = `
+                        <div class="card">
+                            <h3> Resumen Clínico</h3>
+                            <div class="card-content" style="font-size: 13px; line-height: 1.8;">
+                                ${análisis.resumen_clinico}
+                            </div>
+                        </div>
+
+                        <div class="score-riesgo">
+                            Score de Riesgo: ${análisis.score_riesgo}/100
+                        </div>
+
+                        <h3 style="color: #1a365d; margin: 20px 0;"> Patrones Detectados</h3>
+                    `;
+
+                    if (análisis.patrones.length > 0) {
+                        análisis.patrones.forEach(patrón => {
+                            html += `
+                                <div class="card" style="margin-bottom: 10px;">
+                                    <strong>${patrón.descripción}</strong>
+                                    <div style="color: #666; font-size: 13px; margin-top: 5px;">
+                                        → ${patrón.implicación}
+                                    </div>
+                                </div>
+                            `;
+                        });
+                    } else {
+                        html += '<div class="card"> No se detectaron patrones preocupantes</div>';
+                    }
+
+                    document.getElementById('contenidoAnalisis').innerHTML = html;
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                document.getElementById('contenidoAnalisis').innerHTML = '<div style="color: #c33;">Error al cargar análisis</div>';
+            }
+        }
+
+        async function cargarAlertas() {
+            if (!pacienteActual) return;
+            
+            try {
+                const response = await fetch(`/api/alertas-paciente/${pacienteActual}`);
+                const datos = await response.json();
+                
+                if (datos.exito) {
+                    let html = `<div style="margin-bottom: 20px;">
+                        <strong style="color: #1a365d;">Score de Riesgo: ${datos.score_riesgo}/100</strong>
+                    </div>`;
+                    
+                    if (datos.alertas.length > 0) {
+                        datos.alertas.forEach(alerta => {
+                            html += `
+                                <div class="alert ${alerta.nivel}">
+                                    <strong>${alerta.mensaje}</strong>
+                                    <div style="margin-top: 8px; font-size: 13px;">
+                                        Acción: ${alerta.acción}
+                                    </div>
+                                </div>
+                            `;
+                        });
+                    } else {
+                        html += '<div style="padding: 15px; background: #dfd; border-left: 4px solid #3c3; color: #3c3; border-radius: 8px;"> No hay alertas críticas</div>';
+                    }
+                    
+                    document.getElementById('contenidoAlertas').innerHTML = html;
+                }
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        }
+
+        async function cargarDiagnosticos() {
+            if (!pacienteActual) return;
+            
+            try {
+                const response = await fetch(`/api/pacientes/${pacienteActual}/diagnosticos`);
+                const datos = await response.json();
+                
+                let html = '';
+                if (datos.diagnosticos.length > 0) {
+                    html = '<ul class="list-items">';
+                    datos.diagnosticos.forEach(d => {
+                        html += `<li>• ${d.diagnostico} <span style="color: #999; font-size: 12px;">(${d.fecha})</span></li>`;
+                    });
+                    html += '</ul>';
+                } else {
+                    html = '<div style="color: #999; font-style: italic;">Sin diagnósticos registrados</div>';
+                }
+                
+                document.getElementById('listaDiagnosticos').innerHTML = html;
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        }
+
+        async function cargarTratamientos() {
+            if (!pacienteActual) return;
+            
+            try {
+                const response = await fetch(`/api/pacientes/${pacienteActual}/tratamientos`);
+                const datos = await response.json();
+                
+                let html = '';
+                if (datos.tratamientos.length > 0) {
+                    html = '<ul class="list-items">';
+                    datos.tratamientos.forEach(t => {
+                        html += `<li><strong>${t.medicamento}</strong> - ${t.dosis} (${t.duracion})</li>`;
+                    });
+                    html += '</ul>';
+                } else {
+                    html = '<div style="color: #999; font-style: italic;">Sin tratamientos registrados</div>';
+                }
+                
+                document.getElementById('listaTratamientos').innerHTML = html;
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        }
+
+        async function cargarEstudios() {
+            if (!pacienteActual) return;
+            
+            try {
+                const response = await fetch(`/api/pacientes/${pacienteActual}/estudios`);
+                const datos = await response.json();
+                
+                let html = '';
+                if (datos.estudios.length > 0) {
+                    html = '<ul class="list-items">';
+                    datos.estudios.forEach(e => {
+                        html += `<li><strong>${e.tipo}</strong> - ${e.resultado} <span style="color: #999; font-size: 12px;">(${e.fecha})</span></li>`;
+                    });
+                    html += '</ul>';
+                } else {
+                    html = '<div style="color: #999; font-style: italic;">Sin estudios registrados</div>';
+                }
+                
+                document.getElementById('listaEstudios').innerHTML = html;
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        }
+
+        async function cargarTimeline() {
+            if (!pacienteActual) return;
+            
+            try {
+                const response = await fetch(`/api/pacientes/${pacienteActual}/timeline`);
+                const datos = await response.json();
+                
+                let html = '<div class="timeline">';
+                
+                if (datos.timeline.length > 0) {
+                    datos.timeline.forEach(evento => {
+                        html += `
+                            <div class="timeline-item">
+                                <div class="timeline-date">${evento.fecha}</div>
+                                <div class="timeline-title">${evento.tipo.toUpperCase()}</div>
+                                <div class="timeline-description">${evento.descripcion}</div>
+                            </div>
+                        `;
+                    });
+                } else {
+                    html += '<div style="color: #999; font-style: italic;">Sin eventos registrados</div>';
+                }
+                
+                html += '</div>';
+                document.getElementById('contenidoTimeline').innerHTML = html;
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        }
+
+        async function agregarDiagnostico() {
+            const diag = document.getElementById('nuevoDiagnostico').value.trim();
+            if (!diag || !pacienteActual) return;
+            
+            try {
+                const response = await fetch(`/api/pacientes/${pacienteActual}/diagnosticos`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ diagnostico: diag })
+                });
+                
+                const datos = await response.json();
+                if (datos.exito) {
+                    document.getElementById('nuevoDiagnostico').value = '';
+                    cargarDiagnosticos();
+                    cargarAnalisisIA();
+                    alert(' Diagnóstico agregado');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        }
+
+        async function agregarTratamiento() {
+            const med = document.getElementById('medicamento').value.trim();
+            const dos = document.getElementById('dosis').value.trim();
+            const dur = document.getElementById('duracion').value.trim();
+            
+            if (!med || !dos || !dur || !pacienteActual) return;
+            
+            try {
+                const response = await fetch(`/api/pacientes/${pacienteActual}/tratamientos`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        tratamiento: med,
+                        medicamento: med,
+                        dosis: dos,
+                        duracion: dur
+                    })
+                });
+                
+                const datos = await response.json();
+                if (datos.exito) {
+                    document.getElementById('medicamento').value = '';
+                    document.getElementById('dosis').value = '';
+                    document.getElementById('duracion').value = '';
+                    cargarTratamientos();
+                    alert(' Tratamiento agregado');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        }
+
+        async function agregarEstudio() {
+            const tipo = document.getElementById('tipoEstudio').value.trim();
+            const resultado = document.getElementById('resultadoEstudio').value.trim();
+            
+            if (!tipo || !resultado || !pacienteActual) return;
+            
+            try {
+                const response = await fetch(`/api/pacientes/${pacienteActual}/estudios`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        tipo_estudio: tipo,
+                        resultado: resultado
+                    })
+                });
+                
+                const datos = await response.json();
+                if (datos.exito) {
+                    document.getElementById('tipoEstudio').value = '';
+                    document.getElementById('resultadoEstudio').value = '';
+                    cargarEstudios();
+                    alert(' Estudio agregado');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        }
+
+        function cambiarTab(tabName) {
+            document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
+            document.getElementById(tabName).classList.add('active');
+            
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            event.target.classList.add('active');
+        }
+
+        function buscarPaciente() {
+            const termino = document.getElementById('searchPaciente').value;
+            if (!termino) cargarPacientes();
+        }
+
+        // Cargar pacientes al iniciar
+        window.onload = () => {
+            cargarPacientes();
+        };
+    </script>
 </body>
 </html>
