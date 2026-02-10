@@ -12,7 +12,7 @@ if sys.platform == 'win32':
     if hasattr(sys.stderr, 'reconfigure'):
         sys.stderr.reconfigure(encoding='utf-8')
 
-from flask import Flask, render_template, request, jsonify
+
 import random
 import re
 from datetime import datetime
@@ -29,7 +29,7 @@ app = Flask(__name__)
 
 # Configurar Groq con API key gratuita
 GROQ_API_KEY = "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"  # Tu API Key
-groq_client = Groq(api_key=GROQ_API_KEY)
+groq_client = Groq (api_key=GROQ_API_KEY)
 
 class IAannIA:
     """IA Avanzada con Groq API - Conversacional Real con Llama 3"""
@@ -39,7 +39,7 @@ class IAannIA:
         self.version = "4.0 Powered by Llama 3"
         self.conversacion_historia = []
         self.contexto_actual = None
-        self.idioma_actual = 'es'  # espaol por defecto
+        self.idioma_actual = 'es'  # español por defecto
         self.memoria_conversacion = []  # Memoria a largo plazo
         self.tema_actual = None
         self.usuario_nombre = None
@@ -1590,6 +1590,7 @@ def index():
 def test():
     return render_template('test.html')
 
+
 @app.route('/chat', methods=['POST'])
 def chat():
     try:
@@ -1601,6 +1602,7 @@ def chat():
             stats = ia.obtener_estadisticas()
             
             # Verificar si es una respuesta con imagen
+            
             if isinstance(resultado, dict) and resultado.get('es_imagen'):
                 return jsonify({
                     'respuesta': resultado['respuesta'],
