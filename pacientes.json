@@ -1,0 +1,30 @@
+{
+  "00001": {
+    "id": "00001",
+    "nombre": "2215833",
+    "apellido": "fgdgfdgfdg",
+    "cedula": "8758586",
+    "edad": "67",
+    "genero": "Otro",
+    "telefono": "8120340186",
+    "email": "dsDSsd@gmail.com",
+    "direccion": "uni",
+    "historia_medica": "ni uno",
+    "alergias": "todo",
+    "medicamentos": "ni uno",
+    "peso": "235",
+    "altura": "180",
+    "presion_arterial": "120/80",
+    "fecha_registro": "2026-02-11 09:44:20",
+    "ultima_consulta": "2026-02-01",
+    "diagnósticos": [],
+    "tratamientos": [],
+    "estudios": [],
+    "sintomas": "",
+    "observaciones": "",
+    "estado_clinico": "Estable",
+    "riesgo_clinico": "Bajo",
+    "notas": [],
+    "timeline": []
+  }
+}

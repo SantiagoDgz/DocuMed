@@ -1,0 +1,22 @@
+{
+  "dropbox": {
+    "habilitado": false,
+    "token": "",
+    "carpeta": "/Medico_Sistema"
+  },
+  "google_drive": {
+    "habilitado": false,
+    "api_key": "",
+    "carpeta_id": ""
+  },
+  "aws_s3": {
+    "habilitado": false,
+    "access_key": "",
+    "secret_key": "",
+    "bucket": "medico-backup"
+  },
+  "local": {
+    "habilitado": true,
+    "ruta": "./datos_backup"
+  }
+}

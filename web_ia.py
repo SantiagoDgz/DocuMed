@@ -561,7 +561,7 @@ def limpiar():
 def obtener_pacientes():
     """Obtiene la lista de todos los pacientes"""
     pacientes = gestor_pacientes.obtener_todos_pacientes()
-    return jsonify({'pacientes': pacientes})
+    return jsonify({'exito': True, 'pacientes': pacientes})
 
 @app.route('/api/pacientes', methods=['POST'])
 def agregar_paciente():
