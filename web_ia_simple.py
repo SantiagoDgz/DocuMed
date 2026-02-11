@@ -24,8 +24,9 @@ from groq import Groq
 import base64
 from PIL import Image
 import requests
+from flask import Flask, render_template, jsonify, request, send_from_directory
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='docs', static_url_path='/', template_folder='docs')
 
 # Configurar Groq con API key gratuita
 GROQ_API_KEY = "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"  # Tu API Key

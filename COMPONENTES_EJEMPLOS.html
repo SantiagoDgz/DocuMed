@@ -1,0 +1,316 @@
+<!-- HVIRFILL - Ejemplos de Componentes Reutilizables -->
+
+<!-- ============================================ -->
+<!-- COMPONENTE: Header Estándar -->
+<!-- ============================================ -->
+<div class="header">
+    <div class="header-content">
+        <h1>Título de Página</h1>
+        <p>Descripción o subtítulo de la página</p>
+    </div>
+</div>
+
+<!-- ============================================ -->
+<!-- COMPONENTE: Botones -->
+<!-- ============================================ -->
+
+<!-- Botón Primario (Cyan) -->
+<button class="btn btn-primary"> Acción Principal</button>
+
+<!-- Botón Secundario (Gris) -->
+<button class="btn btn-secondary"> Acción Secundaria</button>
+
+<!-- Botón Peligro (Rojo) -->
+<button class="btn btn-danger"> Eliminar</button>
+
+<!-- Botón Pequeño -->
+<button class="btn-small"> Editar</button>
+
+<!-- ============================================ -->
+<!-- COMPONENTE: Tarjeta (Card) -->
+<!-- ============================================ -->
+<div class="card">
+    <h3>Título de Tarjeta</h3>
+    <p>Contenido de la tarjeta con información relevante.</p>
+    <button class="btn btn-primary" style="margin-top: 16px;">Acción</button>
+</div>
+
+<!-- ============================================ -->
+<!-- COMPONENTE: Formulario -->
+<!-- ============================================ -->
+<div class="form-group">
+    <label for="inputName">Nombre Completo</label>
+    <input type="text" id="inputName" placeholder="Ej: Juan Pérez">
+</div>
+
+<div class="form-group">
+    <label for="selectOption">Selecciona una opción</label>
+    <select id="selectOption">
+        <option value="">-- Seleccionar --</option>
+        <option value="1">Opción 1</option>
+        <option value="2">Opción 2</option>
+    </select>
+</div>
+
+<div class="form-group">
+    <label for="textArea">Descripción</label>
+    <textarea id="textArea" placeholder="Escribe aquí..."></textarea>
+</div>
+
+<!-- ============================================ -->
+<!-- COMPONENTE: Alertas -->
+<!-- ============================================ -->
+
+<!-- Alerta de Éxito -->
+<div class="alert alert-success show">
+    ✓ Operación completada exitosamente
+</div>
+
+<!-- Alerta de Error -->
+<div class="alert alert-error show">
+    ✗ Error: Verifica los datos e intenta de nuevo
+</div>
+
+<!-- Alerta de Advertencia -->
+<div class="alert alert-warning show">
+    ⚠️ Advertencia: Algunos campos requieren revisión
+</div>
+
+<!-- ============================================ -->
+<!-- COMPONENTE: Listado de Items -->
+<!-- ============================================ -->
+<div style="background: white; border-radius: 16px; padding: 20px; margin-bottom: 20px;">
+    <div style="padding: 16px; border: 1px solid #f8f9fa; border-radius: 12px; margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center;">
+        <div>
+            <h4 style="color: #1a1a2e; margin-bottom: 4px;">Nombre del Item</h4>
+            <p style="color: #8899aa; font-size: 13px;">Descripción o metadata</p>
+        </div>
+        <span style="background: rgba(0, 208, 132, 0.15); color: #00d084; padding: 6px 12px; border-radius: 50px; font-size: 11px; font-weight: 600;">COMPLETADO</span>
+    </div>
+</div>
+
+<!-- ============================================ -->
+<!-- COMPONENTE: Modal -->
+<!-- ============================================ -->
+<div class="modal show" style="display: flex;">
+    <div class="modal-content" style="max-width: 500px;">
+        <button class="btn-close" style="float: right; cursor: pointer; font-size: 28px;">×</button>
+        <div class="modal-header">Título del Modal</div>
+        
+        <form style="padding: 20px 0;">
+            <div class="form-group">
+                <label>Campo requerido</label>
+                <input type="text" placeholder="Ingresa datos...">
+            </div>
+            
+            <div class="form-group">
+                <label>Descripción</label>
+                <textarea placeholder="Más información..."></textarea>
+            </div>
+            
+            <button type="submit" class="btn-submit">Guardar Cambios</button>
+        </form>
+    </div>
+</div>
+
+<!-- ============================================ -->
+<!-- COMPONENTE: Grid de Tarjetas -->
+<!-- ============================================ -->
+<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 28px;">
+    <div class="card">
+        <h3 style="font-size: 20px; margin-bottom: 12px;">Opción 1</h3>
+        <p style="color: #8899aa; font-size: 14px; margin-bottom: 20px;">Descripción de esta opción o funcionalidad.</p>
+        <button class="btn btn-primary">Ir a Opción</button>
+    </div>
+    
+    <div class="card">
+        <h3 style="font-size: 20px; margin-bottom: 12px;">Opción 2</h3>
+        <p style="color: #8899aa; font-size: 14px; margin-bottom: 20px;">Descripción de esta opción o funcionalidad.</p>
+        <button class="btn btn-primary">Ir a Opción</button>
+    </div>
+    
+    <div class="card">
+        <h3 style="font-size: 20px; margin-bottom: 12px;">Opción 3</h3>
+        <p style="color: #8899aa; font-size: 14px; margin-bottom: 20px;">Descripción de esta opción o funcionalidad.</p>
+        <button class="btn btn-primary">Ir a Opción</button>
+    </div>
+</div>
+
+<!-- ============================================ -->
+<!-- COMPONENTE: Tabla Estilizada -->
+<!-- ============================================ -->
+<div style="background: white; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);">
+    <table style="width: 100%; border-collapse: collapse;">
+        <thead style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); color: #00d4ff;">
+            <tr>
+                <th style="padding: 16px; text-align: left; font-weight: 600;">Columna 1</th>
+                <th style="padding: 16px; text-align: left; font-weight: 600;">Columna 2</th>
+                <th style="padding: 16px; text-align: left; font-weight: 600;">Columna 3</th>
+                <th style="padding: 16px; text-align: center; font-weight: 600;">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr style="border-bottom: 1px solid #f8f9fa;">
+                <td style="padding: 16px; color: #1a1a2e;">Dato 1</td>
+                <td style="padding: 16px; color: #8899aa;">Dato 2</td>
+                <td style="padding: 16px; color: #8899aa;">Dato 3</td>
+                <td style="padding: 16px; text-align: center;">
+                    <button class="btn-small" style="padding: 6px 12px;">Editar</button>
+                </td>
+            </tr>
+            <tr style="border-bottom: 1px solid #f8f9fa;">
+                <td style="padding: 16px; color: #1a1a2e;">Dato 1</td>
+                <td style="padding: 16px; color: #8899aa;">Dato 2</td>
+                <td style="padding: 16px; color: #8899aa;">Dato 3</td>
+                <td style="padding: 16px; text-align: center;">
+                    <button class="btn-small">Editar</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- ============================================ -->
+<!-- COMPONENTE: Tabs/Pestañas -->
+<!-- ============================================ -->
+<div class="test-tabs">
+    <button class="tab active" onclick="selectTab(this)">Pestaña 1</button>
+    <button class="tab" onclick="selectTab(this)">Pestaña 2</button>
+    <button class="tab" onclick="selectTab(this)">Pestaña 3</button>
+</div>
+
+<!-- ============================================ -->
+<!-- COMPONENTE: Badge/Etiqueta -->
+<!-- ============================================ -->
+
+<!-- Estado Éxito -->
+<span style="background: rgba(0, 208, 132, 0.15); color: #00d084; padding: 8px 16px; border-radius: 50px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; display: inline-block; border: 1px solid rgba(0, 208, 132, 0.3);">Completado</span>
+
+<!-- Estado Pendiente -->
+<span style="background: rgba(255, 165, 0, 0.15); color: #ffa500; padding: 8px 16px; border-radius: 50px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; display: inline-block; border: 1px solid rgba(255, 165, 0, 0.3);">Pendiente</span>
+
+<!-- Estado Error -->
+<span style="background: rgba(255, 71, 87, 0.15); color: #ff4757; padding: 8px 16px; border-radius: 50px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; display: inline-block; border: 1px solid rgba(255, 71, 87, 0.3);">Error</span>
+
+<!-- ============================================ -->
+<!-- COMPONENTE: Spinner de Carga -->
+<!-- ============================================ -->
+<div style="text-align: center;">
+    <div style="border: 3px solid #f8f9fa; border-top: 3px solid #00d4ff; border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; margin: 20px auto;"></div>
+    <p style="color: #8899aa;">Cargando...</p>
+</div>
+
+<!-- ============================================ -->
+<!-- COMPONENTE: Tarjeta de Información -->
+<!-- ============================================ -->
+<div class="card" style="border-left: 4px solid #00d4ff;">
+    <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 12px;">
+        <h3 style="font-size: 18px;">Información Importante</h3>
+        <span style="background: rgba(0, 212, 255, 0.15); padding: 4px 12px; border-radius: 50px; font-size: 11px; color: #00d4ff; font-weight: 700;">NUEVO</span>
+    </div>
+    <p style="color: #8899aa; font-size: 14px; line-height: 1.6;">
+        Esta tarjeta presenta información clave de la aplicación con un borde coloreado para destacar su importancia.
+    </p>
+</div>
+
+<!-- ============================================ -->
+<!-- ESTILOS NECESARIOS (CSS) -->
+<!-- ============================================ -->
+<style>
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+
+    .tab {
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .tab.active {
+        color: #00d4ff;
+        border-bottom-color: #00d4ff;
+    }
+
+    .btn-small {
+        padding: 8px 16px;
+        border: 2px solid transparent;
+        border-radius: 10px;
+        background: #f8f9fa;
+        color: #1a1a2e;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-transform: uppercase;
+        font-size: 12px;
+        letter-spacing: 0.5px;
+    }
+
+    .btn-small:hover {
+        background: #00d4ff;
+        color: #1a1a2e;
+        border-color: #00d4ff;
+    }
+
+    .btn-close {
+        background: none;
+        border: none;
+        color: #8899aa;
+        cursor: pointer;
+        transition: color 0.3s ease;
+    }
+
+    .btn-close:hover {
+        color: #1a1a2e;
+    }
+</style>
+
+<!-- ============================================ -->
+<!-- EJEMPLO COMPLETO: Dashboard Secciones -->
+<!-- ============================================ -->
+<!--
+<div class="container">
+    <!-- Header -->
+    <div class="header">
+        <div class="header-content">
+            <h1>Mi Dashboard</h1>
+            <p>Bienvenido a tu área personal</p>
+        </div>
+    </div>
+
+    <!-- Sección de Resumen -->
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin: 40px 0;">
+        <div class="card">
+            <h4 style="color: #8899aa; font-size: 12px; text-transform: uppercase; margin-bottom: 8px;">Total Pacientes</h4>
+            <h2 style="color: #00d4ff; font-size: 32px; font-weight: 700;">127</h2>
+        </div>
+        <div class="card">
+            <h4 style="color: #8899aa; font-size: 12px; text-transform: uppercase; margin-bottom: 8px;">Citas Hoy</h4>
+            <h2 style="color: #00d4ff; font-size: 32px; font-weight: 700;">8</h2>
+        </div>
+        <div class="card">
+            <h4 style="color: #8899aa; font-size: 12px; text-transform: uppercase; margin-bottom: 8px;">Resultado de Labs</h4>
+            <h2 style="color: #00d4ff; font-size: 32px; font-weight: 700;">23</h2>
+        </div>
+    </div>
+
+    <!-- Contenido principal -->
+    <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 40px;">
+        <div class="card">
+            <h3> Actividades Recientes</h3>
+            <!-- Listado aquí -->
+        </div>
+        <div class="card">
+            <h3> Próximas Citas</h3>
+            <!-- Listado aquí -->
+        </div>
+    </div>
+</div>
+-->
+
+---
+
+Estos componentes son ejemplos reutilizables que siguen el sistema de diseño HVIRFILL.
+Modifica colores, tamaños y contenido según tus necesidades.
+
+Para uso en producción, considera extraer estos estilos a clases CSS reutilizables.
