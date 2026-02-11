@@ -43,6 +43,22 @@ Sistema integral de gestión médica con inteligencia artificial, potenciado por
 - Backup automático de datos
 - Gestión de claves maestras
 
+## Alcance Simplificado (MVP)
+
+Esta versión prioriza un flujo **simple y práctico** para uso personal del médico:
+
+- **Expediente digital básico**: pacientes, historial, diagnósticos, tratamientos y notas.
+- **Búsqueda rápida** y organización por fecha/tipo.
+- **Asistente IA** para resúmenes y alertas simples (sin reemplazar el criterio clínico).
+- **Ejecución local** con configuración mínima.
+
+### Fuera de alcance (por ahora)
+- Cumplimiento normativo avanzado (HIPAA/LOPD/GDPR).
+- Múltiples usuarios con roles y auditoría.
+- Integraciones complejas con sistemas hospitalarios.
+
+> Nota: El objetivo es reducir complejidad inicial y enfocarse en productividad personal.
+
 ## Tecnologías Utilizadas
 
 - **Backend:** Python 3 con Flask
