@@ -27,6 +27,14 @@ usuarios_bd = {
     'doctor': {'password': hashlib.sha256('doctor123'.encode()).hexdigest(), 'nombre': 'Dr. García'}
 }
 
+def login_requerido(func):
+    @wraps(func)
+    def wrapper(*args, **kwargs):
+        if 'usuario_id' not in session:
+            return redirect(url_for('login'))
+        return func(*args, **kwargs)
+    return wrapper
+
 class SimpleIA:
     def __init__(self):
         self.nombre = "annIA"
@@ -438,35 +446,85 @@ Pregunta sobre algún deporte específico para más detalles."""
 # Crear instancia global de la IA
 ia = SimpleIA()
 
+@app.route('/')
+def root():
+    if 'usuario_id' in session:
+        return redirect(url_for('index'))
+    return redirect(url_for('login'))
+
+@app.route('/login')
+def login():
+    return render_template('login.html')
+
+@app.route('/api/login', methods=['POST'])
+def api_login():
+    data = request.get_json() or {}
+    username = (data.get('username') or '').strip()
+    password = data.get('password') or ''
+
+    if not username or not password:
+        return jsonify({'exito': False, 'error': 'Credenciales incompletas'}), 400
+
+    usuario = usuarios_bd.get(username)
+    if not usuario:
+        return jsonify({'exito': False, 'error': 'Credenciales invalidas'}), 401
+
+    password_hash = hashlib.sha256(password.encode()).hexdigest()
+    if password_hash != usuario['password']:
+        return jsonify({'exito': False, 'error': 'Credenciales invalidas'}), 401
+
+    session['usuario_id'] = username
+    session['usuario_nombre'] = usuario['nombre']
+
+    return jsonify({'exito': True, 'nombre': usuario['nombre']}), 200
+
+@app.route('/logout')
+def logout():
+    session.clear()
+    return redirect(url_for('login'))
+
+@app.route('/index')
+@login_requerido
+def index():
+    return render_template('dashboard.html', usuario_nombre=session.get('usuario_nombre'))
+
+@app.route('/dashboard-usuario')
+@login_requerido
+def dashboard_usuario():
+    return redirect(url_for('index'))
+
 @app.route('/inicio')
+@login_requerido
 def inicio():
     return render_template('home.html')
 
-@app.route('/')
-def index():
-    return render_template('dashboard.html')
-
 @app.route('/pacientes')
+@login_requerido
 def pacientes():
     return render_template('pacientes.html')
 
 @app.route('/captura-datos')
+@login_requerido
 def captura_datos():
     return render_template('captura_datos.html')
 
 @app.route('/analisis-reportes')
+@login_requerido
 def analisis_reportes():
     return render_template('analisis_reportes.html')
 
 @app.route('/medico-inteligente')
+@login_requerido
 def medico_inteligente():
     return render_template('medico_inteligente.html')
 
 @app.route('/recetas')
+@login_requerido
 def recetas():
     return render_template('recetas.html')
 
 @app.route('/seguridad')
+@login_requerido
 def seguridad():
     return render_template('seguridad.html')
 
@@ -878,6 +936,7 @@ def obtener_timeline(id_paciente):
 # ============================================
 
 @app.route('/citas')
+@login_requerido
 def citas_medicas():
     """Página de gestión de citas médicas"""
     return render_template('citas.html')
@@ -906,6 +965,7 @@ def gestionar_citas():
 # ============================================
 
 @app.route('/laboratorios')
+@login_requerido
 def laboratorios():
     """Página de gestión de laboratorios"""
     return render_template('laboratorios.html')

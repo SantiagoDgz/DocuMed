@@ -30,6 +30,41 @@
             padding: 40px 0;
         }
 
+        .header-bar {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            position: relative;
+        }
+
+        .logout-link {
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            padding: 8px 14px;
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            border-radius: 999px;
+            transition: all 0.2s ease;
+        }
+
+        .logout-link:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: white;
+        }
+
+        .user-name {
+            display: inline-block;
+            margin-top: 8px;
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
         .header h1 {
             font-size: 48px;
             margin-bottom: 10px;
@@ -208,6 +243,17 @@
                 font-size: 32px;
             }
 
+            .header-bar {
+                flex-direction: column;
+                align-items: center;
+                gap: 12px;
+            }
+
+            .logout-link {
+                position: static;
+                transform: none;
+            }
+
             .features-grid {
                 grid-template-columns: 1fr;
             }
@@ -221,8 +267,14 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1> Sistema Médico Inteligente</h1>
-            <p>Plataforma integral para gestión de pacientes y datos clínicos</p>
+            <div class="header-bar">
+                <div>
+                    <h1> Sistema Médico Inteligente</h1>
+                    <p>Plataforma integral para gestión de pacientes y datos clínicos</p>
+                    <span class="user-name">Sesion: {{ usuario_nombre or 'Usuario' }}</span>
+                </div>
+                <a class="logout-link" href="/logout">Cerrar sesion</a>
+            </div>
         </div>
 
         <!-- Sección de Características Principales -->
