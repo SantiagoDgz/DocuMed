@@ -4,6 +4,8 @@ import json
 from datetime import datetime
 import secrets
 import os
+import hashlib
+from functools import wraps
 from groq import Groq
 from medical_ai import IAMedicaProfesional
 from dotenv import load_dotenv
@@ -15,6 +17,20 @@ app = Flask(__name__)
 CORS(app)  # Habilitar CORS para llamadas desde HTML
 app.secret_key = secrets.token_hex(32)
 ia_medica = IAMedicaProfesional()
+
+# Base de datos simple de usuarios (en producción usar una BD real)
+usuarios_bd = {
+    'admin': {
+        'nombre': 'Administrador',
+        'password': hashlib.sha256('admin123'.encode()).hexdigest(),
+        'rol': 'admin'
+    },
+    'doctor': {
+        'nombre': 'Dr. Médico',
+        'password': hashlib.sha256('doctor123'.encode()).hexdigest(),
+        'rol': 'doctor'
+    }
+}
 
 # CONFIGURAR GROQ API KEY
 # IMPORTANTE: Obtén tu API key en https://console.groq.com

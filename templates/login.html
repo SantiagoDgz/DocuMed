@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - HVIRFILL</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <title>Login - Sistema Médico Inteligente</title>
     <style>
         * {
             margin: 0;
@@ -12,27 +11,10 @@
             box-sizing: border-box;
         }
 
-        :root {
-            --primary: #1a1a2e;
-            --secondary: #16213e;
-            --accent: #00d4ff;
-            --accent-light: #64e4ff;
-            --text-dark: #0f1621;
-            --text-light: #8899aa;
-            --bg-light: #f8f9fa;
-            --white: #ffffff;
-            --success: #00d084;
-            --error: #ff4757;
-            --shadow-sm: 0 4px 15px rgba(0, 0, 0, 0.08);
-            --shadow-md: 0 8px 32px rgba(0, 0, 0, 0.12);
-            --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.16);
-        }
-
-        html, body {
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #f8f9fa 0%, #f1f3f5 100%);
+        body {
+            font-family: 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e8eaed 100%);
             min-height: 100vh;
-            color: var(--text-dark);
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -43,14 +25,14 @@
         
         .top-header {
             width: 100%;
-            background: linear-gradient(135deg, #667eea 0%, #482d97 100%);
-            color: white;
+            background: linear-gradient(135deg, #e8eaed 0%, #d4d7dc 100%);
+            color: #2c3e50;
             padding: 15px 30px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.25);
-            border-bottom: 3px solid #764ba2;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            border-bottom: 3px solid #c4c7cc;
             position: fixed;
             top: 0;
             left: 0;
@@ -62,7 +44,7 @@
             align-items: center;
             gap: 12px;
             text-decoration: none;
-            color: white;
+            color: #2c3e50;
         }
         
         .logo-img {
@@ -87,36 +69,13 @@
         }
 
         .login-container {
-            background: var(--white);
-            padding: 50px 45px;
-            border-radius: 20px;
-            box-shadow: var(--shadow-lg);
+            background: white;
+            padding: 50px;
+            border-radius: 15px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
             width: 100%;
-<<<<<<< HEAD
             max-width: 400px;
             margin-top: 20px;
-=======
-            max-width: 420px;
-            border: 1px solid rgba(0, 212, 255, 0.1);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .login-container::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -30%;
-            width: 300px;
-            height: 300px;
-            background: radial-gradient(circle, rgba(0, 212, 255, 0.08) 0%, transparent 70%);
-            border-radius: 50%;
-        }
-
-        .login-content {
-            position: relative;
-            z-index: 2;
->>>>>>> b3ebd0a0b8c9c5b36139ee30727701eb0e5f5993
         }
 
         .login-header {
@@ -124,126 +83,88 @@
             margin-bottom: 40px;
         }
 
-        .logo-text {
-            font-family: 'Playfair Display', serif;
-            font-size: 42px;
-            font-weight: 700;
-            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 8px;
-            letter-spacing: -1px;
+        .login-header h1 {
+            color: #667eea;
+            font-size: 32px;
+            margin-bottom: 10px;
         }
 
         .login-header p {
-            color: var(--text-light);
+            color: #666;
             font-size: 14px;
-            font-weight: 300;
         }
 
         .form-group {
-            margin-bottom: 22px;
+            margin-bottom: 20px;
         }
 
         label {
             display: block;
-            margin-bottom: 10px;
-            color: var(--text-dark);
+            margin-bottom: 8px;
+            color: #333;
             font-weight: 600;
-            font-size: 13px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
+            font-size: 14px;
         }
 
         input[type="text"],
         input[type="password"] {
             width: 100%;
-            padding: 14px 16px;
-            border: 2px solid var(--bg-light);
-            border-radius: 12px;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
             font-size: 14px;
-            font-family: 'Poppins', sans-serif;
-            transition: all 0.3s ease;
-            background: var(--bg-light);
-            color: var(--text-dark);
+            font-family: inherit;
+            transition: border-color 0.3s ease;
         }
 
         input[type="text"]:focus,
         input[type="password"]:focus {
             outline: none;
-            border-color: var(--accent);
-            background: var(--white);
-            box-shadow: 0 0 0 4px rgba(0, 212, 255, 0.1);
-        }
-
-        input::placeholder {
-            color: var(--text-light);
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
         }
 
         .btn-login {
             width: 100%;
-            padding: 16px;
-            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
-            color: var(--primary);
+            padding: 14px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
             border: none;
-            border-radius: 12px;
-            font-size: 15px;
-            font-weight: 700;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
-            margin-bottom: 20px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .btn-login::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: rgba(255, 255, 255, 0.2);
-            transition: left 0.3s ease;
-            border-radius: 12px;
+            margin-bottom: 15px;
         }
 
         .btn-login:hover {
             transform: translateY(-2px);
-            box-shadow: 0 10px 32px rgba(0, 212, 255, 0.4);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
         }
 
-        .btn-login:hover::before {
-            left: 100%;
+        .demo-credentials {
+            background: #f5f5f5;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 13px;
+            color: #666;
         }
 
-        .btn-login:disabled {
-            opacity: 0.7;
-            cursor: not-allowed;
+        .demo-credentials strong {
+            color: #333;
+        }
+
+        .demo-credentials p {
+            margin-bottom: 8px;
         }
 
         .alert {
-            padding: 14px 16px;
-            border-radius: 12px;
+            padding: 12px 15px;
+            border-radius: 8px;
             margin-bottom: 20px;
             display: none;
-            border-left: 4px solid;
-            font-weight: 600;
-            animation: slideIn 0.3s ease;
-        }
-
-        @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateY(-10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
         }
 
         .alert.show {
@@ -251,52 +172,17 @@
         }
 
         .alert-error {
-            background: rgba(255, 71, 87, 0.1);
-            color: var(--error);
-            border-left-color: var(--error);
-        }
-
-        .alert-success {
-            background: rgba(0, 208, 132, 0.1);
-            color: var(--success);
-            border-left-color: var(--success);
-        }
-
-        .demo-credentials {
-            background: linear-gradient(135deg, rgba(0, 212, 255, 0.1) 0%, rgba(100, 228, 255, 0.05) 100%);
-            padding: 18px;
-            border-radius: 12px;
-            margin-bottom: 20px;
-            font-size: 12px;
-            color: var(--text-light);
-            border: 1px solid rgba(0, 212, 255, 0.2);
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .demo-credentials:hover {
-            background: linear-gradient(135deg, rgba(0, 212, 255, 0.15) 0%, rgba(100, 228, 255, 0.08) 100%);
-            border-color: rgba(0, 212, 255, 0.3);
-        }
-
-        .demo-credentials strong {
-            color: var(--accent);
-            display: block;
-            font-weight: 700;
-            margin-bottom: 8px;
-        }
-
-        .demo-credentials p {
-            margin-bottom: 6px;
-            line-height: 1.5;
+            background: #f8d7da;
+            color: #721c24;
+            border-left: 4px solid #e74c3c;
         }
 
         .footer {
             text-align: center;
-            margin-top: 25px;
+            margin-top: 30px;
             padding-top: 20px;
-            border-top: 1px solid var(--bg-light);
-            color: var(--text-light);
+            border-top: 1px solid #e0e0e0;
+            color: #999;
             font-size: 12px;
         }
 
@@ -306,11 +192,11 @@
         }
 
         .spinner {
-            border: 3px solid var(--bg-light);
-            border-top: 3px solid var(--accent);
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #667eea;
             border-radius: 50%;
-            width: 20px;
-            height: 20px;
+            width: 24px;
+            height: 24px;
             animation: spin 1s linear infinite;
             margin: 0 auto 10px;
         }
@@ -318,25 +204,6 @@
         @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
-        }
-
-        .loading p {
-            color: var(--text-light);
-            font-size: 12px;
-        }
-
-        @media (max-width: 480px) {
-            .login-container {
-                padding: 40px 25px;
-            }
-
-            .logo-text {
-                font-size: 36px;
-            }
-
-            .demo-credentials {
-                font-size: 11px;
-            }
         }
     </style>
 </head>
@@ -352,46 +219,43 @@
         </a>
     </header>
     <div class="login-container">
-        <div class="login-content">
-            <div class="login-header">
-                <div class="logo-text">HVIRFILL</div>
-                <p>Centro Médico Inteligente</p>
+        <div class="login-header">
+            <h1> DocuMed</h1>
+            <p>Sistema Médico Inteligente</p>
+        </div>
+
+        <div id="alertContainer"></div>
+
+        <form id="loginForm" onsubmit="handleLogin(event)">
+            <div class="form-group">
+                <label>Usuario</label>
+                <input type="text" id="username" placeholder="Ingresa tu usuario" required>
             </div>
 
-            <div id="alertContainer"></div>
-
-            <form id="loginForm" onsubmit="handleLogin(event)">
-                <div class="form-group">
-                    <label for="username">Usuario</label>
-                    <input type="text" id="username" placeholder="Ingresa tu usuario" required autofocus>
-                </div>
-
-                <div class="form-group">
-                    <label for="password">Contraseña</label>
-                    <input type="password" id="password" placeholder="Ingresa tu contraseña" required>
-                </div>
-
-                <div class="loading" id="loadingSpinner">
-                    <div class="spinner"></div>
-                    <p>Verificando credenciales...</p>
-                </div>
-
-                <button type="submit" class="btn-login" id="loginBtn">Iniciar Sesión</button>
-            </form>
-
-            <div class="demo-credentials">
-                <strong>Credenciales de Demostración</strong>
-                <p style="margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px solid rgba(0, 212, 255, 0.2);">
-                    <strong style="color: var(--text-dark);">Admin:</strong> admin / admin123
-                </p>
-                <p>
-                    <strong style="color: var(--text-dark);">Doctor:</strong> doctor / doctor123
-                </p>
+            <div class="form-group">
+                <label>Contraseña</label>
+                <input type="password" id="password" placeholder="Ingresa tu contraseña" required>
             </div>
 
-            <div class="footer">
-                <p>🔐 Tus datos están protegidos con cifrado de grado médico</p>
+            <div class="loading" id="loadingSpinner">
+                <div class="spinner"></div>
+                <p>Iniciando sesión...</p>
             </div>
+
+            <button type="submit" class="btn-login" id="loginBtn">Iniciar Sesión</button>
+        </form>
+
+        <div class="demo-credentials">
+            <strong> Credenciales de Demostración:</strong>
+            <p><strong>Usuario:</strong> admin</p>
+            <p><strong>Contraseña:</strong> admin123</p>
+            <p style="margin-top: 10px; border-top: 1px solid #ddd; padding-top: 10px;">
+                <strong>Usuario Médico:</strong> doctor / <strong>Contraseña:</strong> doctor123
+            </p>
+        </div>
+
+        <div class="footer">
+            <p> Tus datos están protegidos con cifrado de grado médico</p>
         </div>
     </div>
 
@@ -399,13 +263,8 @@
         async function handleLogin(event) {
             event.preventDefault();
 
-            const username = document.getElementById('username').value.trim();
+            const username = document.getElementById('username').value;
             const password = document.getElementById('password').value;
-
-            if (!username || !password) {
-                showAlert('Por favor completa todos los campos', 'error');
-                return;
-            }
 
             document.getElementById('loadingSpinner').style.display = 'block';
             document.getElementById('loginBtn').disabled = true;
@@ -420,15 +279,15 @@
                 const data = await response.json();
 
                 if (data.exito) {
-                    showAlert('¡Bienvenido ' + data.nombre + '!', 'success');
+                    showAlert(' Bienvenido ' + data.nombre + '!', 'success');
                     setTimeout(() => {
                         window.location.href = '/dashboard-usuario';
-                    }, 1500);
+                    }, 1000);
                 } else {
-                    showAlert('Usuario o contraseña incorrectos', 'error');
+                    showAlert(' Usuario o contraseña incorrectos', 'error');
                 }
             } catch (error) {
-                showAlert('Error de conexión. Verifica tu conexión a internet', 'error');
+                showAlert('Error de conexión', 'error');
                 console.error(error);
             } finally {
                 document.getElementById('loadingSpinner').style.display = 'none';
@@ -449,13 +308,13 @@
             }
         }
 
-        // Credenciales demo con clic
+        // Llenar credenciales de demostración con un clic
         document.addEventListener('DOMContentLoaded', function() {
             const demoDiv = document.querySelector('.demo-credentials');
+            demoDiv.style.cursor = 'pointer';
             demoDiv.addEventListener('click', function() {
                 document.getElementById('username').value = 'admin';
                 document.getElementById('password').value = 'admin123';
-                document.getElementById('username').focus();
             });
         });
     </script>
