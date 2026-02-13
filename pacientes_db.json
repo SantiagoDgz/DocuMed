@@ -1,0 +1,104 @@
+{
+  "pac001": {
+    "nombre": "Juan",
+    "apellido": "García",
+    "cedula": "12345678",
+    "edad": 65,
+    "genero": "M",
+    "email": "juan@example.com",
+    "telefono": "555-1234",
+    "diagnósticos": [
+      "Diabetes Tipo 2",
+      "Hipertensión",
+      "Dislipidemia"
+    ],
+    "medicamentos": [
+      "Metformina 1000mg c/12h",
+      "Losartán 50mg c/d",
+      "Atorvastatina 20mg c/d"
+    ],
+    "alergias": "Penicilina, AINES",
+    "última_consulta": "2026-02-12T11:36:45.727216"
+  },
+  "pac002": {
+    "nombre": "María",
+    "apellido": "López",
+    "cedula": "87654321",
+    "edad": 48,
+    "genero": "F",
+    "email": "maria@example.com",
+    "telefono": "555-5678",
+    "diagnósticos": [
+      "Hipotiroidismo",
+      "Obesidad",
+      "Anemia ferropénica"
+    ],
+    "medicamentos": [
+      "Levotiroxina 75mcg c/d",
+      "Sulfato ferroso 325mg c/d"
+    ],
+    "alergias": "Cefalosporinas",
+    "última_consulta": "2026-02-12T11:36:45.727238"
+  },
+  "pac003": {
+    "nombre": "Carlos",
+    "apellido": "Rodríguez",
+    "cedula": "11223344",
+    "edad": 72,
+    "genero": "M",
+    "email": "carlos@example.com",
+    "telefono": "555-9012",
+    "diagnósticos": [
+      "Insuficiencia renal crónica",
+      "Hipertensión",
+      "Diabetes Tipo 2",
+      "Cardiopatía"
+    ],
+    "medicamentos": [
+      "Lisinopril 10mg c/d",
+      "Nifedipino 30mg c/d",
+      "Atorvastatina 40mg c/d",
+      "Glibenclamida 5mg c/12h"
+    ],
+    "alergias": "Sulfonamidas",
+    "última_consulta": "2026-02-12T11:36:45.727241"
+  },
+  "pac004": {
+    "nombre": "Ana",
+    "apellido": "Martínez",
+    "cedula": "55667788",
+    "edad": 35,
+    "genero": "F",
+    "email": "ana@example.com",
+    "telefono": "555-3456",
+    "diagnósticos": [
+      "Hiperlipidemia"
+    ],
+    "medicamentos": [
+      "Pravastatina 20mg c/d"
+    ],
+    "alergias": "Ninguna conocida",
+    "última_consulta": "2026-02-12T11:36:45.727242"
+  },
+  "pac005": {
+    "nombre": "Roberto",
+    "apellido": "Fernández",
+    "cedula": "99887766",
+    "edad": 58,
+    "genero": "M",
+    "email": "roberto@example.com",
+    "telefono": "555-7890",
+    "diagnósticos": [
+      "Cirrosis hepática",
+      "Hipertensión portal",
+      "Síndrome hepatorenal"
+    ],
+    "medicamentos": [
+      "Espironolactona 50mg c/d",
+      "Furosemida 40mg c/d",
+      "Propranolol 40mg c/8h"
+    ],
+    "alergias": "Tetracicinas",
+    "última_consulta": "2026-02-12T11:36:45.727243"
+  }
+}

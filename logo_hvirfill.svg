@@ -1,13 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg" width="256" height="256">
     <defs>
-        <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" style="stop-color:#00d4ff;stop-opacity:1" />
-            <stop offset="100%" style="stop-color:#0099cc;stop-opacity:1" />
-        </linearGradient>
-        <linearGradient id="accentGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" style="stop-color:#1a1a2e;stop-opacity:1" />
-            <stop offset="100%" style="stop-color:#16213e;stop-opacity:1" />
+        <linearGradient id="silverGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" style="stop-color:#FFFFFF;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#C0C0C0;stop-opacity:1" />
         </linearGradient>
         <filter id="shadowFilt">
             <feGaussianBlur in="SourceAlpha" stdDeviation="4"/>
@@ -22,50 +18,50 @@
         </filter>
     </defs>
     
-    <!-- Fondo principal con gradiente -->
-    <rect width="256" height="256" rx="48" fill="url(#bgGrad)" filter="url(#shadowFilt)"/>
+    <!-- Fondo principal Negro sólido -->
+    <rect width="256" height="256" rx="48" fill="#000000" filter="url(#shadowFilt)"/>
     
-    <!-- Círculo decorativo externo -->
-    <circle cx="128" cy="128" r="110" fill="none" stroke="url(#accentGrad)" stroke-width="2" opacity="0.25"/>
-    <circle cx="128" cy="128" r="105" fill="none" stroke="url(#accentGrad)" stroke-width="1" opacity="0.15"/>
+    <!-- Círculo decorativo externo Blanco -->
+    <circle cx="128" cy="128" r="110" fill="none" stroke="#FFFFFF" stroke-width="2" opacity="0.25"/>
+    <circle cx="128" cy="128" r="105" fill="none" stroke="#FFFFFF" stroke-width="1" opacity="0.15"/>
     
-    <!-- Líneas decorativas superiores -->
+    <!-- Líneas decorativas superiores Blancas -->
     <g opacity="0.2">
-        <line x1="48" y1="32" x2="208" y2="32" stroke="#1a1a2e" stroke-width="2" stroke-linecap="round"/>
-        <line x1="52" y1="48" x2="204" y2="48" stroke="#1a1a2e" stroke-width="1" stroke-linecap="round"/>
+        <line x1="48" y1="32" x2="208" y2="32" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"/>
+        <line x1="52" y1="48" x2="204" y2="48" stroke="#FFFFFF" stroke-width="1" stroke-linecap="round"/>
     </g>
     
-    <!-- Símbolo médico principal con espiral (helix) -->
+    <!-- Símbolo médico principal con espiral (helix) Blanco -->
     <g transform="translate(128, 128)">
         <!-- Espiral decorativa (DNA/helix) -->
         <path d="M 0,-45 Q 20,-50 35,-35 Q 45,-20 40,5 Q 35,30 15,40 Q -10,45 -30,35 Q -45,25 -48,0 Q -48,-25 -30,-45 Q -5,-55 20,-50" 
-              stroke="#1a1a2e" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.8"/>
+              stroke="#FFFFFF" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.8"/>
         
-        <!-- Segunda línea de espiral -->
+        <!-- Segunda línea de espiral Blanca -->
         <path d="M 0,-45 Q -20,-50 -35,-35 Q -45,-20 -40,5 Q -35,30 -15,40 Q 10,45 30,35 Q 45,25 48,0 Q 48,-25 30,-45 Q 5,-55 -20,-50" 
-              stroke="#1a1a2e" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"/>
+              stroke="#FFFFFF" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"/>
         
-        <!-- Cruz médica central - eje vertical -->
-        <line x1="0" y1="-25" x2="0" y2="25" stroke="#1a1a2e" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+        <!-- Cruz médica central - eje vertical Azul eléctrico -->
+        <line x1="0" y1="-25" x2="0" y2="25" stroke="#00BFFF" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
         
-        <!-- Cruz médica central - eje horizontal -->
-        <line x1="-25" y1="0" x2="25" y2="0" stroke="#1a1a2e" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+        <!-- Cruz médica central - eje horizontal Azul eléctrico -->
+        <line x1="-25" y1="0" x2="25" y2="0" stroke="#00BFFF" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
         
-        <!-- Puntos de énfasis en la espiral -->
-        <circle cx="0" cy="-45" r="4" fill="#1a1a2e" opacity="0.8"/>
-        <circle cx="45" cy="-20" r="3" fill="#1a1a2e" opacity="0.5"/>
-        <circle cx="40" cy="30" r="3" fill="#1a1a2e" opacity="0.5"/>
+        <!-- Puntos de énfasis en la espiral Blanco -->
+        <circle cx="0" cy="-45" r="4" fill="#FFFFFF" opacity="0.8"/>
+        <circle cx="45" cy="-20" r="3" fill="#FFFFFF" opacity="0.5"/>
+        <circle cx="40" cy="30" r="3" fill="#FFFFFF" opacity="0.5"/>
         
-        <!-- Círculo central decorativo -->
-        <circle cx="0" cy="0" r="8" fill="none" stroke="#1a1a2e" stroke-width="2" opacity="0.3"/>
+        <!-- Círculo central decorativo Blanco -->
+        <circle cx="0" cy="0" r="8" fill="none" stroke="#FFFFFF" stroke-width="2" opacity="0.3"/>
     </g>
     
-    <!-- Líneas decorativas inferiores -->
+    <!-- Líneas decorativas inferiores Blancas -->
     <g opacity="0.2">
-        <line x1="52" y1="208" x2="204" y2="208" stroke="#1a1a2e" stroke-width="1" stroke-linecap="round"/>
-        <line x1="48" y1="224" x2="208" y2="224" stroke="#1a1a2e" stroke-width="2" stroke-linecap="round"/>
+        <line x1="52" y1="208" x2="204" y2="208" stroke="#FFFFFF" stroke-width="1" stroke-linecap="round"/>
+        <line x1="48" y1="224" x2="208" y2="224" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"/>
     </g>
     
-    <!-- Esquinas redondeadas destacadas -->
-    <rect width="256" height="256" rx="48" fill="none" stroke="url(#accentGrad)" stroke-width="1" opacity="0.3"/>
+    <!-- Esquinas redondeadas destacadas Plateado -->
+    <rect width="256" height="256" rx="48" fill="none" stroke="url(#silverGrad)" stroke-width="1" opacity="0.3"/>
 </svg>

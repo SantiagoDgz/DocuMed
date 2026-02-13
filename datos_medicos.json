@@ -1,0 +1,2863 @@
+{
+  "consultas": [
+    {
+      "paciente_id": "pac001",
+      "fecha": "2026-02-12T11:11:27.773664",
+      "notas": "Paciente presenta glucosa elevada y presión alta. Síntomas de polidipsia.",
+      "diagnóstico": "Diabetes descontrolada + Hipertensión no controlada",
+      "recomendaciones": "Aumentar metformina a 1000mg. Añadir amlodipino 5mg. Derivar a endocrinología."
+    },
+    {
+      "paciente_id": "pac001",
+      "fecha": "2026-02-12T11:11:27.784165",
+      "notas": "Paciente presenta glucosa elevada y presión alta. Síntomas de polidipsia.",
+      "diagnóstico": "Diabetes descontrolada + Hipertensión no controlada",
+      "recomendaciones": "Aumentar metformina a 1000mg. Añadir amlodipino 5mg. Derivar a endocrinología."
+    }
+  ],
+  "historial_analisis": [
+    {
+      "paciente_id": "pac001",
+      "fecha": "2026-02-12T11:11:27.768807",
+      "resultados_analizados": [
+        {
+          "prueba": "Glucosa en ayunas",
+          "valor": 280,
+          "unidad": "mg/dL",
+          "rango_normal": "70 - 100",
+          "estado": "CRÍTICO",
+          "desviación": "700.0%"
+        },
+        {
+          "prueba": "Hemoglobina",
+          "valor": 9.2,
+          "unidad": "g/dL",
+          "rango_normal": "12 - 17.5",
+          "estado": "ALTO",
+          "desviación": "-50.9%"
+        },
+        {
+          "prueba": "Creatinina",
+          "valor": 1.8,
+          "unidad": "mg/dL",
+          "rango_normal": "0.7 - 1.3",
+          "estado": "MODERADO",
+          "desviación": "183.3%"
+        },
+        {
+          "prueba": "Presión Sistólica",
+          "valor": 165,
+          "unidad": "mmHg",
+          "rango_normal": "90 - 120",
+          "estado": "ALTO",
+          "desviación": "250.0%"
+        },
+        {
+          "prueba": "Colesterol Total",
+          "valor": 285,
+          "unidad": "mg/dL",
+          "rango_normal": "0 - 200",
+          "estado": "MODERADO",
+          "desviación": "142.5%"
+        },
+        {
+          "prueba": "LDL (colesterol malo)",
+          "valor": 185,
+          "unidad": "mg/dL",
+          "rango_normal": "0 - 100",
+          "estado": "ALTO",
+          "desviación": "185.0%"
+        },
+        {
+          "prueba": "Triglicéridos",
+          "valor": 320,
+          "unidad": "mg/dL",
+          "rango_normal": "0 - 150",
+          "estado": "ALTO",
+          "desviación": "213.3%"
+        },
+        {
+          "prueba": "Potasio",
+          "valor": 5.8,
+          "unidad": "mEq/L",
+          "rango_normal": "3.5 - 5",
+          "estado": "ALTO",
+          "desviación": "153.3%"
+        }
+      ],
+      "anomalías": [
+        {
+          "prueba": "Glucosa en ayunas",
+          "valor": 280,
+          "estado": "CRÍTICO",
+          "recomendación": "Evaluar diabetes. Considerar HbA1c. Derivar a endocrinología si está elevada persistentemente."
+        },
+        {
+          "prueba": "Hemoglobina",
+          "valor": 9.2,
+          "estado": "ALTO",
+          "recomendación": "Evaluar anemia. Solicitar hierro, B12, ácido fólico. Investigar causa de la anemia."
+        },
+        {
+          "prueba": "Creatinina",
+          "valor": 1.8,
+          "estado": "MODERADO",
+          "recomendación": "Evaluar función renal. Calcular TFG. Monitorear presión arterial."
+        },
+        {
+          "prueba": "Presión Sistólica",
+          "valor": 165,
+          "estado": "ALTO",
+          "recomendación": "Monitorear presión. Considerar antihipertensivos si está elevada."
+        },
+        {
+          "prueba": "Colesterol Total",
+          "valor": 285,
+          "estado": "MODERADO",
+          "recomendación": "Evaluar perfil lipídico completo. Considerar estatinas."
+        },
+        {
+          "prueba": "LDL (colesterol malo)",
+          "valor": 185,
+          "estado": "ALTO",
+          "recomendación": "Revisar con especialista si es necesario"
+        },
+        {
+          "prueba": "Triglicéridos",
+          "valor": 320,
+          "estado": "ALTO",
+          "recomendación": "Revisar con especialista si es necesario"
+        },
+        {
+          "prueba": "Potasio",
+          "valor": 5.8,
+          "estado": "ALTO",
+          "recomendación": "Monitorear electrocardiograma. Evaluar medicamentos que afecten potasio."
+        }
+      ],
+      "alertas_generadas": [
+        {
+          "paciente_id": "pac001",
+          "fecha": "2026-02-12T11:11:27.768838",
+          "tipo": "resultado_crítico",
+          "prueba": "Glucosa en ayunas",
+          "valor": 280,
+          "severidad": "CRÍTICO",
+          "simbolo": "🔴",
+          "mensaje": "Glucosa en ayunas: 280 mg/dL (rango normal: 70-100)",
+          "accion": "Requiere revisión e intervención inmediata",
+          "estado": "activa"
+        }
+      ]
+    },
+    {
+      "paciente_id": "pac001",
+      "fecha": "2026-02-12T11:11:27.780695",
+      "resultados_analizados": [
+        {
+          "prueba": "Glucosa en ayunas",
+          "valor": 280,
+          "unidad": "mg/dL",
+          "rango_normal": "70 - 100",
+          "estado": "CRÍTICO",
+          "desviación": "700.0%"
+        },
+        {
+          "prueba": "Hemoglobina",
+          "valor": 9.2,
+          "unidad": "g/dL",
+          "rango_normal": "12 - 17.5",
+          "estado": "ALTO",
+          "desviación": "-50.9%"
+        },
+        {
+          "prueba": "Creatinina",
+          "valor": 1.8,
+          "unidad": "mg/dL",
+          "rango_normal": "0.7 - 1.3",
+          "estado": "MODERADO",
+          "desviación": "183.3%"
+        },
+        {
+          "prueba": "Presión Sistólica",
+          "valor": 165,
+          "unidad": "mmHg",
+          "rango_normal": "90 - 120",
+          "estado": "ALTO",
+          "desviación": "250.0%"
+        },
+        {
+          "prueba": "Colesterol Total",
+          "valor": 285,
+          "unidad": "mg/dL",
+          "rango_normal": "0 - 200",
+          "estado": "MODERADO",
+          "desviación": "142.5%"
+        },
+        {
+          "prueba": "LDL (colesterol malo)",
+          "valor": 185,
+          "unidad": "mg/dL",
+          "rango_normal": "0 - 100",
+          "estado": "ALTO",
+          "desviación": "185.0%"
+        },
+        {
+          "prueba": "Triglicéridos",
+          "valor": 320,
+          "unidad": "mg/dL",
+          "rango_normal": "0 - 150",
+          "estado": "ALTO",
+          "desviación": "213.3%"
+        },
+        {
+          "prueba": "Potasio",
+          "valor": 5.8,
+          "unidad": "mEq/L",
+          "rango_normal": "3.5 - 5",
+          "estado": "ALTO",
+          "desviación": "153.3%"
+        }
+      ],
+      "anomalías": [
+        {
+          "prueba": "Glucosa en ayunas",
+          "valor": 280,
+          "estado": "CRÍTICO",
+          "recomendación": "Evaluar diabetes. Considerar HbA1c. Derivar a endocrinología si está elevada persistentemente."
+        },
+        {
+          "prueba": "Hemoglobina",
+          "valor": 9.2,
+          "estado": "ALTO",
+          "recomendación": "Evaluar anemia. Solicitar hierro, B12, ácido fólico. Investigar causa de la anemia."
+        },
+        {
+          "prueba": "Creatinina",
+          "valor": 1.8,
+          "estado": "MODERADO",
+          "recomendación": "Evaluar función renal. Calcular TFG. Monitorear presión arterial."
+        },
+        {
+          "prueba": "Presión Sistólica",
+          "valor": 165,
+          "estado": "ALTO",
+          "recomendación": "Monitorear presión. Considerar antihipertensivos si está elevada."
+        },
+        {
+          "prueba": "Colesterol Total",
+          "valor": 285,
+          "estado": "MODERADO",
+          "recomendación": "Evaluar perfil lipídico completo. Considerar estatinas."
+        },
+        {
+          "prueba": "LDL (colesterol malo)",
+          "valor": 185,
+          "estado": "ALTO",
+          "recomendación": "Revisar con especialista si es necesario"
+        },
+        {
+          "prueba": "Triglicéridos",
+          "valor": 320,
+          "estado": "ALTO",
+          "recomendación": "Revisar con especialista si es necesario"
+        },
+        {
+          "prueba": "Potasio",
+          "valor": 5.8,
+          "estado": "ALTO",
+          "recomendación": "Monitorear electrocardiograma. Evaluar medicamentos que afecten potasio."
+        }
+      ],
+      "alertas_generadas": [
+        {
+          "paciente_id": "pac001",
+          "fecha": "2026-02-12T11:11:27.780721",
+          "tipo": "resultado_crítico",
+          "prueba": "Glucosa en ayunas",
+          "valor": 280,
+          "severidad": "CRÍTICO",
+          "simbolo": "🔴",
+          "mensaje": "Glucosa en ayunas: 280 mg/dL (rango normal: 70-100)",
+          "accion": "Requiere revisión e intervención inmediata",
+          "estado": "activa"
+        }
+      ]
+    },
+    {
+      "paciente_id": "pac001",
+      "fecha": "2026-02-12T11:28:06.905941",
+      "resultados_analizados": [
+        {
+          "prueba": "Glucosa en ayunas",
+          "valor": 90,
+          "unidad": "mg/dL",
+          "rango_normal": "70 - 100",
+          "estado": "NORMAL",
+          "desviación": "66.7%"
+        },
+        {
+          "prueba": "Hemoglobina",
+          "valor": 7.5,
+          "unidad": "g/dL",
+          "rango_normal": "12 - 17.5",
+          "estado": "CRÍTICO",
+          "desviación": "-81.8%"
+        },
+        {
+          "prueba": "Creatinina",
+          "valor": 2.0,
+          "unidad": "mg/dL",
+          "rango_normal": "0.7 - 1.3",
+          "estado": "CRÍTICO",
+          "desviación": "216.7%"
+        },
+        {
+          "prueba": "Presión Sistólica",
+          "valor": 75,
+          "unidad": "mmHg",
+          "rango_normal": "90 - 120",
+          "estado": "BAJO",
+          "desviación": "-50.0%"
+        }
+      ],
+      "anomalías": [
+        {
+          "prueba": "Hemoglobina",
+          "valor": 7.5,
+          "estado": "CRÍTICO",
+          "recomendación": "Evaluar anemia. Solicitar hierro, B12, ácido fólico. Investigar causa de la anemia."
+        },
+        {
+          "prueba": "Creatinina",
+          "valor": 2.0,
+          "estado": "CRÍTICO",
+          "recomendación": "Evaluar función renal. Calcular TFG. Monitorear presión arterial."
+        },
+        {
+          "prueba": "Presión Sistólica",
+          "valor": 75,
+          "estado": "BAJO",
+          "recomendación": "Monitorear presión. Considerar antihipertensivos si está elevada."
+        }
+      ],
+      "alertas_generadas": [
+        {
+          "paciente_id": "pac001",
+          "fecha": "2026-02-12T11:28:06.905960",
+          "tipo": "resultado_crítico",
+          "prueba": "Hemoglobina",
+          "valor": 7.5,
+          "severidad": "CRÍTICO",
+          "simbolo": "🔴",
+          "mensaje": "Hemoglobina: 7.5 g/dL (rango normal: 12-17.5)",
+          "accion": "Requiere revisión e intervención inmediata",
+          "estado": "activa"
+        },
+        {
+          "paciente_id": "pac001",
+          "fecha": "2026-02-12T11:28:06.907468",
+          "tipo": "resultado_crítico",
+          "prueba": "Creatinina",
+          "valor": 2.0,
+          "severidad": "CRÍTICO",
+          "simbolo": "🔴",
+          "mensaje": "Creatinina: 2.0 mg/dL (rango normal: 0.7-1.3)",
+          "accion": "Requiere revisión e intervención inmediata",
+          "estado": "activa"
+        }
+      ]
+    },
+    {
+      "paciente_id": "pac001",
+      "fecha": "2026-02-12T11:32:30.343086",
+      "resultados_analizados": [
+        {
+          "prueba": "Glucosa en ayunas",
+          "valor": 95,
+          "unidad": "mg/dL",
+          "rango_normal": "70 - 100",
+          "estado": "NORMAL",
+          "desviación": "83.3%"
+        },
+        {
+          "prueba": "Hemoglobina",
+          "valor": 14.5,
+          "unidad": "g/dL",
+          "rango_normal": "12 - 17.5",
+          "estado": "NORMAL",
+          "desviación": "45.5%"
+        },
+        {
+          "prueba": "Creatinina",
+          "valor": 1,
+          "unidad": "mg/dL",
+          "rango_normal": "0.7 - 1.3",
+          "estado": "NORMAL",
+          "desviación": "50.0%"
+        },
+        {
+          "prueba": "Presión Sistólica",
+          "valor": 120180,
+          "unidad": "mmHg",
+          "rango_normal": "90 - 120",
+          "estado": "ALTO",
+          "desviación": "400300.0%"
+        }
+      ],
+      "anomalías": [
+        {
+          "prueba": "Presión Sistólica",
+          "valor": 120180,
+          "estado": "ALTO",
+          "recomendación": "Monitorear presión. Considerar antihipertensivos si está elevada."
+        }
+      ],
+      "alertas_generadas": []
+    },
+    {
+      "paciente_id": "pac001",
+      "fecha": "2026-02-12T11:34:04.329485",
+      "resultados_analizados": [
+        {
+          "prueba": "Glucosa en ayunas",
+          "valor": 5,
+          "unidad": "mg/dL",
+          "rango_normal": "70 - 100",
+          "estado": "CRÍTICO",
+          "desviación": "-216.7%"
+        },
+        {
+          "prueba": "Hemoglobina",
+          "valor": 7,
+          "unidad": "g/dL",
+          "rango_normal": "12 - 17.5",
+          "estado": "CRÍTICO",
+          "desviación": "-90.9%"
+        },
+        {
+          "prueba": "Creatinina",
+          "valor": 0.7,
+          "unidad": "mg/dL",
+          "rango_normal": "0.7 - 1.3",
+          "estado": "NORMAL",
+          "desviación": "0.0%"
+        },
+        {
+          "prueba": "Presión Sistólica",
+          "valor": 120,
+          "unidad": "mmHg",
+          "rango_normal": "90 - 120",
+          "estado": "NORMAL",
+          "desviación": "100.0%"
+        }
+      ],
+      "anomalías": [
+        {
+          "prueba": "Glucosa en ayunas",
+          "valor": 5,
+          "estado": "CRÍTICO",
+          "recomendación": "Evaluar diabetes. Considerar HbA1c. Derivar a endocrinología si está elevada persistentemente."
+        },
+        {
+          "prueba": "Hemoglobina",
+          "valor": 7,
+          "estado": "CRÍTICO",
+          "recomendación": "Evaluar anemia. Solicitar hierro, B12, ácido fólico. Investigar causa de la anemia."
+        }
+      ],
+      "alertas_generadas": [
+        {
+          "paciente_id": "pac001",
+          "fecha": "2026-02-12T11:34:04.329520",
+          "tipo": "resultado_crítico",
+          "prueba": "Glucosa en ayunas",
+          "valor": 5,
+          "severidad": "CRÍTICO",
+          "simbolo": "🔴",
+          "mensaje": "Glucosa en ayunas: 5 mg/dL (rango normal: 70-100)",
+          "accion": "Requiere revisión e intervención inmediata",
+          "estado": "activa"
+        },
+        {
+          "paciente_id": "pac001",
+          "fecha": "2026-02-12T11:34:04.332071",
+          "tipo": "resultado_crítico",
+          "prueba": "Hemoglobina",
+          "valor": 7,
+          "severidad": "CRÍTICO",
+          "simbolo": "🔴",
+          "mensaje": "Hemoglobina: 7 g/dL (rango normal: 12-17.5)",
+          "accion": "Requiere revisión e intervención inmediata",
+          "estado": "activa"
+        }
+      ]
+    },
+    {
+      "paciente_id": "pac001",
+      "fecha": "2026-02-12T11:34:31.074006",
+      "resultados_analizados": [
+        {
+          "prueba": "Glucosa en ayunas",
+          "valor": 10000,
+          "unidad": "mg/dL",
+          "rango_normal": "70 - 100",
+          "estado": "CRÍTICO",
+          "desviación": "33100.0%"
+        },
+        {
+          "prueba": "Hemoglobina",
+          "valor": 20,
+          "unidad": "g/dL",
+          "rango_normal": "12 - 17.5",
+          "estado": "ALTO",
+          "desviación": "145.5%"
+        },
+        {
+          "prueba": "Creatinina",
+          "valor": 0,
+          "unidad": "mg/dL",
+          "rango_normal": "0.7 - 1.3",
+          "estado": "BAJO",
+          "desviación": "-116.7%"
+        },
+        {
+          "prueba": "Presión Sistólica",
+          "valor": 130,
+          "unidad": "mmHg",
+          "rango_normal": "90 - 120",
+          "estado": "ALTO",
+          "desviación": "133.3%"
+        }
+      ],
+      "anomalías": [
+        {
+          "prueba": "Glucosa en ayunas",
+          "valor": 10000,
+          "estado": "CRÍTICO",
+          "recomendación": "Evaluar diabetes. Considerar HbA1c. Derivar a endocrinología si está elevada persistentemente."
+        },
+        {
+          "prueba": "Hemoglobina",
+          "valor": 20,
+          "estado": "ALTO",
+          "recomendación": "Evaluar anemia. Solicitar hierro, B12, ácido fólico. Investigar causa de la anemia."
+        },
+        {
+          "prueba": "Creatinina",
+          "valor": 0,
+          "estado": "BAJO",
+          "recomendación": "Evaluar función renal. Calcular TFG. Monitorear presión arterial."
+        },
+        {
+          "prueba": "Presión Sistólica",
+          "valor": 130,
+          "estado": "ALTO",
+          "recomendación": "Monitorear presión. Considerar antihipertensivos si está elevada."
+        }
+      ],
+      "alertas_generadas": [
+        {
+          "paciente_id": "pac001",
+          "fecha": "2026-02-12T11:34:31.074032",
+          "tipo": "resultado_crítico",
+          "prueba": "Glucosa en ayunas",
+          "valor": 10000,
+          "severidad": "CRÍTICO",
+          "simbolo": "🔴",
+          "mensaje": "Glucosa en ayunas: 10000 mg/dL (rango normal: 70-100)",
+          "accion": "Requiere revisión e intervención inmediata",
+          "estado": "activa"
+        }
+      ]
+    },
+    {
+      "paciente_id": "pac001",
+      "fecha": "2026-02-12T11:36:13.741307",
+      "resultados_analizados": [
+        {
+          "prueba": "Glucosa en ayunas",
+          "valor": 280,
+          "unidad": "mg/dL",
+          "rango_normal": "70 - 100",
+          "estado": "CRÍTICO",
+          "desviación": "700.0%"
+        },
+        {
+          "prueba": "Hemoglobina",
+          "valor": 9.2,
+          "unidad": "g/dL",
+          "rango_normal": "12 - 17.5",
+          "estado": "ALTO",
+          "desviación": "-50.9%"
+        },
+        {
+          "prueba": "Hematocrito",
+          "valor": 27,
+          "unidad": "%",
+          "rango_normal": "36 - 46",
+          "estado": "BAJO",
+          "desviación": "-90.0%"
+        },
+        {
+          "prueba": "Creatinina",
+          "valor": 1.8,
+          "unidad": "mg/dL",
+          "rango_normal": "0.7 - 1.3",
+          "estado": "MODERADO",
+          "desviación": "183.3%"
+        },
+        {
+          "prueba": "Presión Sistólica",
+          "valor": 165,
+          "unidad": "mmHg",
+          "rango_normal": "90 - 120",
+          "estado": "ALTO",
+          "desviación": "250.0%"
+        },
+        {
+          "prueba": "Presión Diastólica",
+          "valor": 95,
+          "unidad": "mmHg",
+          "rango_normal": "60 - 80",
+          "estado": "ALTO",
+          "desviación": "175.0%"
+        },
+        {
+          "prueba": "Colesterol Total",
+          "valor": 280,
+          "unidad": "mg/dL",
+          "rango_normal": "0 - 200",
+          "estado": "MODERADO",
+          "desviación": "140.0%"
+        },
+        {
+          "prueba": "Triglicéridos",
+          "valor": 450,
+          "unidad": "mg/dL",
+          "rango_normal": "0 - 150",
+          "estado": "ALTO",
+          "desviación": "300.0%"
+        },
+        {
+          "prueba": "HDL (colesterol bueno)",
+          "valor": 35,
+          "unidad": "mg/dL",
+          "rango_normal": "40 - 1000",
+          "estado": "BAJO",
+          "desviación": "-0.5%"
+        },
+        {
+          "prueba": "LDL (colesterol malo)",
+          "valor": 190,
+          "unidad": "mg/dL",
+          "rango_normal": "0 - 100",
+          "estado": "ALTO",
+          "desviación": "190.0%"
+        },
+        {
+          "prueba": "AST",
+          "valor": 38,
+          "unidad": "U/L",
+          "rango_normal": "10 - 40",
+          "estado": "NORMAL",
+          "desviación": "93.3%"
+        },
+        {
+          "prueba": "ALT",
+          "valor": 42,
+          "unidad": "U/L",
+          "rango_normal": "7 - 56",
+          "estado": "NORMAL",
+          "desviación": "71.4%"
+        },
+        {
+          "prueba": "Sodio",
+          "valor": 138,
+          "unidad": "mEq/L",
+          "rango_normal": "136 - 145",
+          "estado": "NORMAL",
+          "desviación": "22.2%"
+        },
+        {
+          "prueba": "Potasio",
+          "valor": 5.2,
+          "unidad": "mEq/L",
+          "rango_normal": "3.5 - 5",
+          "estado": "ALTO",
+          "desviación": "113.3%"
+        },
+        {
+          "prueba": "Bilirrubina",
+          "valor": 0.8,
+          "unidad": "mg/dL",
+          "rango_normal": "0.2 - 1.3",
+          "estado": "NORMAL",
+          "desviación": "54.5%"
+        }
+      ],
+      "anomalías": [
+        {
+          "prueba": "Glucosa en ayunas",
+          "valor": 280,
+          "estado": "CRÍTICO",
+          "recomendación": "Evaluar diabetes. Considerar HbA1c. Derivar a endocrinología si está elevada persistentemente."
+        },
+        {
+          "prueba": "Hemoglobina",
+          "valor": 9.2,
+          "estado": "ALTO",
+          "recomendación": "Evaluar anemia. Solicitar hierro, B12, ácido fólico. Investigar causa de la anemia."
+        },
+        {
+          "prueba": "Hematocrito",
+          "valor": 27,
+          "estado": "BAJO",
+          "recomendación": "Revisar con especialista si es necesario"
+        },
+        {
+          "prueba": "Creatinina",
+          "valor": 1.8,
+          "estado": "MODERADO",
+          "recomendación": "Evaluar función renal. Calcular TFG. Monitorear presión arterial."
+        },
+        {
+          "prueba": "Presión Sistólica",
+          "valor": 165,
+          "estado": "ALTO",
+          "recomendación": "Monitorear presión. Considerar antihipertensivos si está elevada."
+        },
+        {
+          "prueba": "Presión Diastólica",
+          "valor": 95,
+          "estado": "ALTO",
+          "recomendación": "Revisar con especialista si es necesario"
+        },
+        {
+          "prueba": "Colesterol Total",
+          "valor": 280,
+          "estado": "MODERADO",
+          "recomendación": "Evaluar perfil lipídico completo. Considerar estatinas."
+        },
+        {
+          "prueba": "Triglicéridos",
+          "valor": 450,
+          "estado": "ALTO",
+          "recomendación": "Revisar con especialista si es necesario"
+        },
+        {
+          "prueba": "HDL (colesterol bueno)",
+          "valor": 35,
+          "estado": "BAJO",
+          "recomendación": "Revisar con especialista si es necesario"
+        },
+        {
+          "prueba": "LDL (colesterol malo)",
+          "valor": 190,
+          "estado": "ALTO",
+          "recomendación": "Revisar con especialista si es necesario"
+        },
+        {
+          "prueba": "Potasio",
+          "valor": 5.2,
+          "estado": "ALTO",
+          "recomendación": "Monitorear electrocardiograma. Evaluar medicamentos que afecten potasio."
+        }
+      ],
+      "alertas_generadas": [
+        {
+          "paciente_id": "pac001",
+          "fecha": "2026-02-12T11:36:13.741332",
+          "tipo": "resultado_crítico",
+          "prueba": "Glucosa en ayunas",
+          "valor": 280,
+          "severidad": "CRÍTICO",
+          "simbolo": "🔴",
+          "mensaje": "Glucosa en ayunas: 280 mg/dL (rango normal: 70-100)",
+          "accion": "Requiere revisión e intervención inmediata",
+          "estado": "activa"
+        }
+      ]
+    },
+    {
+      "paciente_id": "pac002",
+      "fecha": "2026-02-12T11:36:13.744694",
+      "resultados_analizados": [
+        {
+          "prueba": "Glucosa en ayunas",
+          "valor": 88,
+          "unidad": "mg/dL",
+          "rango_normal": "70 - 100",
+          "estado": "NORMAL",
+          "desviación": "60.0%"
+        },
+        {
+          "prueba": "Hemoglobina",
+          "valor": 7.8,
+          "unidad": "g/dL",
+          "rango_normal": "12 - 17.5",
+          "estado": "CRÍTICO",
+          "desviación": "-76.4%"
+        },
+        {
+          "prueba": "Hematocrito",
+          "valor": 24,
+          "unidad": "%",
+          "rango_normal": "36 - 46",
+          "estado": "BAJO",
+          "desviación": "-120.0%"
+        },
+        {
+          "prueba": "Creatinina",
+          "valor": 0.9,
+          "unidad": "mg/dL",
+          "rango_normal": "0.7 - 1.3",
+          "estado": "NORMAL",
+          "desviación": "33.3%"
+        },
+        {
+          "prueba": "Presión Sistólica",
+          "valor": 128,
+          "unidad": "mmHg",
+          "rango_normal": "90 - 120",
+          "estado": "ALTO",
+          "desviación": "126.7%"
+        },
+        {
+          "prueba": "Presión Diastólica",
+          "valor": 78,
+          "unidad": "mmHg",
+          "rango_normal": "60 - 80",
+          "estado": "NORMAL",
+          "desviación": "90.0%"
+        },
+        {
+          "prueba": "Colesterol Total",
+          "valor": 220,
+          "unidad": "mg/dL",
+          "rango_normal": "0 - 200",
+          "estado": "MODERADO",
+          "desviación": "110.0%"
+        },
+        {
+          "prueba": "Triglicéridos",
+          "valor": 180,
+          "unidad": "mg/dL",
+          "rango_normal": "0 - 150",
+          "estado": "ALTO",
+          "desviación": "120.0%"
+        },
+        {
+          "prueba": "HDL (colesterol bueno)",
+          "valor": 45,
+          "unidad": "mg/dL",
+          "rango_normal": "40 - 1000",
+          "estado": "NORMAL",
+          "desviación": "0.5%"
+        },
+        {
+          "prueba": "LDL (colesterol malo)",
+          "valor": 145,
+          "unidad": "mg/dL",
+          "rango_normal": "0 - 100",
+          "estado": "ALTO",
+          "desviación": "145.0%"
+        },
+        {
+          "prueba": "AST",
+          "valor": 32,
+          "unidad": "U/L",
+          "rango_normal": "10 - 40",
+          "estado": "NORMAL",
+          "desviación": "73.3%"
+        },
+        {
+          "prueba": "ALT",
+          "valor": 29,
+          "unidad": "U/L",
+          "rango_normal": "7 - 56",
+          "estado": "NORMAL",
+          "desviación": "44.9%"
+        },
+        {
+          "prueba": "Sodio",
+          "valor": 140,
+          "unidad": "mEq/L",
+          "rango_normal": "136 - 145",
+          "estado": "NORMAL",
+          "desviación": "44.4%"
+        },
+        {
+          "prueba": "Potasio",
+          "valor": 4.2,
+          "unidad": "mEq/L",
+          "rango_normal": "3.5 - 5",
+          "estado": "NORMAL",
+          "desviación": "46.7%"
+        },
+        {
+          "prueba": "Bilirrubina",
+          "valor": 0.6,
+          "unidad": "mg/dL",
+          "rango_normal": "0.2 - 1.3",
+          "estado": "NORMAL",
+          "desviación": "36.4%"
+        }
+      ],
+      "anomalías": [
+        {
+          "prueba": "Hemoglobina",
+          "valor": 7.8,
+          "estado": "CRÍTICO",
+          "recomendación": "Evaluar anemia. Solicitar hierro, B12, ácido fólico. Investigar causa de la anemia."
+        },
+        {
+          "prueba": "Hematocrito",
+          "valor": 24,
+          "estado": "BAJO",
+          "recomendación": "Revisar con especialista si es necesario"
+        },
+        {
+          "prueba": "Presión Sistólica",
+          "valor": 128,
+          "estado": "ALTO",
+          "recomendación": "Monitorear presión. Considerar antihipertensivos si está elevada."
+        },
+        {
+          "prueba": "Colesterol Total",
+          "valor": 220,
+          "estado": "MODERADO",
+          "recomendación": "Evaluar perfil lipídico completo. Considerar estatinas."
+        },
+        {
+          "prueba": "Triglicéridos",
+          "valor": 180,
+          "estado": "ALTO",
+          "recomendación": "Revisar con especialista si es necesario"
+        },
+        {
+          "prueba": "LDL (colesterol malo)",
+          "valor": 145,
+          "estado": "ALTO",
+          "recomendación": "Revisar con especialista si es necesario"
+        }
+      ],
+      "alertas_generadas": [
+        {
+          "paciente_id": "pac002",
+          "fecha": "2026-02-12T11:36:13.744727",
+          "tipo": "resultado_crítico",
+          "prueba": "Hemoglobina",
+          "valor": 7.8,
+          "severidad": "CRÍTICO",
+          "simbolo": "🔴",
+          "mensaje": "Hemoglobina: 7.8 g/dL (rango normal: 12-17.5)",
+          "accion": "Requiere revisión e intervención inmediata",
+          "estado": "activa"
+        }
+      ]
+    },
+    {
+      "paciente_id": "pac003",
+      "fecha": "2026-02-12T11:36:13.748917",
+      "resultados_analizados": [
+        {
+          "prueba": "Glucosa en ayunas",
+          "valor": 156,
+          "unidad": "mg/dL",
+          "rango_normal": "70 - 100",
+          "estado": "CRÍTICO",
+          "desviación": "286.7%"
+        },
+        {
+          "prueba": "Hemoglobina",
+          "valor": 9.5,
+          "unidad": "g/dL",
+          "rango_normal": "12 - 17.5",
+          "estado": "ALTO",
+          "desviación": "-45.5%"
+        },
+        {
+          "prueba": "Hematocrito",
+          "valor": 29,
+          "unidad": "%",
+          "rango_normal": "36 - 46",
+          "estado": "BAJO",
+          "desviación": "-70.0%"
+        },
+        {
+          "prueba": "Creatinina",
+          "valor": 4.2,
+          "unidad": "mg/dL",
+          "rango_normal": "0.7 - 1.3",
+          "estado": "CRÍTICO",
+          "desviación": "583.3%"
+        },
+        {
+          "prueba": "Presión Sistólica",
+          "valor": 158,
+          "unidad": "mmHg",
+          "rango_normal": "90 - 120",
+          "estado": "ALTO",
+          "desviación": "226.7%"
+        },
+        {
+          "prueba": "Presión Diastólica",
+          "valor": 92,
+          "unidad": "mmHg",
+          "rango_normal": "60 - 80",
+          "estado": "ALTO",
+          "desviación": "160.0%"
+        },
+        {
+          "prueba": "Colesterol Total",
+          "valor": 195,
+          "unidad": "mg/dL",
+          "rango_normal": "0 - 200",
+          "estado": "NORMAL",
+          "desviación": "97.5%"
+        },
+        {
+          "prueba": "Triglicéridos",
+          "valor": 240,
+          "unidad": "mg/dL",
+          "rango_normal": "0 - 150",
+          "estado": "ALTO",
+          "desviación": "160.0%"
+        },
+        {
+          "prueba": "HDL (colesterol bueno)",
+          "valor": 38,
+          "unidad": "mg/dL",
+          "rango_normal": "40 - 1000",
+          "estado": "BAJO",
+          "desviación": "-0.2%"
+        },
+        {
+          "prueba": "LDL (colesterol malo)",
+          "valor": 128,
+          "unidad": "mg/dL",
+          "rango_normal": "0 - 100",
+          "estado": "ALTO",
+          "desviación": "128.0%"
+        },
+        {
+          "prueba": "AST",
+          "valor": 35,
+          "unidad": "U/L",
+          "rango_normal": "10 - 40",
+          "estado": "NORMAL",
+          "desviación": "83.3%"
+        },
+        {
+          "prueba": "ALT",
+          "valor": 38,
+          "unidad": "U/L",
+          "rango_normal": "7 - 56",
+          "estado": "NORMAL",
+          "desviación": "63.3%"
+        },
+        {
+          "prueba": "Sodio",
+          "valor": 134,
+          "unidad": "mEq/L",
+          "rango_normal": "136 - 145",
+          "estado": "BAJO",
+          "desviación": "-22.2%"
+        },
+        {
+          "prueba": "Potasio",
+          "valor": 6.1,
+          "unidad": "mEq/L",
+          "rango_normal": "3.5 - 5",
+          "estado": "ALTO",
+          "desviación": "173.3%"
+        },
+        {
+          "prueba": "Bilirrubina",
+          "valor": 1.1,
+          "unidad": "mg/dL",
+          "rango_normal": "0.2 - 1.3",
+          "estado": "NORMAL",
+          "desviación": "81.8%"
+        },
+        {
+          "prueba": "Calcio",
+          "valor": 7.8,
+          "unidad": "mg/dL",
+          "rango_normal": "8.5 - 10.2",
+          "estado": "BAJO",
+          "desviación": "-41.2%"
+        },
+        {
+          "prueba": "Fósforo",
+          "valor": 5.2,
+          "unidad": "mg/dL",
+          "rango_normal": "2.5 - 4.5",
+          "estado": "ALTO",
+          "desviación": "135.0%"
+        }
+      ],
+      "anomalías": [
+        {
+          "prueba": "Glucosa en ayunas",
+          "valor": 156,
+          "estado": "CRÍTICO",
+          "recomendación": "Evaluar diabetes. Considerar HbA1c. Derivar a endocrinología si está elevada persistentemente."
+        },
+        {
+          "prueba": "Hemoglobina",
+          "valor": 9.5,
+          "estado": "ALTO",
+          "recomendación": "Evaluar anemia. Solicitar hierro, B12, ácido fólico. Investigar causa de la anemia."
+        },
+        {
+          "prueba": "Hematocrito",
+          "valor": 29,
+          "estado": "BAJO",
+          "recomendación": "Revisar con especialista si es necesario"
+        },
+        {
+          "prueba": "Creatinina",
+          "valor": 4.2,
+          "estado": "CRÍTICO",
+          "recomendación": "Evaluar función renal. Calcular TFG. Monitorear presión arterial."
+        },
+        {
+          "prueba": "Presión Sistólica",
+          "valor": 158,
+          "estado": "ALTO",
+          "recomendación": "Monitorear presión. Considerar antihipertensivos si está elevada."
+        },
+        {
+          "prueba": "Presión Diastólica",
+          "valor": 92,
+          "estado": "ALTO",
+          "recomendación": "Revisar con especialista si es necesario"
+        },
+        {
+          "prueba": "Triglicéridos",
+          "valor": 240,
+          "estado": "ALTO",
+          "recomendación": "Revisar con especialista si es necesario"
+        },
+        {
+          "prueba": "HDL (colesterol bueno)",
+          "valor": 38,
+          "estado": "BAJO",
+          "recomendación": "Revisar con especialista si es necesario"
+        },
+        {
+          "prueba": "LDL (colesterol malo)",
+          "valor": 128,
+          "estado": "ALTO",
+          "recomendación": "Revisar con especialista si es necesario"
+        },
+        {
+          "prueba": "Sodio",
+          "valor": 134,
+          "estado": "BAJO",
+          "recomendación": "Evaluar balance de fluidos. Investigar posible deshidratación o SIADH."
+        },
+        {
+          "prueba": "Potasio",
+          "valor": 6.1,
+          "estado": "ALTO",
+          "recomendación": "Monitorear electrocardiograma. Evaluar medicamentos que afecten potasio."
+        },
+        {
+          "prueba": "Calcio",
+          "valor": 7.8,
+          "estado": "BAJO",
+          "recomendación": "Revisar con especialista si es necesario"
+        },
+        {
+          "prueba": "Fósforo",
+          "valor": 5.2,
+          "estado": "ALTO",
+          "recomendación": "Revisar con especialista si es necesario"
+        }
+      ],
+      "alertas_generadas": [
+        {
+          "paciente_id": "pac003",
+          "fecha": "2026-02-12T11:36:13.748929",
+          "tipo": "resultado_crítico",
+          "prueba": "Glucosa en ayunas",
+          "valor": 156,
+          "severidad": "CRÍTICO",
+          "simbolo": "🔴",
+          "mensaje": "Glucosa en ayunas: 156 mg/dL (rango normal: 70-100)",
+          "accion": "Requiere revisión e intervención inmediata",
+          "estado": "activa"
+        },
+        {
+          "paciente_id": "pac003",
+          "fecha": "2026-02-12T11:36:13.750582",
+          "tipo": "resultado_crítico",
+          "prueba": "Creatinina",
+          "valor": 4.2,
+          "severidad": "CRÍTICO",
+          "simbolo": "🔴",
+          "mensaje": "Creatinina: 4.2 mg/dL (rango normal: 0.7-1.3)",
+          "accion": "Requiere revisión e intervención inmediata",
+          "estado": "activa"
+        }
+      ]
+    },
+    {
+      "paciente_id": "pac004",
+      "fecha": "2026-02-12T11:36:13.754000",
+      "resultados_analizados": [
+        {
+          "prueba": "Glucosa en ayunas",
+          "valor": 92,
+          "unidad": "mg/dL",
+          "rango_normal": "70 - 100",
+          "estado": "NORMAL",
+          "desviación": "73.3%"
+        },
+        {
+          "prueba": "Hemoglobina",
+          "valor": 13.5,
+          "unidad": "g/dL",
+          "rango_normal": "12 - 17.5",
+          "estado": "NORMAL",
+          "desviación": "27.3%"
+        },
+        {
+          "prueba": "Hematocrito",
+          "valor": 40,
+          "unidad": "%",
+          "rango_normal": "36 - 46",
+          "estado": "NORMAL",
+          "desviación": "40.0%"
+        },
+        {
+          "prueba": "Creatinina",
+          "valor": 0.8,
+          "unidad": "mg/dL",
+          "rango_normal": "0.7 - 1.3",
+          "estado": "NORMAL",
+          "desviación": "16.7%"
+        },
+        {
+          "prueba": "Presión Sistólica",
+          "valor": 118,
+          "unidad": "mmHg",
+          "rango_normal": "90 - 120",
+          "estado": "NORMAL",
+          "desviación": "93.3%"
+        },
+        {
+          "prueba": "Presión Diastólica",
+          "valor": 76,
+          "unidad": "mmHg",
+          "rango_normal": "60 - 80",
+          "estado": "NORMAL",
+          "desviación": "80.0%"
+        },
+        {
+          "prueba": "Colesterol Total",
+          "valor": 215,
+          "unidad": "mg/dL",
+          "rango_normal": "0 - 200",
+          "estado": "MODERADO",
+          "desviación": "107.5%"
+        },
+        {
+          "prueba": "Triglicéridos",
+          "valor": 140,
+          "unidad": "mg/dL",
+          "rango_normal": "0 - 150",
+          "estado": "NORMAL",
+          "desviación": "93.3%"
+        },
+        {
+          "prueba": "HDL (colesterol bueno)",
+          "valor": 52,
+          "unidad": "mg/dL",
+          "rango_normal": "40 - 1000",
+          "estado": "NORMAL",
+          "desviación": "1.2%"
+        },
+        {
+          "prueba": "LDL (colesterol malo)",
+          "valor": 138,
+          "unidad": "mg/dL",
+          "rango_normal": "0 - 100",
+          "estado": "ALTO",
+          "desviación": "138.0%"
+        },
+        {
+          "prueba": "AST",
+          "valor": 28,
+          "unidad": "U/L",
+          "rango_normal": "10 - 40",
+          "estado": "NORMAL",
+          "desviación": "60.0%"
+        },
+        {
+          "prueba": "ALT",
+          "valor": 25,
+          "unidad": "U/L",
+          "rango_normal": "7 - 56",
+          "estado": "NORMAL",
+          "desviación": "36.7%"
+        },
+        {
+          "prueba": "Sodio",
+          "valor": 139,
+          "unidad": "mEq/L",
+          "rango_normal": "136 - 145",
+          "estado": "NORMAL",
+          "desviación": "33.3%"
+        },
+        {
+          "prueba": "Potasio",
+          "valor": 4.1,
+          "unidad": "mEq/L",
+          "rango_normal": "3.5 - 5",
+          "estado": "NORMAL",
+          "desviación": "40.0%"
+        },
+        {
+          "prueba": "Bilirrubina",
+          "valor": 0.5,
+          "unidad": "mg/dL",
+          "rango_normal": "0.2 - 1.3",
+          "estado": "NORMAL",
+          "desviación": "27.3%"
+        }
+      ],
+      "anomalías": [
+        {
+          "prueba": "Colesterol Total",
+          "valor": 215,
+          "estado": "MODERADO",
+          "recomendación": "Evaluar perfil lipídico completo. Considerar estatinas."
+        },
+        {
+          "prueba": "LDL (colesterol malo)",
+          "valor": 138,
+          "estado": "ALTO",
+          "recomendación": "Revisar con especialista si es necesario"
+        }
+      ],
+      "alertas_generadas": []
+    },
+    {
+      "paciente_id": "pac005",
+      "fecha": "2026-02-12T11:36:13.755892",
+      "resultados_analizados": [
+        {
+          "prueba": "Glucosa en ayunas",
+          "valor": 110,
+          "unidad": "mg/dL",
+          "rango_normal": "70 - 100",
+          "estado": "MODERADO",
+          "desviación": "133.3%"
+        },
+        {
+          "prueba": "Hemoglobina",
+          "valor": 8.5,
+          "unidad": "g/dL",
+          "rango_normal": "12 - 17.5",
+          "estado": "ALTO",
+          "desviación": "-63.6%"
+        },
+        {
+          "prueba": "Hematocrito",
+          "valor": 26,
+          "unidad": "%",
+          "rango_normal": "36 - 46",
+          "estado": "BAJO",
+          "desviación": "-100.0%"
+        },
+        {
+          "prueba": "Creatinina",
+          "valor": 2.8,
+          "unidad": "mg/dL",
+          "rango_normal": "0.7 - 1.3",
+          "estado": "CRÍTICO",
+          "desviación": "350.0%"
+        },
+        {
+          "prueba": "Presión Sistólica",
+          "valor": 135,
+          "unidad": "mmHg",
+          "rango_normal": "90 - 120",
+          "estado": "ALTO",
+          "desviación": "150.0%"
+        },
+        {
+          "prueba": "Presión Diastólica",
+          "valor": 88,
+          "unidad": "mmHg",
+          "rango_normal": "60 - 80",
+          "estado": "ALTO",
+          "desviación": "140.0%"
+        },
+        {
+          "prueba": "Colesterol Total",
+          "valor": 140,
+          "unidad": "mg/dL",
+          "rango_normal": "0 - 200",
+          "estado": "NORMAL",
+          "desviación": "70.0%"
+        },
+        {
+          "prueba": "Triglicéridos",
+          "valor": 320,
+          "unidad": "mg/dL",
+          "rango_normal": "0 - 150",
+          "estado": "ALTO",
+          "desviación": "213.3%"
+        },
+        {
+          "prueba": "HDL (colesterol bueno)",
+          "valor": 28,
+          "unidad": "mg/dL",
+          "rango_normal": "40 - 1000",
+          "estado": "BAJO",
+          "desviación": "-1.2%"
+        },
+        {
+          "prueba": "LDL (colesterol malo)",
+          "valor": 72,
+          "unidad": "mg/dL",
+          "rango_normal": "0 - 100",
+          "estado": "NORMAL",
+          "desviación": "72.0%"
+        },
+        {
+          "prueba": "Bilirrubina",
+          "valor": 3.2,
+          "unidad": "mg/dL",
+          "rango_normal": "0.2 - 1.3",
+          "estado": "ALTO",
+          "desviación": "272.7%"
+        },
+        {
+          "prueba": "AST",
+          "valor": 125,
+          "unidad": "U/L",
+          "rango_normal": "10 - 40",
+          "estado": "ALTO",
+          "desviación": "383.3%"
+        },
+        {
+          "prueba": "ALT",
+          "valor": 95,
+          "unidad": "U/L",
+          "rango_normal": "7 - 56",
+          "estado": "ALTO",
+          "desviación": "179.6%"
+        },
+        {
+          "prueba": "Albúmina",
+          "valor": 2.8,
+          "unidad": "g/dL",
+          "rango_normal": "3.5 - 5",
+          "estado": "BAJO",
+          "desviación": "-46.7%"
+        },
+        {
+          "prueba": "Sodio",
+          "valor": 130,
+          "unidad": "mEq/L",
+          "rango_normal": "136 - 145",
+          "estado": "BAJO",
+          "desviación": "-66.7%"
+        },
+        {
+          "prueba": "Potasio",
+          "valor": 5.8,
+          "unidad": "mEq/L",
+          "rango_normal": "3.5 - 5",
+          "estado": "ALTO",
+          "desviación": "153.3%"
+        },
+        {
+          "prueba": "Calcio",
+          "valor": 8.2,
+          "unidad": "mg/dL",
+          "rango_normal": "8.5 - 10.2",
+          "estado": "BAJO",
+          "desviación": "-17.6%"
+        },
+        {
+          "prueba": "Fósforo",
+          "valor": 3.8,
+          "unidad": "mg/dL",
+          "rango_normal": "2.5 - 4.5",
+          "estado": "NORMAL",
+          "desviación": "65.0%"
+        }
+      ],
+      "anomalías": [
+        {
+          "prueba": "Glucosa en ayunas",
+          "valor": 110,
+          "estado": "MODERADO",
+          "recomendación": "Evaluar diabetes. Considerar HbA1c. Derivar a endocrinología si está elevada persistentemente."
+        },
+        {
+          "prueba": "Hemoglobina",
+          "valor": 8.5,
+          "estado": "ALTO",
+          "recomendación": "Evaluar anemia. Solicitar hierro, B12, ácido fólico. Investigar causa de la anemia."
+        },
+        {
+          "prueba": "Hematocrito",
+          "valor": 26,
+          "estado": "BAJO",
+          "recomendación": "Revisar con especialista si es necesario"
+        },
+        {
+          "prueba": "Creatinina",
+          "valor": 2.8,
+          "estado": "CRÍTICO",
+          "recomendación": "Evaluar función renal. Calcular TFG. Monitorear presión arterial."
+        },
+        {
+          "prueba": "Presión Sistólica",
+          "valor": 135,
+          "estado": "ALTO",
+          "recomendación": "Monitorear presión. Considerar antihipertensivos si está elevada."
+        },
+        {
+          "prueba": "Presión Diastólica",
+          "valor": 88,
+          "estado": "ALTO",
+          "recomendación": "Revisar con especialista si es necesario"
+        },
+        {
+          "prueba": "Triglicéridos",
+          "valor": 320,
+          "estado": "ALTO",
+          "recomendación": "Revisar con especialista si es necesario"
+        },
+        {
+          "prueba": "HDL (colesterol bueno)",
+          "valor": 28,
+          "estado": "BAJO",
+          "recomendación": "Revisar con especialista si es necesario"
+        },
+        {
+          "prueba": "Bilirrubina",
+          "valor": 3.2,
+          "estado": "ALTO",
+          "recomendación": "Revisar con especialista si es necesario"
+        },
+        {
+          "prueba": "AST",
+          "valor": 125,
+          "estado": "ALTO",
+          "recomendación": "Evaluar función hepática. Solicitar ecografía hepática si está muy elevada."
+        },
+        {
+          "prueba": "ALT",
+          "valor": 95,
+          "estado": "ALTO",
+          "recomendación": "Evaluar función hepática. Investigar posible hepatitis o esteatosis."
+        },
+        {
+          "prueba": "Albúmina",
+          "valor": 2.8,
+          "estado": "BAJO",
+          "recomendación": "Revisar con especialista si es necesario"
+        },
+        {
+          "prueba": "Sodio",
+          "valor": 130,
+          "estado": "BAJO",
+          "recomendación": "Evaluar balance de fluidos. Investigar posible deshidratación o SIADH."
+        },
+        {
+          "prueba": "Potasio",
+          "valor": 5.8,
+          "estado": "ALTO",
+          "recomendación": "Monitorear electrocardiograma. Evaluar medicamentos que afecten potasio."
+        },
+        {
+          "prueba": "Calcio",
+          "valor": 8.2,
+          "estado": "BAJO",
+          "recomendación": "Revisar con especialista si es necesario"
+        }
+      ],
+      "alertas_generadas": [
+        {
+          "paciente_id": "pac005",
+          "fecha": "2026-02-12T11:36:13.755911",
+          "tipo": "resultado_crítico",
+          "prueba": "Creatinina",
+          "valor": 2.8,
+          "severidad": "CRÍTICO",
+          "simbolo": "🔴",
+          "mensaje": "Creatinina: 2.8 mg/dL (rango normal: 0.7-1.3)",
+          "accion": "Requiere revisión e intervención inmediata",
+          "estado": "activa"
+        }
+      ]
+    },
+    {
+      "paciente_id": "pac001",
+      "fecha": "2026-02-12T11:36:45.729403",
+      "resultados_analizados": [
+        {
+          "prueba": "Glucosa en ayunas",
+          "valor": 280,
+          "unidad": "mg/dL",
+          "rango_normal": "70 - 100",
+          "estado": "CRÍTICO",
+          "desviación": "700.0%"
+        },
+        {
+          "prueba": "Hemoglobina",
+          "valor": 9.2,
+          "unidad": "g/dL",
+          "rango_normal": "12 - 17.5",
+          "estado": "ALTO",
+          "desviación": "-50.9%"
+        },
+        {
+          "prueba": "Hematocrito",
+          "valor": 27,
+          "unidad": "%",
+          "rango_normal": "36 - 46",
+          "estado": "BAJO",
+          "desviación": "-90.0%"
+        },
+        {
+          "prueba": "Creatinina",
+          "valor": 1.8,
+          "unidad": "mg/dL",
+          "rango_normal": "0.7 - 1.3",
+          "estado": "MODERADO",
+          "desviación": "183.3%"
+        },
+        {
+          "prueba": "Presión Sistólica",
+          "valor": 165,
+          "unidad": "mmHg",
+          "rango_normal": "90 - 120",
+          "estado": "ALTO",
+          "desviación": "250.0%"
+        },
+        {
+          "prueba": "Presión Diastólica",
+          "valor": 95,
+          "unidad": "mmHg",
+          "rango_normal": "60 - 80",
+          "estado": "ALTO",
+          "desviación": "175.0%"
+        },
+        {
+          "prueba": "Colesterol Total",
+          "valor": 280,
+          "unidad": "mg/dL",
+          "rango_normal": "0 - 200",
+          "estado": "MODERADO",
+          "desviación": "140.0%"
+        },
+        {
+          "prueba": "Triglicéridos",
+          "valor": 450,
+          "unidad": "mg/dL",
+          "rango_normal": "0 - 150",
+          "estado": "ALTO",
+          "desviación": "300.0%"
+        },
+        {
+          "prueba": "HDL (colesterol bueno)",
+          "valor": 35,
+          "unidad": "mg/dL",
+          "rango_normal": "40 - 1000",
+          "estado": "BAJO",
+          "desviación": "-0.5%"
+        },
+        {
+          "prueba": "LDL (colesterol malo)",
+          "valor": 190,
+          "unidad": "mg/dL",
+          "rango_normal": "0 - 100",
+          "estado": "ALTO",
+          "desviación": "190.0%"
+        },
+        {
+          "prueba": "AST",
+          "valor": 38,
+          "unidad": "U/L",
+          "rango_normal": "10 - 40",
+          "estado": "NORMAL",
+          "desviación": "93.3%"
+        },
+        {
+          "prueba": "ALT",
+          "valor": 42,
+          "unidad": "U/L",
+          "rango_normal": "7 - 56",
+          "estado": "NORMAL",
+          "desviación": "71.4%"
+        },
+        {
+          "prueba": "Sodio",
+          "valor": 138,
+          "unidad": "mEq/L",
+          "rango_normal": "136 - 145",
+          "estado": "NORMAL",
+          "desviación": "22.2%"
+        },
+        {
+          "prueba": "Potasio",
+          "valor": 5.2,
+          "unidad": "mEq/L",
+          "rango_normal": "3.5 - 5",
+          "estado": "ALTO",
+          "desviación": "113.3%"
+        },
+        {
+          "prueba": "Bilirrubina",
+          "valor": 0.8,
+          "unidad": "mg/dL",
+          "rango_normal": "0.2 - 1.3",
+          "estado": "NORMAL",
+          "desviación": "54.5%"
+        }
+      ],
+      "anomalías": [
+        {
+          "prueba": "Glucosa en ayunas",
+          "valor": 280,
+          "estado": "CRÍTICO",
+          "recomendación": "Evaluar diabetes. Considerar HbA1c. Derivar a endocrinología si está elevada persistentemente."
+        },
+        {
+          "prueba": "Hemoglobina",
+          "valor": 9.2,
+          "estado": "ALTO",
+          "recomendación": "Evaluar anemia. Solicitar hierro, B12, ácido fólico. Investigar causa de la anemia."
+        },
+        {
+          "prueba": "Hematocrito",
+          "valor": 27,
+          "estado": "BAJO",
+          "recomendación": "Revisar con especialista si es necesario"
+        },
+        {
+          "prueba": "Creatinina",
+          "valor": 1.8,
+          "estado": "MODERADO",
+          "recomendación": "Evaluar función renal. Calcular TFG. Monitorear presión arterial."
+        },
+        {
+          "prueba": "Presión Sistólica",
+          "valor": 165,
+          "estado": "ALTO",
+          "recomendación": "Monitorear presión. Considerar antihipertensivos si está elevada."
+        },
+        {
+          "prueba": "Presión Diastólica",
+          "valor": 95,
+          "estado": "ALTO",
+          "recomendación": "Revisar con especialista si es necesario"
+        },
+        {
+          "prueba": "Colesterol Total",
+          "valor": 280,
+          "estado": "MODERADO",
+          "recomendación": "Evaluar perfil lipídico completo. Considerar estatinas."
+        },
+        {
+          "prueba": "Triglicéridos",
+          "valor": 450,
+          "estado": "ALTO",
+          "recomendación": "Revisar con especialista si es necesario"
+        },
+        {
+          "prueba": "HDL (colesterol bueno)",
+          "valor": 35,
+          "estado": "BAJO",
+          "recomendación": "Revisar con especialista si es necesario"
+        },
+        {
+          "prueba": "LDL (colesterol malo)",
+          "valor": 190,
+          "estado": "ALTO",
+          "recomendación": "Revisar con especialista si es necesario"
+        },
+        {
+          "prueba": "Potasio",
+          "valor": 5.2,
+          "estado": "ALTO",
+          "recomendación": "Monitorear electrocardiograma. Evaluar medicamentos que afecten potasio."
+        }
+      ],
+      "alertas_generadas": [
+        {
+          "paciente_id": "pac001",
+          "fecha": "2026-02-12T11:36:45.729419",
+          "tipo": "resultado_crítico",
+          "prueba": "Glucosa en ayunas",
+          "valor": 280,
+          "severidad": "CRÍTICO",
+          "simbolo": "🔴",
+          "mensaje": "Glucosa en ayunas: 280 mg/dL (rango normal: 70-100)",
+          "accion": "Requiere revisión e intervención inmediata",
+          "estado": "activa"
+        }
+      ]
+    },
+    {
+      "paciente_id": "pac002",
+      "fecha": "2026-02-12T11:36:45.733382",
+      "resultados_analizados": [
+        {
+          "prueba": "Glucosa en ayunas",
+          "valor": 88,
+          "unidad": "mg/dL",
+          "rango_normal": "70 - 100",
+          "estado": "NORMAL",
+          "desviación": "60.0%"
+        },
+        {
+          "prueba": "Hemoglobina",
+          "valor": 7.8,
+          "unidad": "g/dL",
+          "rango_normal": "12 - 17.5",
+          "estado": "CRÍTICO",
+          "desviación": "-76.4%"
+        },
+        {
+          "prueba": "Hematocrito",
+          "valor": 24,
+          "unidad": "%",
+          "rango_normal": "36 - 46",
+          "estado": "BAJO",
+          "desviación": "-120.0%"
+        },
+        {
+          "prueba": "Creatinina",
+          "valor": 0.9,
+          "unidad": "mg/dL",
+          "rango_normal": "0.7 - 1.3",
+          "estado": "NORMAL",
+          "desviación": "33.3%"
+        },
+        {
+          "prueba": "Presión Sistólica",
+          "valor": 128,
+          "unidad": "mmHg",
+          "rango_normal": "90 - 120",
+          "estado": "ALTO",
+          "desviación": "126.7%"
+        },
+        {
+          "prueba": "Presión Diastólica",
+          "valor": 78,
+          "unidad": "mmHg",
+          "rango_normal": "60 - 80",
+          "estado": "NORMAL",
+          "desviación": "90.0%"
+        },
+        {
+          "prueba": "Colesterol Total",
+          "valor": 220,
+          "unidad": "mg/dL",
+          "rango_normal": "0 - 200",
+          "estado": "MODERADO",
+          "desviación": "110.0%"
+        },
+        {
+          "prueba": "Triglicéridos",
+          "valor": 180,
+          "unidad": "mg/dL",
+          "rango_normal": "0 - 150",
+          "estado": "ALTO",
+          "desviación": "120.0%"
+        },
+        {
+          "prueba": "HDL (colesterol bueno)",
+          "valor": 45,
+          "unidad": "mg/dL",
+          "rango_normal": "40 - 1000",
+          "estado": "NORMAL",
+          "desviación": "0.5%"
+        },
+        {
+          "prueba": "LDL (colesterol malo)",
+          "valor": 145,
+          "unidad": "mg/dL",
+          "rango_normal": "0 - 100",
+          "estado": "ALTO",
+          "desviación": "145.0%"
+        },
+        {
+          "prueba": "AST",
+          "valor": 32,
+          "unidad": "U/L",
+          "rango_normal": "10 - 40",
+          "estado": "NORMAL",
+          "desviación": "73.3%"
+        },
+        {
+          "prueba": "ALT",
+          "valor": 29,
+          "unidad": "U/L",
+          "rango_normal": "7 - 56",
+          "estado": "NORMAL",
+          "desviación": "44.9%"
+        },
+        {
+          "prueba": "Sodio",
+          "valor": 140,
+          "unidad": "mEq/L",
+          "rango_normal": "136 - 145",
+          "estado": "NORMAL",
+          "desviación": "44.4%"
+        },
+        {
+          "prueba": "Potasio",
+          "valor": 4.2,
+          "unidad": "mEq/L",
+          "rango_normal": "3.5 - 5",
+          "estado": "NORMAL",
+          "desviación": "46.7%"
+        },
+        {
+          "prueba": "Bilirrubina",
+          "valor": 0.6,
+          "unidad": "mg/dL",
+          "rango_normal": "0.2 - 1.3",
+          "estado": "NORMAL",
+          "desviación": "36.4%"
+        }
+      ],
+      "anomalías": [
+        {
+          "prueba": "Hemoglobina",
+          "valor": 7.8,
+          "estado": "CRÍTICO",
+          "recomendación": "Evaluar anemia. Solicitar hierro, B12, ácido fólico. Investigar causa de la anemia."
+        },
+        {
+          "prueba": "Hematocrito",
+          "valor": 24,
+          "estado": "BAJO",
+          "recomendación": "Revisar con especialista si es necesario"
+        },
+        {
+          "prueba": "Presión Sistólica",
+          "valor": 128,
+          "estado": "ALTO",
+          "recomendación": "Monitorear presión. Considerar antihipertensivos si está elevada."
+        },
+        {
+          "prueba": "Colesterol Total",
+          "valor": 220,
+          "estado": "MODERADO",
+          "recomendación": "Evaluar perfil lipídico completo. Considerar estatinas."
+        },
+        {
+          "prueba": "Triglicéridos",
+          "valor": 180,
+          "estado": "ALTO",
+          "recomendación": "Revisar con especialista si es necesario"
+        },
+        {
+          "prueba": "LDL (colesterol malo)",
+          "valor": 145,
+          "estado": "ALTO",
+          "recomendación": "Revisar con especialista si es necesario"
+        }
+      ],
+      "alertas_generadas": [
+        {
+          "paciente_id": "pac002",
+          "fecha": "2026-02-12T11:36:45.733395",
+          "tipo": "resultado_crítico",
+          "prueba": "Hemoglobina",
+          "valor": 7.8,
+          "severidad": "CRÍTICO",
+          "simbolo": "🔴",
+          "mensaje": "Hemoglobina: 7.8 g/dL (rango normal: 12-17.5)",
+          "accion": "Requiere revisión e intervención inmediata",
+          "estado": "activa"
+        }
+      ]
+    },
+    {
+      "paciente_id": "pac003",
+      "fecha": "2026-02-12T11:36:45.738609",
+      "resultados_analizados": [
+        {
+          "prueba": "Glucosa en ayunas",
+          "valor": 156,
+          "unidad": "mg/dL",
+          "rango_normal": "70 - 100",
+          "estado": "CRÍTICO",
+          "desviación": "286.7%"
+        },
+        {
+          "prueba": "Hemoglobina",
+          "valor": 9.5,
+          "unidad": "g/dL",
+          "rango_normal": "12 - 17.5",
+          "estado": "ALTO",
+          "desviación": "-45.5%"
+        },
+        {
+          "prueba": "Hematocrito",
+          "valor": 29,
+          "unidad": "%",
+          "rango_normal": "36 - 46",
+          "estado": "BAJO",
+          "desviación": "-70.0%"
+        },
+        {
+          "prueba": "Creatinina",
+          "valor": 4.2,
+          "unidad": "mg/dL",
+          "rango_normal": "0.7 - 1.3",
+          "estado": "CRÍTICO",
+          "desviación": "583.3%"
+        },
+        {
+          "prueba": "Presión Sistólica",
+          "valor": 158,
+          "unidad": "mmHg",
+          "rango_normal": "90 - 120",
+          "estado": "ALTO",
+          "desviación": "226.7%"
+        },
+        {
+          "prueba": "Presión Diastólica",
+          "valor": 92,
+          "unidad": "mmHg",
+          "rango_normal": "60 - 80",
+          "estado": "ALTO",
+          "desviación": "160.0%"
+        },
+        {
+          "prueba": "Colesterol Total",
+          "valor": 195,
+          "unidad": "mg/dL",
+          "rango_normal": "0 - 200",
+          "estado": "NORMAL",
+          "desviación": "97.5%"
+        },
+        {
+          "prueba": "Triglicéridos",
+          "valor": 240,
+          "unidad": "mg/dL",
+          "rango_normal": "0 - 150",
+          "estado": "ALTO",
+          "desviación": "160.0%"
+        },
+        {
+          "prueba": "HDL (colesterol bueno)",
+          "valor": 38,
+          "unidad": "mg/dL",
+          "rango_normal": "40 - 1000",
+          "estado": "BAJO",
+          "desviación": "-0.2%"
+        },
+        {
+          "prueba": "LDL (colesterol malo)",
+          "valor": 128,
+          "unidad": "mg/dL",
+          "rango_normal": "0 - 100",
+          "estado": "ALTO",
+          "desviación": "128.0%"
+        },
+        {
+          "prueba": "AST",
+          "valor": 35,
+          "unidad": "U/L",
+          "rango_normal": "10 - 40",
+          "estado": "NORMAL",
+          "desviación": "83.3%"
+        },
+        {
+          "prueba": "ALT",
+          "valor": 38,
+          "unidad": "U/L",
+          "rango_normal": "7 - 56",
+          "estado": "NORMAL",
+          "desviación": "63.3%"
+        },
+        {
+          "prueba": "Sodio",
+          "valor": 134,
+          "unidad": "mEq/L",
+          "rango_normal": "136 - 145",
+          "estado": "BAJO",
+          "desviación": "-22.2%"
+        },
+        {
+          "prueba": "Potasio",
+          "valor": 6.1,
+          "unidad": "mEq/L",
+          "rango_normal": "3.5 - 5",
+          "estado": "ALTO",
+          "desviación": "173.3%"
+        },
+        {
+          "prueba": "Bilirrubina",
+          "valor": 1.1,
+          "unidad": "mg/dL",
+          "rango_normal": "0.2 - 1.3",
+          "estado": "NORMAL",
+          "desviación": "81.8%"
+        },
+        {
+          "prueba": "Calcio",
+          "valor": 7.8,
+          "unidad": "mg/dL",
+          "rango_normal": "8.5 - 10.2",
+          "estado": "BAJO",
+          "desviación": "-41.2%"
+        },
+        {
+          "prueba": "Fósforo",
+          "valor": 5.2,
+          "unidad": "mg/dL",
+          "rango_normal": "2.5 - 4.5",
+          "estado": "ALTO",
+          "desviación": "135.0%"
+        }
+      ],
+      "anomalías": [
+        {
+          "prueba": "Glucosa en ayunas",
+          "valor": 156,
+          "estado": "CRÍTICO",
+          "recomendación": "Evaluar diabetes. Considerar HbA1c. Derivar a endocrinología si está elevada persistentemente."
+        },
+        {
+          "prueba": "Hemoglobina",
+          "valor": 9.5,
+          "estado": "ALTO",
+          "recomendación": "Evaluar anemia. Solicitar hierro, B12, ácido fólico. Investigar causa de la anemia."
+        },
+        {
+          "prueba": "Hematocrito",
+          "valor": 29,
+          "estado": "BAJO",
+          "recomendación": "Revisar con especialista si es necesario"
+        },
+        {
+          "prueba": "Creatinina",
+          "valor": 4.2,
+          "estado": "CRÍTICO",
+          "recomendación": "Evaluar función renal. Calcular TFG. Monitorear presión arterial."
+        },
+        {
+          "prueba": "Presión Sistólica",
+          "valor": 158,
+          "estado": "ALTO",
+          "recomendación": "Monitorear presión. Considerar antihipertensivos si está elevada."
+        },
+        {
+          "prueba": "Presión Diastólica",
+          "valor": 92,
+          "estado": "ALTO",
+          "recomendación": "Revisar con especialista si es necesario"
+        },
+        {
+          "prueba": "Triglicéridos",
+          "valor": 240,
+          "estado": "ALTO",
+          "recomendación": "Revisar con especialista si es necesario"
+        },
+        {
+          "prueba": "HDL (colesterol bueno)",
+          "valor": 38,
+          "estado": "BAJO",
+          "recomendación": "Revisar con especialista si es necesario"
+        },
+        {
+          "prueba": "LDL (colesterol malo)",
+          "valor": 128,
+          "estado": "ALTO",
+          "recomendación": "Revisar con especialista si es necesario"
+        },
+        {
+          "prueba": "Sodio",
+          "valor": 134,
+          "estado": "BAJO",
+          "recomendación": "Evaluar balance de fluidos. Investigar posible deshidratación o SIADH."
+        },
+        {
+          "prueba": "Potasio",
+          "valor": 6.1,
+          "estado": "ALTO",
+          "recomendación": "Monitorear electrocardiograma. Evaluar medicamentos que afecten potasio."
+        },
+        {
+          "prueba": "Calcio",
+          "valor": 7.8,
+          "estado": "BAJO",
+          "recomendación": "Revisar con especialista si es necesario"
+        },
+        {
+          "prueba": "Fósforo",
+          "valor": 5.2,
+          "estado": "ALTO",
+          "recomendación": "Revisar con especialista si es necesario"
+        }
+      ],
+      "alertas_generadas": [
+        {
+          "paciente_id": "pac003",
+          "fecha": "2026-02-12T11:36:45.738640",
+          "tipo": "resultado_crítico",
+          "prueba": "Glucosa en ayunas",
+          "valor": 156,
+          "severidad": "CRÍTICO",
+          "simbolo": "🔴",
+          "mensaje": "Glucosa en ayunas: 156 mg/dL (rango normal: 70-100)",
+          "accion": "Requiere revisión e intervención inmediata",
+          "estado": "activa"
+        },
+        {
+          "paciente_id": "pac003",
+          "fecha": "2026-02-12T11:36:45.741299",
+          "tipo": "resultado_crítico",
+          "prueba": "Creatinina",
+          "valor": 4.2,
+          "severidad": "CRÍTICO",
+          "simbolo": "🔴",
+          "mensaje": "Creatinina: 4.2 mg/dL (rango normal: 0.7-1.3)",
+          "accion": "Requiere revisión e intervención inmediata",
+          "estado": "activa"
+        }
+      ]
+    },
+    {
+      "paciente_id": "pac004",
+      "fecha": "2026-02-12T11:36:45.746291",
+      "resultados_analizados": [
+        {
+          "prueba": "Glucosa en ayunas",
+          "valor": 92,
+          "unidad": "mg/dL",
+          "rango_normal": "70 - 100",
+          "estado": "NORMAL",
+          "desviación": "73.3%"
+        },
+        {
+          "prueba": "Hemoglobina",
+          "valor": 13.5,
+          "unidad": "g/dL",
+          "rango_normal": "12 - 17.5",
+          "estado": "NORMAL",
+          "desviación": "27.3%"
+        },
+        {
+          "prueba": "Hematocrito",
+          "valor": 40,
+          "unidad": "%",
+          "rango_normal": "36 - 46",
+          "estado": "NORMAL",
+          "desviación": "40.0%"
+        },
+        {
+          "prueba": "Creatinina",
+          "valor": 0.8,
+          "unidad": "mg/dL",
+          "rango_normal": "0.7 - 1.3",
+          "estado": "NORMAL",
+          "desviación": "16.7%"
+        },
+        {
+          "prueba": "Presión Sistólica",
+          "valor": 118,
+          "unidad": "mmHg",
+          "rango_normal": "90 - 120",
+          "estado": "NORMAL",
+          "desviación": "93.3%"
+        },
+        {
+          "prueba": "Presión Diastólica",
+          "valor": 76,
+          "unidad": "mmHg",
+          "rango_normal": "60 - 80",
+          "estado": "NORMAL",
+          "desviación": "80.0%"
+        },
+        {
+          "prueba": "Colesterol Total",
+          "valor": 215,
+          "unidad": "mg/dL",
+          "rango_normal": "0 - 200",
+          "estado": "MODERADO",
+          "desviación": "107.5%"
+        },
+        {
+          "prueba": "Triglicéridos",
+          "valor": 140,
+          "unidad": "mg/dL",
+          "rango_normal": "0 - 150",
+          "estado": "NORMAL",
+          "desviación": "93.3%"
+        },
+        {
+          "prueba": "HDL (colesterol bueno)",
+          "valor": 52,
+          "unidad": "mg/dL",
+          "rango_normal": "40 - 1000",
+          "estado": "NORMAL",
+          "desviación": "1.2%"
+        },
+        {
+          "prueba": "LDL (colesterol malo)",
+          "valor": 138,
+          "unidad": "mg/dL",
+          "rango_normal": "0 - 100",
+          "estado": "ALTO",
+          "desviación": "138.0%"
+        },
+        {
+          "prueba": "AST",
+          "valor": 28,
+          "unidad": "U/L",
+          "rango_normal": "10 - 40",
+          "estado": "NORMAL",
+          "desviación": "60.0%"
+        },
+        {
+          "prueba": "ALT",
+          "valor": 25,
+          "unidad": "U/L",
+          "rango_normal": "7 - 56",
+          "estado": "NORMAL",
+          "desviación": "36.7%"
+        },
+        {
+          "prueba": "Sodio",
+          "valor": 139,
+          "unidad": "mEq/L",
+          "rango_normal": "136 - 145",
+          "estado": "NORMAL",
+          "desviación": "33.3%"
+        },
+        {
+          "prueba": "Potasio",
+          "valor": 4.1,
+          "unidad": "mEq/L",
+          "rango_normal": "3.5 - 5",
+          "estado": "NORMAL",
+          "desviación": "40.0%"
+        },
+        {
+          "prueba": "Bilirrubina",
+          "valor": 0.5,
+          "unidad": "mg/dL",
+          "rango_normal": "0.2 - 1.3",
+          "estado": "NORMAL",
+          "desviación": "27.3%"
+        }
+      ],
+      "anomalías": [
+        {
+          "prueba": "Colesterol Total",
+          "valor": 215,
+          "estado": "MODERADO",
+          "recomendación": "Evaluar perfil lipídico completo. Considerar estatinas."
+        },
+        {
+          "prueba": "LDL (colesterol malo)",
+          "valor": 138,
+          "estado": "ALTO",
+          "recomendación": "Revisar con especialista si es necesario"
+        }
+      ],
+      "alertas_generadas": []
+    },
+    {
+      "paciente_id": "pac005",
+      "fecha": "2026-02-12T11:36:45.749984",
+      "resultados_analizados": [
+        {
+          "prueba": "Glucosa en ayunas",
+          "valor": 110,
+          "unidad": "mg/dL",
+          "rango_normal": "70 - 100",
+          "estado": "MODERADO",
+          "desviación": "133.3%"
+        },
+        {
+          "prueba": "Hemoglobina",
+          "valor": 8.5,
+          "unidad": "g/dL",
+          "rango_normal": "12 - 17.5",
+          "estado": "ALTO",
+          "desviación": "-63.6%"
+        },
+        {
+          "prueba": "Hematocrito",
+          "valor": 26,
+          "unidad": "%",
+          "rango_normal": "36 - 46",
+          "estado": "BAJO",
+          "desviación": "-100.0%"
+        },
+        {
+          "prueba": "Creatinina",
+          "valor": 2.8,
+          "unidad": "mg/dL",
+          "rango_normal": "0.7 - 1.3",
+          "estado": "CRÍTICO",
+          "desviación": "350.0%"
+        },
+        {
+          "prueba": "Presión Sistólica",
+          "valor": 135,
+          "unidad": "mmHg",
+          "rango_normal": "90 - 120",
+          "estado": "ALTO",
+          "desviación": "150.0%"
+        },
+        {
+          "prueba": "Presión Diastólica",
+          "valor": 88,
+          "unidad": "mmHg",
+          "rango_normal": "60 - 80",
+          "estado": "ALTO",
+          "desviación": "140.0%"
+        },
+        {
+          "prueba": "Colesterol Total",
+          "valor": 140,
+          "unidad": "mg/dL",
+          "rango_normal": "0 - 200",
+          "estado": "NORMAL",
+          "desviación": "70.0%"
+        },
+        {
+          "prueba": "Triglicéridos",
+          "valor": 320,
+          "unidad": "mg/dL",
+          "rango_normal": "0 - 150",
+          "estado": "ALTO",
+          "desviación": "213.3%"
+        },
+        {
+          "prueba": "HDL (colesterol bueno)",
+          "valor": 28,
+          "unidad": "mg/dL",
+          "rango_normal": "40 - 1000",
+          "estado": "BAJO",
+          "desviación": "-1.2%"
+        },
+        {
+          "prueba": "LDL (colesterol malo)",
+          "valor": 72,
+          "unidad": "mg/dL",
+          "rango_normal": "0 - 100",
+          "estado": "NORMAL",
+          "desviación": "72.0%"
+        },
+        {
+          "prueba": "Bilirrubina",
+          "valor": 3.2,
+          "unidad": "mg/dL",
+          "rango_normal": "0.2 - 1.3",
+          "estado": "ALTO",
+          "desviación": "272.7%"
+        },
+        {
+          "prueba": "AST",
+          "valor": 125,
+          "unidad": "U/L",
+          "rango_normal": "10 - 40",
+          "estado": "ALTO",
+          "desviación": "383.3%"
+        },
+        {
+          "prueba": "ALT",
+          "valor": 95,
+          "unidad": "U/L",
+          "rango_normal": "7 - 56",
+          "estado": "ALTO",
+          "desviación": "179.6%"
+        },
+        {
+          "prueba": "Albúmina",
+          "valor": 2.8,
+          "unidad": "g/dL",
+          "rango_normal": "3.5 - 5",
+          "estado": "BAJO",
+          "desviación": "-46.7%"
+        },
+        {
+          "prueba": "Sodio",
+          "valor": 130,
+          "unidad": "mEq/L",
+          "rango_normal": "136 - 145",
+          "estado": "BAJO",
+          "desviación": "-66.7%"
+        },
+        {
+          "prueba": "Potasio",
+          "valor": 5.8,
+          "unidad": "mEq/L",
+          "rango_normal": "3.5 - 5",
+          "estado": "ALTO",
+          "desviación": "153.3%"
+        },
+        {
+          "prueba": "Calcio",
+          "valor": 8.2,
+          "unidad": "mg/dL",
+          "rango_normal": "8.5 - 10.2",
+          "estado": "BAJO",
+          "desviación": "-17.6%"
+        },
+        {
+          "prueba": "Fósforo",
+          "valor": 3.8,
+          "unidad": "mg/dL",
+          "rango_normal": "2.5 - 4.5",
+          "estado": "NORMAL",
+          "desviación": "65.0%"
+        }
+      ],
+      "anomalías": [
+        {
+          "prueba": "Glucosa en ayunas",
+          "valor": 110,
+          "estado": "MODERADO",
+          "recomendación": "Evaluar diabetes. Considerar HbA1c. Derivar a endocrinología si está elevada persistentemente."
+        },
+        {
+          "prueba": "Hemoglobina",
+          "valor": 8.5,
+          "estado": "ALTO",
+          "recomendación": "Evaluar anemia. Solicitar hierro, B12, ácido fólico. Investigar causa de la anemia."
+        },
+        {
+          "prueba": "Hematocrito",
+          "valor": 26,
+          "estado": "BAJO",
+          "recomendación": "Revisar con especialista si es necesario"
+        },
+        {
+          "prueba": "Creatinina",
+          "valor": 2.8,
+          "estado": "CRÍTICO",
+          "recomendación": "Evaluar función renal. Calcular TFG. Monitorear presión arterial."
+        },
+        {
+          "prueba": "Presión Sistólica",
+          "valor": 135,
+          "estado": "ALTO",
+          "recomendación": "Monitorear presión. Considerar antihipertensivos si está elevada."
+        },
+        {
+          "prueba": "Presión Diastólica",
+          "valor": 88,
+          "estado": "ALTO",
+          "recomendación": "Revisar con especialista si es necesario"
+        },
+        {
+          "prueba": "Triglicéridos",
+          "valor": 320,
+          "estado": "ALTO",
+          "recomendación": "Revisar con especialista si es necesario"
+        },
+        {
+          "prueba": "HDL (colesterol bueno)",
+          "valor": 28,
+          "estado": "BAJO",
+          "recomendación": "Revisar con especialista si es necesario"
+        },
+        {
+          "prueba": "Bilirrubina",
+          "valor": 3.2,
+          "estado": "ALTO",
+          "recomendación": "Revisar con especialista si es necesario"
+        },
+        {
+          "prueba": "AST",
+          "valor": 125,
+          "estado": "ALTO",
+          "recomendación": "Evaluar función hepática. Solicitar ecografía hepática si está muy elevada."
+        },
+        {
+          "prueba": "ALT",
+          "valor": 95,
+          "estado": "ALTO",
+          "recomendación": "Evaluar función hepática. Investigar posible hepatitis o esteatosis."
+        },
+        {
+          "prueba": "Albúmina",
+          "valor": 2.8,
+          "estado": "BAJO",
+          "recomendación": "Revisar con especialista si es necesario"
+        },
+        {
+          "prueba": "Sodio",
+          "valor": 130,
+          "estado": "BAJO",
+          "recomendación": "Evaluar balance de fluidos. Investigar posible deshidratación o SIADH."
+        },
+        {
+          "prueba": "Potasio",
+          "valor": 5.8,
+          "estado": "ALTO",
+          "recomendación": "Monitorear electrocardiograma. Evaluar medicamentos que afecten potasio."
+        },
+        {
+          "prueba": "Calcio",
+          "valor": 8.2,
+          "estado": "BAJO",
+          "recomendación": "Revisar con especialista si es necesario"
+        }
+      ],
+      "alertas_generadas": [
+        {
+          "paciente_id": "pac005",
+          "fecha": "2026-02-12T11:36:45.750004",
+          "tipo": "resultado_crítico",
+          "prueba": "Creatinina",
+          "valor": 2.8,
+          "severidad": "CRÍTICO",
+          "simbolo": "🔴",
+          "mensaje": "Creatinina: 2.8 mg/dL (rango normal: 0.7-1.3)",
+          "accion": "Requiere revisión e intervención inmediata",
+          "estado": "activa"
+        }
+      ]
+    }
+  ],
+  "alertas": [
+    {
+      "paciente_id": "pac001",
+      "fecha": "2026-02-12T11:11:27.768838",
+      "tipo": "resultado_crítico",
+      "prueba": "Glucosa en ayunas",
+      "valor": 280,
+      "severidad": "CRÍTICO",
+      "simbolo": "🔴",
+      "mensaje": "Glucosa en ayunas: 280 mg/dL (rango normal: 70-100)",
+      "accion": "Requiere revisión e intervención inmediata",
+      "estado": "activa"
+    },
+    {
+      "paciente_id": "pac001",
+      "fecha": "2026-02-12T11:11:27.775644",
+      "tipo": "interacción_medicamento",
+      "descripción": "ATENCIÓN: Paciente alérgico a penicilina. Verificar prescripciones.",
+      "severidad": "CRÍTICO",
+      "simbolo": "🔴",
+      "estado": "activa",
+      "creada_por": "médico"
+    },
+    {
+      "paciente_id": "pac001",
+      "fecha": "2026-02-12T11:11:27.780721",
+      "tipo": "resultado_crítico",
+      "prueba": "Glucosa en ayunas",
+      "valor": 280,
+      "severidad": "CRÍTICO",
+      "simbolo": "🔴",
+      "mensaje": "Glucosa en ayunas: 280 mg/dL (rango normal: 70-100)",
+      "accion": "Requiere revisión e intervención inmediata",
+      "estado": "activa"
+    },
+    {
+      "paciente_id": "pac001",
+      "fecha": "2026-02-12T11:11:27.785567",
+      "tipo": "interacción_medicamento",
+      "descripción": "ATENCIÓN: Paciente alérgico a penicilina. Verificar prescripciones.",
+      "severidad": "CRÍTICO",
+      "simbolo": "🔴",
+      "estado": "activa",
+      "creada_por": "médico"
+    },
+    {
+      "paciente_id": "pac001",
+      "fecha": "2026-02-12T11:28:06.905960",
+      "tipo": "resultado_crítico",
+      "prueba": "Hemoglobina",
+      "valor": 7.5,
+      "severidad": "CRÍTICO",
+      "simbolo": "🔴",
+      "mensaje": "Hemoglobina: 7.5 g/dL (rango normal: 12-17.5)",
+      "accion": "Requiere revisión e intervención inmediata",
+      "estado": "activa"
+    },
+    {
+      "paciente_id": "pac001",
+      "fecha": "2026-02-12T11:28:06.907468",
+      "tipo": "resultado_crítico",
+      "prueba": "Creatinina",
+      "valor": 2.0,
+      "severidad": "CRÍTICO",
+      "simbolo": "🔴",
+      "mensaje": "Creatinina: 2.0 mg/dL (rango normal: 0.7-1.3)",
+      "accion": "Requiere revisión e intervención inmediata",
+      "estado": "activa"
+    },
+    {
+      "paciente_id": "pac001",
+      "fecha": "2026-02-12T11:34:04.329520",
+      "tipo": "resultado_crítico",
+      "prueba": "Glucosa en ayunas",
+      "valor": 5,
+      "severidad": "CRÍTICO",
+      "simbolo": "🔴",
+      "mensaje": "Glucosa en ayunas: 5 mg/dL (rango normal: 70-100)",
+      "accion": "Requiere revisión e intervención inmediata",
+      "estado": "activa"
+    },
+    {
+      "paciente_id": "pac001",
+      "fecha": "2026-02-12T11:34:04.332071",
+      "tipo": "resultado_crítico",
+      "prueba": "Hemoglobina",
+      "valor": 7,
+      "severidad": "CRÍTICO",
+      "simbolo": "🔴",
+      "mensaje": "Hemoglobina: 7 g/dL (rango normal: 12-17.5)",
+      "accion": "Requiere revisión e intervención inmediata",
+      "estado": "activa"
+    },
+    {
+      "paciente_id": "pac001",
+      "fecha": "2026-02-12T11:34:31.074032",
+      "tipo": "resultado_crítico",
+      "prueba": "Glucosa en ayunas",
+      "valor": 10000,
+      "severidad": "CRÍTICO",
+      "simbolo": "🔴",
+      "mensaje": "Glucosa en ayunas: 10000 mg/dL (rango normal: 70-100)",
+      "accion": "Requiere revisión e intervención inmediata",
+      "estado": "activa"
+    },
+    {
+      "paciente_id": "pac001",
+      "fecha": "2026-02-12T11:36:13.741332",
+      "tipo": "resultado_crítico",
+      "prueba": "Glucosa en ayunas",
+      "valor": 280,
+      "severidad": "CRÍTICO",
+      "simbolo": "🔴",
+      "mensaje": "Glucosa en ayunas: 280 mg/dL (rango normal: 70-100)",
+      "accion": "Requiere revisión e intervención inmediata",
+      "estado": "activa"
+    },
+    {
+      "paciente_id": "pac002",
+      "fecha": "2026-02-12T11:36:13.744727",
+      "tipo": "resultado_crítico",
+      "prueba": "Hemoglobina",
+      "valor": 7.8,
+      "severidad": "CRÍTICO",
+      "simbolo": "🔴",
+      "mensaje": "Hemoglobina: 7.8 g/dL (rango normal: 12-17.5)",
+      "accion": "Requiere revisión e intervención inmediata",
+      "estado": "activa"
+    },
+    {
+      "paciente_id": "pac003",
+      "fecha": "2026-02-12T11:36:13.748929",
+      "tipo": "resultado_crítico",
+      "prueba": "Glucosa en ayunas",
+      "valor": 156,
+      "severidad": "CRÍTICO",
+      "simbolo": "🔴",
+      "mensaje": "Glucosa en ayunas: 156 mg/dL (rango normal: 70-100)",
+      "accion": "Requiere revisión e intervención inmediata",
+      "estado": "activa"
+    },
+    {
+      "paciente_id": "pac003",
+      "fecha": "2026-02-12T11:36:13.750582",
+      "tipo": "resultado_crítico",
+      "prueba": "Creatinina",
+      "valor": 4.2,
+      "severidad": "CRÍTICO",
+      "simbolo": "🔴",
+      "mensaje": "Creatinina: 4.2 mg/dL (rango normal: 0.7-1.3)",
+      "accion": "Requiere revisión e intervención inmediata",
+      "estado": "activa"
+    },
+    {
+      "paciente_id": "pac005",
+      "fecha": "2026-02-12T11:36:13.755911",
+      "tipo": "resultado_crítico",
+      "prueba": "Creatinina",
+      "valor": 2.8,
+      "severidad": "CRÍTICO",
+      "simbolo": "🔴",
+      "mensaje": "Creatinina: 2.8 mg/dL (rango normal: 0.7-1.3)",
+      "accion": "Requiere revisión e intervención inmediata",
+      "estado": "activa"
+    },
+    {
+      "paciente_id": "pac001",
+      "fecha": "2026-02-12T11:36:45.729419",
+      "tipo": "resultado_crítico",
+      "prueba": "Glucosa en ayunas",
+      "valor": 280,
+      "severidad": "CRÍTICO",
+      "simbolo": "🔴",
+      "mensaje": "Glucosa en ayunas: 280 mg/dL (rango normal: 70-100)",
+      "accion": "Requiere revisión e intervención inmediata",
+      "estado": "activa"
+    },
+    {
+      "paciente_id": "pac002",
+      "fecha": "2026-02-12T11:36:45.733395",
+      "tipo": "resultado_crítico",
+      "prueba": "Hemoglobina",
+      "valor": 7.8,
+      "severidad": "CRÍTICO",
+      "simbolo": "🔴",
+      "mensaje": "Hemoglobina: 7.8 g/dL (rango normal: 12-17.5)",
+      "accion": "Requiere revisión e intervención inmediata",
+      "estado": "activa"
+    },
+    {
+      "paciente_id": "pac003",
+      "fecha": "2026-02-12T11:36:45.738640",
+      "tipo": "resultado_crítico",
+      "prueba": "Glucosa en ayunas",
+      "valor": 156,
+      "severidad": "CRÍTICO",
+      "simbolo": "🔴",
+      "mensaje": "Glucosa en ayunas: 156 mg/dL (rango normal: 70-100)",
+      "accion": "Requiere revisión e intervención inmediata",
+      "estado": "activa"
+    },
+    {
+      "paciente_id": "pac003",
+      "fecha": "2026-02-12T11:36:45.741299",
+      "tipo": "resultado_crítico",
+      "prueba": "Creatinina",
+      "valor": 4.2,
+      "severidad": "CRÍTICO",
+      "simbolo": "🔴",
+      "mensaje": "Creatinina: 4.2 mg/dL (rango normal: 0.7-1.3)",
+      "accion": "Requiere revisión e intervención inmediata",
+      "estado": "activa"
+    },
+    {
+      "paciente_id": "pac005",
+      "fecha": "2026-02-12T11:36:45.750004",
+      "tipo": "resultado_crítico",
+      "prueba": "Creatinina",
+      "valor": 2.8,
+      "severidad": "CRÍTICO",
+      "simbolo": "🔴",
+      "mensaje": "Creatinina: 2.8 mg/dL (rango normal: 0.7-1.3)",
+      "accion": "Requiere revisión e intervención inmediata",
+      "estado": "activa"
+    }
+  ]
+}

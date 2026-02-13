@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DocuMed - Sistema Médico Inteligente</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary: #667eea;
+            --primary-dark: #482d97;
+            --secondary: #764ba2;
+            --danger: #dc3545;
+            --warning: #ffc107;
+            --success: #28a745;
+            --info: #17a2b8;
+            --dark: #343a40;
+            --light: #f8f9fa;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 0;
+            box-shadow: none;
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #482d97 100%);
+            color: white;
+            padding: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 4px solid #764ba2;
+        }
+        
+        .header h1 {
+            font-size: 28px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .header-icon {
+            font-size: 32px;
+        }
+        
+        /* Professional Header Styles */
+        .professional-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 20px 40px;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.25);
+            border-bottom: 3px solid #764ba2;
+        }
+        
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo {
+            width: 50px;
+            height: 50px;
+            border-radius: 8px;
+            object-fit: contain;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15));
+        }
+        
+        .brand-text {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .brand-name {
+            font-size: 28px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+        
+        .brand-subtitle {
+            font-size: 12px;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+        
+        .header-status {
+            display: flex;
+            align-items: center;
+        }
+        
+        .status-badge {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255,255,255,0.2);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background: #00ff00;
+            border-radius: 50%;
+            animation: blink 1.5s infinite;
+        }
+        
+        .status-text {
+            color: white;
+        }
+        
+        .status-indicator {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255,255,255,0.2);
+            padding: 8px 15px;
+            border-radius: 20px;
+        }
+        
+        .dot {
+            width: 10px;
+            height: 10px;
+            background: #00ff00;
+            border-radius: 50%;
+            animation: blink 1s infinite;
+        }
+        
+        @keyframes blink {
+            50% { opacity: 0.5; }
+        }
+        
+        .content {
+            display: grid;
+            grid-template-columns: 1fr 2fr 1fr;
+            gap: 20px;
+            padding: 25px;
+            min-height: 600px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .panel {
+            background: white;
+            border: 1px solid #e9ecef;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        
+        .panel-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #667eea;
+        }
+        
+        .search-box {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+        
+        .search-box input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        
+        .search-box button {
+            padding: 10px 20px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background 0.3s;
+        }
+        
+        .search-box button:hover {
+            background: #0052a3;
+        }
+        
+        .patient-item {
+            padding: 10px;
+            margin: 8px 0;
+            background: var(--light);
+            border-left: 4px solid var(--primary);
+            border-radius: 3px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .patient-item:hover {
+            background: #e7f0ff;
+            transform: translateX(5px);
+        }
+        
+        .patient-name {
+            font-weight: 600;
+            font-size: 14px;
+            color: var(--dark);
+        }
+        
+        .patient-info {
+            font-size: 12px;
+            color: #666;
+            margin-top: 3px;
+        }
+        
+        .alert-item {
+            padding: 12px;
+            margin: 8px 0;
+            border-radius: 5px;
+            font-size: 13px;
+            display: flex;
+            gap: 10px;
+        }
+        
+        .alert-critical {
+            background: linear-gradient(135deg, #ffe1e1 0%, #ffcccc 100%);
+            border-left: 5px solid #dc3545;
+            color: #721c24;
+            font-weight: 500;
+        }
+        
+        .alert-high {
+            background: linear-gradient(135deg, #fff3cd 0%, #ffe8b6 100%);
+            border-left: 5px solid #ffc107;
+            color: #856404;
+            font-weight: 500;
+        }
+        
+        .alert-moderate {
+            background: linear-gradient(135deg, #d1ecf1 0%, #c3e4eb 100%);
+            border-left: 5px solid #17a2b8;
+            color: #0c5460;
+            font-weight: 500;
+        }
+        
+        .alert-normal {
+            background: linear-gradient(135deg, #e8d5f0 0%, #dbc4e8 100%);
+            border-left: 5px solid #764ba2;
+            color: #4a2e5f;
+            font-weight: 500;
+        }
+        
+        .profile-info {
+            display: grid;
+            gap: 10px;
+        }
+        
+        .info-row {
+            padding: 8px;
+            background: var(--light);
+            border-radius: 5px;
+        }
+        
+        .info-label {
+            font-size: 12px;
+            font-weight: 600;
+            color: #666;
+            text-transform: uppercase;
+        }
+        
+        .info-value {
+            font-size: 14px;
+            color: var(--dark);
+            margin-top: 3px;
+        }
+        
+        .lab-form {
+            display: grid;
+            gap: 10px;
+        }
+        
+        .form-group {
+            display: grid;
+            gap: 5px;
+        }
+        
+        .form-label {
+            font-size: 12px;
+            font-weight: 600;
+            color: #666;
+        }
+        
+        .form-input {
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 14px;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            border: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, #3d2270 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(102, 126, 234, 0.35);
+        }
+        
+        .btn-success {
+            background: linear-gradient(135deg, var(--secondary) 0%, #5a3a78 100%);
+            color: white;
+            border: none;
+            font-weight: 600;
+        }
+        
+        .btn-success:hover {
+            background: linear-gradient(135deg, #5a3a78 0%, #462d5a 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(118, 75, 162, 0.35);
+        }
+        
+        .btn-success:hover {
+            background: #218838;
+        }
+        
+        .chat-container {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            gap: 10px;
+        }
+        
+        .chat-messages {
+            flex: 1;
+            background: var(--light);
+            border-radius: 5px;
+            padding: 12px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            max-height: 400px;
+        }
+        
+        .message {
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 13px;
+            max-width: 90%;
+            word-wrap: break-word;
+        }
+        
+        .message.ai {
+            background: #e3f2fd;
+            color: #0066cc;
+            border-left: 3px solid #0066cc;
+            align-self: flex-start;
+        }
+        
+        .message.user {
+            background: #c8e6c9;
+            color: #2e7d32;
+            border-left: 3px solid #2e7d32;
+            align-self: flex-end;
+        }
+        
+        .chat-input {
+            display: flex;
+            gap: 8px;
+        }
+        
+        .chat-input input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 13px;
+        }
+        
+        .chat-input button {
+            padding: 10px 15px;
+            background: var(--success);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 500;
+        }
+        
+        .chat-input button:hover {
+            background: #218838;
+        }
+        
+        .results-section {
+            margin-top: 20px;
+            padding: 15px;
+            background: var(--light);
+            border-radius: 8px;
+        }
+        
+        .result-item {
+            padding: 10px;
+            background: white;
+            border-left: 4px solid var(--warning);
+            margin: 8px 0;
+            border-radius: 3px;
+            font-size: 13px;
+        }
+        
+        .result-item.critical {
+            border-left-color: var(--danger);
+            background: #ffe1e1;
+        }
+        
+        .result-item.high {
+            border-left-color: var(--warning);
+            background: #fff3cd;
+        }
+        
+        .loading {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background: #666;
+            border-radius: 50%;
+            animation: pulse 1.5s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 0.3; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1); }
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+            margin: 2px;
+        }
+        
+        .badge-critical { background: #dc3545; color: white; }
+        .badge-high { background: #ffc107; color: black; }
+        .badge-moderate { background: #17a2b8; color: white; }
+        .badge-normal { background: #28a745; color: white; }
+        
+        .summary-box {
+            background: #f0f7ff;
+            border-left: 4px solid var(--primary);
+            padding: 15px;
+            border-radius: 5px;
+            font-size: 13px;
+            line-height: 1.6;
+            color: var(--dark);
+        }
+        
+        @media (max-width: 1200px) {
+            .content {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .error {
+            background: #ffe1e1;
+            color: #721c24;
+            padding: 10px;
+            border-radius: 5px;
+            border-left: 4px solid #dc3545;
+            font-size: 13px;
+        }
+        
+        .success {
+            background: #d1e7dd;
+            color: #0f5132;
+            padding: 10px;
+            border-radius: 5px;
+            border-left: 4px solid #28a745;
+            font-size: 13px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Professional Header -->
+    <header class="professional-header">
+        <div class="header-content">
+            <div class="logo-section">
+                <img src="/img/hvirfill logo.jpg" alt="DocuMed" class="logo">
+                <div class="brand-text">
+                    <div class="brand-name">DocuMed</div>
+                    <div class="brand-subtitle">Sistema Médico Inteligente</div>
+                </div>
+            </div>
+            <div class="header-status">
+                <div class="status-badge">
+                    <span class="status-dot"></span>
+                    <span class="status-text">Sistema Online</span>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <div class="container">
+        <!-- Contenido Principal -->
+        <div class="content">
+            <!-- Panel Izquierdo: Búsqueda y Alertas -->
+            <div>
+                <!-- Búsqueda de Pacientes -->
+                <div class="panel">
+                    <div class="panel-title">🔍 Buscar Paciente</div>
+                    <div class="search-box">
+                        <input type="text" id="searchInput" placeholder="Nombre o cédula...">
+                        <button onclick="buscarPaciente()">Buscar</button>
+                    </div>
+                    <div id="searchResults"></div>
+                </div>
+                
+                <!-- Alertas Activas -->
+                <div class="panel" style="margin-top: 20px;">
+                    <div class="panel-title">⚠️ Alertas Críticas</div>
+                    <div id="alertasPanel">
+                        <p style="color: #666; font-size: 13px;">Sin alertas activas</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Panel Central: Perfil y Análisis -->
+            <div>
+                <!-- Perfil del Paciente -->
+                <div class="panel">
+                    <div class="panel-title">👤 Perfil del Paciente</div>
+                    <div id="perfilPaciente">
+                        <p style="color: #999; font-size: 13px; text-align: center;">Selecciona un paciente</p>
+                    </div>
+                </div>
+                
+                <!-- Análisis de Laboratorio -->
+                <div class="panel" style="margin-top: 20px;">
+                    <div class="panel-title">🧪 Análisis de Laboratorio</div>
+                    <div class="lab-form">
+                        <div class="form-group">
+                            <label class="form-label">Glucosa (mg/dL)</label>
+                            <input type="number" id="glucosa" class="form-input" placeholder="70-100">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Hemoglobina (g/dL)</label>
+                            <input type="number" id="hemoglobina" class="form-input" placeholder="12-17.5" step="0.1">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Creatinina (mg/dL)</label>
+                            <input type="number" id="creatinina" class="form-input" placeholder="0.7-1.3" step="0.1">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Presión Sistólica (mmHg)</label>
+                            <input type="number" id="presion" class="form-input" placeholder="90-120">
+                        </div>
+                        <button class="btn btn-primary" onclick="analizarLaboratorio()" style="width: 100%; margin-top: 10px;">
+                            📊 Analizar Resultados
+                        </button>
+                    </div>
+                    <div id="laboratorioResultados"></div>
+                </div>
+            </div>
+            
+            <!-- Panel Derecho: Chat con annIA -->
+            <div>
+                <div class="panel" style="height: 100%; display: flex; flex-direction: column;">
+                    <div class="panel-title">💬 annIA - Consulta Médica</div>
+                    <div class="chat-container">
+                        <div class="chat-messages" id="chatMessages">
+                            <div class="message ai">
+                                Hola, soy <strong>annIA</strong>. Estoy aquí para ayudarte con análisis clínicos. ¿Tienes alguna pregunta médica?
+                            </div>
+                        </div>
+                        <div class="chat-input">
+                            <input type="text" id="chatInput" placeholder="Escribe tu pregunta..." onkeypress="if(event.key==='Enter') enviarConsulta()">
+                            <button onclick="enviarConsulta()">Enviar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        const API_URL = 'http://localhost:5000';
+        let pacienteActual = null;
+        
+        // Buscar Paciente
+        async function buscarPaciente() {
+            const valor = document.getElementById('searchInput').value;
+            if (!valor) {
+                alert('Ingresa un nombre o cédula');
+                return;
+            }
+            
+            try {
+                const response = await fetch(`${API_URL}/api/medical/buscar-paciente`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ criterio: 'nombre', valor: valor })
+                });
+                
+                const data = await response.json();
+                mostrarResultadosBusqueda(data.resultado.resultados);
+            } catch (e) {
+                document.getElementById('searchResults').innerHTML = 
+                    `<div class="error">Error: ${e.message}</div>`;
+            }
+        }
+        
+        function mostrarResultadosBusqueda(pacientes) {
+            const html = pacientes.map(p => `
+                <div class="patient-item" onclick="seleccionarPaciente('${p.id}')">
+                    <div class="patient-name">${p.nombre} ${p.apellido}</div>
+                    <div class="patient-info">ID: ${p.id} | Cédula: ${p.cedula}</div>
+                </div>
+            `).join('');
+            
+            document.getElementById('searchResults').innerHTML = html || 
+                '<p style="color: #999; font-size: 13px;">No se encontraron pacientes</p>';
+        }
+        
+        async function seleccionarPaciente(pacienteId) {
+            pacienteActual = pacienteId;
+            
+            try {
+                const response = await fetch(`${API_URL}/api/medical/perfil-paciente/${pacienteId}`);
+                const data = await response.json();
+                mostrarPerfilPaciente(data.perfil);
+                obtenerAlertas(pacienteId);
+            } catch (e) {
+                console.error('Error:', e);
+            }
+        }
+        
+        function mostrarPerfilPaciente(perfil) {
+            const info = perfil.información_personal;
+            const antec = perfil.antecedentes;
+            
+            const html = `
+                <div class="profile-info">
+                    <div class="info-row">
+                        <div class="info-label">Nombre</div>
+                        <div class="info-value">${info.nombre} ${info.apellido}</div>
+                    </div>
+                    <div class="info-row">
+                        <div class="info-label">Cédula</div>
+                        <div class="info-value">${info.cedula}</div>
+                    </div>
+                    <div class="info-row">
+                        <div class="info-label">Edad</div>
+                        <div class="info-value">${info.edad} años</div>
+                    </div>
+                    <div class="info-row">
+                        <div class="info-label">Diagnósticos</div>
+                        <div class="info-value">${antec.diagnósticos.join(', ') || 'Ninguno'}</div>
+                    </div>
+                    <div class="info-row">
+                        <div class="info-label">Medicamentos</div>
+                        <div class="info-value">${antec.medicamentos.join(', ') || 'Ninguno'}</div>
+                    </div>
+                    <div class="info-row">
+                        <div class="info-label">Alergias</div>
+                        <div class="info-value">${antec.alergias.join && antec.alergias.join(', ') || antec.alergias || 'Ninguna'}</div>
+                    </div>
+                </div>
+            `;
+            
+            document.getElementById('perfilPaciente').innerHTML = html;
+        }
+        
+        async function obtenerAlertas(pacienteId) {
+            try {
+                const response = await fetch(`${API_URL}/api/medical/alertas/${pacienteId}?solo_activas=true`);
+                const data = await response.json();
+                mostrarAlertas(data.alertas.alertas);
+            } catch (e) {
+                console.error('Error:', e);
+            }
+        }
+        
+        function mostrarAlertas(alertas) {
+            if (!alertas || alertas.length === 0) {
+                document.getElementById('alertasPanel').innerHTML = 
+                    '<p style="color: #666; font-size: 13px;">Sin alertas críticas</p>';
+                return;
+            }
+            
+            const html = alertas.map(a => {
+                const clase = a.severidad === 'CRÍTICO' ? 'alert-critical' : 
+                              a.severidad === 'ALTO' ? 'alert-high' : 'alert-moderate';
+                
+                const msg = a.mensaje || a.prueba || a.descripción || 'Sin descripción';
+                
+                return `<div class="alert-item ${clase}">${a.símbolo} ${msg}</div>`;
+            }).join('');
+            
+            document.getElementById('alertasPanel').innerHTML = html;
+        }
+        
+        async function analizarLaboratorio() {
+            if (!pacienteActual) {
+                alert('Selecciona un paciente primero');
+                return;
+            }
+            
+            const resultados = {
+                glucosa: parseFloat(document.getElementById('glucosa').value),
+                hemoglobina: parseFloat(document.getElementById('hemoglobina').value),
+                creatinina: parseFloat(document.getElementById('creatinina').value),
+                presion_sistolica: parseFloat(document.getElementById('presion').value)
+            };
+            
+            try {
+                const response = await fetch(`${API_URL}/api/medical/analizar-laboratorio`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ paciente_id: pacienteActual, resultados: resultados })
+                });
+                
+                const data = await response.json();
+                mostrarResultadosLaboratorio(data.análisis);
+            } catch (e) {
+                document.getElementById('laboratorioResultados').innerHTML = 
+                    `<div class="error">Error: ${e.message}</div>`;
+            }
+        }
+        
+        function mostrarResultadosLaboratorio(análisis) {
+            const html = `
+                <div class="results-section">
+                    <strong style="font-size: 14px;">📊 Análisis Completado</strong>
+                    ${análisis.anomalías.map(a => `
+                        <div class="result-item ${a.estado === 'CRÍTICO' ? 'critical' : a.estado === 'ALTO' ? 'high' : ''}">
+                            <strong>${a.prueba}</strong>: ${a.valor}<br>
+                            Estado: <span class="badge badge-${a.estado.toLowerCase()}">${a.estado}</span><br>
+                            Recomendación: ${a.recomendación}
+                        </div>
+                    `).join('')}
+                    <div class="success" style="margin-top: 10px;">
+                        ✓ Análisis guardado. ${análisis.alertas_generadas.length} alert(s) creada(s).
+                    </div>
+                </div>
+            `;
+            
+            document.getElementById('laboratorioResultados').innerHTML = html;
+            obtenerAlertas(pacienteActual);
+        }
+        
+        async function enviarConsulta() {
+            const pregunta = document.getElementById('chatInput').value;
+            if (!pregunta) return;
+            
+            // Mostrar pregunta del usuario
+            agregarMensaje(pregunta, 'user');
+            document.getElementById('chatInput').value = '';
+            
+            // Mostrar loading
+            agregarMensaje('Procesando...', 'ai');
+            
+            try {
+                const contexto = pacienteActual ? `Paciente actual: ${pacienteActual}` : '';
+                
+                const response = await fetch(`${API_URL}/api/medical/consultar-groq`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ consulta: pregunta, contexto: contexto })
+                });
+                
+                const data = await response.json();
+                
+                // Remover mensaje de loading
+                const msgs = document.getElementById('chatMessages');
+                msgs.removeChild(msgs.lastChild);
+                
+                // Mostrar respuesta
+                agregarMensaje(data.respuesta.respuesta, 'ai');
+            } catch (e) {
+                const msgs = document.getElementById('chatMessages');
+                msgs.removeChild(msgs.lastChild);
+                agregarMensaje('Error: ' + e.message, 'ai');
+            }
+        }
+        
+        function agregarMensaje(texto, tipo) {
+            const msg = document.createElement('div');
+            msg.className = `message ${tipo}`;
+            msg.textContent = texto;
+            
+            const container = document.getElementById('chatMessages');
+            container.appendChild(msg);
+            container.scrollTop = container.scrollHeight;
+        }
+    </script>
+</body>
+</html>

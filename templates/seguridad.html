@@ -302,9 +302,69 @@
         .toggle-switch.active::after {
             left: 26px;
         }
+    
+        .top-header {
+            background: linear-gradient(135deg, #667eea 0%, #482d97 100%);
+            color: white;
+            padding: 15px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.25);
+            border-bottom: 3px solid #764ba2;
+        }
+        
+        .logo-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: white;
+        }
+        
+        .logo-img {
+            width: 40px;
+            height: 40px;
+            border-radius: 6px;
+            object-fit: contain;
+        }
+        
+        .brand-info h2 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: bold;
+        }
+        
+        .brand-info p {
+            margin: 0;
+            font-size: 11px;
+            opacity: 0.9;
+        }
+        
+        .main-content {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
     </style>
 </head>
 <body>
+    <!-- Professional Top Header -->
+    <header class="top-header">
+        <a href="/home" class="logo-brand">
+            <img src="/img/hvirfill logo.jpg" alt="DocuMed" class="logo-img">
+            <div class="brand-info">
+                <h2>DocuMed</h2>
+                <p>Sistema Médico Inteligente</p>
+            </div>
+        </a>
+    </header>
+    
+    <div class="main-content">
+
     <div class="container">
         <div class="header">
             <h1>Seguridad y Backup</h1>
@@ -706,5 +766,6 @@
         // Cargar datos al iniciar
         loadBackupHistory();
     </script>
+    </div>
 </body>
 </html>

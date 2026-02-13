@@ -1,31 +1,127 @@
 from flask import Flask, render_template, request, jsonify, session, redirect, url_for
-import random
-import re
-from datetime import datetime, timedelta
-from functools import wraps
-import hashlib
-import secrets
+from flask_cors import CORS
 import json
+from datetime import datetime
+import secrets
+import os
 from groq import Groq
-from pacientes_db import GestorPacientes
-from medical_ai import AnalisisAIMedico
-from encryption import encriptador, gestor_claves
-from cloud_sync import sincronizador_nube
+from medical_ai import IAMedicaProfesional
 
 app = Flask(__name__)
+CORS(app)  # Habilitar CORS para llamadas desde HTML
 app.secret_key = secrets.token_hex(32)
-gestor_pacientes = GestorPacientes()
-ia_medica = AnalisisAIMedico()
+ia_medica = IAMedicaProfesional()
 
-# Configurar Groq API
-GROQ_API_KEY = "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"
-groq_client = Groq(api_key=GROQ_API_KEY)
+# CONFIGURAR GROQ API KEY
+# IMPORTANTE: Obtén tu API key en https://console.groq.com
+# Opción 1: Establecer aquí directamente
+GROQ_API_KEY = "TU_API_KEY_AQUI"  # ← Pon aquí tu API key
 
-# Diccionario de usuarios (en producción usar base de datos)
-usuarios_bd = {
-    'admin': {'password': hashlib.sha256('admin123'.encode()).hexdigest(), 'nombre': 'Administrador'},
-    'doctor': {'password': hashlib.sha256('doctor123'.encode()).hexdigest(), 'nombre': 'Dr. García'}
-}
+# Opción 2: Usar variable de entorno (recomendado)
+if not GROQ_API_KEY:
+    GROQ_API_KEY = os.getenv('GROQ_API_KEY', '')
+
+# Inicializar cliente Groq
+groq_client = None
+if GROQ_API_KEY:
+    groq_client = Groq(api_key=GROQ_API_KEY)
+
+class IAMedicaChat:
+    """IA Profesional para Médicos - Análisis y Recomendaciones Clínicas"""
+    
+    def __init__(self):
+        self.nombre = "annIA"
+        self.conversacion_historia = []
+        self.modelo = "llama-3.1-8b-instant"  # Modelo actualmente disponible en Groq
+        self.client = groq_client  # Referencia al cliente global
+    
+    def consultar_médico(self, consulta_médica, contexto_paciente=''):
+        """Procesa consultas médicas profesionales con análisis de casos clínicos"""
+        if not self.client:
+            print("[ERROR] groq_client no inicializado")
+            return {
+                'error': 'API Key de Groq no configurada. Verifica GROQ_API_KEY en web_ia.py',
+                'instrucciones': 'Asegúrate de tener groq>=0.4.1 instalado'
+            }
+        
+        # Contexto profesional para médicos
+        contexto = """Eres annIA, un asistente médico profesional para médicos licenciados.
+
+TU ROL:
+✓ Analizar casos clínicos basados en información de pacientes
+✓ Proporcionar información clínica basada en evidencia
+✓ Sugerir análisis y pruebas diagnósticas
+✓ Identificar patrones clínicos y banderas rojas
+✓ Interpretación de datos de pacientes (diagnósticos, medicamentos, alergias)
+✓ Ayudar en toma de decisiones diagnósticas
+
+CUANDO SE PROPORCIONA INFORMACIÓN DE PACIENTE:
+- Analiza el perfil clínico completo (edad, diagnósticos, medicamentos)
+- Ten en cuenta las interacciones medicamentosas
+- Considera las alergias y contraindicaciones
+- Sugiere monitoreo según condiciones crónicas
+- Propón análisis y pruebas diagnósticas relevantes
+
+LÍMITES CLAROS:
+✗ No reemplazas la responsabilidad del médico
+✗ Siempre sugiere verificación con colegas
+✗ En emergencias siempre recomienda servicios de emergencia  
+✗ No diagnostiques definitivamente, sugiere evaluación
+✗ Solicita confirmación de datos clínicos críticos
+
+FORMATO:
+- Respuestas claras y concisas
+- Estructura: Análisis → Hallazgos → Recomendaciones
+- Referencias a evidencia clínica cuando relevante
+- Diferencia hallazgos normales de anormales"""
+        
+        try:
+            contexto_completo = contexto
+            if contexto_paciente:
+                contexto_completo += f"\n\n{'='*60}\nINFORMACION DEL PACIENTE:\n{'='*60}\n{contexto_paciente}"
+            
+            print(f"[DEBUG] Enviando consulta a Groq: {consulta_médica[:80]}...")
+            
+            mensaje_completo = [
+                {'role': 'system', 'content': contexto_completo},
+                {'role': 'user', 'content': consulta_médica}
+            ]
+            
+            respuesta = self.client.chat.completions.create(
+                model=self.modelo,
+                messages=mensaje_completo,
+                max_tokens=2000,
+                temperature=0.5
+            )
+            
+            respuesta_texto = respuesta.choices[0].message.content
+            print(f"[DEBUG] Respuesta recibida: {respuesta_texto[:80]}...")
+            
+            # Guardar en historial
+            self.conversacion_historia.append({
+                'consulta': consulta_médica,
+                'respuesta': respuesta_texto,
+                'fecha': datetime.now().isoformat(),
+                'tokens_usados': respuesta.usage.total_tokens if hasattr(respuesta, 'usage') else 0
+            })
+            
+            return {
+                'respuesta': respuesta_texto,
+                'modelo': self.modelo,
+                'fecha': datetime.now().isoformat(),
+                'confiabilidad': 'Revisar con colegas y fuentes clínicas'
+            }
+        
+        except Exception as e:
+            print(f"[ERROR] Error en consultar_médico: {str(e)}")
+            import traceback
+            print(traceback.format_exc())
+            return {
+                'error': f'Error al conectar con Groq: {str(e)}',
+                'tipo_error': type(e).__name__
+            }
+        except Exception as e:
+            return {'error': str(e)}
 
 def login_requerido(func):
     @wraps(func)
@@ -41,45 +137,7 @@ class SimpleIA:
         self.conversacion_historia = []
         
         # Base de conocimientos
-        self.respuestas = {
-            'saludo': [
-                "¡Hola! ¿En qué puedo ayudarte?",
-                "¡Hola! Es un placer hablar contigo.",
-                "¡Saludos! ¿Qué necesitas?",
-            ],
-            'despedida': [
-                "¡Hasta luego! Que tengas un excelente día.",
-                "¡Adiós! Vuelve cuando quieras.",
-                "¡Nos vemos! Fue un placer ayudarte.",
-            ],
-            'nombre': [
-                f"Mi nombre es {self.nombre}. Soy una inteligencia artificial.",
-                f"Me llamo {self.nombre}. ¿Y tú?",
-                f"Soy {self.nombre}, tu asistente virtual.",
-            ],
-            'hora': [
-                f"La hora actual es {datetime.now().strftime('%H:%M:%S')}",
-            ],
-            'fecha': [
-                f"Hoy es {datetime.now().strftime('%d de %B de %Y')}",
-            ],
-            'ayuda': [
-                "¡Tengo muchas capacidades! Puedo darte información deportiva internacional actualizada (), hacer cálculos, y conversar contigo.",
-                "Estoy aquí para ayudarte con: Deportes internacionales (fútbol, NBA, tenis, F1, NFL, UFC, boxeo), matemáticas, hora/fecha, y conversación general. Si no sé algo, puedo buscarlo en internet.",
-                " Deportes: La Liga, Premier, Serie A, Bundesliga, NBA, ATP/WTA, F1, NFL, UFC, Olimpiadas y más.  También puedo buscar info actualizada en internet.",
-            ],
-            'estado': [
-                "¡Me siento genial! Gracias por preguntar.",
-                "Estoy funcionando perfectamente. ¿Y tú cómo estás?",
-                "Todo bien por aquí. ¿Cómo estás tú?",
-            ],
-            'default': [
-                "Interesante. Cuéntame más.",
-                "Entiendo. ¿Algo más que quieras compartir?",
-                "Hmm, no estoy seguro de cómo responder a eso. ¿Puedes reformular?",
-                "Es un tema interesante. ¿Qué más te gustaría saber?",
-            ]
-        }
+        self.respuestas = {}
         
         # Base de datos deportivos INTERNACIONAL (Noviembre 2025)
         self.datos_deportivos = {
@@ -518,6 +576,10 @@ def analisis_reportes():
 def medico_inteligente():
     return render_template('medico_inteligente.html')
 
+@app.route('/medico_inteligente.html')
+def medico_inteligente_html():
+    return render_template('medico_inteligente.html')
+
 @app.route('/recetas')
 @login_requerido
 def recetas():
@@ -625,16 +687,17 @@ def agregar_nota(id_paciente):
     except Exception as e:
         return jsonify({'exito': False, 'error': str(e)}), 400
 
-@app.route('/api/pacientes/buscar/<termino>', methods=['GET'])
-def buscar_paciente(termino):
-    """Busca pacientes por nombre, apellido o cédula"""
+@app.route('/api/pacientes/buscar-legacy/<termino>', methods=['GET'])
+def buscar_paciente_legacy(termino):
+    """Busca pacientes por nombre, apellido o cédula (RUTA DEPRECATED)"""
     resultados = gestor_pacientes.buscar_paciente(termino)
     return jsonify({'resultados': resultados, 'cantidad': len(resultados)})
 
-# RUTAS PARA ANÁLISIS CON IA MÉDICA
+# RUTAS ANTIGUAS COMENTADAS (USAR medical_ia_routes.py EN SU LUGAR)
+"""
 @app.route('/api/analisis-paciente/<id_paciente>', methods=['GET'])
 def analizar_paciente(id_paciente):
-    """Obtiene análisis completo de un paciente con IA"""
+    '''Obtiene análisis completo de un paciente con IA'''
     paciente = gestor_pacientes.obtener_paciente(id_paciente)
     if paciente:
         análisis = ia_medica.analizar_paciente(paciente)
@@ -643,7 +706,7 @@ def analizar_paciente(id_paciente):
 
 @app.route('/api/alertas-paciente/<id_paciente>', methods=['GET'])
 def obtener_alertas(id_paciente):
-    """Obtiene alertas clínicas de un paciente"""
+    '''Obtiene alertas clínicas de un paciente'''
     paciente = gestor_pacientes.obtener_paciente(id_paciente)
     if paciente:
         análisis = ia_medica.analizar_paciente(paciente)
@@ -657,7 +720,7 @@ def obtener_alertas(id_paciente):
 
 @app.route('/api/recomendaciones/<id_paciente>', methods=['GET'])
 def obtener_recomendaciones(id_paciente):
-    """Obtiene recomendaciones para un paciente"""
+    '''Obtiene recomendaciones para un paciente'''
     paciente = gestor_pacientes.obtener_paciente(id_paciente)
     if paciente:
         análisis = ia_medica.analizar_paciente(paciente)
@@ -669,7 +732,7 @@ def obtener_recomendaciones(id_paciente):
 
 @app.route('/api/resumen-clinico/<id_paciente>', methods=['GET'])
 def obtener_resumen_clinico(id_paciente):
-    """Obtiene resumen clínico de un paciente"""
+    '''Obtiene resumen clínico de un paciente'''
     paciente = gestor_pacientes.obtener_paciente(id_paciente)
     if paciente:
         resumen = ia_medica.resumir_historial(paciente)
@@ -678,7 +741,7 @@ def obtener_resumen_clinico(id_paciente):
 
 @app.route('/api/inconsistencias/<id_paciente>', methods=['GET'])
 def detectar_inconsistencias(id_paciente):
-    """Detecta datos faltantes o inconsistentes"""
+    '''Detecta datos faltantes o inconsistentes'''
     paciente = gestor_pacientes.obtener_paciente(id_paciente)
     if paciente:
         inconsistencias = ia_medica.detectar_inconsistencias(paciente)
@@ -688,6 +751,7 @@ def detectar_inconsistencias(id_paciente):
             'cantidad': len(inconsistencias)
         })
     return jsonify({'exito': False, 'error': 'Paciente no encontrado'}), 404
+"""
 
 # RUTAS PARA DIAGNÓSTICOS
 @app.route('/api/pacientes/<id_paciente>/diagnosticos', methods=['POST'])
@@ -1198,9 +1262,20 @@ Sé conciso pero completo. Siempre recomienda consultar con un médico para diag
         }), 500
 
 if __name__ == '__main__':
-    print("\n" + "="*50)
-    print("  [IA] Asistente Web - Servidor Iniciado")
-    print("="*50)
-    print("\n  Abre tu navegador en: http://localhost:5000")
+    # Importar y registrar rutas médicas
+    try:
+        from medical_ia_routes import registrar_rutas_medicas
+        registrar_rutas_medicas(app)
+        print("\n✓ Rutas médicas registradas")
+    except Exception as e:
+        print(f"\n⚠ No se pudieron cargar rutas médicas: {e}")
+    
+    print("\n" + "="*60)
+    print("  🏥 annIA - Asistente Inteligente Médico")
+    print("="*60)
+    print("\n  💻 Abre tu navegador en:")
+    print("     → http://localhost:5000/medico_inteligente.html")
+    print("\n  API disponible en:")
+    print("     → http://localhost:5000/api/medical/")
     print("\n  Presiona Ctrl+C para detener el servidor\n")
     app.run(debug=False, host='0.0.0.0', port=5000, use_reloader=False)
