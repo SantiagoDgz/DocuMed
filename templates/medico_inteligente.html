@@ -117,6 +117,81 @@
             opacity: 0.9;
             font-weight: 300;
         }
+
+        .nav-menu {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: #2c3e50;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            font-size: 14px;
+        }
+
+        .nav-link:hover {
+            background: rgba(102, 126, 234, 0.1);
+            color: #667eea;
+        }
+
+        .dropdown {
+            position: relative;
+        }
+
+        .dropbtn {
+            background: none;
+            border: none;
+            color: #2c3e50;
+            padding: 8px 16px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+
+        .dropbtn:hover {
+            background: rgba(102, 126, 234, 0.1);
+            color: #667eea;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background: white;
+            min-width: 200px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            border-radius: 8px;
+            z-index: 1000;
+            top: 100%;
+            right: 0;
+            margin-top: 5px;
+            overflow: hidden;
+        }
+
+        .dropdown-content a {
+            color: #333;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            transition: all 0.2s ease;
+            font-size: 14px;
+        }
+
+        .dropdown-content a:hover {
+            background: #f5f7fa;
+            color: #667eea;
+            padding-left: 20px;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
         
         .header-status {
             display: flex;
@@ -528,19 +603,47 @@
     <!-- Professional Header with Logo -->
     <header class="professional-header">
         <div class="header-content">
-            <div class="logo-section">
-                <img src="/img/hvirfill logo.jpg" alt="DocuMed Logo" class="logo">
-                <div class="brand-text">
-                    <div class="brand-name">DocuMed</div>
-                    <div class="brand-subtitle">Sistema Médico Inteligente</div>
+            <a href="/home" style="text-decoration: none; color: inherit;">
+                <div class="logo-section">
+                    <img src="/img/hvirfill logo.jpg" alt="DocuMed Logo" class="logo">
+                    <div class="brand-text">
+                        <div class="brand-name">DocuMed</div>
+                        <div class="brand-subtitle">Sistema Médico Inteligente</div>
+                    </div>
                 </div>
-            </div>
-            <div class="header-status">
-                <div class="status-badge">
-                    <span class="status-dot"></span>
-                    <span class="status-text">Sistema Online</span>
+            </a>
+            
+            <nav class="nav-menu">
+                <a href="/home" class="nav-link">🏠 Inicio</a>
+                
+                <div class="dropdown">
+                    <button class="dropbtn">📋 Pacientes ▼</button>
+                    <div class="dropdown-content">
+                        <a href="/pacientes">👥 Registro de Pacientes</a>
+                        <a href="/citas">📅 Citas Médicas</a>
+                        <a href="/historial">📝 Historial Clínico</a>
+                    </div>
                 </div>
-            </div>
+                
+                <div class="dropdown">
+                    <button class="dropbtn">🔬 Clínica ▼</button>
+                    <div class="dropdown-content">
+                        <a href="/captura-datos">📊 Captura de Datos</a>
+                        <a href="/laboratorios">🧪 Laboratorios</a>
+                        <a href="/recetas">💊 Recetas</a>
+                    </div>
+                </div>
+                
+                <div class="dropdown">
+                    <button class="dropbtn">📈 Reportes ▼</button>
+                    <div class="dropdown-content">
+                        <a href="/analisis">📉 Análisis y Reportes</a>
+                        <a href="/estadisticas">📊 Estadísticas</a>
+                    </div>
+                </div>
+                
+                <a href="/medico-inteligente" class="nav-link">🤖 IA Médica</a>
+            </nav>
         </div>
     </header>
     

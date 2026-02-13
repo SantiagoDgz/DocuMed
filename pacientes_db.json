@@ -100,5 +100,209 @@
     ],
     "alergias": "Tetracicinas",
     "última_consulta": "2026-02-12T11:36:45.727243"
+  },
+  "pac006": {
+    "nombre": "Laura",
+    "apellido": "Sánchez",
+    "cedula": "22334455",
+    "edad": 42,
+    "genero": "F",
+    "email": "laura@example.com",
+    "telefono": "555-2468",
+    "diagnósticos": [
+      "Asma bronquial",
+      "Rinitis alérgica"
+    ],
+    "medicamentos": [
+      "Budesonida inhalada 200mcg c/12h",
+      "Salbutamol PRN",
+      "Loratadina 10mg c/d"
+    ],
+    "alergias": "Polen, Ácaros",
+    "última_consulta": "2026-02-11T14:20:00.000000"
+  },
+  "pac007": {
+    "nombre": "Pedro",
+    "apellido": "Gómez",
+    "cedula": "33445566",
+    "edad": 55,
+    "genero": "M",
+    "email": "pedro@example.com",
+    "telefono": "555-1357",
+    "diagnósticos": [
+      "Artritis reumatoide",
+      "Osteoporosis"
+    ],
+    "medicamentos": [
+      "Metotrexato 15mg semanal",
+      "Ácido fólico 5mg semanal",
+      "Prednisona 5mg c/d",
+      "Calcio + Vit D c/d"
+    ],
+    "alergias": "Ninguna conocida",
+    "última_consulta": "2026-02-10T09:15:00.000000"
+  },
+  "pac008": {
+    "nombre": "Sofia",
+    "apellido": "Ramírez",
+    "cedula": "44556677",
+    "edad": 28,
+    "genero": "F",
+    "email": "sofia@example.com",
+    "telefono": "555-8642",
+    "diagnósticos": [
+      "Migraña crónica",
+      "Ansiedad generalizada"
+    ],
+    "medicamentos": [
+      "Topiramato 50mg c/12h",
+      "Escitalopram 10mg c/d",
+      "Sumatriptán 50mg PRN"
+    ],
+    "alergias": "Aspirina",
+    "última_consulta": "2026-02-09T16:30:00.000000"
+  },
+  "pac009": {
+    "nombre": "Miguel",
+    "apellido": "Torres",
+    "cedula": "66778899",
+    "edad": 68,
+    "genero": "M",
+    "email": "miguel@example.com",
+    "telefono": "555-9753",
+    "diagnósticos": [
+      "EPOC",
+      "Hipertensión",
+      "Dislipidemia"
+    ],
+    "medicamentos": [
+      "Tiotropio inhalado c/d",
+      "Enalapril 10mg c/12h",
+      "Rosuvastatina 10mg c/d"
+    ],
+    "alergias": "Betalactámicos",
+    "última_consulta": "2026-02-08T11:00:00.000000"
+  },
+  "pac010": {
+    "nombre": "Carmen",
+    "apellido": "Díaz",
+    "cedula": "77889900",
+    "edad": 52,
+    "genero": "F",
+    "email": "carmen@example.com",
+    "telefono": "555-1593",
+    "diagnósticos": [
+      "Fibromialgia",
+      "Síndrome de intestino irritable",
+      "Depresión"
+    ],
+    "medicamentos": [
+      "Duloxetina 60mg c/d",
+      "Pregabalina 75mg c/12h",
+      "Mebeverina 135mg c/8h"
+    ],
+    "alergias": "Codeína",
+    "última_consulta": "2026-02-07T13:45:00.000000"
+  },
+  "pac011": {
+    "nombre": "Jorge",
+    "apellido": "Vargas",
+    "cedula": "88990011",
+    "edad": 45,
+    "genero": "M",
+    "email": "jorge@example.com",
+    "telefono": "555-7531",
+    "diagnósticos": [
+      "Reflujo gastroesofágico",
+      "Obesidad",
+      "Apnea del sueño"
+    ],
+    "medicamentos": [
+      "Omeprazol 20mg c/d",
+      "Domperidona 10mg c/8h"
+    ],
+    "alergias": "Ninguna conocida",
+    "última_consulta": "2026-02-06T10:20:00.000000"
+  },
+  "pac012": {
+    "nombre": "Isabel",
+    "apellido": "Morales",
+    "cedula": "99001122",
+    "edad": 61,
+    "genero": "F",
+    "email": "isabel@example.com",
+    "telefono": "555-8520",
+    "diagnósticos": [
+      "Hipotiroidismo",
+      "Osteoartritis",
+      "Hipertensión"
+    ],
+    "medicamentos": [
+      "Levotiroxina 100mcg c/d",
+      "Celecoxib 200mg c/12h",
+      "Irbesartán 150mg c/d"
+    ],
+    "alergias": "Metformina",
+    "última_consulta": "2026-02-05T15:10:00.000000"
+  },
+  "pac013": {
+    "nombre": "Fernando",
+    "apellido": "Castro",
+    "cedula": "10112233",
+    "edad": 39,
+    "genero": "M",
+    "email": "fernando@example.com",
+    "telefono": "555-3698",
+    "diagnósticos": [
+      "Hipertensión",
+      "Pre-diabetes"
+    ],
+    "medicamentos": [
+      "Amlodipino 5mg c/d",
+      "Metformina 500mg c/12h"
+    ],
+    "alergias": "Ninguna conocida",
+    "última_consulta": "2026-02-04T09:00:00.000000"
+  },
+  "pac014": {
+    "nombre": "Patricia",
+    "apellido": "Ruiz",
+    "cedula": "21223344",
+    "edad": 33,
+    "genero": "F",
+    "email": "patricia@example.com",
+    "telefono": "555-1472",
+    "diagnósticos": [
+      "Hipotiroidismo",
+      "Síndrome de ovario poliquístico"
+    ],
+    "medicamentos": [
+      "Levotiroxina 50mcg c/d",
+      "Metformina 850mg c/12h",
+      "Anticonceptivos orales"
+    ],
+    "alergias": "Látex",
+    "última_consulta": "2026-02-03T14:30:00.000000"
+  },
+  "pac015": {
+    "nombre": "Ricardo",
+    "apellido": "Herrera",
+    "cedula": "32334455",
+    "edad": 70,
+    "genero": "M",
+    "email": "ricardo@example.com",
+    "telefono": "555-9514",
+    "diagnósticos": [
+      "Enfermedad de Parkinson",
+      "Demencia leve",
+      "Hipertensión"
+    ],
+    "medicamentos": [
+      "Levodopa/Carbidopa 25/250mg c/8h",
+      "Rivastigmina 6mg c/12h",
+      "Losartán 100mg c/d"
+    ],
+    "alergias": "Haloperidol",
+    "última_consulta": "2026-02-02T11:15:00.000000"
   }
 }
