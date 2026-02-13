@@ -6,6 +6,10 @@ import secrets
 import os
 from groq import Groq
 from medical_ai import IAMedicaProfesional
+from dotenv import load_dotenv
+
+# Cargar variables de entorno desde .env
+load_dotenv()
 
 app = Flask(__name__)
 CORS(app)  # Habilitar CORS para llamadas desde HTML
@@ -14,17 +18,16 @@ ia_medica = IAMedicaProfesional()
 
 # CONFIGURAR GROQ API KEY
 # IMPORTANTE: Obtén tu API key en https://console.groq.com
-# Opción 1: Establecer aquí directamente
-GROQ_API_KEY = "TU_API_KEY_AQUI"  # ← Pon aquí tu API key
-
-# Opción 2: Usar variable de entorno (recomendado)
-if not GROQ_API_KEY:
-    GROQ_API_KEY = os.getenv('GROQ_API_KEY', '')
+# La API key se carga automáticamente desde el archivo .env
+GROQ_API_KEY = os.getenv('GROQ_API_KEY', '')
 
 # Inicializar cliente Groq
 groq_client = None
-if GROQ_API_KEY:
+if GROQ_API_KEY and GROQ_API_KEY != 'tu_api_key_aqui':
     groq_client = Groq(api_key=GROQ_API_KEY)
+else:
+    print("⚠️  ADVERTENCIA: No se encontró GROQ_API_KEY en .env")
+    print("   Crea un archivo .env basado en .env.example y agrega tu API key")
 
 class IAMedicaChat:
     """IA Profesional para Médicos - Análisis y Recomendaciones Clínicas"""
